@@ -95,7 +95,24 @@ Si $X=\{x_1,x_2,...,x_k\}\subseteq G$ es un subconjunto finito entonces $<x_1,x_
 Si $<X> = G$ diremos que $X$ es un conjunto de generadores de G. Diremos que $G$ es finitamente generado si existe $\{x_1,x_2,...,x_k\}\subseteq G.$ tal que $<x_1,x_2,...,x_k>=G$. Diremos que el grupo G es ciclico si existe $a\in G$ tal que $<a>=G$
 
 
+\section{El grupo de trenzas de Artin}
 
+Ahora vamos a dar una definición algebraica del grupo de trenzas $B_n$ para cualquier $n>0$. La definición esta formulada en términos de presentación de un grupo por generadores y relaciones.
+
+\begin{defi}
+El grupo de trenzas de Artin $B_n$ es el grupo generado por $n-1$ elementos $\sigma_1, \sigma_2,...,\sigma_{n-1}$ y las relaciones de trenza
+$$\sigma_i\sigma_j = \sigma_j\sigma_i$$
+
+para todo $i,j=1,2,...,n-1$ con $|i-j|\geq 2$ y
+
+$$\sigma_i\sigma_{i+1}\sigma_i =\sigma_{i+1}\sigma_i\sigma_{i+1}$$
+
+para todo $i=1,2,...,n-2$.
+
+
+
+
+\end{defi}
 
 \section{Introducción a las trenzas}
 
@@ -389,7 +406,7 @@ Por último probamos el siguiente lema el cual implica que $\mathcal{B}_n$ es un
 \begin{lema}
 Sea $\beta\in\mathcal{B}_n$, existe un elemento $\beta^{-1}\in\mathcal{B}_n$ que es el inverso por ambos lados de $\beta$.
 \end{lema}
-\textit{Demostración} Para $i = 1,2,n-1$, definimos dos trenzas elementales $\sigma_i^+$ y $\sigma_i^-$ representadas por los diagramas con un unico cruce mostradas en la Figura \ref{}. Las trenzas $\sigma_1^+,...,\sigma_{n-1}^+, \sigma_1^-,...,\sigma_{n-1}^-\in\mathcal{B}_n$ generan $\mathcal{B}_n$ como un monoide. Para ver esto, consideramos una trenza $\beta$ de $n$ hebras representada por un diagrama de trenza $\mathcal{D}$. A través de una ligera deformación de $\mathcal{D}\subset\mathbb{R}\times I$ en un vecindario de sus puntos de cruce, podemos hacer que los cruces de $\mathcal{D}$ tengan distinta coordenada. Por tanto podemos establecer una partición
+\textit{Demostración} Para $i = 1,2,n-1$, definimos dos trenzas elementales $\sigma_i^+$ y $\sigma_i^-$ representadas por los diagramas con un unico cruce mostradas en la Figura \ref{fig:elem_braids}. Las trenzas $\sigma_1^+,...,\sigma_{n-1}^+, \sigma_1^-,...,\sigma_{n-1}^-\in\mathcal{B}_n$ generan $\mathcal{B}_n$ como un monoide. Para ver esto, consideramos una trenza $\beta$ de $n$ hebras representada por un diagrama de trenza $\mathcal{D}$. A través de una ligera deformación de $\mathcal{D}\subset\mathbb{R}\times I$ en un vecindario de sus puntos de cruce, podemos hacer que los cruces de $\mathcal{D}$ tengan distinta coordenada. Por tanto podemos establecer una partición
 
 $$0=t_0,t_1,...,t_{k_-1},t_k = 1$$
 
@@ -459,8 +476,18 @@ Claramente, $\sigma_i^+\sigma_i^- = \sigma_i^-\sigma_i^+=1$ para todo $i$. Por t
 
 
 \caption{Trenzas elementales $\sigma_i^+$ y $\sigma_i^-$}
-\label{MR}
+\label{fig:elem_braids}
 \end{figure}
+
+\begin{lema}
+Los elementos $\sigma_1^+,...,\sigma_{n-1}^+\in\mathcal{B}_n$ satisfacen las relaciones de trenza, las cuales son, $\sigma_i\sigma_j = \sigma_j\sigma_i$ para todo $i,j=1,2,...,n-1$ con $|i-j|\geq 2$, y $\sigma_i\sigma_{i+1}\sigma_i =\sigma_{i+1}\sigma_i\sigma_{i+1}$ para todo $i=1,2,...,n-2$.
+\end{lema}
+
+\textit{Demostración}. La primera relación viene del hecho de que ambas partes representan diagramas isotópicos. Los diagramas que representan ambos lados de la segunda relación se diferencian por un movimiento de Reidmeister $\Omega_3$.
+
+\begin{teor}
+Para $\varepsilon = \pm$, existe un unico homomorfismo $\varphi_\varepsilon : B_n\rightarrow\mathcal{B}_n$ tal que $\varphi_\varepsilon(\sigma_i) = \sigma_i^\varepsilon$ para cada $i=1,2,...,n-1$. El homomorfismo $\varphi_\varepsilon$ es un isomorfismo.
+\end{teor}
 
 
 		
