@@ -261,10 +261,10 @@ Sean $\beta_1,\beta_2\in \mathcal{B}_3$, cuyos diagramas se pueden ver en \subre
 	\begin{subfigure}[b]{0.45\linewidth}
 		\begin{center}
 		\begin{tikzpicture}
-		\braid[line width =1.5pt, number of strands = 3, name = b1] (b1) at (-3,3) a_1^{-1} a_1;
+		\braid[line width =1.5pt, number of strands = 3, name = b1] (b1) at (-3,3) a_1 a_1;
 	\node[] at (-3.75,1.75){$\beta_1$};
 	\node[] at (0,0){};
-		\braid[line width =1.5pt, height = 15pt, nudge factor = 0.01, control factor = 0.5, name = b2] (b2) at (-3,0) a_1^{-1} a_2 a_1^{-1} a_2^{-1};
+		\braid[line width =1.5pt, height = 15pt, nudge factor = 0.01, control factor = 0.5, name = b2] (b2) at (-3,0) a_1 a_2 a_1^{-1} a_2^{-1};
 		\node[] at (-3.75,-1.2){$\beta_2$};
 
 		\end{tikzpicture}
@@ -276,7 +276,7 @@ Sean $\beta_1,\beta_2\in \mathcal{B}_3$, cuyos diagramas se pueden ver en \subre
 	\begin{subfigure}[b]{0.45\linewidth}
 		\begin{center}
 		\begin{tikzpicture}
-		\braid[line width =1.5pt, height = 20pt, number of strands = 3]  a_1^{-1} a_1 a_1^{-1} a_2 a_1^{-1} a_2^{-1};
+		\braid[line width =1.5pt, height = 20pt, number of strands = 3]  a_1 a_1 a_1 a_2 a_1^{-1} a_2^{-1};
 		\node[] at (0,-2.2){$\beta_1\beta_2$};
 	\node[] at (4.5,0){};
 		\end{tikzpicture}
@@ -324,16 +324,21 @@ Trivialmente también se tiene la asociatividad del producto de trenzas como se 
 
 \begin{ejem}[Asociatibidad]
 
+
+
+
+
 \begin{figure}[h!]
 \centering
-	\begin{subfigure}[b]{0.45\linewidth}
+	\begin{subfigure}[b]{0.8\linewidth}
 		\begin{center}
 		\begin{tikzpicture}
-		\braid[line width =1.5pt, number of strands = 3, name = b1] (b1) at (-3,3) a_1^{-1} a_1;
-	\node[] at (-3.75,1.75){$\beta_1$};
-	\node[] at (0,0){};
-		\braid[line width =1.5pt, height = 15pt, nudge factor = 0.01, control factor = 0.5, name = b2] (b2) at (-3,0) a_1^{-1} a_2 a_1^{-1} a_2^{-1};
-		\node[] at (-3.75,-1.2){$\beta_2$};
+		\braid[line width =1.5pt, number of strands = 3] (b1) at (-4,0) a_1 a_1;
+		\braid[line width =1.5pt, number of strands = 3] (b1) at (-7.5,0) a_1^{-1} a_2 a_1^{-1} a_2^{-1};
+		\braid[line width =1.5pt, number of strands = 3] (b1) at (-0.5,0) a_1 a_1;
+	\node[] at (-4.5,-1.2){$\beta_2$};
+	\node[] at (-8,-1.2){$\beta_1$};
+	\node[] at (-1,-1.2){$\beta_3$};
 
 		\end{tikzpicture}
 		\end{center}
@@ -341,10 +346,21 @@ Trivialmente también se tiene la asociatividad del producto de trenzas como se 
 		\caption{}
 		\label{subfig:factores}
 	\end{subfigure}
+	
 	\begin{subfigure}[b]{0.45\linewidth}
 		\begin{center}
 		\begin{tikzpicture}
-		\braid[line width =1.5pt, height = 20pt, number of strands = 3]  a_1^{-1} a_1 a_1^{-1} a_2 a_1^{-1} a_2^{-1};
+		\braid[line width =1.5pt, height = 20pt, number of strands = 3]  a_1 a_1 a_1 a_2 a_1^{-1} a_2^{-1};
+		\node[] at (0,-2.2){$\beta_1\beta_2$};
+	\node[] at (4.5,0){};
+		\end{tikzpicture}
+		\end{center}
+		\caption{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\linewidth}
+		\begin{center}
+		\begin{tikzpicture}
+		\braid[line width =1.5pt, height = 20pt, number of strands = 3]  a_1 a_1 a_1 a_2 a_1^{-1} a_2^{-1};
 		\node[] at (0,-2.2){$\beta_1\beta_2$};
 	\node[] at (4.5,0){};
 		\end{tikzpicture}
@@ -356,42 +372,11 @@ Trivialmente también se tiene la asociatividad del producto de trenzas como se 
 \end{figure}
 
 
+
 \end{ejem}
 
 
 
-
-
-\begin{ejem}
-Hola
-\begin{figure}[h!]
-
-	\centering
-	\begin{subfigure}[b]{0.45\linewidth}
-		\begin{center}
-		\begin{tikzpicture}
-		\braid[line width =1.5pt, number of strands = 3, name = a] (a) at (-2,0) a_1^{-1} a_1;
-	\node[right = 1cm of a] (b){$\times$};
-\node[right = 1cm of b] (c){};
-		\braid[line width =1.5pt, number of strands = 3, name = c]  a_1^{-1} a_1;
-		\end{tikzpicture}
-		
-
-		\end{center}
-		\caption{}
-	\end{subfigure}
-		
-	\begin{subfigure}[b]{0.45\linewidth}
-		\begin{center}
-		\begin{tikzpicture}
-		\braid[line width =1.5pt, height = 15pt, nudge factor = 0.01, control factor = 0.5]  a_1^{-1} a_2 a_1^{-1} a_2^{-1} a_2 a_2 a_2 a_1 a_2;
-		\end{tikzpicture}
-		\caption{}
-		\end{center}
-	\end{subfigure}
-		\caption{hola me llamo fernandao}
-\end{figure}
-\end{ejem}
 
 		
 
