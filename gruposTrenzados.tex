@@ -65,6 +65,8 @@ Sea $G$ un grupo. Un subgrupo de $G$ es un subconjunto $H\subseteq G$, $H\neq\em
 
 Si $H$ es un subgrupo de $G$, lo denotaremos $H\leq G$.
 
+
+
 \end{defi}
 
 \begin{defi}[Subgrupo generado]
@@ -92,7 +94,20 @@ Denotaremos al subgrupo generado por un único elemento $a\in G$ por $<a>\ = \{a
 
 Si $X=\{x_1,x_2,...,x_k\}\subseteq G$ es un subconjunto finito entonces $<x_1,x_2,...,x_k>=<X>$.
 
-Si $<X> = G$ diremos que $X$ es un conjunto de generadores de G. Diremos que $G$ es finitamente generado si existe $\{x_1,x_2,...,x_k\}\subseteq G.$ tal que $<x_1,x_2,...,x_k>=G$. Diremos que el grupo G es ciclico si existe $a\in G$ tal que $<a>=G$
+Si $<X> = G$ diremos que $X$ es un conjunto de generadores de G. Diremos que $G$ es finitamente generado si existe $\{x_1,x_2,...,x_k\}\subseteq G.$ tal que $<x_1,x_2,...,x_k>=G$. Diremos que el grupo G es ciclico si existe $a\in G$ tal que $<a>=G$.
+
+
+
+\begin{defi}[Grupo libre]
+Sea X un conjunto no vacío. Un par $(F,\kappa:X\rightarrow F)$ donde $F$ es un grupo se dice \textit{universal} para $X$ si para cualquier función $f:X\rightarrow G$ de $X$ al grupo G hay un único homomorfismo de grupo $\tau_f:F\rightarrow G$ tal que
+
+$$\tau_f\circ\kappa = f$$
+
+Al grupo $F$ se le llama \textit{grupo libre} en $X$ y a $X$ se le denomina un conjunto de \textit{generadores libres}.
+
+\end{defi}
+
+
 
 
 \section{El grupo de trenzas de Artin}
@@ -108,13 +123,25 @@ para todo $i,j=1,2,...,n-1$ con $|i-j|\geq 2$ y
 $$\sigma_i\sigma_{i+1}\sigma_i =\sigma_{i+1}\sigma_i\sigma_{i+1}$$
 
 para todo $i=1,2,...,n-2$.
-
-
-
-
+\label{defi:artin}
 \end{defi}
 
-\section{Introducción a las trenzas}
+\begin{lema}
+Si $s_1,...,s_{n-1}$ son elementos de un grupo $G$ que satisfacen las relaciones de trenza, entonces existe un único homomorfismo de grupo $f:B_n\rightarrow G$ tal que $s_i = f(\sigma_i)$ para todo $i=1,2,...,n-1$.
+\label{uni_homo}
+\end{lema}
+
+\textit{Demostración}. Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $\bar{f}:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i=1,...,n-1$. Este homomorfismo induce un homomorfismo de grupo $f:B_n\rightarrow G$ en el que sabemos que si $r$ y $r'$ son dos trenzas tal que $r = r'$ entonces $f(r) = f(r')$. De esta manera obtenemos que el homomorfismo conserva las relaciones de trenza teniendo en cuenta la hipótesis inicial
+
+$$\bar{f}(\sigma_i\sigma_{j})=\bar{f}(\sigma_i)\bar{f}(\sigma_{j})=s_is_j=s_js_i=\bar{f}(\sigma_j)\bar{f}(\sigma_{i})=\bar{f}(\sigma_j\sigma_{i})$$
+
+$$\bar{f}(\sigma_i\sigma_{i+1}\sigma{i}) = s_is_{i+1}s_i=s_{i+1}s_is_{i+1} = \bar{f}(\sigma_{i+1}\sigma_i\sigma_{i+1})$$
+
+
+
+
+
+\section{Trenzas y sus diagramas}
 
 \begin{comment}
 \begin{defi}[$n$-trenza]\label{n_trenza}
@@ -196,6 +223,7 @@ Dos diagramas de trenzas $\mathcal{D}, \mathcal{D}'$ de $n$ hebras se dicen que 
 		\braid[line width =1.5pt, number of strands = 4, name = b1] (b1) at (3,0) a_3 a_1;
 		\node[] at (1.5,-1.2){$\leadsto$};
 \end{tikzpicture}
+\label{fig:d_iso}
 \caption{Diagramas isótopicos}
 \end{figure}
 
@@ -404,9 +432,10 @@ Trivialmente también se tiene la asociatividad del producto de trenzas como se 
 Por último probamos el siguiente lema el cual implica que $\mathcal{B}_n$ es un grupo.
 
 \begin{lema}
+\label{lema:inverso}
 Sea $\beta\in\mathcal{B}_n$, existe un elemento $\beta^{-1}\in\mathcal{B}_n$ que es el inverso por ambos lados de $\beta$.
 \end{lema}
-\textit{Demostración} Para $i = 1,2,n-1$, definimos dos trenzas elementales $\sigma_i^+$ y $\sigma_i^-$ representadas por los diagramas con un unico cruce mostradas en la Figura \ref{fig:elem_braids}. Las trenzas $\sigma_1^+,...,\sigma_{n-1}^+, \sigma_1^-,...,\sigma_{n-1}^-\in\mathcal{B}_n$ generan $\mathcal{B}_n$ como un monoide. Para ver esto, consideramos una trenza $\beta$ de $n$ hebras representada por un diagrama de trenza $\mathcal{D}$. A través de una ligera deformación de $\mathcal{D}\subset\mathbb{R}\times I$ en un vecindario de sus puntos de cruce, podemos hacer que los cruces de $\mathcal{D}$ tengan distinta coordenada. Por tanto podemos establecer una partición
+\textit{Demostración}. Para $i = 1,2,n-1$, definimos dos trenzas elementales $\sigma_i^+$ y $\sigma_i^-$ representadas por los diagramas con un unico cruce mostradas en la Figura \ref{fig:elem_braids}. Las trenzas $\sigma_1^+,...,\sigma_{n-1}^+, \sigma_1^-,...,\sigma_{n-1}^-\in\mathcal{B}_n$ generan $\mathcal{B}_n$ como un monoide. Para ver esto, consideramos una trenza $\beta$ de $n$ hebras representada por un diagrama de trenza $\mathcal{D}$. A través de una ligera deformación de $\mathcal{D}\subset\mathbb{R}\times I$ en un vecindario de sus puntos de cruce, podemos hacer que los cruces de $\mathcal{D}$ tengan distinta coordenada. Por tanto podemos establecer una partición
 
 $$0=t_0,t_1,...,t_{k_-1},t_k = 1$$
 
@@ -481,6 +510,7 @@ Claramente, $\sigma_i^+\sigma_i^- = \sigma_i^-\sigma_i^+=1$ para todo $i$. Por t
 
 \begin{lema}
 Los elementos $\sigma_1^+,...,\sigma_{n-1}^+\in\mathcal{B}_n$ satisfacen las relaciones de trenza, las cuales son, $\sigma_i\sigma_j = \sigma_j\sigma_i$ para todo $i,j=1,2,...,n-1$ con $|i-j|\geq 2$, y $\sigma_i\sigma_{i+1}\sigma_i =\sigma_{i+1}\sigma_i\sigma_{i+1}$ para todo $i=1,2,...,n-2$.
+\label{lema:rel_geom}
 \end{lema}
 
 \textit{Demostración}. La primera relación viene del hecho de que ambas partes representan diagramas isotópicos. Los diagramas que representan ambos lados de la segunda relación se diferencian por un movimiento de Reidmeister $\Omega_3$.
@@ -489,6 +519,54 @@ Los elementos $\sigma_1^+,...,\sigma_{n-1}^+\in\mathcal{B}_n$ satisfacen las rel
 Para $\varepsilon = \pm$, existe un unico homomorfismo $\varphi_\varepsilon : B_n\rightarrow\mathcal{B}_n$ tal que $\varphi_\varepsilon(\sigma_i) = \sigma_i^\varepsilon$ para cada $i=1,2,...,n-1$. El homomorfismo $\varphi_\varepsilon$ es un isomorfismo.
 \end{teor}
 
+\textit{Demostración.} Lo probamos para $\varepsilon = +$, el caso $\varepsilon = -$ es quivalente. La existencia y unicidad de $var\phi_+$ vienen proporcionadas por los Lemas \ref{uni_homo} y \ref{lema:rel_geom}. En la prueba del Lema \ref{lema:inverso} se demuestra que $\sigma_1^+,\sigma_2^+,...,\sigma_n^+$ son generadores de $\mathcal{B}_n$. Estos generadores pertenecen a la imagen de $\varphi_+$. Por tanto $\sigma_+$ es sobreyectiva.
+
+Ahora tomamos la función teórica $\psi :\mathcal{B}_n\rightarrow B_n$ tal que $\psi \circ \varphi = id$. Esto implica que $\varphi_+$ es inyectiva. Como en la prueba del Lema \ref{lema:inverso}, representamos cualquier $\beta\in\mathcal{B}_n$ por el diagrama $\mathcal{D}$ en el cual los cruces tienen la segunda coordenada diferente. Esto lleva a una expansión de la forma \label{hola}
+
+\begin{equation}\label{form:expansion}
+\psi(\mathcal{D})=(\sigma_{i_1})^{\varepsilon_1}(\sigma_{i_2})^{\varepsilon_2}\cdot\cdot\cdot(\sigma_{i_k})^{\varepsilon_k}\in B_n
+\end{equation}
+
+donde $(\sigma_i)^+=\sigma_i$ y $(\sigma_i)^-=\sigma_i^{-1}$. Se tiene que $\psi(\mathcal{D})$ depende exclusivamente de $\beta$. Por el Teorema \ref{teor:equiv} solo nos hace falta verificar que $\psi(\mathcal{D})$ es invariable bajo isotopías y movimientos de Reidmeister sobre $\mathcal{D}$. Isotopías de $\mathcal{D}$ que conservan el orden de los puntos dobles de $\mathcal{D}$ con respecto a la segunda coordenada mantienen la expansión (\ref{form:expansion}) y por tanto preserva $\psi(\mathcal{D})$. Una isotopía que cambia el orden de dos dobles puntos en $\mathcal{D}$ (como en la Figura \ref{fig:d_iso}) reemplaza el termino $\sigma_i^{\varepsilon_i}\sigma_j^{\varepsilon_j}$ en (\ref{form:expansion}) por $\sigma_j^{\varepsilon_j}\sigma_i^{\varepsilon_i}$ para algún $i,j\in\{1,2,...,n-1\}$ con $|i-j|\geq 2$. Bajo $\psi$, a estas expresiones les corresponde el mismo elemento de $B_n$ debido a la primera relación de trenza en Definición
+ \ref{defi:artin}.
+\newline
+\newline
+El movimiento $\Omega_2$ (respectivamente $\omega_2^{-1}$) en $\mathcal{D}$ inserta (respectivamente elimina) en la expansion (\ref{form:expansion}) un termino $\sigma_i^+\sigma_i^-$ o $\sigma_i^-\sigma_i^+$. Claramente esto preserva $\psi(\mathcal{D})$.
+\newline
+\newline
+El movimiento $\Omega_3$ en $\mathcal{D}$ reemplaza la secuancia $\sigma_{i}\sigma_{i+1}\sigma_{i}$ en (\ref{form:expansion}) por $\sigma_{i+1}\sigma_{i}\sigma_{i+1}$. Bajo $\psi$, esta expresión corresponde al mismo elemento de $B_n$ debido a la segunda relación de trenza en Definición \ref{defi:artin}. El movimiento $\omega_3^{-1}$ se ve de forma similar.
+\newline
+\newline
+
+Esto demuestra que $\psi$ es una función bien definida de $\mathcal{B}_n\rightarrow B_n$. Por construcción $\psi\circ\varphi_+=id$. Por tanto $\varphi_+$ es sobreyectiva e inyectiva.
+
+
+
+
+\qed
+
+
+
+
+Sea $\beta\in B_n$ una trenza de $n$ hebras, consideramos una trenza geométrica que la represente . La hebra $d_i$ une el punto $(i,0,0)$ con el punto $(j(i),0,1).$ Definimos la función $\pi:B_n\rightarrow S_n$ del grupo de trenzas al grupo simétrico como
+
+$$\pi(\beta) = \begin{pmatrix}
+1 & 2 & \cdot\cdot\cdot & n\\
+j(1) & j(2) & \cdot\cdot\cdot & j(n)\\
+\end{pmatrix} $$
+
+Da igual la trenza geométrica tomada como representante pueso que todas tienen el mismo punto de inicio y fin para todas las hebras. Podemos decir que $\pi$ es un invariante para las trenzas geométricas y se puede ver facilmente que es un homomorfismo. Normalmente, a la permutación obtenida a partir de una trenza se le denomina \textit{permutación de hebra} y se denota por $\pi(\beta)$.
+
+\begin{defi}[Trenzas puras]
+El nucleo del homomorfismo $\pi:B_n\rightarrow S_n$ es llamado \textit{grupo de trenzas puro} y es denotado por $P_n$
+
+$$P_n = Ker(\pi:B_n\rightarrow S_n)$$
+
+Los elementos de $P_n$ se llaman trenzas puras de $n$ hebras. Una trenza geométrica representa a un elemento de $P_n$ si y solo si la hebra que parte de $(i,0,0)$ termina en $(i,0,1)$ 
+
+\end{defi}
+
+\section{Características grupo de trenzas}
 
 		
 
