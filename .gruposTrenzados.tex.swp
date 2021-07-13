@@ -566,6 +566,46 @@ Los elementos de $P_n$ se llaman trenzas puras de $n$ hebras. Una trenza geomét
 
 \end{defi}
 
+
+\section{Introducción a la criptografía}
+
+La \textit{criptografía} es la ciencia de guardar los secretos a salvo. Se asume que un emisor, al que nos referiremos aquí como \textit{Alice}, quiere enviar un mensaje $m$ a un receptor, al que llamaremos \textit{Bob}. Ella usa un canal de comunicación inseguro, como puede ser una red de ordenadores o una linea de teléfono. El problema esta cuando la información que se transmite es confidencial. El mensaje puede ser interceptado y leido o incluso modificado por un agente externo al que nos referiremos como \textit{Eve}. El objetivo de la criptografía es proveer de métodos para evitar este tipo de ataques.
+
+\subsection{Cifrado}
+
+La tarea clásica y fundamental de la criptografía es la de proveer de \textit{confidencialidad} a través de los métodos de cifrado. El mensaje a transmitir se le llama \textit{texto plano}. Alice \textit{cifra} el texto plano $m$ y obtiene un \textit{texto cifrado} $c$. El texto cifrado $c$ es transmitido a Bob. Bob \textit{descifrando} obtiene el texto plano a partir del texto crifrado. Para \textit{descifrar}, Bob necesita una información secreta, la llave de descifrado. La adversaria Eve todavía podría interceptar el mensaje cifrado. Sin embargo, el cifrado del texto plano debería garantizar la confidencialidad y prevenir que pueda extraer alguna información del texto plano a partir del texto cifrado.
+\newline
+\newline
+El cifrado es muy antiguo. Por ejemplo, el \textit{cifrado César} fue introducido hace más de $2000$ años. Cada método de cifrado provee un \textit{algoritmo de cifrado} $E$ y un \textit{algoritmo de descifrado} $D$. En los esquemas de cifrado clásicos, ambos algoritmos dependen de la misma llave secreta $k$. Esta llave $k$ se usa para cifrar y descifrar. A estos métodos de cifrado se les llama \textit{simétricos}.
+
+$$D(k,E(k,m))=m$$
+
+En $1976$, Diffie and Hellman introdujeron el revolucionario concepto de \textit{criptografía de llave pública}. Proporcionaron una solución al problema del intercambio de claves y señalaron el camino a las firmas digitales. A los métodos de \textit{cifrado de llave pública} se les llama \textit{asimétricos}. Cada destinatario de mensajes tiene una llave personal $k = (pk,sk)$ que se compone de dos partes: $pk$ es la lave de cifrado y esta se hace pública, y $sk$ es la llave de descifrado y se mantiene en secreto. Si Alice quiere enviar un mensaje $M$ a Bob, ella cifra $m$ usando la llave de cifrado de Bob $pk$, la cual es pública. Bob descifra el texto cifrado usando su llave de descifrado $sk$ que solo conoce él.
+
+$$D(sk,E(pk,m))=m$$
+
+Cualquiera puede cifrar fácilmente el texto plano usando la llave pública $pk$, pero la otra dirección es complicada. Es practicamente imposible deducir el texto plano a partir del texto cifrado sin saber la llave secreta $sk$.
+\newline
+\newline
+Los métodos de cifrado de llave pública requieren cálculos más complejos y son menos eficientes que los métodos de clásicos de cifrado simétrico. Por eso los métodos simétricos son usados para el cifrado de grandes cantidades de datos. Antes de aplicar el cifrado simétrico, el emisor y el receptor acuerdan una llave. Para mantener la llave en secreto necesitan un canal de comunicación seguro. Lo habitual es utilizar el cifrado de llave pública para este proposito.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Plataformas criptograficas y grupos de plataforma}
 
 Si un protocolo criptográfico esta basado en un objeto algebraico como puede ser un grupo, un anillo u otros, entonces es llamado \textit{plataforma criptográfica} o \textit{plataforma}. En criptografía basada en un grupo a este se le llama \textit{grupo de plataforma} para el protocolo criptográfico. La seguridad de un protocolo criptográfico depende entonces de la dificultad, computacional o teórica, de resolver un problema de teoría de grupos en el grupo de plataforma.
@@ -601,10 +641,16 @@ Todos los protocolos basados en grupos no abelianos dependen de la dificultad de
 Lo relevante para el protocolo Ko-Lee es el \textit{problema de búsqueda del conjugador}. Este consiste en que, dado una presentación de grupo para G, y dos elementos $g_1,g_2\in G$, los cuales se saben que son conjugados determinar algoritmicamente un conjugador, es decir, un elemento $h\in G$ tal que $g_1 = hg_2h^{-1}$. El problema de búsqueda del conjugador es en general indecidible en general, como el problema del conjugado.
 
 \subsection{Protocolo Ko-Lee}
-Ko, Lee et al desarrollaron un sistema de intercambio de llave pública que es una traducción  directa del protocolo Diffie-Hellman a una configuración de teoría de grupos no abelianos. Su seguridad esta basada en la dificultad del problema del conjugado. Asumimos que el grupo de plataforma posee todas las propiedades deseables anteriormente mencionadas.
+Ko, Lee et al desarrollaron un sistema de intercambio de llave pública que es una traducción  directa del protocolo Diffie-Hellman a una configuración de teoría de grupos no abelianos. Su seguridad esta basada en la dificultad del problema del conjugado. 
 \newline
 \newline
-Sea el grupo de platadorma $G$ y dos elementos $g,h\in G$ denotaremos el conjugado de $g$ por $h$ como $g^h$, tal que $g^h = hgh^{-1}$
+En cualquier grupo de platadorma $G$ dados dos elementos $g,h\in G$ denotaremos el conjugado de $g$ por $h$ como $g^h$, tal que $g^h = hgh^{-1}$. Facilmente se comprueba que dados $g,h_1,h_2$ entonces $(g^{h_1})^{h_2}=g^{h_1h_2}$.
+
+$$(g^{h_1})^{h_2}= h_2^{-1}g^{h_1}h_2= h_2^{-1}h_1^{-1}gh_1h_2 = (h_1h_2)^{-1}g(h_1h_2) =g^{h_1h_2}$$
+
+Tomamos un grupo de plataforma $G$ que posee todas las propiedades deseables anteriormente mencionadas. Además asumimos que $G$ tiene una colección grande de subgrupos (no cíclicos) tal que conmutan los elementos entre sí. Esto quiere decir que si tomamos $A,B$ dos de estos subgrupos y $a\in A, b \in B$ entonces $ab=ba$.
+
+Alice y Bob escogen un par de estos subgrupos del grupo de plataforma $G$. $A$ es el subgrupo de Alice y $B$ es el subgrupo de Bob y estos son secretos
 
 
 
