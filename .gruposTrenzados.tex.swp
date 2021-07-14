@@ -1,4 +1,6 @@
 \documentclass[12pt]{article}
+
+
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -588,6 +590,55 @@ Cualquiera puede cifrar fácilmente el texto plano usando la llave pública $pk$
 \newline
 \newline
 Los métodos de cifrado de llave pública requieren cálculos más complejos y son menos eficientes que los métodos de clásicos de cifrado simétrico. Por eso los métodos simétricos son usados para el cifrado de grandes cantidades de datos. Antes de aplicar el cifrado simétrico, el emisor y el receptor acuerdan una llave. Para mantener la llave en secreto necesitan un canal de comunicación seguro. Lo habitual es utilizar el cifrado de llave pública para este proposito.
+
+\subsection{Objetivos de la criptografía}
+
+Proveer de \textbf{confidencialidad} no es el único objetivo de la criptografía. A su vez esta intenta dar solución a otros problemas. Estos son:
+
+\begin{itemize}
+\item \textbf{Integridad de los datos:} El receptor de los datos deberia ser capaz de comprobar si el mensaje ha sido modificado durante la transmisión, ya sea accidentalmente o deliberadamente. Nadie debería ser capaz de alterar total o parcialmente el mensaje original.
+
+\item \textbf{Autenticación:} El receptor del mensaje debería ser capaz de verificar su origen. Nadie debería ser capaz de enviar un mensaje a Bob haciendose pasar por Alice (\textit{autenticación del origen de los datos}). Cuando se inicia la comunicación, Alice y Bob debería ser capaz de identificar el uno al otro (\textit{autenticación de identidad}).
+
+\item \textbf{No repudiación:} El emisor debería no ser capaz negar que envió el mensaje.
+\end{itemize}
+
+Hay tanto métodos simétricos como de llave pública para asegurar la integridad de los mensajes. Los métodos simétricos clásicos requieren una llave secreta $k$ que es compartida por el emisor y el receptor. El mensaje $m$ se aumenta con el \textit{código de autenticación de mensaje} (MAC acrónimo en inglés). El código es generado por un algoritmo y depende de una llave secreta. el mensaje aumentado $(m,MAC(k,m))$ está protegido contra modificaciónes. El receptor del mensaje puede comprobar la integridad del mensaje $(m,\overline{m})$ comprobando que
+
+$$MAC(k,m)=\overline{m}$$
+
+Los códigos de autenticación de mensaje se implementan mediante funciones hash con llave.
+\newline
+\newline
+Las \textit{firmas digitales} requieren métodos de llave pública. Como las clásicas firmas a mano, tienen la intención de proveer de autenticación y no repudiación. Las llaves digirales dependen de la clave secreta del firmante (solo pueden ser generadas por él). Por otra parte cualquier persona puede comprobar la validez de la firma utilizando un algoritmo de verificación público \textit{Verify} el cual depende de la llave pública del firmante. Si Alice quiere firmar un mensaje $m$, ella utiliza el algoritmo \textit{Sign} con su llave secreta $sk$ y consigue su firma $Sign(sk,m)$. Bob recibe una firma $s$ para el mensaje $m$ y puede comprobar la firma viendo si
+
+$$Verify(pk,s,m)=ok$$
+\ 
+con la llave pública de Alice $pk$.
+\newline
+No es común firmar el mensaje en si mismo, sino usar primero una \textit{función hash criptográfica} y despues firmar el valor hash. Las firmas digitales dependen del mensaje. Mensajes distintos producen firmas distintas. Así que, como los codigos de autenticación de mensaje, las firmas digitales pueden ser utilizadas para garantizar la integridad de los datos.
+
+
+\subsection{Protocolos criptográficos}
+
+Los algoritmos de cifrado y descifrado, funciones hash criptográficas y los generadores peusoaleatorios son básicamente los bloques de construcción (también llamados primitivas criptográficas) utilizados para resolver problemas que involucran confidencialidad, autenticación o integridad de los datos.
+\newline
+\newline
+En muchos casos un único bloque de construcción no puede resolver un problema, sino que se necesita combinar varias primitivas. Una serie de pasos deben ser ejecutados para completar la tarea. A la sucesión de pasos bien definidos se le denomina \textit{protocolo criptográfico}. Es habitual añadir una condición a esta definición y es la de dos o más partes esten involucradas. Solo usaremos el término ``protocolo'' si se requiere al menos dos personas para completar la tarea.
+\newline
+\newline
+Como contraejemplo echamos un vistazo al esquema de firma digital. Un esquema típico para generar una firma digital es primero aplicar una función hash criptográfica $h$ al mensaje $m$ y después, en un segundo paso, calcular la firma utilizando el algoritmo de descifrado de llave pública sobre el valor hash $h(m)$. Ambos pasos estan hechos por una única persona, por lo que no se considera un protocolo.
+
+\subsubsection{Intercambio de llaves}
+Los criptosistemas de llave pública y secreta asumen que los participantes tienen acesso a las llaves. En la práctica, uno puede utilizar estos sistemas si el problema de la distribución de llaves esta resuelto.
+
+El concepto de seguridad para llaves tiene dos niveles. El primer nivel emplea llaves secretas de larga duración, denominadas \textit{llaves maestras}. Las llaves del segundo nivel estan asociadas con la sesión, por lo que son llamadas \textit{llaves de sesión}. Una llave de sesión es solo válida durante el breve tiempo de duración de una sesión. Las llaves maestras son normalmente las llaves empleadas en un criptosistema de llave pública.
+\newline
+\newline
+Hay dos razones principales para el concepto a dos niveles. La primera es que el cifrado por llave simétrica es más eficiente que el cifrado de llave pública. por tanto, las llaves de sesión suelen ser llaves de criptosistemas simétricos, y esas deben ser intercambiadas de manera segura, usando otras llaves. La segunda razón y probablemente más importante es que el concepto a dos niveles provee de más seguridad. Si la seguridad de una sesión se ve comprometida, solo afecta a esa sesión.
+
+
+
 
 
 
