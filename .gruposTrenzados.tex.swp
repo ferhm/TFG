@@ -635,7 +635,10 @@ Los criptosistemas de llave pública y secreta asumen que los participantes tien
 El concepto de seguridad para llaves tiene dos niveles. El primer nivel emplea llaves secretas de larga duración, denominadas \textit{llaves maestras}. Las llaves del segundo nivel estan asociadas con la sesión, por lo que son llamadas \textit{llaves de sesión}. Una llave de sesión es solo válida durante el breve tiempo de duración de una sesión. Las llaves maestras son normalmente las llaves empleadas en un criptosistema de llave pública.
 \newline
 \newline
-Hay dos razones principales para el concepto a dos niveles. La primera es que el cifrado por llave simétrica es más eficiente que el cifrado de llave pública. por tanto, las llaves de sesión suelen ser llaves de criptosistemas simétricos, y esas deben ser intercambiadas de manera segura, usando otras llaves. La segunda razón y probablemente más importante es que el concepto a dos niveles provee de más seguridad. Si la seguridad de una sesión se ve comprometida, solo afecta a esa sesión.
+Hay dos razones principales para el concepto a dos niveles. La primera es que el cifrado por llave simétrica es más eficiente que el cifrado de llave pública. por tanto, las llaves de sesión suelen ser llaves de criptosistemas simétricos, y esas deben ser intercambiadas de manera segura, usando otras llaves. La segunda razón y probablemente más importante es que el concepto a dos niveles provee de más seguridad. Si la seguridad de una sesión se ve comprometida, solo afecta a esa sesión. Dada una llave de sesión, el número de textos cifrados disponibles para el criptoanalisis es limitado. Las llaves de sesión son generadas cuando se necesitan utilizar y se desechan después de ser usadas.
+\newline
+\newline
+La llave maestra se utiliza para generar las llaves de sesión. Por tanto es especialmente importar prevenir los ataques sobre la llave maestra. Por eso el acceso a la llave maestra esta estrictamente limitado.
 
 
 
@@ -702,6 +705,61 @@ $$(g^{h_1})^{h_2}= h_2^{-1}g^{h_1}h_2= h_2^{-1}h_1^{-1}gh_1h_2 = (h_1h_2)^{-1}g(
 Tomamos un grupo de plataforma $G$ que posee todas las propiedades deseables anteriormente mencionadas. Además asumimos que $G$ tiene una colección grande de subgrupos (no cíclicos) tal que conmutan los elementos entre sí. Esto quiere decir que si tomamos $A,B$ dos de estos subgrupos y $a\in A, b \in B$ entonces $ab=ba$.
 
 Alice y Bob escogen un par de estos subgrupos del grupo de plataforma $G$. $A$ es el subgrupo de Alice y $B$ es el subgrupo de Bob y estos son secretos
+
+
+
+\section{Esquemas criptográficos basados en trenzas}
+
+\subsection{Intercambio de llaves}
+Alice y Bob desean compartir una llave secreta, de tal manera que un intruso que esté observando la comunicación no pueda deducir ninguna información útil sobre un secreto en común.
+\subsubsection{Esquema Anshel-Anshel-Goldfeld}
+Propuesto por Anshel \& al. este esquema es una plataforma criptográfica en el que se puede utilizar cualquier grupo de plataforma en el que el Problema de Búsqueda del Conjugado sea lo suficientemente complicado.
+
+La llave pública consiste en dos conjuntos de trenzas $\{p_1,...,p_l\},\{q_1,...,q_m\}\subset B_n$. La llave secreta de Alice es una palabra $u$ formada por $l$ letras y sus inversas y la llave secreta de Bob es una palabra $u$ formada por $m$ letras y sus inversas. El intercambio de llave esta esta compuesto de los siguientes pasos:
+
+\begin{enumerate}
+\item Alice calcula la trenza $s = u(p_1,...,p_l)$ y lo usa para calcular los conjugados $q_1'=sq_1s^{-1},...,q_m'=sq_ms^{-1}$. Ella envía $q_1',...,q_m'.$
+\item Bob calcula la trenza $r = v(q_1,...,q_m)$ y lo usa para calcular los conjugados $p_1'=sp_1s^{-1},...,p_l'=sp_ls^{-1}$. Ella envía $p_1',...,p_l'.$
+\item Alice calcula $t_A = su(p_1',...,p_l')^{-1}$
+\item Bob calcula $t_B = v(q_1',...,q_m')r^{-1}$
+\end{enumerate}
+
+La llave compartida es $t_A = t_B$. Sabiendo que 
+$$u(p_1',...,p_l')=r\ u(p_1,...,p_l)r^{-1}$$
+$$v(q_1',...,q_m')=s\ v(q_1,...,q_m)s^{-1}$$
+Es fácil ver que
+
+$$t_A = s\ u(p_1',...,p_l')^{-1} = s\ r\ u(p_1,...,p_l)^{-1}r^{-1}=$$
+$$=s\ r\ s^{-1}r^{-1}= s\ v(q_1,...,q_m)\ s^{-1}r^{-1}=v(q_1',...,q_m')r^{-1} = t_B$$
+
+La seguridad esta basada en la dificultad de resolver una variante del Problema de Búsqueda del Conjugado en $B_n$, que es llamado el Problema de Búsqueda del conjugado Múltiple, en el cual se intenta encontrar una trenza conjugadora no de un único par de trenzas conjugadas $(p,p)$ sino de una familia finita de pares de trenzas $(p_1,p_1'),...,(p_l,p_l')$. Nótese que el Problema de Búsqueda del Conjugado Múltiple es más facil que el Problema de Búsqueda del Conjugado, puesto que se tiene más información de los conjugadores. Sin embargo, es lo suficientemente complejo como para que el intruso sea incapaz de encontrar la llave secreta $r$ conociendo los pares $(p_1,p_1'),...,(p_l,p_l')$. De igual manera, no será capaz de encontrar la llave secreta $s$ conociendo los pares $(q_1,q_1'),...,(q_m,q_m')$.
+
+\subsubsection{Esquema Diffie-Hellman} Aunque los grupos de trenzas no son conmutativos, estos contienen grandes subgrupos donde para cada elemento de un primer subgrupo conmutan con cada elemento de un segundo subgrupo. De hecho, las trenzas que involucran conjuntos distintos de hebras conmutan. Si denotamos por $LB_n$ (respectivamente $UB_n$) al subgrupo de $B_n$ generado por $\sigma_1,...,\sigma_{m-1}$ (respectivamente $\sigma_{m+1},...,\sigma_{n-1}$) con $m=[n/2]$, cada trenza en $LB_n$ conmuta con cada trenza en $UB_n$.
+
+Esta observación es utilizada por el esquema de intercambio de llave Diffie-Hellman propuesto por Ko \& al. En este, la llave pública consiste en una trenza $p$ en $B_n$. La llave secreta de Alice es una trenza $s$ en $LB_n$. La llave secreta de Bob es una trenza $r$ en $UB_n$. El intercambio esta formado por los siguientes pasos:
+
+\begin{enumerate}
+\item Alice calcula el conjugado $p'=sps^{-1}$, y se lo envia a Bob.
+\item Bob calcula el conjugado $p''=rpr^{-1}$, y se lo envia a Alice.
+\item Alice calcula $t_A = sp''s^{-1}$.
+\item Bob calcula $t_B = rp'r^{-1}$. 
+\end{enumerate}
+
+La llave compartida es $t_A = t_B$. Esto es debido a que $s$ y $r$ conmutan:
+
+$$t_A=s\ p''s^{-1}=s\ r\ p\ r^{-1}s^{-1} = r\ s\ p\ s^{-1}r^{-1} = r\ p'r^{-1}=t_B$$
+
+Aquí la seguridad también esta basada en la dificultad de resolver una variante del Problema de Búsqueda del Conjugado donde dada una trenza $p$ de $B_n$ y las trenzas $p'=sps^{-1}$ y $p''=rpr^{-1}$, con $s$ y $r$ pertenecientes a $LB_n$ y $UB_n$ respectivamente, hay que encontrar la trenza $rp'r^{-1}$ o lo que es igual $sp''s^{-1}$. El problema es lo bastante complejo como para no poder encontrar $rp'r^{-1}=sp''s^{-1}$ conociendo los pares $(p,p')$ y $(p,p'')$
+
+
+
+
+
+
+
+
+
+
 
 
 
