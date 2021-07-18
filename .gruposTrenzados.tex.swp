@@ -751,6 +751,58 @@ $$t_A=s\ p''s^{-1}=s\ r\ p\ r^{-1}s^{-1} = r\ s\ p\ s^{-1}r^{-1} = r\ p'r^{-1}=t
 
 Aquí la seguridad también esta basada en la dificultad de resolver una variante del Problema de Búsqueda del Conjugado donde dada una trenza $p$ de $B_n$ y las trenzas $p'=sps^{-1}$ y $p''=rpr^{-1}$, con $s$ y $r$ pertenecientes a $LB_n$ y $UB_n$ respectivamente, hay que encontrar la trenza $rp'r^{-1}$ o lo que es igual $sp''s^{-1}$. El problema es lo bastante complejo como para no poder encontrar $rp'r^{-1}=sp''s^{-1}$ conociendo los pares $(p,p')$ y $(p,p'')$
 
+\subsection{Cifrado}
+Aquí el problema es que Bob desea enviar un mensaje $m$ a Alice, y el puede usar la llave pública de Alice para cifrar su mensaje. Alice debe ser capaz de recuperar el mensaje original de Bob usando su llave privada, de manera que un intruso que observe la comunicación no pueda.
+
+\subsubsection{Esquema Ko \& al.}
+La notación será la empleada en el esquema de intercambio de llaves previo. Además, asumimos que $h$ es una \textit{función hash unidireccional libre de colisión} de $B_n$ a $\{0,1\}^N$, es decir, una función calculable tal que la probabilidad de que $h(b_1)=h(b_2)$ para $b_1\neq b_2$ es despreciable (libre de colisión) y recuperar $b$ a partir de $h(b)$ es inviable.
+\newline
+\newline
+Comenzamos con $p\in B_n$ y $s\in LB_n$. La llave pública de Alice es el par $(p,p')$, con $p'=sps^{-1}$. La llave privada de Alice es $s$. Con el fin de enviar el mensaje $m_B$, el cual asumimos que se encuentra en $\{0,1\}^N$, usando $\oplus$ para la operación Booleana ``or-exclusivo"(es decir, la suma en $\mathbb{Z}/2\mathbb{Z}$):
+
+\begin{enumerate}
+\item Bob elige una trenza aleatoria $r$ en $UB_n$ y envia el texto cifrado $m''=m_B\oplus h(rp'r^{-1})$ junto con el dato auxiliar $p''=rpr^{-1}$.
+\item Alice calcula $m_A = m_B$. 
+
+\end{enumerate}
+
+Entonces tenemos que $m_A = m_B$ es decir, Alice recupera el mensaje original de Bob. Esto se debe a que las trenzas $r$ y $s$ conmutan
+
+$$sp''s^{-1}=s\ r\ p\ r^{-1}s^{-1}=r\ s\ p\ s^{-1}r^{-1}$$
+
+y entonces tenemos que 
+
+$$m_A = m_B\oplus h(rp'r^{-1})\oplus h(sp''s^{-1})=m_B$$
+
+Aquí la seguridad esta basada en la dificultad del Problema del Conjugado inspirado en Diffie-Hellman para $B_n$. Bajo las hipótesis sobre $h$, ser capaz de romper el sistema implica tener que recuperar los valores comunes $rp'r^{-1}$ y $sp''s^{-1}$ a partir de los pares $(p,p')$ y $(p,p'')$.
+
+\subsection{Autenticación de identidad}
+Ahora el problema es que Alice desea probar su identidad a Bob, es decir, ella desea probar que conoce la llave privada sin permitir que un intruso que observe la comunicación deduzca nada sobre su llave privada.
+
+\subsubsection{Esquema inspirado en Diffie-Hellman}. El siguiente esquema desafío-respuesta esta ínspirado en el esquema previo de Ko \& al. La llave pública es un par de trenzas conjugadas $(p,p')$ en $B_n$ con $p'=sps^{-1}$, mientras que la llave privada de Alice es la trenza $s$ utilizada para conjugar $p$ y $p'$. Asumimos que $s\in LB_n$. También usaremos $h$ como función hash unidireccional libre de colisión en $B_n$. Entonces para realizar la autenticación se hace el siguiente intercambio:
+
+\begin{enumerate}
+\item Bob elige una trenza aleatoria $r\in UB_n$, y le envía el desafío $p''=rpr^{-1}$ a Alice.
+\item Alice le envía la respuesta $y = h(sp''s^{-1})$.
+\item Bob comprueba que $y=h(rp'r^{-1})$
+\end{enumerate}
+
+Una respuesta correcta por parte de Alice implica la aceptación por parte de Bob, debido a que las trenzas $r$ y $s$ conmutan, y por tanto, tenemos que $rp'r^{-1}=sp''s^{-1}$. Por otra parte, la aceptación ocurre solo si la respuesta de $y$ de $A$ satisface $y=h(rp'r^{-1})$, por tanto, bajo las hipotesis de $h$, solo si Alice ha sido capaz de resolver el Problema del Conjugado inspirado en Diffie-Helman para $B_n$. Una vez más, la seguridad recae en la dificultad de resolver este problema.
+
+
+\subsubsection{Esquema inspirado en Fiat-Shamir} Este esquema de autenticación es propuesto por Sibert \& al. Este esquema hereda del esquema Fiat-Shamir lo que implica repetir varias el desafío-respuesta en tres pasos. Como antes, las llaves públicas son un par de trenzas conjugadas $(p,p')$ con $p'=sps^{-1}$, mientras $s$, la trenza conjugadora, es la llave privada de Alice. En contraste al esquema previo $p,s\in B_n$, es decir, no asumimos que pertenezcan a un subgrupo particulas como $LB_n$ o $UB_n$. Asumimos que $h$ es una función hash unidireccional libre de colisiones en $B_n$. El procedimiento de autenticación consiste en repetir $k$ veces los siguientes tres pasos:
+
+\begin{enumerate}
+\item Alicia elige una trenza aleatoria $r\in B_n$ el \textit{compromiso} $x=h(rp'r^{-1})$.
+\item Bob elige un bit aleatorio $c$ y se lo envia a Alice.
+\item Si $c=0$, Alice envía $y=r$, y Bob comprueba que $x=h(yp'y^{-1})$.
+\item Si $c=1$, Alice envía $y=rs$, y Bob comprueba que $x=h(yp'y^{-1})$.
+\end{enumerate}
+
+Si Alice conoce $s$ y responde correctamente, ella es aceptada por Bob. Para $c=0$, tenemos directamente $x=h(yp'y^{-1})$, mientras que para $c=1$, tenemos $ypy^{-1}=(rs)p(rs)^{-1}=rp'r^{-1}$, por tanto $x=h(ypy^{-1})$. Por otra parte, si Alice es deshonesta, ella puede hacer trampas y enviar la respuesta correcta en ambos casos. En el caso $c=0$, basta con que Alice mantenga un registro de $r$ y enviar respuestas coherentes. En el caso $c=1$ es suficiente con que el compromiso $x$ se elige para anticipar la igualdad $x=h(ypy^{-1})$ que también es fácil. Pero un tramposo no puede elegir su compromiso de tal manera que acierte correctamente ambos casos. Si anticipa $c=0$, la probabilidad de responder correctamente para $c=1$ es despreciable y viceversa. Un tramposo nunca tendra más de $0.5$ de probabilidad de acertar. Así que si repetimos el intercambio $k$ veces, la probabilidad del tramposo de acertar sera de $1/2^k$.
+\newline
+\newline
+La seguridad de este esquema radica en la dificultad del Problema de Búsqueda del Conjugado original en $B_n$. Tener más de un 0.5 de probabilidad de ser aceptado significa ser capaz de responder para $c=0$ y $c=1$, es decir, conocer $y,y'$ que cumplan $x=h(ypy^{-1})$ y $x=h(y'p'y'^{-1})$. Como se supone que $h$ es libre de colisión, es decir, es virtualmente inyectiva, se tendría que $ypy^{-1}=y'p'y'^{-1}$, que es equivalente a $(y'^{-1}y)p(y'^{-1}y)^{-1}=p'$. Esto implicaría que para que suceda esto se debe solucionar el Problema de Búsqueda del Conjugado para $(p,p')$
 
 
 
