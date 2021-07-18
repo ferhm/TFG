@@ -804,6 +804,33 @@ Si Alice conoce $s$ y responde correctamente, ella es aceptada por Bob. Para $c=
 \newline
 La seguridad de este esquema radica en la dificultad del Problema de Búsqueda del Conjugado original en $B_n$. Tener más de un 0.5 de probabilidad de ser aceptado significa ser capaz de responder para $c=0$ y $c=1$, es decir, conocer $y,y'$ que cumplan $x=h(ypy^{-1})$ y $x=h(y'p'y'^{-1})$. Como se supone que $h$ es libre de colisión, es decir, es virtualmente inyectiva, se tendría que $ypy^{-1}=y'p'y'^{-1}$, que es equivalente a $(y'^{-1}y)p(y'^{-1}y)^{-1}=p'$. Esto implicaría que para que suceda esto se debe solucionar el Problema de Búsqueda del Conjugado para $(p,p')$
 
+\subsection{Firma}
+El problema consiste en que Alice quiere enviar a Bob un mensaje (texto plano o cifrado) junto con una firma que pruebe el origen del mensaje. Observar que con la firma se puede implementar la autenticación. Esto se haría enviando Bob a Alice un mensaje y que esta se lo devolviera firmado.
+\newline
+\newline
+Vamos a ver dos esquemas de firma basados en trenzas propuestos por Ko \& al. El primer esquema es más simple y legible mietras que el segundo es el esquema recomendado. Estos esquemas usan la supuesta diferencia de complejidad entre el Problema del Conjugado y el Problema de Búsqueda del Conjugado. Para valores medios de $n$ (típicamente $n=20$), al usar una representación lineal de las trenzas hace posible decidir si dos trenzas de $B_n$ son conjugadas sin ser capaz de determinar la trenza conjugada cuando existe.
+
+\subsubsection{Esquema simple}
+Las llaves públicas son un par de trenzas conjugadas $(p,p')$ con $p'=sps^{-1}$, mientras que $s$, que es la trenza conjugadora, es la llave privada de Alice. Las trenzas $p$ y $s$ pertenecen a $B_n$. Usamos $H$ como función hash unidireccional libre de colisión de $\{0,1\}^*$ a $B_n$. Usamos $\sim$ para la conjugación en $B_n$. El esquema es como sigue:
+
+
+\begin{enumerate}
+\item Alice firma el mensaje $m$ con $q'=sqs^{-1}$, donde $q=H(m)$.
+\item Bob comprueba que $q'\sim q$ y que $p'q'\sim pq$.
+\end{enumerate}
+
+Si Alice usa la llave secreta $s$, tenemos que $q'=sqs^{-1}$ y que $p'q'=spqs^{-1}$, asi que la firma es aceptada. La seguridad de este esquema se encuentra en el Problema de Búsqueda del Conjugado Coincidente. Este consiste en que teniendo $p'\sim p$ y $q$ en $B_n$, hay que encontrar $q'$ que satisfaga que $q'\sim q$ y $p'q'\sim pq$. Esta demostrado que este problema tiene al menos la misma complejidad que el Problema de Búsqueda del Conjugado para el par $(p,p')$.
+
+\subsubsection{Esquema recomendando}
+Una posible debilidad del esquema previo está en que un uso repetido de este revela muchos pares $(q_i,q_i')$ asociados a un conjugador $s$ en común. Para abordar esto se modifica el esquema incorporando una trenza aleatoria. Aquí de nuevo usaremos $h$ como función hash unidireccional libre de colisión de $B_n$ a $\{0,1\}^*$:
+
+\begin{enumerate}
+\item Alice elige una trenza aleatoria $r\in B_n$.
+\item Alice firma el mensaje $m$ con la 3-tupla $(p'',q'',q')$, donde $p''=rpr^{-1}$, $q=H(mh(p''))$, $q''=rqr^{-1}$ y $q'=rs^{-1}qsr^{-1}$.
+\item Bob comprueba que $p''\sim p$, $q''\sim q'$, $p''q''\sim pq$ y $p''q'\sim p'q$.
+\end{enumerate}
+
+El análisis de seguridad es similar al del esquema previo.
 
 
 
