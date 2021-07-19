@@ -624,7 +624,23 @@ Esto implica que $\norm{u}=\norm{v}=0$. Por tanto $u=v=1$ y $a=b$. La relación 
 
 \qed
 
-Los Lemas \ref{lema:rel1} y \ref{lema:rel2} implican que las relaciones $\preceq$ y $\succeq$ en un monoide atómico son ordenes parciales.
+Los Lemas \ref{lema:rel1} y \ref{lema:rel2} implican que las relaciones $\preceq$ y $\succeq$ en un monoide atómico son ordenes parciales. Dado un subconjunto $E$ de un monoide atómico $M$, decimos que un elemento $a\in E$ es \textit{maximal} (resp. \textit{minimal}) con respecto a $\preceq$, si $b\preceq a$ (resp. $a\preceq b$) para todo $b\in E$. Un elemento maximal (resp. minimal) de $E$ podría no exisitir, pero si existe, es único por el Lema \ref{lema:rel2}. Definiciones equivalentes se obtienen con la relación $\succeq$.
+\newline
+\newline
+La ecuación $ab=1$ en un monoide atómico $M$ tiene como única solución $a=1,b=1$. De hecho, si $ab=1$ para $a,b\in M$, entonces $1\preceq a \preceq 1$, por lo tanto $a=1$ y $b=1$. En particular, el elemento neutro es el unico elemento invertible de $M$.
+
+\subsection{Presentaciones de un monoide}
+Consideramos un conjunto $X$ y un subconjunto $R$ de $X^*\times X^*$. Sea $\sim$ la relación de equivalencia más pequeña conteniendo los pares $(\omega_1r\omega_2, \omega_1r'\omega_2)$, donde $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. En otras palabras, $\sim$ es la relación de equivalencia más pequeña en $X^*$ tal que $\omega_1r\omega_2\sim\omega_1r'\omega_2$ para todo $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. Definimos $M$ como el conjunto de clases de equivalencia inducido por $\sim$. Esta claro que $M$ tiene la única estructura de monoide tal que la proyección $P:X^*\rightarrow M$ es un homomorfismo de monoide. Decimos que $\langle X|R\rangle$ es una \textit{presentación de monoide} de $M$ y llamamos a los elementos de $X$ \textit{generadores} y a los elementos de $R$ \textit{relaciones}.
+\newline
+\newline
+Esta claro que el conjunto $P(X)\subset M$ genera $M$ en el sentido de que cada elemento de $M$ es un producto de elementos de este conjunto. Para cada relación $(r,r')\in R$, el elemento $P(r)=P(r')$ de $M$ se le llama \textit{relator} asociado a la presentación $\langle X|R\rangle$. Como notación habitual se usa $r=r'$ para la relación $(r,r'\in R)$ y no se hace distinción entre un generador $x\in X$ y su proyección $P(x)$ en $M$.
+\newline
+\newline
+Introducimos varios tipos de presentaciones de monoides que nos serán de utilidad. Una presentación de monoide $\langle X|R\rangle$ es finita si $X$ y $R$ son finitos. Una presentación $\langle X|R\rangle$ de un monoide $M$ se dice \textit{ponderada} si existe un homomorfismo de monoide $\ell:M\rightarrow \mathbb{N}$ tal que $\ell(x)\geq 1$ para todo $x\in X$. El homomorfismo $\ell$ se llama \textit{peso}.
+\newline
+\newline
+Una presentacion $\langle X|R\rangle$ de un monoide $M$ se dice \textit{equilibrada en longitud} si $l(r)=l(r')$ para todo $(r,r')\in R$, donde $l$ es la función longitud en $X^*$ introducida anteriormente. La formula $\ell(x)=1$ para todo $x\in X$ define un \textit{peso canónico} $\ell:M\rightarrow \mathbb{N}$.
+
 
 
 
