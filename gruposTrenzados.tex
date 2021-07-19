@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-
+\setlength{\parindent}{0pt}
 
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -22,6 +22,7 @@
 \newtheorem{lema}{Lema}[section]
 
 \renewcommand\thesubfigure{(\alph{subfigure})}
+\providecommand{\norm}[1]{\lVert#1\rVert}
 
 
 
@@ -567,6 +568,81 @@ $$P_n = Ker(\pi:B_n\rightarrow S_n)$$
 Los elementos de $P_n$ se llaman trenzas puras de $n$ hebras. Una trenza geométrica representa a un elemento de $P_n$ si y solo si la hebra que parte de $(i,0,0)$ termina en $(i,0,1)$ 
 
 \end{defi}
+
+
+\section{Monoides de Garside y Monoides de Trenzas}
+Los grupos de trenzas pueden ser vistos como grupos de fracciones de ciertos monoides llamados monoides de trenzas. Estos últimos pertenecen a una clase más amplia de los llamados monoidesde Garside.
+
+\subsection{Monoides}
+
+Un monoide is un conjunto que cuenta con una operación binaria (multiplicación) $M\times M \rightarrow M$ la cual es asociativa y tiene un elemento neutro. Es basicamente un grupo que no cuenta con la propiedad de existencia de elemento simétrico.
+\newline
+\newline
+Un monoide $M$ es \textit{cancelativo por la izquierda} (resp. \textit{por la derecha}) si para todo $a,b,c\in M$
+
+$$ab=ac\Longrightarrow b=c\ \ \ \ (\textrm{resp.}\ \  ba=ca\Longrightarrow b=c)$$
+\newline
+Un elemento $a$ de un monoide $M$ es \textit{invertible} si existe $b\in M$ tal que $ab=ba=1$.
+
+\subsection{Divisibilidad en monoides}
+
+Si $a=bc$, donde $a,b,c$ son elementos de un monoide $M$, entonces decimos que $b$ es un \textit{divisor por la izquierda} de $a$ y $c$ es un \textit{divisor por la derecha}. También decimos que $a$ es un \textit{múltiplo por la derecha} de $b$ y que $a$ es \textit{múltiplo por la izquierda} de $c$. Lo denotaremos por $b\preceq a$ y $a\succeq c$. Por ejemplo, $1\preceq a$ y $a\succeq 1$ para todo $a\in M$, ya que $a=1a=a1$.
+
+\begin{lema}
+Las relaciones $\preceq$ y $\succeq$ en un monoide son reflexivas y transitivas.
+\label{lema:rel1}
+\end{lema}
+
+\textit{Demostración.} La reflexividad de $\preceq$ viene de la identidad $a=a1$. La transitividad viene dada por la asociatividad de la multiplicacion. Se procede de igual manera para $\succeq$.
+
+\qed
+
+
+\subsection{Monoides atómicos}
+
+Para cualquier elemento $a\neq 1$ de un monoide $M$, definomos
+
+$$\norm{a}=\sup\{r\geq 1\ | a=a_1\cdot\cdot\cdot a_r,a_1,...,a_r\in M-\{1\}\}$$
+\newline
+Según esta definición $\norm{a}\in\{1,2,...,\infty\}$. Establecemos que $\norm{1}=0$. Es fácil de ver que para todo $a,b\in M$
+
+$$\norm{ab}\geq\norm{a}+\norm{b}$$
+\newline
+Observar que$\norm{a}=0$ si y solo si $a=1$. A un elemento $a\in M$ se le llama átomo si $\norm{a}=1$. En otras palabras, $a\in M$ es un átomo si $a\neq 1$ y $a=a_1\cdot\cdot\cdot a_r$ implica que $a_i=1$ para todo $i$ excepto uno. Cualquier $a\in M$ con $\norm{a} < \infty$ tiene una expansión $a=a_1\cdot\cdot\cdot a_r$, donde $\norm{a}=r$ y $a_1,...,a_r$ son átomos. Esto justifica la siguiente definición. Un monoide $M$ es \textit{atómico} si $\norm{a} < \infty$ para todo $a\in M$.
+
+\begin{lema}
+Si dos elementos $a,b$ de un monoide atómico $M$ satisfacen $a\preceq b$ y $b\preceq a$, entonces $a=b$.De igual manera, si $a\succeq b$ y $b\succeq a$, entonces $a=b$.
+\label{lema:rel2}
+\end{lema}
+\ 
+\newline
+\textit{Demostración.} Ya que $a\preceq b\preceq a$, significa que existen $u,v\in M$ tal que $b=au$ y $a=bv$. Entonces $a=auv$ y
+
+$$\norm{a}=\norm{auv}\geq \norm{a}+\norm{u}+\norm{v}$$
+
+Esto implica que $\norm{u}=\norm{v}=0$. Por tanto $u=v=1$ y $a=b$. La relación $\succeq$ es tratada de forma similar.
+
+\qed
+
+Los Lemas \ref{lema:rel1} y \ref{lema:rel2} implican que las relaciones $\preceq$ y $\succeq$ en un monoide atómico son ordenes parciales.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{Introducción a la criptografía}
