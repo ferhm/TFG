@@ -641,6 +641,22 @@ Introducimos varios tipos de presentaciones de monoides que nos serán de utilid
 \newline
 Una presentacion $\langle X|R\rangle$ de un monoide $M$ se dice \textit{equilibrada en longitud} si $l(r)=l(r')$ para todo $(r,r')\in R$, donde $l$ es la función longitud en $X^*$ introducida anteriormente. La formula $\ell(x)=1$ para todo $x\in X$ define un \textit{peso canónico} $\ell:M\rightarrow \mathbb{N}$.
 
+\begin{lema}
+Si un monoide $M$ tiene una representación ponderada $\langle X|R\rangle$, entonces $M$ es atómico y todos sus átomos estan contenidos en el conjunto $X$ de generadores. Si $M$ tiene una presentación equilibrada en longitud $\langle X|R\rangle$, entonces el conjunto de átomos de $M$ coincide con $X$ y $\norm{a}=\ell(a)$ para todo $a\in M$, donde $\ell$ es el peso canónico en $M$.
+\end{lema}
+
+\textit{Demostración.} Sea $\ell: M\rightarrow \mathbb{N}$ un homomorfismo de monoide tal que $\ell(x)\geq 1$ para todo generador $x\in X$. Entonces $\ell(a)\geq 1$ para todo $a\in M-\{1\}$. Si $a\in M$ se expande como el producto $a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M-\{1\}$, entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r$. Por tanto $\ell(a)\geq \norm{a}$. Que todos los átomos de $M$ pertenecen a $X$ viene del hecho de que cualquier conjunto que genere un monoide debe contener a sus átomos, ya que estos no se pueden obtener como producto de otros elementos y forman parte del monoide.
+
+\qed
+
+\subsection{El problema de palabra y el problema de divisibilidad}
+
+El \textit{problema de palabra} para una representación $\langle X|R\rangle$ de un monoide $M$ consiste en que dadas dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a=a'$. El \textit{problema de dibisibilidad por la izquierda} (resp. \textit{derecha}) esta estrechamente relacionado y consiste en que dadas
+dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a\preceq a'$ (resp. $a'\succeq a$).
+\newline
+\newline
+Tanto el problema de palabra como el problema de divisibilidad pueden ser facilmente resueltos con una representación finita $\langle X|R\rangle$ de $M$. Sea $\ell:M\rightarrow\mathbb{N}$ un peso, de manera que $\ell(x)\geq 1$ para todo $x\in X$. Observar que el valor de $\ell$ para cualquier $a\in M$ representado por cualquier palabra no vacía $\omega\in X^*$ es mayor o igual que la longitud de $\omega$. Sea $W(a)\subset X^*$
+
 
 
 
@@ -730,7 +746,7 @@ El concepto de seguridad para llaves tiene dos niveles. El primer nivel emplea l
 Hay dos razones principales para el concepto a dos niveles. La primera es que el cifrado por llave simétrica es más eficiente que el cifrado de llave pública. por tanto, las llaves de sesión suelen ser llaves de criptosistemas simétricos, y esas deben ser intercambiadas de manera segura, usando otras llaves. La segunda razón y probablemente más importante es que el concepto a dos niveles provee de más seguridad. Si la seguridad de una sesión se ve comprometida, solo afecta a esa sesión. Dada una llave de sesión, el número de textos cifrados disponibles para el criptoanalisis es limitado. Las llaves de sesión son generadas cuando se necesitan utilizar y se desechan después de ser usadas.
 \newline
 \newline
-La llave maestra se utiliza para generar las llaves de sesión. Por tanto es especialmente importar prevenir los ataques sobre la llave maestra. Por eso el acceso a la llave maestra esta estrictamente limitado.
+La llave maestra se utiliza para generar las llaves de sesión. Por tanto es especialmente importante prevenir los ataques sobre la llave maestra. Por eso el acceso a la llave maestra esta estrictamente limitado.
 
 
 
