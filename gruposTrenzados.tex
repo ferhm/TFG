@@ -656,6 +656,29 @@ dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, 
 \newline
 \newline
 Tanto el problema de palabra como el problema de divisibilidad pueden ser facilmente resueltos con una representación finita $\langle X|R\rangle$ de $M$. Sea $\ell:M\rightarrow\mathbb{N}$ un peso, de manera que $\ell(x)\geq 1$ para todo $x\in X$. Observar que el valor de $\ell$ para cualquier $a\in M$ representado por cualquier palabra no vacía $\omega\in X^*$ es mayor o igual que la longitud de $\omega$. Sea $W(a)\subset X^*$
+ el conjunto de palabras representando a $a$. Todas esas palabras tienen longitud menor que $\ell(a)$. Ya que $X$ es finito, el número de palabras de menor longitud que $\ell(a)$ es finito y por tanto también lo es el conjunto $W(a)$. Para listar todos los posibles elementos de $W(a)$, uno comienza con la palabra que representa $a$ y consecutivamente aplica todas las posibles subtituciones del tipo
+ 
+
+$$\omega_1 r\omega_2\leftrightarrow \omega_1 r'\omega_2\ \ \ (r,r')\in R$$
+
+a cualquier elemento de $W(a)$ ya encontrado. Ya que $R$ es finito, este procedidimiento es también finito. Ya que $R$ es finito, este procedimiento también es finito. Esto da una solución al problema de palabra. Dadas dos palabras $\omega,\omega'\in X^*$ representando a $a,a'\in M$ respectivamente, sabemos que $a=a'$ si $W(a)=W(a')$. 
+\newline
+\newline
+También obtenemos una solución para el problema de divisibilidad por la izquierda y por la derecha. Se tiene que $a\preceq a'$ si y solo si algún prefijo (segmento inicial) de una palabra en $W(a')$ pertenece a $W(a)$. De igual manera, $a'\succeq a$ si y solo si algún sufijo (segmento final) de una palabra en $W(a')$ pertenece a $W(a)$
+
+\section{Formas normales y el problema del conjugado}
+
+Ahora vamos a introducir y estudiar un cierto monoide $M_\Sigma$ derivado de un subconjunto $\sigma$ de cierto monoide $M$. Bajo la presunción de hipotesis favorables, obtenemos una forma normal para los elementos de $M_\Sigma$ y resolvemos el problema del conjugado en $M_\Sigma$.
+
+\subsection{El monoide $M_\Sigma$}
+
+Sea $M$ un monoide y $\Sigma\subset M$ un subconjunto de $M$ conteniento el elemento neutro $1$. Sea $M_\Sigma$ un monoide generado por los simbolos $[a]$, donde $a\in \Sigma$, partiendo de la definición de las relaciones $[1]=1$ y $[a][b]=[ab]$, siempre que $a,b,ab\in\Sigma$. Existe un homomorfismo de monoide $p:M_\sigma\rightarrow M$ definido por $p([a])=a$ para todo $a\in\Sigma$.
+\newline\newline
+Otra definición equivalente de $M_\Sigma$ puede hacerse identificando el producto $[a_1]\cdot\cdot\cdot[a_r]$ en $M_\Sigma$ (donde $a_,...,a_r\in \Sigma$) con la sucesión $(a_1,...,a_r)$. Entonces $M_\Sigma$ es el conjunto de clases de equivalencia de sucesiones finitas $(a_1,...,a_r)$ de elementos de $\Sigma$ bajo la equivalencia generada por
+
+$$(a_1,...,a_{i-1}, a_i'a_i'',a_{i+1},...,a_r)\sim (a_1,...,a_{i-1}, a_i',a_i'',a_{i+1},...,a_r)$$
+
+siempre que $a_i'a_i''\in\Sigma$. La sucesión vacía es equivalente a la sucesión de un elemento $(1)$, donde $1\in\Sigma$. El producto en $M_\Sigma$ esta inducido por la concatenación de sucesiones.
 
 
 
