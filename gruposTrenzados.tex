@@ -681,6 +681,34 @@ $$(a_1,...,a_{i-1}, a_i'a_i'',a_{i+1},...,a_r)\sim (a_1,...,a_{i-1}, a_i',a_i'',
 siempre que $a_i'a_i''\in\Sigma$. La sucesión vacía es equivalente a la sucesión de un elemento $(1)$, donde $1\in\Sigma$. El producto en $M_\Sigma$ esta inducido por la concatenación de sucesiones.
 
 
+\begin{teor}
+\label{teor:monoi_deriv}
+Sea $M$ un monoide atómico y $\Sigma$ un subconjunto de $M$ tal que $1\in \Sigma$ y cumple las siguientes condiciones:
+\begin{enumerate}
+\item Todos los divisores por la izquierda y por la derecha de elementos de $\Sigma$ pertenecen a $\Sigma$.
+\item Para cualesquiera $a,b,c\in \Sigma$, si $ab=ac$ o $ba=ca$, entonces b=c.
+\item Para cualesquiera $a,b,c\in \Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento máximal (con respecto a $\preceq$).
+\end{enumerate}
+Entonces para cualquier $\xi\in M_\Sigma$, hay un único $\alpha(\xi)\in\Sigma$ tal que $[\alpha(\xi)]$ es un divisor por la izquierda de $\xi$ que es el máximal de entre todos los divisores por la izquierda de $\xi$ que se encuentrar en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$. Además, hay un único $\omega(\xi)\in M_\Sigma$ tal que $\xi=[\alpha(\xi)]\omega(\xi)$.
+\end{teor}
+
+\subsection{Forma nomal en $M_\Sigma$}
+
+Bajo las hipotesis del Teorema \ref{teor:monoi_deriv} , cualquier $\xi$ puede ser expandido inductivamente
+
+$$\xi=[\alpha(\xi)]\omega(\xi)=[\alpha(\xi)][\alpha(\omega(\xi))]\omega^2(\xi)=$$
+$$=[\alpha(\xi)][\alpha(\omega(\xi))][\alpha(\omega^2(\xi))]\omega^3(\xi)=\cdot\cdot\cdot$$
+
+Este proceso de expansión puede ser parado en el $r$-ésimo paso, donde $r$ el el mínimo entero tal que $\omega^{r+1}(\xi)=1$. Tal $r$ existe ya que una expansión de $\xi$ como producto de  generadores de $[a]$ con $a\in\Sigma$ tiene como mucho un cierto $k$ (visto en la demostración del Teorema \ref{teor:monoi_deriv}) de generadores distintos de $1$.
+\newline\newline
+
+Esta observación nos lleva a una forma normal para cada elemento de $M_\Sigma$. Una \textit{forma normal} para $\xi\in M_\Sigma$ para una sucesión $(a_1,a_2,...,a_r)$ de elementos de $\Sigma$, todos diferentes de $1$, tal que $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ y 
+
+$$a_i=\alpha([a_1][a_2]\cdot\cdot\cdot[a_r])$$
+
+para todo $i=1,2,...,r$. La unicidad en la última afirmación del Teorema \ref{teor:monoi_deriv} implica la unicidad de la forma normal.
+
+
 
 
 
