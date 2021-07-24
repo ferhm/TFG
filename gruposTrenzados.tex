@@ -692,6 +692,60 @@ Sea $M$ un monoide atómico y $\Sigma$ un subconjunto de $M$ tal que $1\in \Sigm
 Entonces para cualquier $\xi\in M_\Sigma$, hay un único $\alpha(\xi)\in\Sigma$ tal que $[\alpha(\xi)]$ es un divisor por la izquierda de $\xi$ que es el máximal de entre todos los divisores por la izquierda de $\xi$ que se encuentrar en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$. Además, hay un único $\omega(\xi)\in M_\Sigma$ tal que $\xi=[\alpha(\xi)]\omega(\xi)$.
 \end{teor}
 
+\textit{Demostración.} La prueba consiste de cinco pasos.
+\newline
+\textit{Paso 1.} Por la tercera hipótesis, para cualquier $a,b\in\Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento maximal $c\in\Sigma$. Entonces $b=cd$ para algún $d\in M$. Por la primera hipótesis, $d\in\Sigma$, y por la segunda, $d$ es único. Sea $\alpha_2(a,b)=ac\in\Sigma$ y $\omega_2(a,b)=d\in\Sigma$. Claramente se tiene
+
+\begin{equation}
+\label{eq:div_max}
+\alpha_2(a,b)\omega_2(a,b)=ab
+\end{equation}
+
+Nuestro objetivo en este paso va a ser probar las siguientes igualdades. Dados $a,b,c\in\Sigma$ tal que $a,b\in\Sigma$
+
+\begin{equation}
+\label{eq:alfa_com}
+\alpha_2(ab,c)=\alpha_2(a,\alpha_2(b,c))
+\end{equation}
+\begin{equation}
+\label{eq:omega_com}
+\omega_2(ab,c)=\omega_2(a,\alpha_2(a,b))\omega_2(b,c)
+\end{equation}
+
+Podemos usar la siguiente observación. Si $a,b,c\in M$ satisfacen que $ac\in\Sigma$ y $ab\preceq ac$, entonces $b\preceq c$. De hecho, si $ac=abd$ con $d\in M$, entonces la presunción de que $ac\in\Sigma$ junto con la primera hipótesis implica que $a,c,bd\in\Sigma$. Por la segunda hipótesis tenemos que $c=bd$
+
+Por definición, $\alpha_2(b,c)=bd$, donde $d$ es maximal tal que $d\preceq c$ y $bd\in \Sigma$. Entonces
+
+$$\alpha_2(a,\alpha_2(b,c))=\alpha_2(a,bd)=ad'$$
+\newline
+donde $d'$ es maximal tal que $d'\preceq bd$ y $ad'\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$ (por hipótesis), al ser $d'$ maximal se tiene que $b\preceq d'$. Escribiendo $d'=be$ con $e\in\Sigma$, obtenemos que $\alpha_2(a,bd)=abe$, con $be\preceq bd\in\Sigma$ y $abe\in\Sigma$. Por la observación hecha previamente vemos que $e\preceq d\preceq c$, asi que $e\preceq c$. Ahora $\alpha_2(ab,c)=abf$, donde $f$ es maximal tal que $f\preceq c$ y $abf\in\Sigma$. Por tanto, $e\preceq f$. Por otra parte, $f\preceq c$ y $bf\in\Sigma$. Esto y la inclusion de $abf\in\Sigma$ implica que $bf\preceq d' = be$. Por tanto, $f\preceq e$. Por el Lema \ref{lema:rel2} $e=f$ y
+
+$$\alpha_2(ab,c)=abf=abe=ad'=\alpha_2(a,\alpha_2(b,c))$$
+
+Esto prueba la igualdad (\ref{eq:alfa_com}). Para probar la igualdad (\ref{eq:omega_com}) observar (\ref{eq:div_max}) y (\ref{eq:alfa_com}).
+
+$$\alpha_2(ab,c)\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=\alpha_2(a,\alpha_2(b,c))\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$$
+
+$$=a\alpha_2(b,c)\omega_2(b,c)=abc=\alpha_2(ab,c)\omega_2(ab,c)$$
+
+Por la segunda condición, para deducir (\ref{eq:omega_com}) es suficiente probar que el producto $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ pertenece a $\Sigma$. Por definición, existe $d\in\Sigma$ tal que $\alpha_2(b,c)=bd\in\Sigma$ y $c=d\omega_2(b,c)$. Sea $f$ el elemento maximal de $\Sigma$ tal que $f\preceq bd$ y $af\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$, existe $e\in\Sigma$ tal que $f=be$. Entonces
+
+$$bd=f\omega_2(a,bd)=be\omega_2(a,bd)$$
+
+Por la segunda condición, $d=e\omega_2(a,bd)$ y
+
+$$e\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=e\omega_2(a,bd)\omega_2(b,c)=d\omega_2(b,c)=c$$
+
+Esto demuestra que $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ es divisor por la derecha de $c\in\Sigma$, por tanto es un elemento de $\Sigma$.
+
+
+
+
+
+
+
+
+
 \subsection{Forma nomal en $M_\Sigma$}
 
 Bajo las hipotesis del Teorema \ref{teor:monoi_deriv} , cualquier $\xi$ puede ser expandido inductivamente
@@ -707,6 +761,9 @@ Esta observación nos lleva a una forma normal para cada elemento de $M_\Sigma$.
 $$a_i=\alpha([a_1][a_2]\cdot\cdot\cdot[a_r])$$
 
 para todo $i=1,2,...,r$. La unicidad en la última afirmación del Teorema \ref{teor:monoi_deriv} implica la unicidad de la forma normal.
+
+
+
 
 
 
