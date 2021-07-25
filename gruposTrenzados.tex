@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 \setlength{\parindent}{0pt}
-
+\usepackage{enumitem}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -738,7 +738,84 @@ $$e\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=e\omega_2(a,bd)\omega_2(b,c)=d\omega_2
 
 Esto demuestra que $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ es divisor por la derecha de $c\in\Sigma$, por tanto es un elemento de $\Sigma$.
 
+\textit{Paso 2}. En este paso probaremos la siguiente afirmación. Existe una única función $\alpha:M_\Sigma\rightarrow\Sigma$ tal que
 
+\begin{enumerate}[label=\roman*.]
+\item $\alpha(1)=1$
+\item $\alpha([a]\eta)=\alpha_2(a,\alpha(\eta))$ para todo $a\in\Sigma$, $\eta\in M_\Sigma$
+\end{enumerate}
+
+Recordamos el homomorfismo de monoide $p:M_\Sigma\rightarrow M$. Para cualquier $\xi\in M_\Sigma$ definimos $H(\xi)=\norm{p(\xi)}\geq 0$. Llamamos a $H(\xi)$ el peso de $\xi$. Esta claro que
+
+$$H(\xi\xi')\geq H(\xi)+H(\xi')$$
+\newline
+
+para cualesquiera $\xi\xi'\in M_\Sigma$. Observar que $H(\xi)=0$ si y solo si $\xi=1$, y $H(\xi)=1$ si y solo si $\xi=[a]$, donde $a$ es un átomo de $M$ perteneciente a $\Sigma$. Para ver esto, romamos una expansión $\xi=[a_1]\cdot\cdot\cdot[a_r]$ con $a_1,...,a_r\in\Sigma$. Entonces
+
+$$H(\Sigma)=\norm{p(\xi)}\geq\norm{a_1}+\cdot\cdot\cdot\norm{a_r}$$
+
+Si $H(\xi)=0$, entonces $a_1=\cdot\cdot\cdot=a_r=1$ y $\xi=1$. Si $H(\xi)=1$, entonces todos los elementos $a_1,...,a_r\in\Sigma$ son iguales a $1$ excepto un elemento, el cual es un átomo.
+\newline
+\newline
+Dado $\xi\in M_\Sigma$, definimos $\alpha(\xi)$ por inducción sobre el peso de $\xi$. Para $\xi=1$ establecemos $\alpha(\xi)=1\in\Sigma$. Si $H(\xi)=1$, entonces $\xi=[a]=[a]1$ para algún átomo $a\in\Sigma$, y para satisfacer (ii) establecemos que $\alpha(\xi)=\alpha_2(a,1)=a$.
+\newline
+\newline
+Tomamos un entero $k\geq 1$ y suponemos que $\alpha(\xi)$ esta definido para todo $\xi$ de peso menor o igual que $k$ de manera que las condiciones (i), (ii) se satisfacen siempre que $H([a]\eta)\leq k$. Sea $\xi$ un elemento de $M_\Sigma$ de peso $k+1$. Podemos expandir $\xi=[a]\eta$, donde $a\in\Sigma$, $a\neq 1$ y $\eta\in M_\Sigma$. Entonces $H([a])\geq 1$ y $H([\eta]) < H([a]\eta)$, asi que $\alpha(\eta)$ esta ya definido. Para satisfacer (ii) establecemos $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Debemos comprobar que $\alpha_2(a,\alpha(\eta))$ no depende de la elección de la expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y por la hipotesis de inducción, es suficiente con comprobar que 
+
+$$\alpha_2(a,\alpha(\eta))=\alpha_2(a',\alpha([a'']\eta))$$
+\newline
+\newline
+donde $a=a'a''$ con $a',a''\in \Sigma -\{1\}$. Ya que
+
+$$H([a'']\eta)\leq H([a]\eta) - H([a'])<H([a]\eta)$$
+\newline
+
+la hipotesis de inducción nos da que $\alpha([a''])=\alpha_2(a'',\alpha(\eta))$. Por la igualdad (\ref{eq:alfa_com}) 
+
+$$\alpha_2(a',\alpha([a'']\eta))=\alpha_2(a',\alpha_2(a'',\alpha(\eta)))=$$
+$$=\alpha_2(a'a'',\alpha(\eta))=\alpha_2(a,\alpha(\eta))$$
+
+Por tanto $\alpha$ esta bien definido para los elementos de $M_\Sigma$ de peso menor o igual que $k +1$ y satisface las condiciones (i) y (ii). Esto completa la inducción y prueba nuestra afirmación.
+\newline
+\newline
+\textit{Paso 3}. Ahora comprobamos que para cualquier $\xi\in M_\Sigma$, el elemento $[\alpha(\xi)]\in M_\Sigma$ es un divisor por la izquierda de $\xi$ que es maximal entre todos los divisores por la izquierda de $\xi$ que se encuentrar en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$.
+\newline
+\newline
+Utilizando la proyección $p:M_\Sigma\rightarrow M$, es fácil demostrar que todos los divisores de $1\in M_\Sigma$ son iguales a $1$. Por tanto si $H(\xi)=0$, entonces $[\alpha(\xi)]=\xi=1$ es el único divisor por la izquierda de $1\in\Sigma$. Si $H(\xi)\geq 1$, escribimos $\xi=[a]\eta$ para algún $a\in\Sigma - \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Por tanto, $\alpha(\xi)=ab$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(eta)$. Por el supuesto de inducción, $[\alpha(\eta)]$ es un divisor por la izquierda de $\eta$. Por tanto
+
+$$[\alpha(\xi)]=[ab]=[a][b]\preceq [a][\alpha(\eta)]\preceq [a]\eta=\xi$$
+\newline
+\newline
+Esto demuestra que $[\alpha(\xi)]$ es divisor por la izquierda  de $\xi$ perteneciente a $\{[a]\}_{a\in\Sigma}$. Veamos que $[\alpha(\xi)]$ es maximal. Supongamos que $\xi=[a']\eta'$
+para algún $a'\in\Sigma$, $\eta'\in M_\Sigma$. Entonces $\alpha(\xi) =\alpha_2(a',\alpha(\eta'))=a'b'$ para algún $b'\in\Sigma$. Por tanto, $a'\preceq \alpha(\xi)$ y $[a']\preceq [\alpha(\xi)]$
+\newline
+\newline
+\textit{Paso 4.} Existe una única función $\omega:M_\Sigma\rightarrow\Sigma$ tal que
+
+\begin{enumerate}[label=\roman*.]
+\item $\omega(1)=1$
+\item $\omega([a]\eta)=[\omega_2(a,\alpha(\eta))]\omega(\eta)$ para todo $a\in\Sigma$, $\eta\in M_\Sigma$
+\end{enumerate}
+
+El valor de $\omega$ para cualquier $\xi\in M_\Sigma$ esta definido por inducción sobre el peso de $\xi$. Establecemos que $\omega(1)=1$. Tomamos un entero $k\geq 1$ y suponemos que $\omega(\xi)$ esta definido para todo $\xi$ de peso menor o igual que $k$, de manera que las condiciones (i) y (ii) se satisfacen siempre que $H([a]\eta)\leq k$. Sea $\xi=[a]\eta$ un elemento de $M_\Sigma$ de peso $k+1$ con un $q\in\Sigma - \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\omega(\eta)$ esta definido. Para satisfacer (ii), establecemos que 
+
+$$\omega(\xi)=[\omega_2(a,\alpha(\eta))]\omega(\eta)$$
+
+Debemos de comprobar que $\omega(\xi)$ es independiente de la elección de expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y la inducción de hipotesis, es suficiente con comprobar que
+
+$$\omega_2(a,\alpha(\eta))\omega(\eta)=\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta)$$
+
+donde $a=a'a''$ con $a',a''\in\Sigma-\{1\}$. Sabemos que $\alpha([a'']\eta)=\alpha_2(a'',\alpha(\eta))$. Ya que $H([a'']\eta) < H([a]\eta)$, la hipótesis de inducción nos da la igualdad $\omega([a'']\eta)=[\omega_2(a'',\alpha(\eta))]\omega(\eta)$. Por la igualdad (\ref{eq:omega_com})
+
+
+$$\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta)=\omega_2(a',\alpha_2(a'',\alpha(\eta)))\omega([a'']\eta)=$$
+
+$$= \omega_2(a',\alpha_2(a'',\alpha(\eta)))[\omega_2(a'',\alpha(\eta))]\omega(\eta)=$$
+
+$$ =\omega_2(a'a'',\alpha(\eta))\omega(\eta)=  \omega_2(a,\alpha(\eta))\omega(\eta)$$
+\newline
+\newline
+Por tanto $\omega$ esta bien definido para los elementos de $M_\Sigma$ de peso menor o igual que $k+1$ y satisface las condiciones (i) y (ii). Esto completa la inducción y prueba nuestra afirmación.
 
 
 
