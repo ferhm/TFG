@@ -840,6 +840,39 @@ $$a_i=\alpha([a_1][a_2]\cdot\cdot\cdot[a_r])$$
 para todo $i=1,2,...,r$. La unicidad en la última afirmación del Teorema \ref{teor:monoi_deriv} implica la unicidad de la forma normal.
 
 
+\subsection{La cancelatividad de $M_\Sigma$}
+
+Usamos el Teorema \ref{teor:monoi_deriv} y la función $\alpha_2:\Sigma\times\Sigma\rightarrow\Sigma$ introducida en la prueba para establecer la cancelatividad por la izquierda de $M_\Sigma$.
+
+\begin{lema}
+Bajo las hipótesis del Teorema \ref{teor:monoi_deriv}, el monoide $M_\Sigma$ es cancelativo por la izquierda.
+\end{lema}
+
+\textit{Demostración.} Necesitamos demostrar que $\xi\eta=\xi\theta\Rightarrow\eta=\theta$ para todo $\xi,\eta,\theta\in M_\Sigma$. Suponemos primero que $\xi=[a]$ para algún $a\in\Sigma$. Entonces $\alpha(\xi\eta))=\alpha_2(a,\alpha(\eta))=ab\in\Sigma$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(\eta)$
+
+$$ab=\alpha(\xi\eta)=\alpha(\xi\theta)=\alpha([a]\theta)=\alpha_2(a,\alpha(\theta))=ac$$
+
+para algún $c\preceq\alpha(\theta)$ implica que $b=c\preceq\alpha(\theta)$. Entonces existen $\eta',\theta'\in M_\Sigma$ tal que $[b]\eta'=\eta$ y $[b]\theta'=\theta$. Como ya sabemos, $\omega(\xi\eta)$ es el único elemento $x\in M_\Sigma$ tal que $\xi\eta=[\alpha(\xi\eta)]x=[ab]x$. Ya que
+
+$$\xi\eta=[a][b]\eta'=[ab]\eta'$$
+
+tenemos que $\omega(\xi\eta) = \eta'$. De igual manera, $\omega(\xi\theta)=\theta'$. Por tanto,
+
+$$\eta'=\omega(\xi\eta)=\omega(\xi\theta)=\theta'$$
+$$\eta=[b]\eta'=[b]\theta'=\theta$$
+
+En general, $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ con $a_1,a_2,...,a_r\in\Sigma$. Como ya sabemos, $[a_1][a_2]\cdot\cdot\cdot[a_r]\eta=[a_1][a_2]\cdot\cdot\cdot[a_r]\theta$ implica que $[a_2]\cdot\cdot\cdot[a_r]\eta=[a_2]\cdot\cdot\cdot[a_r]\theta$. Repitiendo este proceso, obtenemos que $\eta=\theta$.
+
+\qed
+
+\subsection{El problema de palabra en $M_\Sigma$}
+
+Decimos que el conjunto $\Sigma\subset M$ esta ponderado si la función $\ell:\Sigma\rightarrow\mathbb{N}$ tal que $\ell(1)=0,\ \ell(a)\geq 1$ para $a\neq 1$, y $\ell(ab)=\ell(a)+\ell(b)$ siempre que $a,b,ab\in\Sigma$. La función $\ell$ se extiende al homomorfismo de monoide $M_\Sigma\rightarrow\mathbb{N}$ que convierte la presentación de $M_\Sigma$ en una presentación ponderada. Además, si $\Sigma$ es finito, ya hemos visto una solución al problema de palabra y al problema de divisibilidad en $M_\Sigma$.
+
+\subsection{El problema del conjugado en $M_\Sigma$}
+El \textit{problema del conjugado en un grupo} $G$ consiste en encontrar un procedimiento que nos permita, dados $\alpha,\beta\in G$, decidir si existe $\gamma\in G$ tal que $\alpha=\gamma\beta\gamma^{-1}$ o, equivalentemente, $\alpha\gamma=\gamma\beta$. Por extensión, el \textit{problema del conjugado en un monoide} $M$ consiste en encontrar un procedimiento que nos permita, dados $a,b\in M$, decidir si existe $c\in M$ tal que $ac=cb$. El siguiente lema es la clave para el problema del conjugado en $M_\Sigma$.
+
+
 
 
 
