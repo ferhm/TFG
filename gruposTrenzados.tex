@@ -936,6 +936,83 @@ El Lema \ref{lema:iso_mono} nos muestra que bajo las hipótesis apropiadas sobre
 
 
 
+\section{Grupo de fracciones y monoides pre-Garside}
+\subsection{Grupo de fracciones}
+
+Un homomorfismo de monoide $i:M\rightarrow G$ se dice que es \textit{universal} si $G$ es un grupo y para cualquier homomorfismo de monoide $f$ de $M$ a un grupo arbitrario $G'$, existe un único homomorfismo de grupo $g:G\rightarrow G'$ tal que $f=gi$. Cada monoide $M$ admite un homomorfismo universal a un grupo. Para ver esto, tomamos una representación arbitraria $\langle X | R \rangle$ de $M$ por generadores y relaciones y consideramos el grupo $G$ definido por $\langle X | R \rangle$ visto como una presentación de grupo. La función identidad $id_X:X\rightarrow X$ extiende a un homomorfismo de monoide $M\rightarrow G$, el cual es fácil ver que es universal. La definición de un homomorfismo universal $M\rightarrow G$ implica que hay una única composición con un isomorfismo de grupo. En particular, el grupo $G$ esta bien definido para isomorfismo. Este grupo llamado \textit{grupo de fracciones} de $M$ es denotado por $G_M$. Una presentación de $G_M$ por generadores y relaciones se puede obtener tomando una representación del monoide $M$ arbitraria de generadores y relaciones y verla como una representación de grupo.
+\newline
+\newline
+Un monoide $M$ es \textit{embebible} si existe un homomorfismo de monoide inyectivo de $M$ a un grupo. Es claro que $M$ es embebible si y solo si el homomorfismo universal de $M\rightarrow G_M$ es inyectvo. Por ejemplo, la inclusión $\mathbb{N}\hookrightarrow\mathbb{Z}$ demuestra que $\mathbb{N}$ es embebible. Es facil ver que la inclusión es un homomorfismo universal tal que $G_\mathbb{N}=\mathbb{Z}$.
+\newline
+\newline
+Claramente, los monoides embebibles son cancelativos por la izquierda y por la derecha. Por ejemplo, el monoide $\{1,x\}$, con $xx=x$ no es cancelativo por la izquierda. El grupo de fracciones de este monoide es trivial.
+
+\subsection{Monoides pre-Garside}
+
+\begin{defi}
+Un monoide pre-Garside es un par que consiste de un monoide $M$ y un elemento $\Delta$ de $M$ tal que el conjunto $\Sigma=\Sigma_\Delta$ de divisores por la izquierda de $\Delta$ satisface las siguientes condiciones:
+
+\begin{enumerate}
+\item $\Sigma$ es finito, genera $M$ y  coincide con el conjunto de divisores por la derecha de $\Delta$.
+\item Si $a,b\in\Sigma$ cumplen que $\Delta a=\Delta b$ o $a\Delta=b\Delta$, entonces $a=b$
+\end{enumerate}
+\label{defi:pre-garside}
+\end{defi}
+
+El elemento $\Delta\in M$ se llama \textit{elemento de Garside} de $M$. Observar que el conjunto $\Sigma$ de los divisores de $\Delta$ es cerrado bajo la divisibilidad por la izquierda y por la derecha, es decir, todos los elementos por la izquierda y por la derecha de elementos de $\Sigma$ pertenecen a $\Sigma$. Claramente, $1\in\Sigma$ y $\Delta\in\Sigma$.
+
+\begin{lema}
+Sea $(M,\Delta)$ un monoide pre-Garside y sea $\Sigma$ el conjunto de divisores de $\Delta$.
+
+\begin{enumerate}[label=(\roman*).]
+\item Para todo $a,b,c\in\Sigma$, si $ac=bc$ o $ca=cb$, entonces $a=b$.
+\item Existe una biyección $\delta:\Sigma\rightarrow \Sigma$ tal que $\Delta a=\delta(a)\Delta$ para todo $a\in\Sigma$.
+\item Si $N$ es el orden de $\delta$ (es decir, el menor entero positivo tal que $\delta^{N}=id$), entonces $\Delta^N a=a\Delta^N$ para todo $a\in M$.
+\item Para cualquier $a\in M$, existe un entero $r\geq 1$ tal que $a\preceq\Delta^r$ y $\Delta^r\succeq a$.
+\end{enumerate}
+\label{lema:pre-garside}
+\end{lema}
+
+\textit{Demostración.} (i) Ya que $c\in\Sigma$, existe un $d\in M$ tal que $cd=\Delta$. Entonces $ac=bc$ implica $a\Delta = acd=bcd$. Por tanto $a=b$ por la segunda condición de la Definición \ref{defi:pre-garside}. Para la implicación $ca=cb\Rightarrow a=b$ se procede de igual forma.
+\newline
+\newline
+(ii) Ya que cualquier divisor por la izquierda de $\Delta$ es también un divisor por la derecha y vice versa, para cualquier $a\in\Sigma$, existe $a',\delta(a)\in\Sigma$ tal que $\Delta =a'a$ y $\Delta = \delta(a)a'$. Por la afirmación (i), a' y $\delta(a)$ están definidas únicamente. Tenemos que
+
+\begin{equation}
+\Delta a=\delta(a)a'a=\delta(a)\Delta
+\label{eq:deltas}
+\end{equation}
+
+Ya que $\Sigma$ es finito, con el objetivo de probar que la función $\delta:\Sigma\rightarrow\Sigma$ es biyectiva, es suficiente probar que es inyectiva. La igualdad $\delta(a)=\delta(b)$ nos da que
+
+$$\Delta a= \delta(a)\Delta = \delta(b)\Delta = \Delta b$$
+
+Esto implica que $a=b$ por la segunda condición de la Definición \ref{defi:pre-garside}.
+\newline
+\newline
+(iii) Por inducción sobre $n$ obtenemos de (\ref{eq:deltas}) que $\Delta^na=\delta^n(a)\Delta^n$ para todo $a\in\Sigma$. Ya que $\delta^N=id$, tenemos que $\Delta^N a=\delta^N(a)\Delta^n=a\Delta^n$ En otras palabras, $\Delta^N$ conmuta con todos los elementos del conjunto $\Sigma$ Ya que este conjunto genera el monoide $M$, podemos concluir que $\Delta^N$ conmuta con todos los elementos de $M$.
+\newline
+\newline
+(iv) Escribimos $a$ como producto $a=a_1\cdots a_r$ de $r$ elementos de $\Sigma$. Para cada $a_i$ hay un $b_i\in\Sigma$ tal que $b_ia_i=\Delta$. Sea $b=\delta^{r-1}(b_r)\cdots\delta(b_2)b_1$. Afirmamos que $ba=\Delta^r$, lo cual prueba que $\Delta^r\succeq a$.
+
+$$ba=\delta^{r-1}(b_r)\cdots\delta(b_2)b_1a_1\cdots a_r$$
+$$=\delta^{r-1}(b_r)\cdots\delta(b_2)\Delta a_2\cdots a_r$$
+$$=\delta^{r-1}(b_r)\cdots\Delta b_2a_2\cdots a_r$$
+$$=\delta^{r-1}(b_r)\cdots\delta^2(b_3)\Delta^2 a_3\cdots a_r$$
+$$=\delta^{r-1}(b_r)\cdots\Delta^2 b_3a_3\cdots a_r$$
+$$=\cdots= \Delta^{r-1}b_ra_r=\Delta^r$$
+
+De forma similar se prueba que si $a_ic_i=\Delta$ para $i=1,\ldots,r$ y
+
+$$c=c_r\delta^{-1}(c_{r-1})\cdots\delta^{-(r-1)}(c_1)$$
+
+entonces $ac=\Delta^r$ y por tanto $a\preceq\Delta^r$.
+
+
+
+
+
+
 
 
 
