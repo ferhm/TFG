@@ -1001,12 +1001,34 @@ $$=\delta^{r-1}(b_r)\cdots\Delta b_2a_2\cdots a_r$$
 $$=\delta^{r-1}(b_r)\cdots\delta^2(b_3)\Delta^2 a_3\cdots a_r$$
 $$=\delta^{r-1}(b_r)\cdots\Delta^2 b_3a_3\cdots a_r$$
 $$=\cdots= \Delta^{r-1}b_ra_r=\Delta^r$$
-
+\newline
 De forma similar se prueba que si $a_ic_i=\Delta$ para $i=1,\ldots,r$ y
 
 $$c=c_r\delta^{-1}(c_{r-1})\cdots\delta^{-(r-1)}(c_1)$$
-
+\newline
 entonces $ac=\Delta^r$ y por tanto $a\preceq\Delta^r$.
+
+\subsection{Embebilidad de los monoides pre-Garside}
+
+Sea $(M,\Delta)$ un monoide pre-Garside. Bajo la hipótesis de que $M$ es cancelativo por la izquierda, damos una construcción explicita del grupo de fracciones de $M$. La construcción implicará que $M$ es embebible.
+\newline
+\newline
+Sea $N\geq 1$ el orden de $\delta:\Sigma\rightarrow\Sigma$. Por el Lema \ref{lema:pre-garside}, $\Delta^N$ es central en $M$. Consideramos el producto $H=M\times\mathbb{N}$ de los monoides $M$ y $\mathbb{N}$ con la correspondiente multiplicación
+
+$$(a,p)(b,q)=ab,p+q$$
+\newline
+para todo $a,b\in M$ y $p,q\in\mathbb{N}$. El elemento neutro de $H$ es $(1,0)$.
+\newline
+\newline
+Definimos la relación $\sim$ en $H$ por $(a,p)\sim(b,q)$ si $\Delta^{qN}a=\Delta^{pN}b$. Por ejemplo, $(\Delta^{qN}a,1)=(1,0)$. Vamos a demostrar que $\sim$ es una relación de equivalencia. La reflexividad y la simetría son obvias. Comprobamos la transitividad. Supongamos que $(a,p)\sim(b,q)\sim(c,r)$. Entonces $\Delta^{qN}a=\Delta^{pN}b$ y $\Delta^{rN}b=\Delta^{qN}c$. Por tanto
+
+$$\Delta^{qN}\Delta^{rN}a=\Delta^{rN}\Delta^{rqN}a=\Delta^{rN}\Delta^{pN}b$$
+$$=\Delta^{pN}\Delta^{rN}b=\Delta^{pN}\Delta^{qN}c=\Delta^{qN}\Delta^{pN}c$$
+\newline
+Ya que $M$ es cancelativo por la izquierda, podemos dividir en ambos lados por $\Delta^{qN}$ y obtenemos que $\Delta^{rN}a=\Delta^{pN}c$. Esto nos da $(a,p)\sim(c,r)$.
+\newline
+\newline
+Sea $G=H/\sim$ el conjunto de clases de equivalencia y sea $\pi:H\rightarrow G$ la proyección. Ya que $\Delta^N$ es central en $M$, el conjunto $G$ tiene una única estructura de monoide tal que $\pi$ es un homomorfismo de monoide. Definimos un homomorfismo de monoide $i:M\rightarrow G$ por $i(a)=\pi(a,0)$ para $a\in M$.
 
 
 
