@@ -20,6 +20,7 @@
 \newtheorem{prop}{Proposición}[section]
 \newtheorem{ejem}{Ejemplo}[section]
 \newtheorem{lema}{Lema}[section]
+\newtheorem{colo}{Colorario}[section]
 
 \renewcommand\thesubfigure{(\alph{subfigure})}
 \providecommand{\norm}[1]{\lVert#1\rVert}
@@ -1029,6 +1030,75 @@ Ya que $M$ es cancelativo por la izquierda, podemos dividir en ambos lados por $
 \newline
 \newline
 Sea $G=H/\sim$ el conjunto de clases de equivalencia y sea $\pi:H\rightarrow G$ la proyección. Ya que $\Delta^N$ es central en $M$, el conjunto $G$ tiene una única estructura de monoide tal que $\pi$ es un homomorfismo de monoide. Definimos un homomorfismo de monoide $i:M\rightarrow G$ por $i(a)=\pi(a,0)$ para $a\in M$.
+
+\begin{teor}
+Sea $(M,\Delta)$ un monoide pre-Garside tal que $M$ es cancelativo por la izquierda.
+\begin{enumerate}[label=(\roman*).]
+\item El monoide $G$ construido anteriormente es un grupo y el homomorfismo $i:M\rightarrow G$ es inyectivo.
+\item Cualquier elemento de $G$ puede ser escrito de la forma $i(\Delta)^si(a)$, donde $s\in\mathbb{Z}, a\in M$.
+\item El homomorfismo de monoide $i:M\rightarrow G$ es universal, asi que $G$ es el grupo de fracciones $G_M$ de $M$.
+\end{enumerate}
+\label{teor:pre-garside}
+\end{teor}
+
+\textit{Demostración.} (i) Si $i(a)=i(b)$ para $a,b\in M$, entonces $(a,0)=(b,0)$ en $H$. Esto implica que $a=\Delta^0a=\Delta^0b=b$ quedando demostrada la inyectividad de $i$.
+\newline
+\newline
+Cualquier elemento $g\in G$ tiene la forma $\pi(a,p)$ para unos ciertos $a\in M$ y $p\in\mathbb{N}$. Vamos a comprobar que $g=\pi(a,p)$ es invertible. Por el Lema \ref{lema:pre-garside}(iv) existe un $b\in M$ y un entero $r\geq 1$ tal que $ab=\Delta^r$. Multiplicando $b$ en la derecha por una potencia de $\Delta$, podemos asumir que $r=qN$ para un entero $q\geq p$. Entonces
+
+
+\begin{equation}
+(a,p)(b,q-p)=(ab,q)
+\label{eq:gr-frac}
+\end{equation}
+\newline
+Ya que $\Delta^0ab=\Delta^r=\Delta^{qN}1$, tenemos que $(ab,q)\sim(1,0)$ y $\pi(ab,q)=\pi(1,0)=1$. Esto prueba que $g=\pi(a,p)$ tiene inverso por la derecha, que denotamos por $g'$. Aplicando el mismo razonamiento, $g'$ también tiene un inverso por la derecha  $g''$ y
+
+$$g=g(g'g'')=(gg')g''=g''$$
+\newline
+En otras palabras, $g'$ es también el inverso de $g$ por la izquierda. Esto demuestra que G es un grupo.
+(ii) Sea $\xi$ el elemento central $(1,+1)\in H=M\times\mathbb{N}$. Si establecemos $a=1,b=\Delta^N$ y $p=q=+1$ en (\ref{eq:gr-frac}), obtenemos $\pi(\xi)i(\Delta)^N=1$. Por tanto $\pi(\xi)=\i(\Delta)^{-N}$. Cualquier elemento de $H$ es de la forma $(a,p)=\xi^p(a,0)$ para algún $a\in M$ y $p\in\mathbb{N}$. Por tanto cualquier elemento de $G$ puede ser escrito de la forma $\pi(\xi)^pi(a)=i(\Delta)^{-pN}i(a)$ donde $a\in M$ y $p\in\mathbb{N}$.
+\newline
+\newline
+(iii) Dado un homomorfismo de monoide $f$ de M a un grupo $G'$, consideramos la función $H=M\times \mathbb{N}\rightarrow G'$ que envia cualquier par $(a,p)\in M\times \mathbb{N}$ a $f(\Delta)^{-pN}f(a)$. Esta función es constante que las clases de equivalencia de $H$ por $\sim$ e induce un homomorfismo de grupo $H/\sim=G\rightarrow G'$. La composición de esta última función con $i:M\rightarrow G$ es igual a $f$. La unicidad del homomorfismo de grupo $G\rightarrow G'$ cuya composición con $i$ es igual a $f$ viene del hecho de que $i(M)$ genera $G$ como grupo.
+
+\qed
+
+\begin{colo}
+Los monoides pre-Garside cancelativos por la izquierda son embebibles.
+\end{colo}
+
+Este colorario muestra en particular que para monoides pre-Garside, la cancelatividad por la izquierda implica la cancelatividad por la derecha.
+\newline
+\newline
+A continuación identificaremos los elementos cancelativos por la izquierda de un monoide pre-Garside M con sus imagenes en $G_M$, de manera que $M$ se convierte en un subconjunto de $G_M$.
+
+\subsection{El problema del conjugado en el grupo de fracciones}
+
+Sea $(M,\Delta)$ un monoide pre-Garside canelativo por la izquierda. El problema del conjugado en su grupo de fracciones $G=G_M$ puede ser reducido al problema del conjugado de la siguiente manera. Como ya sabemos, para cualquier $\alpha,\beta\in G$, existen $a,b\in M\subset G$ y $s,t\in\mathbb{Z}$ tal que $\alpha=\Delta^sa$ y $\beta=\Delta^t b$. Cogemos un entero $u$ tal que $u\leq \min(s,t)$ y $u$ y $u$ es divisible por N (Lema \ref{lema:pre-garside}(iii)). Sea $a'=\Delta^{s-u}a\in M$ y $b'=\Delta^{t-u}b\in M$. Claramente, $\alpha=\Delta^ua'$ y $\beta=\Delta^ub'$. Afirmamos que $\alpha$ es conjugado de $\beta$ en $G$ si y solo si $a'$ es conjugado de $b'$ en M. Supongamos que $a'c=cb'$ para algún $c\in M$. Ya que $\Delta^u$ es una potencia de $\Delta^N$ y es por tanto central en $M$,
+
+$$\alpha c=\Delta^u a'c=\Delta^u c b' = c\Delta^u b'=c\beta$$
+
+En el otro sentido, si $\alpha\gamma=\gamma\beta$ con $\gamma\in G$, entonces $\gamma=\Delta^v c$ para algún $c\in M$ y algún entero $v$ divisible por $N$. Reemplazando $\alpha\beta\gamma$ en la fórmula $\alpha\gamma=\gamma\beta$ por sus expansiones con $a',b',c'$ y usando la centralidad de $\Delta^u,\Delta^v$, obtenemos
+
+$$\Delta^{u+v}a'c=\Delta^{u+v}cb'$$
+\newline
+Dividimos entre $\Delta^{u+v}$ y concluimos que $a'c=cb'$.
+
+\subsection{El caso de $M$ atómico}
+
+Para $M$ atómico, la afirmación (ii) del Teorema \ref{teor:pre-garside} admite el siguiente refinamiento.
+
+\begin{teor}
+Sea $(M,\Delta)$ un monoide pre-Garside tal que $M$ es no trivial, cancelativo por la izquierda y atómico. Entonces cualquier elemento de $G=G_M\supset M$ puede ser escrito unicamente de la forma de la forma $\Delta^s b$, donde $s\in\mathbb{Z}$ y $b$ es un elemento de $M$ que no es múltiplo por la derecha de $\Delta$
+\end{teor}
+
+\textit{Demostración.} Observamos primero que $\norm{\Delta}>0$. En efecto, si $\norm{\Delta}= 0$, entonces $\Delta=1$. Ya que $M$ es atómico. Eso implica que $\Sigma_\Delta=\{1\}$. Ya que $\Sigma_\Delta$ genera $M$, tenemos que $M=\{1\}$. Esto contradice la no trivialidad de $M$.
+\newline
+\newline
+Por el Teorema \ref{teor:pre-garside}, cualquier elemento de $G$ tiene la forma $\Delta^sa$ con $s\in\mathbb{Z}$ y $a\in M$. Sea $t$ el mayor entero no negativo tal que $\Delta^t\preceq a$ en $M$. Tal $t$ existe porque la relación $\Delta^t\preceq a$ implica que
+
+$$t\norm{\Delta}\leq \norm{\Delta^t}\leq \norm{a}<\infty$$
 
 
 
