@@ -1100,6 +1100,56 @@ Por el Teorema \ref{teor:pre-garside}, cualquier elemento de $G$ tiene la forma 
 
 $$t\norm{\Delta}\leq \norm{\Delta^t}\leq \norm{a}<\infty$$
 
+Entonces $a=\Delta^t b$ para algún $b\in M$ tal que $\Delta\npreceq b$ y $\Delta^s a=\Delta^{s+t} b$. Esto prueba la existencia de la forma declarada.
+\newline
+\newline
+Supongamos que $\Delta^s b=\Delta^{s'}b'$ para $s,s'\in\mathbb{Z}$ y $b,b'\in M$ tal que $\Delta\npreceq b$ y $\Delta\npreceq b'$. Podemos asumir que $s\geq s'$. Dividiendo por $\Delta^{s'}$, obtenemos que $\Delta^{s-s'}b=b'$. Ya que $b'$ no es múltiplo por la derecha de $\Delta$ en $M$, tenemos que $s-s'=0$. Por tanto, $s=s'$ y $b=b'$, lo que prueba la unicidad.
+
+\section{Monoides de Garside}
+\subsection{Definiciones y lemas}
+
+Sea $(M,\Delta)$ un monoide pre-Garside y sea $\Sigma$ el conjunto de divisores por la izquierda (y por la derecha) de $\Delta$. Observamos que al generar $\Sigma$ a $M$, todos los átomos de $M$ pertenecen a $\Sigma$. En otras palabras, todos los átomos de $M$ son necesariamente divisores por la izquierda de $\Delta$.
+
+\begin{defi}
+El par $(M,\Delta)$ es un \textit{monoide de Garside} si $M$ es atómico y para cualesquiera dos átomos $s,t$ de $M$, el conjunto
+$$\{a\in\Sigma\ |\ s\preceq a,\ t\preceq a \}$$
+\newline
+tiene un elemento minimal $\Delta_{s,t}$ (con respecto a $\preceq$).
+\newline
+\newline
+Por el Lema \ref{lema:rel2}, el elemento minimal $\Delta_{s,t}$ es único. Se observa que $\Delta_{s,t}=\Delta_{t,s}\in\Sigma,\ s\preceq\Delta_{s,t},\ t\preceq\Delta_{s,t}$ y 
+
+$$\{a\in\Sigma\ |\ s\preceq a,\ t\preceq a \}=\{a\in\Sigma\ |\ \Delta_{s,t}\preceq a\}$$
+
+Cualquier átomo $s\in M$ es un elemento minimal del conjunto $\{a\in\Sigma\ |\ s\preceq a\}$, así que $\Delta_{s,s}=s$
+
+\end{defi}
+
+\begin{lema}
+Si $(M,\Delta)$ es un monoide de Garside, entonces el conjunto $\Sigma$ satisface todas las condiciones del Teorema \ref{teor:monoi_deriv}
+\label{lema:garside}
+\end{lema}
+
+Este lema es clave para permitirnos aplicar los resultados vistos en la sección de ``Formas Normales y problema del conjugado'' a los monoides de Garside. El resto de esta subsección irá enfocado a la prueba del Lema \ref{lema:garside}. Necesitamos verificar que $\Sigma$ satisface las condiciones (1.),(3.) del Teorema \ref{teor:monoi_deriv}. La condición (1.) la tenemos de forma directa por la definición de monoide pre-Garside. La condición (2.) fue verificada en el Lema \ref{lema:pre-garside}. La parte difícil es la verificación de (3.). Comenzamos con dos lemas. En ambos lemas, asumimos que $(M,\Delta)$ es un monoide de Garside, $\Sigma$ es el conjunto de divisores por la izquierda (y derecha) de $\Delta$, y $S\subset \Sigma$ es el conjunto de átomos de $M$.
+
+\begin{lema}
+Sea $E$ un subconjunto finito no vacío de $M$ satisfaciendo las siguientes dos condiciones:
+\begin{enumerate}[label=(\roman*).]
+\item Si $a\in M$ y $b\in E$ con $a\in E$ con $a\preceq b$, entonces $a\in E$.
+\item Si $a\in E$, $s,t\in S$ son tales que $at\in E$, entonces $a\Delta_{s,t}\in E$.
+
+Entonces $E$ tiene un elemento maximal (con respecto a $\preceq$).
+\end{enumerate}
+\end{lema}
+
+\textit{Demostración.} Sea $c$ un elemento de $E$ tal que $\norm{c}$ es maximal (decimos que $c$ es de altura maximal en $E$). Deseamos demostrar que $E=\{a\in M\ |\ c\}$. Por la condición (i), $\{a\in M\ |\ c\}\subset E$. Vamos a probar la inclusión contraria. Supongamos que no esta incluido. Entonces existe $b\in E$ tal que $b\npreceq c$. Expandimos $b$ como producto de atomos $b=s_1\cdots s_n$ para algún $n$ y $s_1,\ldots,s_n\in S$. Establecemos $a=s_1\cdots s_k$ donde $k < n$ es el entero maximal tal que $a\preceq c$ (posiblemente $k=0$, en cuyo caso $a=1$). Esta claro que $a\in E$ y que existe un átomo $s\in S$ (de hecho $s=s_{k+1}$) tal que $as\in E$ y $as\npreceq c$. Consideramos $a\in E$ de altura maximal. Ya que $c$ es de altura maximal en $E$, tenemos $\norm{a}<\norm{as}\leq \norm{c}$. Esto y la relacion $a\preceq c$ implica que existe $t\in S$ tal que $at\preceq c$. Entonces, necesariamente, $t\neq s$. Ahora tenemos  $a,as, at\in E$. Por la condición (ii) $a\Delta_{s,t}\in E$. La relación $as\preceq a\Delta_{s,t}$ y $as\npreceq c$ implica que $a\Delta_{s,t}\npreceq c$. Podemos expandir
+
+$$\Delta_{s,t}=ts_1s_2\cdots s_m$$
+\newline
+donde $s_1,\ldots,s_m\in S$. Existe $i=1,\ldots,m$ tal que $ats_1s_2\cdots s_{i-1}\preceq c$ y $ats_1s_2\cdots s_{i}\npreceq c$. Sea $a'=ats_1s_2\cdots s_{i-1}$. La inclusión $a\Delta_{s,t}\in E$ implica que $a',a's_i\in E$. Por la elección de $i$ tenemos que $a's_i\npreceq c$. Por lo tanto, $a'$ satisface las mismas condiciones de $a$, pero $\norm{a'}\geq \norm{at}> \norm{a}$. Tenemos una contradicción con la elección de $a$.
+
+\qed
+
 
 
 
