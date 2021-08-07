@@ -1066,6 +1066,7 @@ En otras palabras, $g'$ es también el inverso de $g$ por la izquierda. Esto dem
 
 \begin{colo}
 Los monoides pre-Garside cancelativos por la izquierda son embebibles.
+\label{colo:pre-garside-embe}
 \end{colo}
 
 Este colorario muestra en particular que para monoides pre-Garside, la cancelatividad por la izquierda implica la cancelatividad por la derecha.
@@ -1091,6 +1092,7 @@ Para $M$ atómico, la afirmación (ii) del Teorema \ref{teor:pre-garside} admite
 
 \begin{teor}
 Sea $(M,\Delta)$ un monoide pre-Garside tal que $M$ es no trivial, cancelativo por la izquierda y atómico. Entonces cualquier elemento de $G=G_M\supset M$ puede ser escrito unicamente de la forma de la forma $\Delta^s b$, donde $s\in\mathbb{Z}$ y $b$ es un elemento de $M$ que no es múltiplo por la derecha de $\Delta$
+\label{teor:refi}
 \end{teor}
 
 \textit{Demostración.} Observamos primero que $\norm{\Delta}>0$. En efecto, si $\norm{\Delta}= 0$, entonces $\Delta=1$. Ya que $M$ es atómico. Eso implica que $\Sigma_\Delta=\{1\}$. Ya que $\Sigma_\Delta$ genera $M$, tenemos que $M=\{1\}$. Esto contradice la no trivialidad de $M$.
@@ -1122,7 +1124,7 @@ Por el Lema \ref{lema:rel2}, el elemento minimal $\Delta_{s,t}$ es único. Se ob
 $$\{a\in\Sigma\ |\ s\preceq a,\ t\preceq a \}=\{a\in\Sigma\ |\ \Delta_{s,t}\preceq a\}$$
 
 Cualquier átomo $s\in M$ es un elemento minimal del conjunto $\{a\in\Sigma\ |\ s\preceq a\}$, así que $\Delta_{s,s}=s$
-
+\label{defi:garside}
 \end{defi}
 
 \begin{lema}
@@ -1140,6 +1142,7 @@ Sea $E$ un subconjunto finito no vacío de $M$ satisfaciendo las siguientes dos 
 
 Entonces $E$ tiene un elemento maximal (con respecto a $\preceq$).
 \end{enumerate}
+\label{lema:garside1}
 \end{lema}
 
 \textit{Demostración.} Sea $c$ un elemento de $E$ tal que $\norm{c}$ es maximal (decimos que $c$ es de altura maximal en $E$). Deseamos demostrar que $E=\{a\in M\ |\ c\}$. Por la condición (i), $\{a\in M\ |\ c\}\subset E$. Vamos a probar la inclusión contraria. Supongamos que no esta incluido. Entonces existe $b\in E$ tal que $b\npreceq c$. Expandimos $b$ como producto de atomos $b=s_1\cdots s_n$ para algún $n$ y $s_1,\ldots,s_n\in S$. Establecemos $a=s_1\cdots s_k$ donde $k < n$ es el entero maximal tal que $a\preceq c$ (posiblemente $k=0$, en cuyo caso $a=1$). Esta claro que $a\in E$ y que existe un átomo $s\in S$ (de hecho $s=s_{k+1}$) tal que $as\in E$ y $as\npreceq c$. Consideramos $a\in E$ de altura maximal. Ya que $c$ es de altura maximal en $E$, tenemos $\norm{a}<\norm{as}\leq \norm{c}$. Esto y la relacion $a\preceq c$ implica que existe $t\in S$ tal que $at\preceq c$. Entonces, necesariamente, $t\neq s$. Ahora tenemos  $a,as, at\in E$. Por la condición (ii) $a\Delta_{s,t}\in E$. La relación $as\preceq a\Delta_{s,t}$ y $as\npreceq c$ implica que $a\Delta_{s,t}\npreceq c$. Podemos expandir
@@ -1149,6 +1152,59 @@ $$\Delta_{s,t}=ts_1s_2\cdots s_m$$
 donde $s_1,\ldots,s_m\in S$. Existe $i=1,\ldots,m$ tal que $ats_1s_2\cdots s_{i-1}\preceq c$ y $ats_1s_2\cdots s_{i}\npreceq c$. Sea $a'=ats_1s_2\cdots s_{i-1}$. La inclusión $a\Delta_{s,t}\in E$ implica que $a',a's_i\in E$. Por la elección de $i$ tenemos que $a's_i\npreceq c$. Por lo tanto, $a'$ satisface las mismas condiciones de $a$, pero $\norm{a'}\geq \norm{at}> \norm{a}$. Tenemos una contradicción con la elección de $a$.
 
 \qed
+
+\begin{lema}
+Para cualquier $a,b\in\Sigma$, el conjunto
+
+$$E=\{x\in M\ |\ x\preceq a,\ x\preceq b\}\subset \Sigma$$
+
+tiene un elemento maximal (con respecto a $\preceq$).
+\label{lema:garside2}
+\end{lema}
+
+\textit{Demostración.} Ya que $\Sigma$ es finito, también lo es $E$. Claramente, $1\in E$. El conjunto $E$ es no vacío ya que $1\in E$, y obviamente satisface la condición $(i)$ del Lema \ref{lema:garside1}. Vamos a comprobar la condición (ii). Tenemos que probar que si $xs$ y $xt$ son divisores por la izquierda de $a$ y $b$ para algún $s,t\in S$, entonces $x\in\Delta_{s,t}$. Sea $y\in\Sigma$ tal que $xy=a$. Por hipótesis, $xs\preceq a = xy$ y $xt\preceq a = xy$. Por el Lema \ref{lema:pre-garside} (i), esto implica que $s\preceq y$ y $t\preceq y$ . Por la Definición \ref{defi:garside}, $\Delta_{s,t}\preceq y$, y por tanto $x\Delta{s,t}\preceq xy=a$. De igual manera $x\Delta_{s,t} b$. Ahora el Lema \ref{lema:garside1} implica que $E$ tiene elemento maximal.
+
+\qed
+
+Ahora estamos en condiciones de verificar la condición (3.) del Teorema \ref{teor:monoi_deriv}. Tomamos cualesquiera $a,b\in\Sigma$. Ya que $a\preceq\Delta$, tenemos que $\Delta=aa'$ para algún $a'\in\Sigma$. Por el Lema \ref{lema:garside2}, el conjunto
+
+$$\{x\in M\ |\ x\preceq a',\ x\preceq b\}\subset\Sigma$$ tiene un elemento maximal con respecto a $\preceq$. Afirmamos que $c$ es maximal en 
+
+$$\{x\in\Sigma\ |\ x\preceq b,\ ax\in\Sigma\}$$
+
+En efecto, por definición, $c\preceq a'$, por lo cual $ac\preceq aa'=\Delta$ y $ac\in\Sigma$. Sea $d\in\Sigma$ tal que $d\preceq b$ y $ad\in\Sigma$. Entonces $ad\preceq\Delta=aa'$ y en consecuencia, por el Lema \ref{lema:pre-garside} (i) (cancelación por la izquierda en $\Sigma$) implica que $d\preceq a'$. Por lo tanto, $d\preceq c$.
+
+\qed
+
+\subsection{Monoides de Garside exhaustivos}
+
+Un monoide de Garside $(M,\Delta)$ es \textit{exhaustivo} si el conjunto $\Sigma\subset M$ de divisores de $\Delta$ es exhaustivo en el sentido en el que fue definido anteriormente. Los resultados previos nos dan como consecuencia las siguientes propiedades que cumple un monoide de Garside exhaustivo $(M,\Delta)$.
+
+\begin{enumerate}[label=(\arabic*)]
+\item Tenemos que $M\cong M_\Sigma$ (Lema \ref{lema:iso_mono}). En otras palabras, $M$ tiene una presentación con generadores $[a]$, donde $a$ se mueve en $\Sigma$, y relaciones $[1]=1$ y $[a][b]=[ab]$, donde $a,b\in\Sigma$ satisface $ab\in\Sigma$.
+\item Para cualquier $a\in M$, existe un único divisor por la izquierda $\alpha(a)\in\Sigma$ de $a$ que es maximal entre todos los divisores por la izquierda de $a$ pertenecientes a $\Sigma$ (Teorema \ref{teor:monoi_deriv}).
+\item Cualquier $a\in M$ se expande de forma única como un producto $a=a_1a_2\cdots a_r$ de ciertos $a_1,a_2,\ldots,a_r\in\Sigma - \{1\}$ con $r\geq 0$ tal que $a_i=\alpha(a_ia_{i+1}\cdots a_r)$ para todo $i=1,\ldots,r$ (Sección Forma normal de $M_\Sigma$).
+\item El homomorfismo de monoide natural de $M$ en su grupo de fracciones $G_M$ es inyectivo (Lema \ref{lema:cancel} y Colorario \ref{colo:pre-garside-embe}). En particular, $M$ es cancelativo por la izquierda y por la derecha.
+\item Si $M\neq \{1\}$, entonces cualquier elemento de $G_M\supset M$ puede ser escrito de la forma $\Delta^s b$ con unicidad, donde $s\in\mathbb{Z}$ y $b\in M$ no es múltiplo por la derecha de $\Delta$ (Teorema \ref{teor:refi}).
+\item El problema del conjugado $G_M$ es equivalente al problema del conjugado en $M$ (Sección el problema del cojugado en el grupo de fracciones). Este último es soluble si $M$ admite una presentación ponderada (Sección el problema del conjugado en $M_\Sigma$).
+\end{enumerate}
+
+\subsection{Divisores y múltiplos comunes en monoides de Garside}
+
+Dado $k\geq 2$ elementos $a_1,\ldots,a_k$ de un monoide $M$, decimos que $d\in M$ es un \textit{máximo común divisor por la izquierda} (mcd) de $a_1,\ldots,a_k$ si $d\preceq a_i$ para todo $i=1,\ldots,k$, y $d'\preceq d$ para cualquier $d'\in M$ tal que $d'\preceq a_i$ ara todo $i=1,\ldots,k$. Reemplazando $\preceq$ por $\succeq$, obtenemos análogamente la noción de mcd por la derecha.
+
+Decimos que $m\in M$ es un \textit{mínimo común múltiplo} (mcm) de $a_1,\ldots,a_k$ si $a_i\preceq m$ para todo $i=1,\ldots,k$, y $m\preceq m'$ para cualquier $m'\in M$ tal que $a_i\preceq m'$ ara todo $i=1,\ldots,k$. Existe la noción análoga de mcm por la izquierda. Si $M$ es atómico, entonces el mcd y el mcm son únicos siempre que existan. La propiedad (2) de la sección anterior puede ser reformulada diciendo que $\Delta$ y cualquier $a\in M$ tienen mcd por la izquierda. Esas propiedades de los monoides de Garside pueden ser generalizadas de la siguiente manera.
+
+\begin{teor}
+Sea $(M,\Delta)$ un monoide de Garside exhaustivo. Entonces cualquier familia finita de elementos de $M$ tienen un único mcd por la izquierda y un único mcm por la derecha.
+\end{teor}
+
+\textit{Demostración.} Sean $b,c\in M$. Consideramos el conjunto
+
+$$E=\{a\in M\ |\ a\preceq b,\ a\preceq c\}$$
+\newline
+Con el objetivo de probar que $b$ y $c$ tienen un mcd por la izquierda en $M$, es suficiente con comprobar que $E$ satisface las condiciones del Lema \ref{lema:garside1}. El conjunto $E$ claramente satisface la condición (i). El conjunto $E$ es finito porque $\norm{a}<\norm{b}$ para cualquier $a\in E$, así que $a$ es el producto de como mucho $\norm{b}$ átomos de $M$, y el conjunto de átomos de $M$, siendo un subconjunto de $\Sigma$, es finito.
+
 
 
 
