@@ -644,6 +644,7 @@ Una presentacion $\langle X|R\rangle$ de un monoide $M$ se dice \textit{equilibr
 
 \begin{lema}
 Si un monoide $M$ tiene una representación ponderada $\langle X|R\rangle$, entonces $M$ es atómico y todos sus átomos estan contenidos en el conjunto $X$ de generadores. Si $M$ tiene una presentación equilibrada en longitud $\langle X|R\rangle$, entonces el conjunto de átomos de $M$ coincide con $X$ y $\norm{a}=\ell(a)$ para todo $a\in M$, donde $\ell$ es el peso canónico en $M$.
+\label{lema:presen_mono}
 \end{lema}
 
 \textit{Demostración.} Sea $\ell: M\rightarrow \mathbb{N}$ un homomorfismo de monoide tal que $\ell(x)\geq 1$ para todo generador $x\in X$. Entonces $\ell(a)\geq 1$ para todo $a\in M-\{1\}$. Si $a\in M$ se expande como el producto $a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M-\{1\}$, entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r$. Por tanto $\ell(a)\geq \norm{a}$. Que todos los átomos de $M$ pertenecen a $X$ viene del hecho de que cualquier conjunto que genere un monoide debe contener a sus átomos, ya que estos no se pueden obtener como producto de otros elementos y forman parte del monoide.
@@ -1204,6 +1205,195 @@ Sea $(M,\Delta)$ un monoide de Garside exhaustivo. Entonces cualquier familia fi
 $$E=\{a\in M\ |\ a\preceq b,\ a\preceq c\}$$
 \newline
 Con el objetivo de probar que $b$ y $c$ tienen un mcd por la izquierda en $M$, es suficiente con comprobar que $E$ satisface las condiciones del Lema \ref{lema:garside1}. El conjunto $E$ claramente satisface la condición (i). El conjunto $E$ es finito porque $\norm{a}<\norm{b}$ para cualquier $a\in E$, así que $a$ es el producto de como mucho $\norm{b}$ átomos de $M$, y el conjunto de átomos de $M$, siendo un subconjunto de $\Sigma$, es finito.
+
+Vamos a comprobar la condición $(ii)$. Supongamos que tenemos $a\in E$ y los átomos $s,t\in M$ tal que $as,at\in E$. Escribimos $b=ab_1$ con $b_1\in M$. Ya que $M$ es cancelativo por la izquierda, $as\preceq b =ab_1$ implica $s\preceq b_1$ y $at\preceq b = ab_1$ implica $t\preceq b_1$. Consideramos el divisor por la izquierda maximal $\alpha(b_1)$ de $b_1$ en $\Sigma$. Tenemos que $s\preceq\alpha(b_1)$ y $t\preceq\alpha(b_1)$. Por tanto $\alpha_{s,t}\preceq \alpha(b_1)\preceq b_1$. Por eso $\Delta_{s,t}\preceq b_1$ y $a\Delta_{s,t}\preceq ab_1= b$. De igual forma $a\Delta_{s,t}\preceq c$. Esto prueba que $a\Delta_{s,t}\in E$.
+\newline
+\newline
+Que cualquier familia finita de elementos de $M$ tiene un mcm por la izquierda se sigue facilmente por inducción sobre la cardinalidad de la familia.
+\newline
+\newline
+Vamos a probar la existencia de mcm por la derecha. Sea $a_1,\ldots,a_k\in M$. En vista al Lema \ref{lema:pre-garside} (iv), existe $r\geq 1$ tal que $a_i\preceq\Delta^r$ para todo $i=1,\ldots,k$. Consideramos el conjunto
+
+$$X=\{x\in M\ |\ a_i\preceq c\preceq\Delta^r\ \ \forall i\in\{1,\ldots,k\}\}$$
+
+Ya que el conjunto de átomos de $M$ es finito y todos los divisores por la izquierda de $\Delta^r$ se expanden como producto de a lo máximo $r\norm{\Delta}$ átomos, el conjunto de divisores por la izquierda de $\Delta^r$ es finito. Dado que contiene a $X$, este es finito también. Sea $m$ el máximo común divisor por la izquierda de los elementos de $X$. Afirmamos que $m$ es mínimo común múltiplo por la derecha de $a_1,\ldots,a_k$. En efecto, $a_1,\ldots,a_k$ son divisores por la izquierda de todos los elementos de $X$. Por lo tanto, son divisores por la izquierda de $m$. Esto demuestra que $m$ es múltiplo común por la derecha de $a_1,\ldots,a_k$.
+\newline
+\newline
+Sea $m'$ otro común múltiplo por la derecha de $a_1,\ldots,a_k$. Denotamos por $m''$ un máximo común divisor por la izquierda de $m'$ y $\Delta^r$. Comprobamos que $m''\in X$. Primero, $m''\preceq\Delta^r$. Ya que $a_i$ es un divisor por la izquierda de $m'$ y de $\Delta^r$, es un divisor por la izquierda de $m''$. Esto prueba que $m''\in X$. Por definición de $m$, tenemos que $m\preceq m''$. Dado que $m''\preceq m'$, obtenemos $m\preceq m'$. Esto prueba nuestra afirmación.
+
+\section{El monoide de trenza}
+
+\subsection{Una presentación por generadores y relaciones}
+
+Para cualquier $n\geq 1$, denotamos por $B_n^+$ el monoide generado por $n-1$ generadores $\sigma_1,\sigma_2,\ldots,\sigma_{n-1}$ y las relaciones
+
+$$\sigma_i\sigma_j=\sigma_j\sigma_i\ \ \ si\ |i-j|\geq 2$$
+$$\sigma_i\sigma_j\sigma_i=\sigma_j\sigma_i\sigma_i\ \ \ si\ |i-j|= 1$$
+
+donde $i,j=1,2,\ldots,n-1$. El monoide $B_n^+$ se llama \textit{monoide de trenza} de $n$ hebras. A los elementos de $B_n^+$ se les llama \textit{trenzas positivas} de $n$ hebras. Por definición, $B_1^+$ es el monoide trivial. El monoide $B_2^+$ esta generado por un único generador y un conjunto vacío de relaciones. Es isomorfo al monoide $\mathbb{N}$ de enteros no negativos.
+\newline
+\newline
+La presentación de $B_n^+$ dada previamente es finita y equilibrada en longitud en el sentido ya visto, lo que nos provee de una solución para el problema de palabra para $B_n^+$. Además, el Lema \ref{lema:presen_mono} implica que el monoide $B_n^+$ es atómico cuyos átomos son $\sigma_1,\sigma_2,\ldots,\sigma_{n-1}$ y $\norm{a}=\ell(a)$ para todo $a\in B_n^+$, donde $\ell : B_n^+\rightarrow \mathbb{N}$ es el homomorfismo de monoide definido por $\ell(\sigma_i)=1$ para $i=1,\ldots,n-1$.
+\newline
+\newline
+Establecemos
+
+$$\Delta_n = (\sigma_1\cdots\sigma_{n-2}\sigma_{n-1})(\sigma_1\cdots\sigma_{n-2})\cdots(\sigma_1\sigma_2)\sigma_1\in B_n^+$$
+
+\subsection{Trenzas reducidas}
+
+Consideramos el grupo simétrico $S_n$ que esta formado por todas las permutaciones del conjunto $\{1,\ldots,n\}$. Definimos la función teórica $\rho:S_n\rightarrow B_n^+$ como sigue. Consideramos las transposiciones simples $s_1,\ldots,s_{n-1}\in S_n$, donde $s_i$ permuta $i$ y $i+1$ y deja el resto de elementos fijos. Las transposiciones simples generan $S_n$, así que cada elemento $\omega\in S_n$ puede ser expresado como una palabra $\omega = s_{i_1}s_{i_2}\cdots s_{i_r}$ con $i_1,i_2,\ldots,i_r\in\{1,2,\ldots,n-1\}$. Si $r$ es minimal, entonces esta es una expresión reducida y establecemos que $\rho(\omega)=s_{i_1}s_{i_2}\cdots s_{i_r}$. Por el Teorema \ref{}, $\rho(\omega)$ es un elemento bien definido de $B_n^+$. Sea
+
+$$\pi:B_n^+\rightarrow S_n$$
+
+el homomorfismo de monoide definido por $\pi(\sigma)=s_i$ para todo $i=1,\ldots,n-1$. Esta claro que $\pi\circ\rho = id$, lo que implica que $\rho$ es inyectiva.
+\newline
+\newline
+Establecemos $B_n^{red}=\rho(S_n)\subset B_n^+$. Este es un conjunto finito de cardinalidad $n!$ y el homomorfismo $\pi:B_n^+\rightarrow S_n$ es una biyección cuando se restringe a $B_n^{red}$. Decimos que un elemento de $B_n^+$ es reducido si se encuentra en $B_n^{red}$. Los átomos $\sigma_1,\ldots,\sigma_{n-1}$ de $B_n^+$ son reducidos, ya que $\sigma_i=\rho(s_i)$ para $i=1,\ldots,n-1$. Denotamos por $\lambda(\omega)$ para $\omega\in S_n$ como la longitud $r$ de cualquier expresión reducida $s_{i_1}s_{i_2}\cdots s_{i_r}$ para $\omega$. A partir de esta definición esta claro que 
+
+$$\lambda(\pi(a))=\ell(a)$$
+\newline
+para todo $a\in B_n^+$. El siguiente lema es una útil caracterización algebraica de $B_n^{red}$.
+
+\begin{lema}
+Un elemento de $B_n^+$ es reducido si y solo si $\lambda(\pi(a))=\ell(a)$
+\label{lema:reduced1}
+\end{lema}
+
+\textit{Demostración.} Si $a=\rho(\omega)$ para algún $\omega\in S_n$, entonces $\ell(a)=\lambda(\omega)=\lambda(\pi(a))$. Por el contrario, sea $a=s_{i_1}s_{i_2}\cdots s_{i_r}\in B_n^+$ con $r=\ell(a)=\lambda(\pi(a))$. Entonces $\pi(a)=s_{i_1}s_{i_2}\cdots s_{i_r}$ es una expresión reducida de $S_n$ y $a=\rho(\pi(a))\in B_n^{red}$.
+
+\qed
+
+\begin{lema}
+Un divisor por la izquierda o por la derecha de un elemento reducido de $B_n^+$ es reducido.
+\label{lema:reduced2}
+\end{lema}
+
+\textit{Demostración.} Si $a,b\in B_n$ y $ab\in B_n^{red}$, entonces
+
+$$\ell(a) + \ell(b)= \ell(ab)=\lambda(\pi(ab))=\lambda(\pi(a)\pi(b))\leq \lambda(\pi(a))+\lambda(\pi(a))$$
+
+Ya que $\ell(a)\geq \lambda(\pi(a))$ y $\ell(b)\geq \lambda(\pi(b))$, estas desigualdades son realmente igualdades. Por el Lema \ref{lema:reduced1}, se sigue que $a,b\in B_n^{red}$.
+
+\qed
+
+\begin{lema}
+Para $u,v\in S_n$, tenemos que $\rho(u)\rho(v)=\rho(uv)$ si y solo si $\lambda(u)+\lambda(v)=\lambda(uv)$.
+\label{lema:longi}
+\end{lema}
+
+\textit{Demostración.} Sea $a=(\rho(u)\rho(v)\in B_n^+)$. Tenemos que $\pi(a)= uv$ y 
+
+$$\lambda(uv)=\lambda(\pi(a))\leq\ell(a)=\ell(\rho(u))+\ell(\rho(v))=\lambda(u)+\lambda(v)$$
+
+Por tanto $a\in B_n^{red}$ si y solo si $\lambda(uv)=\lambda(u)+\lambda(v)$. Por otra parte, $a\in B_n^{red}$ si y solo si $a=\rho(\pi(a))=\rho(uv)$.
+
+\qed
+
+La permutación $\omega_0=(n,n-1,\ldots,2,1)$ es el único elemento de $\omega_0\in S_n$ de longitud máxima. Es facil comprobar que
+
+$$\omega_0=(s_1\cdots s_{n-2}s_{n-1})s_1\cdots s_{n-2})\cdots(s_1s_2)s_1$$
+
+Ya que la palabra en la parte derecha tiene longitud $\lambda(\omega_0)=n(n-1)/2$, es reducido. Por lo tanto
+
+$$\rho(\omega_0)(\sigma_1\cdots \sigma_{n-2}\sigma_{n-1})\sigma_1\cdots \sigma_{n-2})\cdots(\sigma_1\sigma_2)\sigma_1=\Delta_n$$
+
+Esto demuestra que $\Delta_n$ es reducido.
+
+\begin{lema}
+Un elemento de $B_n^+$ es reducido si y solo si es un divisor por la izquierda o por la derecha de $\Delta_n$
+\label{lema:reduced3}
+\end{lema}
+
+\textit{Demostración.} Ya que $\Delta_n$ es reducido, todos sus divisores por la izquierda y por la derecha son reducidos por el Lema \ref{lema:reduced2}.
+\newline
+\newline
+Por el contrario, sea $a=\rho(\pi(a))\in B_n^{red}$. Establecemos $b=\rho(\pi(a)^{-1}\omega_0)\in B_n^{red},\ u=\pi(a)$ y $v=\pi(b)=\pi(a)^{-1}\omega_0$. Tenemos $uv=\omega_0$. Por tanto, por el Lema \ref{}
+
+$$\lambda(u)\lambda(v)=\lambda(\omega_0)$$
+
+Esta igualdad por el Lema \ref{lema:longi} implica que $ab=\Delta_n$. Por tanto, $a$ es un divisor de $\Delta_n$. Un argumento simiar prueba que $a$ es un divisor por la derecha de $\Delta_n$.
+
+\begin{teor}
+Para todo $n\geq 1$, el par $B_n^+,\Delta_n$ es un monoide de Garside exhaustivo.
+\end{teor}
+
+\textit{Demostración.} Ya observamos que $B_n^+$ es atómico con átomos $\sigma_1,\ldots,\sigma_{n-1}$. Vamos a probar que $(B_n^+,\Delta_n)$ es un monoide pre-Garside comprobando las condiciones (a), (b) de la Definición \ref{defi:pre-garside}.
+\newline
+\newline
+Por el Lema \ref{lema:reduced3}, el conjunto de divisores por la izquierda de $\Delta_n$ coincide con el conjunto de divisores por la derecha de $\Delta_n$ y coincide con el conjunto $B_n^{red}$. Este último es finito y coincide con los generadores $\sigma_1,\ldots,\sigma_{n-1}$ de $B_n^+$. Esto verifica la condición (a).
+
+Condición (b): vamos a probar que $\Delta_a=\Delta_b\Rightarrow a=b$ para $a,b\in B_n^{red}.$ Aplicando el homomorfismo de monoide $\pi: B_n^+\rightarrow S_n$, obtenemos
+
+$$\pi(\Delta_n)\pi(a)=\pi(\Delta_n a)=\pi(\Delta_n b)=\pi(\Delta_n)\pi(b)\in S_n$$
+
+Ya que $S_n$ es un grupo, $\pi(a)=\pi(b)$. Esto implica que
+
+$$a=\rho(\pi(a))=\rho(\pi(b))=b$$
+
+La implicación $a\Delta_n=b\Delta_n\Rightarrow a=b$ se prueba de igual forma.
+\newline
+\newline
+Para cualesquiera $i,j\in\{1,\ldots,n-1\}$, establecemos
+
+$$\sigma_{i,j}= \left\{ \begin{array}{lcc}
+             \sigma_i &   si  & i=j \\
+             \\ \sigma_i\sigma_j\sigma_i=\sigma_i\sigma_j\sigma_i &  si & |i-j|=1 \\
+             \\ \sigma_i\sigma_j=\sigma_j\sigma_i &  si  & |i-j|\geq 2
+             \end{array}
+   \right.$$
+   
+Establecemos $s_{i,j}=\pi(\sigma_{i,j})\in S_n$. Es facil comprobar que $s_{i,j}=s_is_j$ es una expresión reducida cuando $|i-j|\geq 2$, y $s_{i,j}=s_is_js_i\in S_n$ es una expresión reducida cuando $|i-j|=1$. Entonces $\sigma_{i,j}=\rho(s_{i,j})\in B_n^{red}$ para todo $i,j$. Por lo tanto el conjunto $B_n^{red}$ es exhaustivo.
+\newline
+\newline
+Para completar la prueba, hay que comprobar la condición de la Definición \ref{defi:garside}
+. Observamos que $\sigma_i\preceq \sigma_{i,j}$ y $\sigma_j\preceq\sigma_{i,j}$ para todo $i,j$. Afirmamos que $\sigma_{i,j}$ es el elemento minimal del conjunto
+
+$$\{a\in B_n^{red}\ |\ \sigma_i\preceq a,\ \sigma_j\preceq a\}$$
+\newline
+Debemos demostrar que para cualquier $a\in B_n^{red}$, tal que $\sigma_i\preceq a$ y $\sigma_j\preceq a$, se da que $\sigma_{i,j}\preceq a$. El caso $i=j$ es trivial, por lo que consideraremos el caso $i\neq j$. Ya que los elementos de $B_n^{red}$ están en biyección con los elementos de $S_n$ a través de la función $\pi: B_n^+\rightarrow S_n$, es suficiente establecer que si
+
+$$w=\pi(a)=s_iu=s_jv$$
+
+para algún $u,v\in S_n$ con $\lambda(u)=\lambda(v)=\lambda(w)-1$, entonces existe $w'\in S_n$ tal que $w=s_{i,j}w'$ y $\lambda(w')=\lambda(w)-\lambda(s_{i,j})$.
+\newline
+\newline
+Demostramos la última afirmación. Primero observamos que $u\neq v$, ya que $s_i\neq s_j$. Sea $s_{i_1}s_{i_2}\cdots s_{i_r}$ una expresión reducida para $v$, donde $r=\lambda(w)-1$. Tenemos
+
+$$u=s_iw=s_is_jv=s_is_js_{i_1}s_{i_2}\cdots s_{i_r}$$
+
+Ya que $\lambda(u)<\lambda(w)$, $u$ se obtiene de $s_js_{i_1}s_{i_2}\cdots s_{i_r}$ por eliminación de uno de los generadores. Si eliminamos el generador más a la izquierda $s_j$, entonces $u=s_{i_1}s_{i_2}\cdots s_{i_r}=v$, lo que es imposible. Por tanto, $u=s_jw'$ con
+
+$$w'=s_{i_1}\cdots\widehat{s_{i_p}}\cdots s_{i_r}$$
+\newline
+donde algún $s_{i_p}$ es eliminado. Por lo tanto, $\lambda(w')\leq r-1=\lambda(w)-2$. Ya que
+
+$$w=s_iu=s_is_jw'$$
+
+debemos tener $\lambda(w')=\lambda(w)-2$. Esto prueba la afirmación cuando $|i-j|\geq 2$, es decir, cuando $s_{i,j}=s_is_j$.
+\newline
+\newline
+Consideramos el caso $|i-j|=1$. Por el calculo previo
+
+$$v=s_jw=s_js_iu=s_js_is_jw'=s_js_is_js_{i_1}\cdots\widehat{s_{i_p}}\cdots s_{i_r}$$
+
+Ya que $\lambda(v)<\lambda(w)=r+1$, $u$ se obtiene de $s_is_js_{i_1}s_{i_2}\cdots s_{i_r}$ por eliminación de uno de los generadores. Si eliminamos el generador más a la izquierda $s_i$, entonces
+
+$$v=s_js_{i_1}s_{i_2}\cdots s_{i_r}=s_jw'=u$$
+
+lo que es imposible. Si el generador eliminado es $s_j$ en la segunda posición, entonces
+
+$$v=s_is_{i_1}s_{i_2}\cdots s_{i_r}=s_jw'$$
+
+Obtenemos $s_is_jw'=w=s_jv=s_js_iw'$, lo que implica $s_is_j=s_js_i$. Esto es imposible ya que $|i-j|=1$. Por tanto $v=s_is_jw''$, donde $w''$ se obtiene por borrar un generador de $w'=s_{i_1}s_{i_2}\cdots s_{i_r}$. En consecuencia $\lambda(w'')\leq r-2=\lambda(w)-3$ y
+
+$$w=s_jv=s_js_is_jw''=s_{i,j}w''$$
+
+Entonces $\lambda(w'')=\lambda(w)-3$.
+
+\qed
+
+
 
 
 
