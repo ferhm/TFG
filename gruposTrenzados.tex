@@ -1316,6 +1316,7 @@ Esta igualdad por el Lema \ref{lema:longi} implica que $ab=\Delta_n$. Por tanto,
 
 \begin{teor}
 Para todo $n\geq 1$, el par $B_n^+,\Delta_n$ es un monoide de Garside exhaustivo.
+\label{teor:trenzas-garside}
 \end{teor}
 
 \textit{Demostración.} Ya observamos que $B_n^+$ es atómico con átomos $\sigma_1,\ldots,\sigma_{n-1}$. Vamos a probar que $(B_n^+,\Delta_n)$ es un monoide pre-Garside comprobando las condiciones (a), (b) de la Definición \ref{defi:pre-garside}.
@@ -1392,6 +1393,92 @@ $$w=s_jv=s_js_is_jw''=s_{i,j}w''$$
 Entonces $\lambda(w'')=\lambda(w)-3$.
 
 \qed
+
+Por el Teorema \ref{teor:trenzas-garside}, el par $(B_n^+,\Delta_n)$, comparte todas las propiedades de los monoides de Garside exhaustivos. Hacemos un resumen de esas propiedades.
+
+\begin{enumerate}[label=(\arabic*)]
+\item El monoide $B_n^+$ tiene una presentación con generadores $[a]$, donde $a$ se encuentra en $B_n^{red}$, y relaciones $[1]=1$ y $[a][b]=[ab]$ siempre que $a,b\in B_n^{red}$ cumplan $ab\in B_n^{red}$. Usando la biyección $\rho: S_n\rightarrow B_n^{red}$ y el Lema \ref{lema:longi}, concluimos que $B_n^+$ tiene una presentación con generadores $[u]$, donde $u$ se encuentra en $S_n$, y relaciones $[1]=1$ y $[u][v]=[uv]$ siempre que $u,v\in S_n$ cumplan $\lambda(u)+\lambda(v)=\lambda(uv)$.
+\item Cualquier familia finita de elementos de $B_n^+$ tiene un único mcd por la izquierda y un único mcm por la derecha.
+\item Cualquier $a\in B_n^+$ tiene una \textit{forma normal} $(a_1,a_2,\ldots, a_r)$ con $r\geq 0$, donde $a_1,a_2,\ldots, a_r$ son elementos únicos de $B_n^{red}-\{1\}$ tal que $a=a_1a_2\cdots a_r$ y $a_i$ es el mcd por la izquierda de $a_ia_{i+1}\cdots a_r$ y $\Delta_n$ para todo $i=1,2,\ldots,r$.
+\item El monoide $B_n^+$ se embebe en el grupo de fracciones. Por definición el grupo de fracciones de $B_n^+$ tiene la misma presentación que $B_n^+$ y no es más que el grupo de trenzas $B_n$. Esto hace que el homomorfismo de monoide $B_n^+\rightarrow B_n$ que envía $\sigma_i\in B_n^+$ a $\sigma_i\in B_n$ para $i=1,\ldots, n-1$ es inyectivo. En la práctica identificaremos el monoide $B_n^+$ con su imagen en $B_n$.
+\item Para $n\geq 2$, cualquier $\beta\in B_n$ puede ser escrito únicamente en la forma $\beta=\Delta_n^sb$, donde $s\in\mathbb{Z}$ y $b\in B_n^+\subset B_n$ no es un múltiplo por la derecha de $\Delta_n$
+\item El problema del conjugado en $B_n$ es equivalente al problema del conjugado en $B_n^+$ y puede ser resuelto como ya se ha visto.
+\end{enumerate}
+
+Completamos la lista con el siguiente teorema.
+
+\begin{teor}
+Cualquier familia finita de elementos de $B_n^+$ tiene un único mcd por la derecha y un único mcm por la izquierda.
+\end{teor}
+\textit{Demostración.} Consideramos la función $rev: B_n^+\rightarrow B_n^+$ obtenida al leer las palabras de generadores $\sigma_1,\ldots, \sigma_{n-1}$ de derecha a izquierda:
+
+$$rev(s_{i_1}s_{i_2}\cdots s_{i_{r-1}}s_{i_r})=s_{i_r}s_{i_{r-1}}\cdots s_{i_{2}}s_{i_1}$$
+
+Esta función esta bien definica, ya que las relaciones de la definición de $B_n^+$, siendo leidas de derecha a izquierda, dan las mismas relaciones. La función $rev$ es un antiautomorfismo involutivo de $B_n^+$ en el sentido en que $rev^2=id$, $rev(1)=1$ y $rev(ab)=rev(a)rev(b)$ para todo $a,b\in B_n^+$. Esta claro que $a\preceq b$ si y solo si $rev(a)\succeq rev(b)$ para $a,b\in B_n^+$. Usando estos hechos, es fácil deducir la existencia de mcd por la derecha y mcm por la izquierda a partir de la existencia de mcd por la izquierda y mcm por la derecha. La unicidad se obtiene del Lema \ref{lema:rel2}.
+
+\qed
+
+\subsection{Cálculos}
+
+La expansión $\beta=\Delta^sb$ de una trenza $\beta\in B_n$ que nos da la propiedad (5) de la sección previa puede ser explicitamente calculada. Representar $\beta$ por una palabra de generadores $\sigma_1,\ldots,\sigma_{n-1}$ y sus inversos. Definimos $\nu_i\in B_n^+$ por $\nu_i\sigma_i=\Delta_n$. Entonces $\sigma_i^{-1}=\Delta_n^{-1}\nu_i$. En la palabra representando $\beta$ reemplazamos todas las ocurrencias de $\sigma_i^{-1}$ por $\Delta_n^{-1}\nu_i$ y expandimos todo $\nu_i$ en términos de $\sigma_1,\ldots,\sigma_{n-1}$. En la palabra resultante tenemos solo los generadores $\sigma_i$ (no sus inversos) y potencias negativas de $\Delta_n$. Usando la identidad
+
+\begin{equation}
+\sigma_i\Delta_n=\Delta_n\sigma_{n-i}
+\end{equation}
+\newline
+donde $i=1,\ldots,n-1$, podemos mover todas las potencias de $\Delta_n$ a la izquierda. De esta forma obtenemos una expansión $\beta=\Delta_n^sb$ con $s\in\mathbb{Z}$ y $b\in B_n^+$. Si $b$ no es un múltiplo por la derecha de $Delta_n$, entonces tenemos la deseada expansión de $\beta$. Si $\Delta_n\preceq b$, entonces $b=\Delta_n b'$ con $b'\in B_n^+$ y $\beta=\Delta_n^{s+1}b'$. Observar que comprobar si $\Delta_n\preceq b$, es suficiente calcular $\alpha(b)\in B_n^{red}$ y ver si $\alpha(b)=\Delta_n$. Después comprobamos si $b'$ es múltiplo por la derecha de $\Delta_n$ y así sucesivamente. El proceso se para antes de $2\ell(b)/(n(n-1))$ pasos.
+\newline
+\newline
+Damos un ejemplo, aplicamos este procedimiento a
+
+$$\beta=\sigma_1^{-1}\sigma_2\sigma_1\sigma_2^{-2}\in B_4$$
+\newline
+Denotamos por $W(a)$ al conjunto de palabras de $\sigma_1,\ldots,\sigma_{n-1}$ representado a un elemento $a\in B_n^+$. De
+
+$$\Delta_4=\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2\sigma_1=\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1\sigma_2$$
+\newline
+derivamos que $\sigma_1^{-1}=\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2$ y $\sigma_2^{-1}=\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1$. En consecuencia
+\newline
+
+$$\beta=(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2)(\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)$$
+
+$$=(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2)(\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_3\sigma_2\sigma_1\sigma_2\sigma_3)(\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)$$
+
+$$=\Delta_4^{-3}abc^2$$
+
+donde
+
+$$a=\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2\ \ \ b=\sigma_2\sigma_1\ \ \ c=\sigma_3\sigma_2\sigma_1\sigma_2\sigma_3=\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1$$
+
+Vamos a calcular $\alpha(abc^2)$ con el objetivo de ver si $abc^2$ es un múltiplo por la derecha de $\Delta_4$. Observamos que $a,b$ y $c$ son trenzas reducidas. Ya que $c\alpha_2=\Delta_4$, tenemos que $\alpha(c^2)=\alpha_2(c,c)=cc'$, donde $c'$ es el mcd por la izquierda de $\sigma_2$ y $c$. Ahora $W(c)$ consiste de seis palabras
+
+$$\sigma_3\sigma_2\sigma_1\sigma_2\sigma_3\ \ \sigma_1\sigma_2\sigma_3\sigma_2\sigma_1\ \ \sigma_1\sigma_3\sigma_2\sigma_3\sigma_1$$
+$$\sigma_1\sigma_3\sigma_2\sigma_1\sigma_3\ \ \sigma_3\sigma_1\sigma_2\sigma_3\sigma_1\ \ \sigma_3\sigma_1\sigma_2\sigma_1\sigma_3$$
+
+Por lo tanto, $c'=1$ y $\alpha(c^2)=c$. De $b(\sigma_2\sigma_3\sigma_2\sigma_1)=\Delta^4$, obtenemos
+
+$$\alpha(bc^2)=\alpha_2(b,\alpha(c^2))=\alpha_2(b,c)=bb'$$
+
+donde $b'$ es el mcd por la izquierda de $\sigma_2\sigma_3\sigma_2\sigma_1$ y c. Ahora
+
+$$W(\sigma_2\sigma_3\sigma_2\sigma_1)=\{\sigma_2\sigma_3\sigma_2\sigma_1,\sigma_3\sigma_2\sigma_3\sigma_1,\sigma_3\sigma_2\sigma_1\sigma_3\}$$
+\newline
+Comparando con $W(c)$, obtenemos $b'=\sigma_3\sigma_2\sigma_1$. Por tanto, $\alpha(bc^2)=d$, donde $d=\sigma_2\sigma_1\sigma_3\sigma_2\sigma_1$. Finalmente, $a\sigma_1=\Delta_4$, implica
+
+$$\alpha(abc^2)=\alpha_2(a,\alpha(bc^2))=\alpha_2(a,d)=aa'$$
+
+donde $a'$ es el mcd por la izquierda de $\sigma_1$ y $d$. La lista
+
+$$W(d)=\{\sigma_2\sigma_1\sigma_3\sigma_2\sigma_1,\sigma_2\sigma_3\sigma_1\sigma_2\sigma_1,
+\sigma_2\sigma_3\sigma_2\sigma_1\sigma_2,\sigma_3\sigma_2\sigma_3\sigma_1\sigma_2,
+\sigma_3\sigma_2\sigma_1\sigma_3\sigma_2\}$$
+
+demuestra que $a'=1$. Por tanto, $\alpha(abc^2)=a\neq\Delta_4$. Por lo tanto, $abc^2$ no es múltiplo por la derecha de $\Delta_4$ y 
+
+$$\beta=\Delta_4^{-3}abc^2$$
+
+es la expansión requerida de $\beta$. La forma normal de $abc^2$ es $(a,d,e,b)$ donde $e=\sigma_1\sigma_2\sigma_1\sigma_3\sigma_2$.
+
 
 
 
