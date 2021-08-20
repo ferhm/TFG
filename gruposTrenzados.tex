@@ -1776,6 +1776,58 @@ Una posible debilidad del esquema previo está en que un uso repetido de este re
 
 El análisis de seguridad es similar al del esquema previo.
 
+\section{Criptoanálisis}
+
+Cuando se introdujeron los criptosistemas basados en grupos de trenzas hubo una gran expectación. La dificultad de los principales problemas de teoría de grupos, el problema del conjugado y el problema de la búsqueda del conjugado, parecían lo suficientemente complejos en $B_n$ como para ser seguro. Sin embargo las investigaciones que se han realizado sobre el grupo de trenzas han hecho evidente que, sin consideraciones especiales, los criptosistemas basados en estos son inseguros. A continuación vamos a ver algunos de los posibles ataques que se han visto.
+\newline
+\newline
+Estos ataques se pueden clasificar según diferentes categorías. Ataques basados directamente en la solución del problema del conjugado via los llamados conjuntos de cumbre, ataques basados en longitud los cuales utilizan la longitud de las trenzas, ataques teoricos de representación, y finalmente ataques en la difusión de multiplicación de elementos de grupo por variación de formas normales.
+
+\subsection{Ataques al Problema de Búsqueda del Conjugado}
+
+Ya que la seguridad de los criptosistemas de grupos de trenzas iniciales estaba basada en la dificultad en resolver el problema del conjugado, el problema de búsqueda del conjugado y el problema de búsqueda del conjugador, la mayoría de los ataques han ido enfocados a estos problemas. El problema del conjugado para $B_n$ fue resuelto originalmente por Garside como ya hemos visto y se asume que es complejo. Por lo tanto pareció que usar el problema del conjugado o el problema de búsqueda del conjugador era suficientemente seguro para propósitos criptográficos. Recientemente ha habido investigaciones sobre la complejidad de la solución para varios problemas de búsqueda del conjugado y se han expuesto debilidades en los criptosistemas basados en estos.
+\newline
+\newline
+La solución para el problema del conjugado en $B_n$ usa lo que llamamos \textit{conjuntos de cumbre}. Para cada $b\in B_n$ su conjunto de cumbre, el cual denotaremos por $SS(b)$ consiste de un conjunto finito de conjufados de $b$. El conjunto de cumbre contiene un subconjunto llamado super conjunto de cumbre denotado por $SSS(b)$ que es algoritmicamente computable. El-Rifai y Morton demostraron como calcular para cada $b\in B_n$ el superconjunto de cumbre $SSS(b)$. Es más, dos trenzas $b,b'\in B_n$ son conjugadas si y solo si sus super conjuntos de cumbre coinciden, o equivalentemente, si y solo si se intersecan.
+\newline
+\begin{teor}
+Para cada $b\in B_n$ el conjunto $SSS(b)$ es finito y computacionalmente computable. Si $b,b'\in B_n$ entonces $b$ y $b'$ son conjugados si y solo si $SSS(b)\ \cap\ SSS(b')\neq \emptyset$.
+\end{teor}
+\ 
+\newline
+Por lo tanto para resolver el problema del conjugado, y en esencia romper los protocolos de tipo Ko-Lee, hay que encontrar el superconjunto de cumbre de los elementos. Recientemente se ha encontrado un refinamiento del superconjunto de cumbre llamado ultra conjunto de cumbre $USS(b)$ introducido por Gebhardt. El tamaño de $USS(b)$ es a menudo mucho más pequeño que $SSS(b)$.
+
+\subsection{Ataques basados en longitud}
+El protocolo Anshel-Anshel-Goldfeld depende del problema de búsqueda del conjugador. Sin embargo, para atacar el protocolo no es necesario encontrar el conjugador exacto. Si $b,b'$ son conjugados entonces conociendo cualquier conjugador, es decir, un elemento $w$ tal que $wbw^{-1}=b'$ es suficiente.
+\newline
+\newline
+Los ataques basados en longitud han sido usados efectivamente en ataques al problema de búsqueda del conjugador. Recordamos que usando la forma normal de Garside cada trenza tiene una longitud bien definida. Esto nos da una función de longitud bien definida en el grupo de trenzas $B_n$.
+\newline
+\newline
+En los protocolos del tipo Anshel-Anshel-Goldfeld que dependen del problema del conjugador un atacante tiene acceso a multiples conjuntos de pares $(a,axa^{-1})$ para un valor secreto $a$ tomado de un conjunto con un número finito de generadores conocidos. El principio común en los ataques basados en longitud es intentar recuperar un conjugador para el par $(b,b')$ el cual se supone se deriva a la forma de $b$ conjugando iterativamente $b'$ en un nuevo elemento $tb't^{-1}$ de manera que la longitud sea mínima. Si definimos la distancia entre dos trenzas $a,b$ como $d(a,b)=l(ab^{-1})$, esto nos da una verdadera métrica en el grupo de trenzas la cual satisface la desigualdad triangular. La idea en un ataque basado en longitud es que no existe demasiada cancelación multiplicando por generadores $\sigma_i$ y por lo tanto si un generador $\sigma_i$ no es un segmento inicial de un conjugador $a$ entonces con una probabilidad distinta de cero la longitud $\sigma(at_ia^{-1})\sigma^{-1}$ es mayor que la longitud de $at_ia^{-1}$. Entonces aplicar cada generador $\sigma_i$ hasta que la longitud se reduzca y este generador puede ser despegado del conjugador.
+
+Ha habido un considerable exito con esta tecnica. Parte del exito sin embargo es debido al hecho de que los grupos de trenzas tienen la propiedad de grupo libre genérica. Hacer reducción en longitud es realmente hacer reducción de grupo libre. De hecho, muchos criptosistemas basados en grupos de trenzas han sido rotos porque los grupos de trenzas tenían la propiedad de grupo libre genérica.
+
+\subsection{Ataques teóricos de representación}
+Muchos ataques con exito en los protocolos criptográficos de grupo de trenzas han usado varias representaciones lineales. Burau, Burau cloreado y Lawrence-Krammer. En muchos ataques encontrar la llave secreta es reducido, usando estas representaciones, a algebra lineal sobre campos finitos. Recordamos como procedía el protocolo Ko-Lee:
+\newline
+\newline
+Bob y Alice eligen un subgrupo dentro de $B_n$ con elementos conmutativos. $A$ es el subgrupo de Alice y $B$ el subgrupo de Bob. Alice elige aleatoriamente un $a\in A$. Este elemento $a$ será su llave secreta. Su llave pública será $(g,g^a)$ donde $g^a=aga^{-1}$ es el conjugado de $g$ por su llave secreta $a$. Toda información pública y comunicación está en términos de las formas normales de estos elementos.
+\newline
+\newline
+De igual manera Bob elige aleatoriamente un elemento $b\in B$. Este elemento $b$ será su llave secreta. Su llave pública es $(g,g^b)$ donde $g^b = b^{-1}gb$ es el conjugado de $g$ por su llave secreta $b$. Como Alice, toda su información publica y comunicación esta en términos de la forma normal de estos elementos.
+\newline
+\newline
+La llave secreta compartida es $g^{ab}$. Cheon y Jun demostraron como usar la representación de Lawrence-Krammer para encontrar la llave secreta conociendo solo $g^a$ y $g^b$. Supongamos que $Y_a=\rho(g^a)$ y  $Y_b=\rho(g^b)$ son las imagenes de $g^a$ y $g^b$ bajo la representación de Lawrence-Krammer $\rho$. Cheon y Kim trabajando módulo un primo $p$ y ciertos polinomios irreducibles en $t$ y $q$ solucionan para la matriz $M$ en las ecuaciones
+
+$$Y_aM=MY_b$$
+$$\rho(\sigma_i)M=M\rho(\sigma_i)\ \ \ \sigma_i\in B_{2n}$$
+
+En este ataque incluso aunque la solución a las ecuaciones lineales pueda no ser $\rho(a)$la conmutatividad de las ecuaciones nos da
+
+$$MY_bM^{-1}=\rho(b)Y_a\rho(b)^{-1}=\rho()abxb^{-1}a^{-1}$$
+
+el cual puede ser elevado a la trenza necesaria. Este ataque es efectivo porque las matrices provenientes de $\rho$ cumplen unos limites muy restrictivos. La efectividad de este método demuestra que la representación de lawrence-Krammer permite una solución al problema de Diffie-Hellman en grupos de trenzas en tiempo polinomial.
 
 
 
