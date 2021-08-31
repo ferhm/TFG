@@ -38,6 +38,8 @@
 
 \section{Generalidades sobre grupos}
 
+En esta sección vamos a repasar algunos aspectos de la teoría de grupos que en su mayoría se han visto a lo largo de la carrera. Estos serán necesarios para desarrollar tanto el grupo de trenzas como la parte de criptografía y criptoanálisis. En primer lugar vamos a comenzar con algunos conceptos básicos sobre grupos.
+
 \begin{defi}[Grupo]
 Un grupo es una estructura algebraica formada por un conjundo $G\neq\emptyset$ y una operación interna $G\times G$ a la que llamaremos \textit{producto}. Esta operación asigna a cada pareja $(x,y)$ el elemento $xy$ y verifica las siguientes propiedades:
 
@@ -47,17 +49,6 @@ Un grupo es una estructura algebraica formada por un conjundo $G\neq\emptyset$ y
 \item Existencia de elemento simétrico: Para cada $x \in G$ existe $x^{-1}\in G$.
 \end{enumerate}
 \end{defi}
-
-\begin{prop}
-Sea $G\neq\emptyset$ y el producto $G\times G\rightarrow G$ $(x,y)\rightarrow xy$ verificando
-
-\begin{enumerate}
-\item Propiedad asociativa: $x(yz) = (xy)z$ $\ \ \forall x,y,z\in G$.
-\item Existencia de elemento neutro: Existe $1\in G$ tal que $x1= x = 1x\ \ \forall x\in G$.
-\item Existencia de elemento simétrico: Para cada $x \in G$ existe $x^{-1}\in G$.
-\end{enumerate}
-
-\end{prop}
 
 \begin{defi}[Subgrupo]
 Sea $G$ un grupo. Un subgrupo de $G$ es un subconjunto $H\subseteq G$, $H\neq\emptyset$ que verifica
@@ -87,18 +78,11 @@ $$<X>\  = \{x_1^{n_1}x_2^{n_2}\cdot\cdot\cdot x_r^{n_r} :\ x_i\in X,\ n_i\in\mat
 
 \end{prop}
 
-\begin{prop}
-Si $G$ es un grupo finito y $X\subseteq G$ siendo $X\neq\emptyset$, entonces
 
-$$<X>\  = \{x_1^{n_1}x_2^{n_2}\cdot\cdot\cdot x_r^{n_r} :\ x_i\in X,\ n_i\in\mathbb{N},\ r\geq 1\}$$
-
-\end{prop}
-
-Denotaremos al subgrupo generado por un único elemento $a\in G$ por $<a>\ = \{a^n:n\in\mathbb{Z}\}$. Si $G$ es finito entonces $<a> = \{a^n:n\geq 0\}$.
 
 Si $X=\{x_1,x_2,...,x_k\}\subseteq G$ es un subconjunto finito entonces $<x_1,x_2,...,x_k>=<X>$.
 
-Si $<X> = G$ diremos que $X$ es un conjunto de generadores de G. Diremos que $G$ es finitamente generado si existe $\{x_1,x_2,...,x_k\}\subseteq G.$ tal que $<x_1,x_2,...,x_k>=G$. Diremos que el grupo G es ciclico si existe $a\in G$ tal que $<a>=G$.
+Si $<X> = G$ diremos que $X$ es un conjunto de generadores de G. Diremos que $G$ es finitamente generado si existe $\{x_1,x_2,...,x_k\}\subseteq G.$ 
 
 
 
@@ -111,6 +95,49 @@ Al grupo $F$ se le llama \textit{grupo libre} en $X$ y a $X$ se le denomina un c
 
 \end{defi}
 
+
+A continuación vamos a definir los grupos simétricos con los que más adelante estableceremos una relación con los grupos de trenzas. También vamos a ver algunas de sus propiedades que nos serán de utilidad.
+
+\begin{defi}[Grupo simétrico]
+Sea $X \neq \emptyset$. Denominamos a una función biyectiva de $X$ en si misma una \textit{permutación} de $X$. El conjunto $S_X$ de todas las permutaciones de $X$ es un grupo bajo la composición como operación y se llama \textit{grupo simétrico} o \textit{grupo de permutaciones}.
+\end{defi}
+
+El orden de $S_X$ es $|X|!$ cuando $X$ es finito. $S_X$ es no abeliano para $|X|\geq 3$. El grupo simétrico del conjunto $I_n=\{1,\ldots,n\}$ se denota por $S_n$ y tiene orden $n!$.
+\newline
+\newline
+Si $X$ es finito consideramos $X = \{a_1,\ldots,a_n\}$. Podemos expresar $\sigma\in S_X$ de forma matricial
+
+$$\sigma = 
+\begin{pmatrix}
+a_1 & a_2 & \cdots & a_n\\
+a_{i_1} & a_{i_2} & \cdots & a_{i_n}
+\end{pmatrix}
+$$
+\ 
+\newline
+Si $a_1,\ldots,a_k$ son elementos distintos de $X$, la expresión
+$$(a_1\cdots a_k)$$
+denota la permutación que envía $a_i$ a $a_{i+1}$ para $i=1,\ldots,k-1$ y el último elemento $a_k$ al primer elemento $a_1$. Los demás elementos de $X$ se mantienen fijos. A esta permutación se le llama \textit{ciclo de longitud} $k$ en $S_X$. Llamamos a un ciclo de longitud $2$ $(a\ b)$ se le llama transposición, ya que simplemente transpone $a$ y $b$, dejando al resto de elementos de $X$ fijos.
+
+\begin{teor}
+Sea $S_x$ un grupo simétrico, se cumple lo siguiente:
+\begin{enumerate}
+\item Los ciclos disjuntos en $S_x$ conmutan.
+\item Cada permutación en $S_X$ es un producto de ciclos disjuntos, siendo el producto único excepto por el orden de los factores. Una representación de $\sigma$ como producto de ciclos disjuntos se le llama \textit{representación cíclica} o \textit{descomposición cíclica} de $\sigma$. La \textit{estructura cíclica} de una permutación $\sigma$ es la sucesión de longitudes de ciclo de una descomposición cíclica de $\sigma$, o equivalentemente, el número de ciclos de cada longitud en una descomposición cíclica de $\sigma$.
+\end{enumerate}
+\end{teor}
+
+\begin{teor}
+\ \newline
+\begin{enumerate}
+\item Sea $\sigma\in S_n$. Para cualquier ciclo $(a_1\cdots a_k)$,
+$$(a_1 \cdots a_k)^\sigma:= \sigma^{-1}(a_1 \cdots a_k)\sigma = (\sigma a_1 \cdots \sigma a_k)$$
+Por tanto, si $\tau=c_1\cdots c_k$ es una descomposición cíclica de $\tau$, entonces
+$$\tau^\sigma = c_1^\sigma\cdots c_k^\sigma$$
+es una descomposición cíclica de $\tau^\sigma$.
+\item Dos permutaciónes son conjugadas si y solo si tienen la misma estructura cíclica.
+\end{enumerate}
+\end{teor}
 
 
 
