@@ -85,17 +85,6 @@ Si $X=\{x_1,x_2,...,x_k\}\subseteq G$ es un subconjunto finito entonces $<x_1,x_
 Si $<X> = G$ diremos que $X$ es un conjunto de generadores de G. Diremos que $G$ es finitamente generado si existe $\{x_1,x_2,...,x_k\}\subseteq G.$ 
 
 
-
-\begin{defi}[Grupo libre]
-Sea X un conjunto no vacío. Un par $(F,\kappa:X\rightarrow F)$ donde $F$ es un grupo se dice \textit{universal} para $X$ si para cualquier función $f:X\rightarrow G$ de $X$ al grupo G hay un único homomorfismo de grupo $\tau_f:F\rightarrow G$ tal que
-
-$$\tau_f\circ\kappa = f$$
-
-Al grupo $F$ se le llama \textit{grupo libre} en $X$ y a $X$ se le denomina un conjunto de \textit{generadores libres}.
-
-\end{defi}
-
-
 A continuación vamos a definir los grupos simétricos con los que más adelante estableceremos una relación con los grupos de trenzas. También vamos a ver algunas de sus propiedades que nos serán de utilidad.
 
 \begin{defi}[Grupo simétrico]
@@ -139,11 +128,25 @@ es una descomposición cíclica de $\tau^\sigma$.
 \end{enumerate}
 \end{teor}
 
+Por último vemos la definición de grupo libre que utilizaremos para la construcción del grupo de trenzas.
+
+\begin{defi}[Grupo libre]
+Sea X un conjunto no vacío. Un par $(F,\kappa:X\rightarrow F)$ donde $F$ es un grupo se dice \textit{universal} para $X$ si para cualquier función $f:X\rightarrow G$ de $X$ al grupo G hay un único homomorfismo de grupo $\tau_f:F\rightarrow G$ tal que
+
+$$\tau_f\circ\kappa = f$$
+
+Al grupo $F$ se le llama \textit{grupo libre} en $X$ y a $X$ se le denomina un conjunto de \textit{generadores libres} de $F$. La función $\kappa$ se llama función universal para el par $(F,\kappa)$. Usamos la notación $F_X$ para denotar el grupo libre de $X$.
+
+\end{defi}
+
+\section{El grupo de trenzas}
+Los términos \textit{trenza} y \textit{grupo de trenza} fueron acuñados por primera vez por el matemático hamburgués Emil Artin en \cite{Art1}, publicación del año 1925. En esta publicación las trenzas aparencen como objetos topológicos. No fue hasta el año 1947 en el que Artin dió una presentación explícita de este grupo en la revista \textit{Annals of mathematics} \cite{Art2}. A continuación vamos a definir los grupos de trenza tanto desde un punto de vista agebraico, como topológico, las cuales se verán que son equivalentes. También veremos algunas de sus propiedades como grupo. El conjunto de definiciones y resultados han sido tomados de 
+
+\subsection{El grupo de trenzas de Artin}
 
 
-\section{El grupo de trenzas de Artin}
 
-Ahora vamos a dar una definición algebraica del grupo de trenzas $B_n$ para cualquier $n>0$. La definición esta formulada en términos de presentación de un grupo por generadores y relaciones.
+Ahora vamos a dar la definición algebraica del grupo de trenzas $B_n$ para cualquier $n>0$. La definición esta formulada en términos de presentación de un grupo por generadores y relaciones.
 
 \begin{defi}
 El grupo de trenzas de Artin $B_n$ es el grupo generado por $n-1$ elementos $\sigma_1, \sigma_2,...,\sigma_{n-1}$ y las relaciones de trenza
@@ -1658,34 +1661,21 @@ Otras necesidades para el grupo plataforma dependen del protocolo en particular.
 
 Entre los primeros intentos de usar grupos no abelianos como plataformas para criptosistemas de llave pública estuvieron los esquemas de Anshel-Anshel-Goldfeld y Ko, Lee et al. 
 
-\section{Los protocolos Ko-Lee y Anshel-Anshel-Goldfeld}
 
-Todos los protocolos basados en grupos no abelianos dependen de la dificultad de resolver ciertos problemas de decisión de grupo y problemas computacionales de teoría de grupos. Recordar que el \textit{problema del conjugado}, también llamado \textit{problema de decisión del conjugado}, para un grupo $G$, o más precisamente para una presentación de grupo es el que sigue: dados $g,h\in G$, determinar algoritmicamente si son conjugados, es decir, si existe $z\in G$ tal que $g = zhz^{-1}$. El problema del conjugado es irresoluble en general, lo que quiere decir que existen presentaciones de grupos para los cuales no existe un algoritmo que resuelva el problema del conjugado. Por ejemplo, el problema del conjugado es resoluble para grupos libres y grupos hiperbólicos libres de torsión.
-\newline
-\newline
-Lo relevante para el protocolo Ko-Lee es el \textit{problema de búsqueda del conjugador}. Este consiste en que, dado una presentación de grupo para G, y dos elementos $g_1,g_2\in G$, los cuales se saben que son conjugados determinar algoritmicamente un conjugador, es decir, un elemento $h\in G$ tal que $g_1 = hg_2h^{-1}$. El problema de búsqueda del conjugador es en general indecidible en general, como el problema del conjugado.
-
-\subsection{Protocolo Ko-Lee}
-Ko, Lee et al desarrollaron un sistema de intercambio de llave pública que es una traducción  directa del protocolo Diffie-Hellman a una configuración de teoría de grupos no abelianos. Su seguridad esta basada en la dificultad del problema del conjugado. 
-\newline
-\newline
-En cualquier grupo de platadorma $G$ dados dos elementos $g,h\in G$ denotaremos el conjugado de $g$ por $h$ como $g^h$, tal que $g^h = hgh^{-1}$. Facilmente se comprueba que dados $g,h_1,h_2$ entonces $(g^{h_1})^{h_2}=g^{h_1h_2}$.
-
-$$(g^{h_1})^{h_2}= h_2^{-1}g^{h_1}h_2= h_2^{-1}h_1^{-1}gh_1h_2 = (h_1h_2)^{-1}g(h_1h_2) =g^{h_1h_2}$$
-
-Tomamos un grupo de plataforma $G$ que posee todas las propiedades deseables anteriormente mencionadas. Además asumimos que $G$ tiene una colección grande de subgrupos (no cíclicos) tal que conmutan los elementos entre sí. Esto quiere decir que si tomamos $A,B$ dos de estos subgrupos y $a\in A, b \in B$ entonces $ab=ba$.
-
-Alice y Bob escogen un par de estos subgrupos del grupo de plataforma $G$. $A$ es el subgrupo de Alice y $B$ es el subgrupo de Bob y estos son secretos
 
 
 
 \section{Esquemas criptográficos basados en trenzas}
 
+En esta parte vamos a ver diferentes algoritmos que llevan a cabo varios esquemas criptográficos utilizando los grupos de trenzas, pero solo veremos en profundidad el intercambio de llaves que es el que se utiliza en la práctica. Estos algoritmos se pueden ver en \cite{Deh}.
+
 \subsection{Intercambio de llaves}
 Alice y Bob desean compartir una llave secreta, de tal manera que un intruso que esté observando la comunicación no pueda deducir ninguna información útil sobre un secreto en común.
+
 \subsubsection{Esquema Anshel-Anshel-Goldfeld}
 Propuesto por Anshel \& al. este esquema es una plataforma criptográfica en el que se puede utilizar cualquier grupo de plataforma en el que el Problema de Búsqueda del Conjugado sea lo suficientemente complicado.
-
+\newline
+\newline
 La llave pública consiste en dos conjuntos de trenzas $\{p_1,...,p_l\},\{q_1,...,q_m\}\subset B_n$. La llave secreta de Alice es una palabra $u$ formada por $l$ letras y sus inversas y la llave secreta de Bob es una palabra $u$ formada por $m$ letras y sus inversas. El intercambio de llave esta esta compuesto de los siguientes pasos:
 
 \begin{enumerate}
@@ -1703,10 +1693,48 @@ Es fácil ver que
 $$t_A = s\ u(p_1',...,p_l')^{-1} = s\ r\ u(p_1,...,p_l)^{-1}r^{-1}=$$
 $$=s\ r\ s^{-1}r^{-1}= s\ v(q_1,...,q_m)\ s^{-1}r^{-1}=v(q_1',...,q_m')r^{-1} = t_B$$
 
-La seguridad esta basada en la dificultad de resolver una variante del Problema de Búsqueda del Conjugado en $B_n$, que es llamado el Problema de Búsqueda del conjugado Múltiple, en el cual se intenta encontrar una trenza conjugadora no de un único par de trenzas conjugadas $(p,p)$ sino de una familia finita de pares de trenzas $(p_1,p_1'),...,(p_l,p_l')$. Nótese que el Problema de Búsqueda del Conjugado Múltiple es más facil que el Problema de Búsqueda del Conjugado, puesto que se tiene más información de los conjugadores. Sin embargo, es lo suficientemente complejo como para que el intruso sea incapaz de encontrar la llave secreta $r$ conociendo los pares $(p_1,p_1'),...,(p_l,p_l')$. De igual manera, no será capaz de encontrar la llave secreta $s$ conociendo los pares $(q_1,q_1'),...,(q_m,q_m')$.
+La seguridad esta basada en la dificultad de resolver una variante del Problema de Búsqueda del Conjugado en $B_n$, que es llamado el Problema de Búsqueda del conjugado Múltiple, en el cual se intenta encontrar una trenza conjugadora no de un único par de trenzas conjugadas $(p,p')$ sino de una familia finita de pares de trenzas $(p_1,p_1'),...,(p_l,p_l')$. Nótese que el Problema de Búsqueda del Conjugado Múltiple es más facil que el Problema de Búsqueda del Conjugado, puesto que se tiene más información de los conjugadores. Sin embargo, es lo suficientemente complejo como para que el intruso sea incapaz de encontrar la llave secreta $r$ conociendo los pares $(p_1,p_1'),...,(p_l,p_l')$. De igual manera, no será capaz de encontrar la llave secreta $s$ conociendo los pares $(q_1,q_1'),...,(q_m,q_m')$.
+
+\begin{ejem}
+Vamos a realizar un ejemplo de intercambio de llaves utilizando el esquema Anshel-Anshel-Goldfeld. Para ello escogeremos como grupo de trabajo el grupo de trenza $B_6$. Tomaremos como llaves públicas de Alice y Bob las trenzas $p_1 = \sigma_1, p_2 = \sigma_3, p_3 =\sigma_5^{-1}$ y $q_1 = \sigma_4, q_2 = \sigma_2^{-1}, q_3 = \sigma_3^{-1}, q_4 = \sigma_1$ respectivamente. Obtenemos las llaves privadas utilizando
+
+$$u(p_1,p_2,p_3)= p_3p_1p_2p_1p_2$$
+$$v(q_1,q_2,q_3,q_4)= q_4q_1q_3q_2$$
+\ 
+\newline
+de manera que la llave privada de Alice es $s=\sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3$ y la llave privada de Bob es $r = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1}$. Calculamos los conjugados a partir de las llaves públicas y privadas.
+$$q_1' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_4 \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5$$
+$$q_2' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_2^{-1} \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5$$
+$$q_3' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_3^{-1} \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5$$
+$$q_4' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_1 \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5$$
+\ 
+\newline
+$$p_1' = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_1 \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}$$
+$$p_2' = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3 \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}$$
+$$p_3' = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_5^{-1} \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}$$
+\ 
+\newline
+A la hora de enviar los conjugados es obvio que estos se tienen que normalizar antes, ya que si no se hace esto es facilmente visible la llave secreta. Nosotros no lo haremos en este caso para facilitar los calculos. Comprobamos que la llave común calculada por ambas partes coincide:
+
+$$t_A = s\ u(p_1',...,p_l')^{-1} = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3\cdot\sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3^{-1} \sigma_1^{-1}\sigma_3^{-1} \sigma_1^{-1}\sigma_5 \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}=$$
+
+$$=\sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3\sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3^{-1} \sigma_1^{-1}\sigma_3^{-1} \sigma_1^{-1}\sigma_5 \cdot\sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}=v(q_1',...,q_m')r^{-1} = t_B$$
+
+\end{ejem}
+
+Aquí pueden observar la implementación del algoritmo realizada en Sage.
+\newline
+\newline
+\begin{figure}
+\includegraphics[scale=0.5]{imgs/Anshel.png}
+\caption{Implementación de Anshel-Anshel-Goldfeld}
+\end{figure}
+
+
 
 \subsubsection{Esquema Diffie-Hellman} Aunque los grupos de trenzas no son conmutativos, estos contienen grandes subgrupos donde para cada elemento de un primer subgrupo conmutan con cada elemento de un segundo subgrupo. De hecho, las trenzas que involucran conjuntos distintos de hebras conmutan. Si denotamos por $LB_n$ (respectivamente $UB_n$) al subgrupo de $B_n$ generado por $\sigma_1,...,\sigma_{m-1}$ (respectivamente $\sigma_{m+1},...,\sigma_{n-1}$) con $m=[n/2]$, cada trenza en $LB_n$ conmuta con cada trenza en $UB_n$.
-
+\newline
+\newline
 Esta observación es utilizada por el esquema de intercambio de llave Diffie-Hellman propuesto por Ko \& al. En este, la llave pública consiste en una trenza $p$ en $B_n$. La llave secreta de Alice es una trenza $s$ en $LB_n$. La llave secreta de Bob es una trenza $r$ en $UB_n$. El intercambio esta formado por los siguientes pasos:
 
 \begin{enumerate}
@@ -1720,7 +1748,33 @@ La llave compartida es $t_A = t_B$. Esto es debido a que $s$ y $r$ conmutan:
 
 $$t_A=s\ p''s^{-1}=s\ r\ p\ r^{-1}s^{-1} = r\ s\ p\ s^{-1}r^{-1} = r\ p'r^{-1}=t_B$$
 
-Aquí la seguridad también esta basada en la dificultad de resolver una variante del Problema de Búsqueda del Conjugado donde dada una trenza $p$ de $B_n$ y las trenzas $p'=sps^{-1}$ y $p''=rpr^{-1}$, con $s$ y $r$ pertenecientes a $LB_n$ y $UB_n$ respectivamente, hay que encontrar la trenza $rp'r^{-1}$ o lo que es igual $sp''s^{-1}$. El problema es lo bastante complejo como para no poder encontrar $rp'r^{-1}=sp''s^{-1}$ conociendo los pares $(p,p')$ y $(p,p'')$
+Aquí la seguridad también esta basada en la dificultad de resolver una variante del Problema de Búsqueda del Conjugado donde dada una trenza $p$ de $B_n$ y las trenzas $p'=sps^{-1}$ y $p''=rpr^{-1}$, con $s$ y $r$ pertenecientes a $LB_n$ y $UB_n$ respectivamente, hay que encontrar la trenza $rp'r^{-1}$ o lo que es igual $sp''s^{-1}$. El problema es lo bastante complejo como para no poder encontrar $rp'r^{-1}=sp''s^{-1}$ conociendo los pares $(p,p')$ y $(p,p'')$.
+
+\begin{ejem}
+Procedemos a realizar un intercambio de llave utilizando el esquema Diffie-Hellman. Para ello utilizaremos el grupo de trenza $B_{10}$. De esta manera Alice utilizará el subgrupo $LB_{10}$ generado por $\sigma_1,\sigma_2,\sigma_3,\sigma_4$ y Bob el subgrupo $RB_{10}$ generado por $\sigma_6,\sigma_7,\sigma_8,\sigma_8$ para obtener la llave privada. Establecemos como llave pública $p=\sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4$ y como llaves privadas de Alice y Bob $s = \sigma_3^{-1}\sigma_1^{-1}\sigma_4\sigma_3\sigma_2$ y $r = \sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8$ respectivamente. Cada uno de ellos calcula el conjugado con su llave privada y pública:
+
+$$p' = sps^{-1}=\sigma_3^{-1}\sigma_1^{-1}\sigma_4\sigma_3\sigma_2 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_2^{-1}\sigma_3^{-1}\sigma_4^{-1}\sigma_1\sigma_3$$
+
+$$p'' = rpr^{-1} = \sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_8^{-1}\sigma_9\sigma_6\sigma_7^{-1}\sigma_8^{-1}\sigma_7^{-1}$$
+
+\ 
+\newline
+Observamos que debido a la conmutatividad ambos pueden calcular la llave común de forma que coincide:
+
+$$t_A = s\ p''s^{-1} =$$$$= \sigma_3^{-1}\sigma_1^{-1}\sigma_4\sigma_3\sigma_2\cdot \sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_8^{-1}\sigma_9\sigma_6\sigma_7^{-1}\sigma_8^{-1}\sigma_7^{-1}\cdot\sigma_2^{-1}\sigma_3^{-1}\sigma_4^{-1}\sigma_1\sigma_3=$$
+$$=\sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8\cdot \sigma_3^{-1}\sigma_1^{-1}\sigma_4\sigma_3\sigma_2 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_2^{-1}\sigma_3^{-1}\sigma_4^{-1}\sigma_1\sigma_3\cdot
+\sigma_8^{-1}\sigma_9\sigma_6\sigma_7^{-1}\sigma_8^{-1}\sigma_7^{-1} =$$
+$$= rp'r^{-1} = t_B$$
+\qed
+\end{ejem}
+
+Aquí pueden observar la implementación del algoritmo realizada en Sage.
+\newline
+\newline
+\begin{figure}
+\includegraphics[scale=0.5]{imgs/KoLee.png}
+\caption{Implementación del Esquema Diffie-Hellman}
+\end{figure}
 
 \subsection{Cifrado}
 Aquí el problema es que Bob desea enviar un mensaje $m$ a Alice, y el puede usar la llave pública de Alice para cifrar su mensaje. Alice debe ser capaz de recuperar el mensaje original de Bob usando su llave privada, de manera que un intruso que observe la comunicación no pueda.
@@ -1855,6 +1909,13 @@ En este ataque incluso aunque la solución a las ecuaciones lineales pueda no se
 $$MY_bM^{-1}=\rho(b)Y_a\rho(b)^{-1}=\rho()abxb^{-1}a^{-1}$$
 
 el cual puede ser elevado a la trenza necesaria. Este ataque es efectivo porque las matrices provenientes de $\rho$ cumplen unos limites muy restrictivos. La efectividad de este método demuestra que la representación de lawrence-Krammer permite una solución al problema de Diffie-Hellman en grupos de trenzas en tiempo polinomial.
+
+
+\begin{thebibliography}{X}
+\bibitem{Art1}\textsc{Artin, Emil}, \textit{Theorie der z\"opfe}, 1925.
+\bibitem{Art2}\textsc{Artin, Emil}, \textit{Theory of braids}, Vol. 48, No. 1, January, 1947.
+\bibitem{Deh}\textsc{Dehornoy, Patrick}, \textit{Braid-based cryptography}.
+\end{thebibliography}
 
 
 
