@@ -12,6 +12,7 @@
 \usepackage[left=2.54cm, right=2.54cm, top=2.54cm, bottom=2.54cm]{geometry}
 \usepackage{pgf}
 \usepackage{tikz,braids}
+\usepackage{listings}
 \usetikzlibrary{positioning}
 \usepackage[export]{adjustbox}
 \theoremstyle{definition}
@@ -1509,6 +1510,41 @@ $$\beta=\Delta_4^{-3}abc^2$$
 
 es la expansión requerida de $\beta$. La forma normal de $abc^2$ es $(a,d,e,b)$ donde $e=\sigma_1\sigma_2\sigma_1\sigma_3\sigma_2$.
 
+\section{Problema del conjugado en $B_n$}
+
+Por último vamos a ver algunas definiciones y resultados que nos serán útiles en el apartado de criptoanalisis para resolver el problema del conjugado algoritmicamente.
+\newline
+\newline
+El orden parcial $\leq$ entre elementos de $B_n$ se define de la siguiente manera:
+
+\begin{defi}
+Sean $v,w\in B_n$, entonces $v\leq w$, si y solo si, existen trenzas positivas $\alpha,\beta\in B_n^{+}$ tal que $w = \alpha v\beta$.
+\end{defi}
+
+Como ya hemos visto, dada una trenza $w\in B_n$, podemos escribir esta de forma única como
+
+$$w = \Delta_n^r W_1\cdots W_s$$
+
+Definiremos como $inf(w) = r$ y $sup(w)=s+r$. Las definiciones originales de ínfimo y supremo se encuentran en \cite{Alg}, pero nosotros utilizaremos estas las cuales son equivalentes y en la práctica serán las que necesitaremos.
+
+\begin{defi}
+Decimos que $\gamma\in B_n^+$ es una \textit{cola} de la trenza $\alpha\in B_n^+$, si y solo si, existe una factorización $\alpha = \beta\gamma$ con $\beta\in B_n^+$.
+\end{defi}
+
+También definimos el automorfismo $\tau$ de $B_n$ a través de $\tau(w):=\Delta_n^{-1}w\Delta_n$. Ahora estamos en condiciones de ver el lema en el que se basará nuestra resolución algorítmica del problema del conjugado.
+
+\begin{lema}
+Sea $v,w\in B_n$ dos trenzas conjugadas por una trenza positiva tal que $w = \alpha^{-1}v\alpha$ con $\alpha\in B_n^{+}$. Sea $\Delta^r_n W_1\cdots W_s$ la forma normal de $w$. Entonces se cumplen las siguientes relaciones:
+\begin{enumerate}
+\item Si $\inf w < \inf v$, entonces $\Delta_n\tau^r(W_1^{-1})$ es una cola de $\alpha$.
+\item Si $\sup w > \sup v$, entonces $W_s$ es una cola de $\alpha$.
+\end{enumerate}
+\label{lema:criptoanalisis}
+\end{lema}
+
+La prueba de este lema se puede ver en \cite{Alg}.
+
+
 
 
 
@@ -1877,6 +1913,10 @@ Para cada $b\in B_n$ el conjunto $SSS(b)$ es finito y computacionalmente computa
 \ 
 \newline
 Por lo tanto para resolver el problema del conjugado, y en esencia romper los protocolos de tipo Ko-Lee, hay que encontrar el superconjunto de cumbre de los elementos. Recientemente se ha encontrado un refinamiento del superconjunto de cumbre llamado ultra conjunto de cumbre $USS(b)$ introducido por Gebhardt. El tamaño de $USS(b)$ es a menudo mucho más pequeño que $SSS(b)$.
+\ 
+\newline
+
+El problema es que la complejidad de los algoritmos para calcular estos conjuntos no esta clara ya que no se conoce su cardinalidad, pero el de este último tiene complejidad polinomial en media.
 
 \subsection{Ataques basados en longitud}
 El protocolo Anshel-Anshel-Goldfeld depende del problema de búsqueda del conjugador. Sin embargo, para atacar el protocolo no es necesario encontrar el conjugador exacto. Si $b,b'$ son conjugados entonces conociendo cualquier conjugador, es decir, un elemento $w$ tal que $wbw^{-1}=b'$ es suficiente.
@@ -1910,12 +1950,77 @@ $$MY_bM^{-1}=\rho(b)Y_a\rho(b)^{-1}=\rho()abxb^{-1}a^{-1}$$
 
 el cual puede ser elevado a la trenza necesaria. Este ataque es efectivo porque las matrices provenientes de $\rho$ cumplen unos limites muy restrictivos. La efectividad de este método demuestra que la representación de lawrence-Krammer permite una solución al problema de Diffie-Hellman en grupos de trenzas en tiempo polinomial.
 
+\subsection{Aproximación heurística al problema del conjugado}
+Vamos a ver una heurística que nos permitirá resolver el problema del conjugado en ciertas ocasiones devolviendonos un conjugador, de manera que también resolvemos el problema de la búsqueda del conjugado. El algoritmo ha sido extraido de \cite{Att}. Aquí mostramos el pseudocódigo del algoritmo.
+\newline
+
+%\lstset{  numbers=left, numbersep=-7pt}
+
+\begin{lstlisting}[frame=single,escapeinside={(*}{*)}]  % Inicia el bloque de código
+
+  (*- Entrada: $v,w\in B_n$ con $w = x^{-1}vx$ para algún $x\in B_n^+$ con $\inf x = 0$*)
+  (*- Salida: $\alpha\in B_n^+$ con $w = \alpha^{-1}v\alpha$ o *)'failed'.
+
+	1. Inicializamos (*$\alpha$*) como una palabra vacia (*$\varepsilon$*).
+	2. Ponemos (*$v$*) y (*$w$*) en forma normal, asi que (*$\Delta^r_n W_1\cdots W_s$*).
+	3. While (*$\inf w < inf v$*) do
+		Sea (*$\gamma:=\Delta\tau^r(W_1^{-1}),\ \alpha := \gamma\alpha,\ w:=\gamma w \gamma^{-1}$*).
+		Ponemos (*$w$*) en forma normal.
+	4. While (*$\sup w > \sup v$*) do
+		Sea (*$\gamma:=W_s,\ \alpha := \gamma\alpha,\ w:=\gamma w \gamma^{-1}$*).
+		Ponemos (*$w$*) en forma normal.
+	5. Sea (*$\mu:=$*) GuessPermutation((*$v,w$*)),(*$\ \alpha := \mu\alpha,\ w:=\mu w \mu^{-1}$*).
+	6. If (*$v = w$*), then
+		Return (*$\alpha$*).
+	else
+		Return 'failed'.
+
+\end{lstlisting}
+\ 
+\newline
+
+Como se puede ver, el algoritmo restringe la entrada para trenzas conjugadas positivamente. También requiere que la trenza conjugadora $x = \Delta_n^{r}X_1\cdots X_s$ cumpla que $\inf x = r = 0$. Estras restricciones no son relevantes, puesto que si tenemos $w = x^{-1}vx$, entonces se tiene también que $w = \tilde{x}^{-1}v\tilde{x}$ para $\tilde{x} := \Delta_n^{r\ mod\ 2}X_1\cdots X_s$. Por tanto o $\tilde{x}$ o $\Delta_n^{-1}\tilde{x}$ es una trenza positiva con ínfimo $0$. Así que en el caso general habrá que ejecutar el algoritmo para las entradas $v,w$ y $\Delta_n^{-1}v\Delta_n,w$.
+\newline
+\newline
+Pasamos a explicar el algoritmo. El los pasos 1 y 2 preparamos $\alpha$ para calcular el conjugador $x$ y preparamos $v,w\in B_n$ normalizandolos. En los pasos 3 y 4 utilizamos el Lema \ref{lema:criptoanalisis}, de forma que al completar estos pasos tenemos un nuevo problema del conjugado donde  la longitud canónica de $w$ es menor que la de $v$. Durante estos pasos se va construyendo $\alpha$. En el paso 5 tratamos de que las permutaciones asociadas a $w$ y $v$ coincidan a través de una última transformación de $w$. Finalmente si $w$ y $v$ coinciden, esto significa que las trenzas originales de la entrada son conjugadas y que el conjugador es el $\alpha$ devuelto. Si devuelve 'failed' no se obtiene ninguna conclusión.
+
+Aquí pueden observar la implementación del algoritmo realizada en Sage.
+\newline
+\newline
+\begin{figure}
+\includegraphics[scale=0.5]{imgs/breakConjugate.png} 
+\caption{Implementación de Anshel-Anshel-Goldfeld}
+\end{figure}
+\ 
+\newline
+\newline
+\begin{figure}
+\includegraphics[scale=0.5]{imgs/GuessPermutation.png} 
+\caption{Implementación de Anshel-Anshel-Goldfeld}
+\end{figure}
+
+\ 
+\newline
+\newline
+\begin{figure}
+\includegraphics[scale=0.5]{imgs/pi_inverse.png} 
+\caption{Implementación de Anshel-Anshel-Goldfeld}
+\end{figure}
+
+
+
+
+
 
 \begin{thebibliography}{X}
 \bibitem{Art1}\textsc{Artin, Emil}, \textit{Theorie der z\"opfe}, 1925.
 \bibitem{Art2}\textsc{Artin, Emil}, \textit{Theory of braids}, Vol. 48, No. 1, January, 1947.
 \bibitem{Deh}\textsc{Dehornoy, Patrick}, \textit{Braid-based cryptography}.
+\bibitem{Alg}\textsc{Elsayed A. Elrifai},\textsc{Hugh R. Morton}, \textit{Algorithms for positive braids}.
+\bibitem{Att}\textsc{Dennis Hofheinz},\textsc{Rainer Steinwandt}, \textit{A Practical Attack on Some Braid Group Based
+Cryptographic Primitives}.
 \end{thebibliography}
+
 
 
 
