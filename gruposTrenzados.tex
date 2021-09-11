@@ -38,8 +38,8 @@
 \begin{document}
 
 \maketitle
-
-\section{Generalidades sobre grupos}
+\section{Grupo de trenzas}
+\subsection{Generalidades sobre grupos}
 
 En esta sección vamos a repasar algunos aspectos de la teoría de grupos que en su mayoría se han visto a lo largo de la carrera. Estos aparecen en \cite{group} y serán necesarios para desarrollar tanto el grupo de trenzas, como la parte de criptografía y criptoanálisis. En primer lugar vamos a comenzar con algunos conceptos básicos sobre grupos.
 
@@ -162,10 +162,10 @@ Al grupo $F$ se le llama \textit{grupo libre} en $X$ y a $X$ se le denomina un c
 
 \end{defi}
 
-\section{El grupo de trenzas}
+\subsection{Construcción del grupo de trenzas}
 Los términos \textit{trenza} y \textit{grupo de trenzas} fueron acuñados por primera vez por el matemático hamburgués Emil Artin en \cite{Art1}, publicación del año 1925. En esta publicación las trenzas aparencen como objetos topológicos. No fue hasta el año 1947 en el que Artin dió una presentación explícita de este grupo en la revista \textit{Annals of mathematics} \cite{Art2}. A continuación vamos a definir los grupos de trenza tanto desde un punto de vista algebraico, como topológico, las cuales se verán que son equivalentes. También veremos algunas de sus propiedades como grupo. La construcción de este grupo es la que aparece en \cite{br_gr}.
 
-\subsection{El grupo de trenzas de Artin}
+\subsubsection{El grupo de trenzas de Artin}
 
 
 
@@ -201,7 +201,7 @@ $$\bar{f}(\sigma_i\sigma_{i+1}\sigma{i}) = s_is_{i+1}s_i=s_{i+1}s_is_{i+1} = \ba
 
 
 
-\section{Trenzas y sus diagramas}
+\subsubsection{Trenzas y sus diagramas}
 
 \begin{comment}
 \begin{defi}[$n$-trenza]\label{n_trenza}
@@ -357,7 +357,14 @@ Hemos construido dos equivalencias, una para trenzas geométricas y otra para di
 Dos diagramas de trenzas representan trenzas geométricas isotópicas si y solo si son $\mathcal{R}$\textit{-equivalentes}.
 \label{teor:equiv}
 \end{teor}
-\section{Grupo de trenzas}
+
+
+
+
+\subsubsection{Estructura de grupo}
+
+Una vez que hemos definido las trenzas y sabiendo como podemos representarlas vamos a ver que estas cumplen las propiedades para considerar al conjunto de trenzas como un grupo. Para ello comenzamos definiendo la operación producto.
+
 \begin{defi}[Producto de trenzas]
 Dado dos diagrama de trenzas $\mathcal{D}_1$, $\mathcal{D}_2$, representando las trenzas de $n$ hebras $\beta_1$ y $\beta_2$ respectivamente, definimos el producto de diagramas $\mathcal{D}_1\mathcal{D}_2$ concatenando $\mathcal{D}_1$ en la parte superior de $\mathcal{D}_2$ y reduciendo el diagrama resultante en $\mathbb{R}\times I$. Entonces el producto de trenzas $\beta_1\beta_2$ es la trenza  asociada al diagrama producto $\mathcal{D}_1\mathcal{D}_2$.
 
@@ -649,8 +656,9 @@ Los elementos de $P_n$ se llaman trenzas puras de $n$ hebras. Una trenza geomét
 
 
 
-\section{Monoides de Garside y Monoides de Trenzas}
-Los grupos de trenzas pueden ser vistos como grupos de fracciones de ciertos monoides llamados monoides de trenzas. Estos últimos pertenecen a una clase más amplia de los llamados monoides de Garside.
+\section{Monoides de Garside y monoides de trenzas}
+
+Vamos a definir una estructura algebraica denominada monoide de Garside, una herramienta muy potente que nos permitirá trabajar con las trenzas. Entre otras cosas nos será posible dar soluciones al problema del conjugado y el problema de palabra definidos más adelante, y dispondremos de una forma normal con la que poder trabajar directamente con las trenzas. Todo esto nos será indispensable para poder construir métodos criptógráficos basados en el grupo de trenzas. Comenzamos con la definición de monoide.
 
 \subsection{Monoides}
 
@@ -663,7 +671,7 @@ $$ab=ac\Longrightarrow b=c\ \ \ \ (\textrm{resp.}\ \  ba=ca\Longrightarrow b=c)$
 \newline
 Un elemento $a$ de un monoide $M$ es \textit{invertible} si existe $b\in M$ tal que $ab=ba=1$.
 
-\subsection{Divisibilidad en monoides}
+\subsubsection{Divisibilidad en monoides}
 
 Si $a=bc$, donde $a,b,c$ son elementos de un monoide $M$, entonces decimos que $b$ es un \textit{divisor por la izquierda} de $a$ y $c$ es un \textit{divisor por la derecha}. También decimos que $a$ es un \textit{múltiplo por la derecha} de $b$ y que $a$ es \textit{múltiplo por la izquierda} de $c$. Lo denotaremos por $b\preceq a$ y $a\succeq c$. Por ejemplo, $1\preceq a$ y $a\succeq 1$ para todo $a\in M$, ya que $a=1a=a1$.
 
@@ -677,7 +685,7 @@ Las relaciones $\preceq$ y $\succeq$ en un monoide son reflexivas y transitivas.
 \qed
 
 
-\subsection{Monoides atómicos}
+\subsubsection{Monoides atómicos}
 
 Para cualquier elemento $a\neq 1$ de un monoide $M$, definomos
 
@@ -708,7 +716,7 @@ Los Lemas \ref{lema:rel1} y \ref{lema:rel2} implican que las relaciones $\preceq
 \newline
 La ecuación $ab=1$ en un monoide atómico $M$ tiene como única solución $a=1,b=1$. De hecho, si $ab=1$ para $a,b\in M$, entonces $1\preceq a \preceq 1$, por lo tanto $a=1$ y $b=1$. En particular, el elemento neutro es el unico elemento invertible de $M$.
 
-\subsection{Presentaciones de un monoide}
+\subsubsection{Presentaciones de un monoide}
 Consideramos un conjunto $X$ y un subconjunto $R$ de $X^*\times X^*$. Sea $\sim$ la relación de equivalencia más pequeña conteniendo los pares $(\omega_1r\omega_2, \omega_1r'\omega_2)$, donde $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. En otras palabras, $\sim$ es la relación de equivalencia más pequeña en $X^*$ tal que $\omega_1r\omega_2\sim\omega_1r'\omega_2$ para todo $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. Definimos $M$ como el conjunto de clases de equivalencia inducido por $\sim$. Esta claro que $M$ tiene la única estructura de monoide tal que la proyección $P:X^*\rightarrow M$ es un homomorfismo de monoide. Decimos que $\langle X|R\rangle$ es una \textit{presentación de monoide} de $M$ y llamamos a los elementos de $X$ \textit{generadores} y a los elementos de $R$ \textit{relaciones}.
 \newline
 \newline
@@ -732,7 +740,7 @@ Si un monoide $M$ tiene una representación ponderada $\langle X|R\rangle$, ento
 
 \qed
 
-\subsection{El problema de palabra y el problema de divisibilidad}
+\subsubsection{El problema de palabra y el problema de divisibilidad}
 
 El \textit{problema de palabra} para una representación $\langle X|R\rangle$ de un monoide $M$ consiste en que dadas dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a=a'$. El \textit{problema de dibisibilidad por la izquierda} (resp. \textit{derecha}) esta estrechamente relacionado y consiste en que dadas
 dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a\preceq a'$ (resp. $a'\succeq a$).
@@ -743,17 +751,18 @@ Tanto el problema de palabra como el problema de divisibilidad pueden ser facilm
  
 
 $$\omega_1 r\omega_2\leftrightarrow \omega_1 r'\omega_2\ \ \ (r,r')\in R$$
-
+\ 
+\newline
 a cualquier elemento de $W(a)$ ya encontrado. Ya que $R$ es finito, este procedimiento también es finito. Esto da una solución al problema de palabra. Dadas dos palabras $\omega,\omega'\in X^*$ representando a $a,a'\in M$ respectivamente, sabemos que $a=a'$ si $W(a)=W(a')$. 
 \newline
 \newline
 También obtenemos una solución para el problema de divisibilidad por la izquierda y por la derecha. Se tiene que $a\preceq a'$ si y solo si algún prefijo (segmento inicial) de una palabra en $W(a')$ pertenece a $W(a)$. De igual manera, $a'\succeq a$ si y solo si algún sufijo (segmento final) de una palabra en $W(a')$ pertenece a $W(a)$.
 
-\section{Formas normales y el problema del conjugado}
+\subsection{Formas normales y el problema del conjugado}
 
 Ahora vamos a introducir y estudiar un cierto monoide $M_\Sigma$ derivado de un subconjunto $\sigma$ de cierto monoide $M$. Bajo la presunción de hipotesis favorables, obtenemos una forma normal para los elementos de $M_\Sigma$ y resolvemos el problema del conjugado en $M_\Sigma$.
 
-\subsection{El monoide $M_\Sigma$}
+\subsubsection{El monoide $M_\Sigma$} 
 
 Sea $M$ un monoide y $\Sigma\subset M$ un subconjunto de $M$ conteniento el elemento neutro $1$. Sea $M_\Sigma$ un monoide generado por los simbolos $[a]$, donde $a\in \Sigma$, partiendo de la definición de las relaciones $[1]=1$ y $[a][b]=[ab]$, siempre que $a,b,ab\in\Sigma$. Existe un homomorfismo de monoide $p:M_\Sigma\rightarrow M$ definido por $p([a])=a$ para todo $a\in\Sigma$.
 \newline\newline
@@ -906,7 +915,7 @@ Por tanto $\omega$ esta bien definido para los elementos de $M_\Sigma$ de peso m
 
 
 
-\subsection{Forma nomal en $M_\Sigma$}
+\subsubsection{Forma nomal en $M_\Sigma$}
 
 Bajo las hipotesis del Teorema \ref{teor:monoi_deriv} , cualquier $\xi$ puede ser expandido inductivamente
 
@@ -923,7 +932,7 @@ $$a_i=\alpha([a_i][a_{i+1}]\cdot\cdot\cdot[a_r])$$
 para todo $i=1,2,...,r$. La unicidad en la última afirmación del Teorema \ref{teor:monoi_deriv} implica la unicidad de la forma normal.
 
 
-\subsection{La cancelatividad de $M_\Sigma$}
+\subsubsection{La cancelatividad de $M_\Sigma$}
 
 Usamos el Teorema \ref{teor:monoi_deriv} y la función $\alpha_2:\Sigma\times\Sigma\rightarrow\Sigma$ introducida en la prueba para establecer la cancelatividad por la izquierda de $M_\Sigma$.
 
@@ -949,11 +958,11 @@ En general, $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ con $a_1,a_2,...,a_r\in\Sigma$.
 
 \qed
 
-\subsection{El problema de palabra en $M_\Sigma$}
+\subsubsection{El problema de palabra en $M_\Sigma$}
 
 Decimos que el conjunto $\Sigma\subset M$ esta ponderado si existe una función $\ell:\Sigma\rightarrow\mathbb{N}$ tal que $\ell(1)=0,\ \ell(a)\geq 1$ para $a\neq 1$, y $\ell(ab)=\ell(a)+\ell(b)$ siempre que $a,b,ab\in\Sigma$. La función $\ell$ se extiende al homomorfismo de monoide $M_\Sigma\rightarrow\mathbb{N}$ que convierte la presentación de $M_\Sigma$ en una presentación ponderada. Además, si $\Sigma$ es finito, ya hemos visto una solución al problema de palabra y al problema de divisibilidad en $M_\Sigma$.
 
-\subsection{El problema del conjugado en $M_\Sigma$}
+\subsubsection{El problema del conjugado en $M_\Sigma$}
 El \textit{problema del conjugado en un grupo} $G$ consiste en encontrar un procedimiento que nos permita, dados $\alpha,\beta\in G$, decidir si existe $\gamma\in G$ tal que $\alpha=\gamma\beta\gamma^{-1}$ o, equivalentemente, $\alpha\gamma=\gamma\beta$. Por extensión, el \textit{problema del conjugado en un monoide} $M$ consiste en encontrar un procedimiento que nos permita, dados $a,b\in M$, decidir si existe $c\in M$ tal que $ac=cb$. El siguiente lema es la clave para el problema del conjugado en $M_\Sigma$.
 
 \begin{lema}
@@ -989,7 +998,7 @@ Por el Lema \ref{lema:cancel}, podemos dividir por la izquierda por $[c_1]$. Est
 
 El Lema \ref{lema:conjugado} nos da una solución al problema del conjugado en $M_\Sigma$. Suponemos que $M,\Sigma$ satisfacen las condiciones del Teorema \ref{teor:monoi_deriv} y que $\Sigma$ es finito. Suponemos también que $M_\Sigma$ admite una presentación ponderada finita de manera que el problema de palabra tiene solución. Para determinar si dos elementos $a,b\in M_\Sigma$ son conjugados, primero hay que observar que elementos conjugados de $M_\Sigma$ tienen el mismo peso. Ya que solo hay un número finito de elementos de $M_\Sigma$ para un peso específico, $a$ tiene un número finito de conjugados. El Lema \ref{lema:conjugado} nos dice que, con el objetivo de encontrarlos todos, es suficiente aplicar todas las posibles conjugaciónes por elementos de $\Sigma$ para conocer todos los conjugados de $a$ hasta que no se encuentren nuevos elementos. Así obtenemos una lista finita $a_1,\ldots,a_s$ de conjugados de $a$ en $M_\Sigma$. Si $b=a_i$ para algún $i$, entonces $b$ es conjugado de $a$. Si no es así, entonces $b$ no es conjugado de $a$.
 
-\subsection{Conjuntos exhaustivos}
+\subsubsection{Conjuntos exhaustivos}
 
 Un conjunto $\Sigma\subset M$ es \textit{exhaustivo} si $1\in\Sigma$ y $M$ tiene una presentación cuyos generadores y relaciones pertenecen a $\Sigma$.
 
@@ -1019,8 +1028,8 @@ El Lema \ref{lema:iso_mono} nos muestra que bajo las hipótesis apropiadas sobre
 
 
 
-\section{Grupo de fracciones y monoides pre-Garside}
-\subsection{Grupo de fracciones}
+\subsection{Grupo de fracciones y monoides pre-Garside}
+\subsubsection{Grupo de fracciones}
 
 Un homomorfismo de monoide $i:M\rightarrow G$ se dice que es \textit{universal} si $G$ es un grupo y para cualquier homomorfismo de monoide $f$ de $M$ a un grupo arbitrario $G'$, existe un único homomorfismo de grupo $g:G\rightarrow G'$ tal que $f=gi$. Cada monoide $M$ admite un homomorfismo universal a un grupo. Para ver esto, tomamos una representación arbitraria $\langle X | R \rangle$ de $M$ por generadores y relaciones y consideramos el grupo $G$ definido por $\langle X | R \rangle$ visto como una presentación de grupo. La función identidad $id_X:X\rightarrow X$ extiende a un homomorfismo de monoide $M\rightarrow G$, el cual es fácil ver que es universal. La definición de un homomorfismo universal $M\rightarrow G$ implica que hay una única composición con un isomorfismo de grupo. En particular, el grupo $G$ esta bien definido para isomorfismo. Este grupo llamado \textit{grupo de fracciones} de $M$ es denotado por $G_M$. Una presentación de $G_M$ por generadores y relaciones se puede obtener tomando una representación del monoide $M$ arbitraria de generadores y relaciones y verla como una representación de grupo.
 \newline
@@ -1030,7 +1039,7 @@ Un monoide $M$ es \textit{embebible} si existe un homomorfismo de monoide inyect
 \newline
 Claramente, los monoides embebibles son cancelativos por la izquierda y por la derecha. Por ejemplo, el monoide $\{1,x\}$, con $xx=x$ no es cancelativo por la izquierda. El grupo de fracciones de este monoide es trivial.
 
-\subsection{Monoides pre-Garside}
+\subsubsection{Monoides pre-Garside}
 
 \begin{defi}
 Un monoide pre-Garside es un par que consiste de un monoide $M$ y un elemento $\Delta$ de $M$ tal que el conjunto $\Sigma=\Sigma_\Delta$ de divisores por la izquierda de $\Delta$ satisface las siguientes condiciones:
@@ -1093,7 +1102,7 @@ entonces $ac=\Delta^r$ y por tanto $a\preceq\Delta^r$.
 
 \qed
 
-\subsection{Embebilidad de los monoides pre-Garside}
+\subsubsection{Embebilidad de los monoides pre-Garside}
 
 Sea $(M,\Delta)$ un monoide pre-Garside. Bajo la hipótesis de que $M$ es cancelativo por la izquierda, damos una construcción explicita del grupo de fracciones de $M$. La construcción implicará que $M$ es embebible.
 \newline
@@ -1158,7 +1167,7 @@ Este colorario muestra en particular que para monoides pre-Garside, la cancelati
 \newline
 A continuación identificaremos los elementos cancelativos por la izquierda de un monoide pre-Garside M con sus imagenes en $G_M$, de manera que $M$ se convierte en un subconjunto de $G_M$.
 
-\subsection{El problema del conjugado en el grupo de fracciones}
+\subsubsection{El problema del conjugado en el grupo de fracciones}
 
 Sea $(M,\Delta)$ un monoide pre-Garside canelativo por la izquierda. El problema del conjugado en su grupo de fracciones $G=G_M$ puede ser reducido al problema del conjugado en $M$ de la siguiente manera. Como ya sabemos, para cualquier $\alpha,\beta\in G$, existen $a,b\in M\subset G$ y $s,t\in\mathbb{Z}$ tal que $\alpha=\Delta^sa$ y $\beta=\Delta^t b$. Cogemos un entero $u$ tal que $u\leq \min(s,t)$ y $u$ y $u$ es divisible por N (Lema \ref{lema:pre-garside}(iii)). Sea $a'=\Delta^{s-u}a\in M$ y $b'=\Delta^{t-u}b\in M$. Claramente, $\alpha=\Delta^ua'$ y $\beta=\Delta^ub'$. Afirmamos que $\alpha$ es conjugado de $\beta$ en $G$ si y solo si $a'$ es conjugado de $b'$ en M. Supongamos que $a'c=cb'$ para algún $c\in M$. Ya que $\Delta^u$ es una potencia de $\Delta^N$ y es por tanto central en $M$,
 
@@ -1170,7 +1179,7 @@ $$\Delta^{u+v}a'c=\Delta^{u+v}cb'$$
 \newline
 Dividimos entre $\Delta^{u+v}$ y concluimos que $a'c=cb'$.
 
-\subsection{El caso de $M$ atómico}
+\subsubsection{El caso de $M$ atómico}
 
 Para $M$ atómico, la afirmación (ii) del Teorema \ref{teor:pre-garside} admite el siguiente refinamiento.
 
@@ -1191,8 +1200,8 @@ Entonces $a=\Delta^t b$ para algún $b\in M$ tal que $\Delta\npreceq b$ y $\Delt
 \newline
 Supongamos que $\Delta^s b=\Delta^{s'}b'$ para $s,s'\in\mathbb{Z}$ y $b,b'\in M$ tal que $\Delta\npreceq b$ y $\Delta\npreceq b'$. Podemos asumir que $s\geq s'$. Dividiendo por $\Delta^{s'}$, obtenemos que $\Delta^{s-s'}b=b'$. Ya que $b'$ no es múltiplo por la derecha de $\Delta$ en $M$, tenemos que $s-s'=0$. Por tanto, $s=s'$ y $b=b'$, lo que prueba la unicidad.
 
-\section{Monoides de Garside}
-\subsection{Definiciones y lemas}
+\subsection{Monoides de Garside}
+\subsubsection{Definiciones y lemas}
 
 Sea $(M,\Delta)$ un monoide pre-Garside y sea $\Sigma$ el conjunto de divisores por la izquierda (y por la derecha) de $\Delta$. Observamos que al generar $\Sigma$ a $M$, todos los átomos de $M$ pertenecen a $\Sigma$. En otras palabras, todos los átomos de $M$ son necesariamente divisores por la izquierda de $\Delta$.
 
@@ -1260,7 +1269,7 @@ En efecto, por definición, $c\preceq a'$, por lo cual $ac\preceq aa'=\Delta$ y 
 
 \qed
 
-\subsection{Monoides de Garside exhaustivos}
+\subsubsection{Monoides de Garside exhaustivos}
 
 Un monoide de Garside $(M,\Delta)$ es \textit{exhaustivo} si el conjunto $\Sigma\subset M$ de divisores de $\Delta$ es exhaustivo en el sentido en el que fue definido anteriormente. Los resultados previos nos dan como consecuencia las siguientes propiedades que cumple un monoide de Garside exhaustivo $(M,\Delta)$.
 
@@ -1273,7 +1282,7 @@ Un monoide de Garside $(M,\Delta)$ es \textit{exhaustivo} si el conjunto $\Sigma
 \item El problema del conjugado $G_M$ es equivalente al problema del conjugado en $M$ (Sección el problema del cojugado en el grupo de fracciones). Este último es soluble si $M$ admite una presentación ponderada (Sección el problema del conjugado en $M_\Sigma$).
 \end{enumerate}
 
-\subsection{Divisores y múltiplos comunes en monoides de Garside}
+\subsubsection{Divisores y múltiplos comunes en monoides de Garside}
 
 Dado $k\geq 2$ elementos $a_1,\ldots,a_k$ de un monoide $M$, decimos que $d\in M$ es un \textit{máximo común divisor por la izquierda} (mcd) de $a_1,\ldots,a_k$ si $d\preceq a_i$ para todo $i=1,\ldots,k$, y $d'\preceq d$ para cualquier $d'\in M$ tal que $d'\preceq a_i$ ara todo $i=1,\ldots,k$. Reemplazando $\preceq$ por $\succeq$, obtenemos análogamente la noción de mcd por la derecha.
 
@@ -1304,9 +1313,9 @@ Ya que el conjunto de átomos de $M$ es finito y todos los divisores por la izqu
 \newline
 Sea $m'$ otro común múltiplo por la derecha de $a_1,\ldots,a_k$. Denotamos por $m''$ un máximo común divisor por la izquierda de $m'$ y $\Delta^r$. Comprobamos que $m''\in X$. Primero, $m''\preceq\Delta^r$. Ya que $a_i$ es un divisor por la izquierda de $m'$ y de $\Delta^r$, es un divisor por la izquierda de $m''$. Esto prueba que $m''\in X$. Por definición de $m$, tenemos que $m\preceq m''$. Dado que $m''\preceq m'$, obtenemos $m\preceq m'$. Esto prueba nuestra afirmación.
 
-\section{El monoide de trenza}
+\subsection{El monoide de trenza}
 
-\subsection{Una presentación por generadores y relaciones}
+\subsubsection{Una presentación por generadores y relaciones}
 
 Para cualquier $n\geq 1$, denotamos por $B_n^+$ el monoide generado por $n-1$ generadores $\sigma_1,\sigma_2,\ldots,\sigma_{n-1}$ y las relaciones
 
@@ -1323,7 +1332,7 @@ Establecemos
 
 $$\Delta_n = (\sigma_1\cdots\sigma_{n-2}\sigma_{n-1})(\sigma_1\cdots\sigma_{n-2})\cdots(\sigma_1\sigma_2)\sigma_1\in B_n^+$$
 
-\subsection{Trenzas reducidas}
+\subsubsection{Trenzas reducidas}
 
 Consideramos el grupo simétrico $S_n$ que esta formado por todas las permutaciones del conjunto $\{1,\ldots,n\}$. Definimos la función teórica $\rho:S_n\rightarrow B_n^+$ como sigue. Consideramos las transposiciones simples $s_1,\ldots,s_{n-1}\in S_n$, donde $s_i$ permuta $i$ y $i+1$ y deja el resto de elementos fijos. Las transposiciones simples generan $S_n$, así que cada elemento $\omega\in S_n$ puede ser expresado como una palabra $\omega = s_{i_1}s_{i_2}\cdots s_{i_r}$ con $i_1,i_2,\ldots,i_r\in\{1,2,\ldots,n-1\}$. Si $r$ es minimal, entonces esta es una expresión reducida y establecemos que $\rho(\omega)=s_{i_1}s_{i_2}\cdots s_{i_r}$. Por el Teorema \ref{}, $\rho(\omega)$ es un elemento bien definido de $B_n^+$. Sea
 
@@ -1501,7 +1510,7 @@ Esta función esta bien definica, ya que las relaciones de la definición de $B_
 
 \qed
 
-\subsection{Cálculos}
+\subsubsection{Cálculos}
 
 La expansión $\beta=\Delta^sb$ de una trenza $\beta\in B_n$ que nos da la propiedad (5) de la sección previa puede ser explicitamente calculada. Representar $\beta$ por una palabra de generadores $\sigma_1,\ldots,\sigma_{n-1}$ y sus inversos. Definimos $\nu_i\in B_n^+$ por $\nu_i\sigma_i=\Delta_n$. Entonces $\sigma_i^{-1}=\Delta_n^{-1}\nu_i$. En la palabra representando $\beta$ reemplazamos todas las ocurrencias de $\sigma_i^{-1}$ por $\Delta_n^{-1}\nu_i$ y expandimos todo $\nu_i$ en términos de $\sigma_1,\ldots,\sigma_{n-1}$. En la palabra resultante tenemos solo los generadores $\sigma_i$ (no sus inversos) y potencias negativas de $\Delta_n$. Usando la identidad
 
@@ -1562,9 +1571,9 @@ $$\beta=\Delta_4^{-3}abc^2$$
 
 es la expansión requerida de $\beta$. La forma normal de $abc^2$ es $(a,d,e,b)$ donde $e=\sigma_1\sigma_2\sigma_1\sigma_3\sigma_2$.
 
-\section{Problema del conjugado en $B_n$}
+\subsection{Problema del conjugado en $B_n$}
 
-Por último vamos a ver algunas definiciones y resultados que nos serán útiles en el apartado de criptoanalisis para resolver el problema del conjugado algoritmicamente.
+Ya hemos visto una solución para el problema del conjugado en el monoide $M_\Sigma$ y en el grupo de fracciones. Sin embargo estas soluciones a priori no son computables ya que el cardinal del conjunto de conjugados de un elemento puede ser infinito. Por tanto vamos a ver algunas definiciones y resultados que nos serán útiles en el apartado de criptoanálisis para resolver el problema del conjugado algoritmicamente.
 \newline
 \newline
 El orden parcial $\leq$ entre elementos de $B_n$ se define de la siguiente manera:
@@ -1628,15 +1637,15 @@ La prueba de este lema se puede ver en \cite{Alg}.
 \ 
 \newline
 \newline
-
+\section{Criptografía y criptoanálisis}
 
 En esta parte del trabajo no vamos a centrar en la criptografía. Vamos a introducir en que consiste la criptografía dando la definición de conceptos básicos necesarios. Esto nos dará pie a ver como podemos aplicar el grupo de trenzas a la criptografía de manera que podamos obtener distintas herramientas criptográficas. Por último veremos algunos de las debilidades que se pueden encontrar en el cifrado con el uso del grupo de trenzas e implementaremos un posible ataque.
 
-\section{Introducción a la criptografía}
+\subsection{Introducción a la criptografía}
 
 La \textit{criptografía} es la ciencia de guardar los secretos a salvo. Se asume que un emisor, al que nos referiremos aquí como \textit{Alice}, quiere enviar un mensaje $m$ a un receptor, al que llamaremos \textit{Bob}. Ella usa un canal de comunicación inseguro, como puede ser una red de ordenadores o una linea de teléfono. El problema esta cuando la información que se transmite es confidencial. El mensaje puede ser interceptado y leido o incluso modificado por un agente externo al que nos referiremos como \textit{Eve}. El objetivo de la criptografía es proveer de métodos para evitar este tipo de ataques.
 
-\subsection{Cifrado}
+\subsubsection{Cifrado}
 
 La tarea clásica y fundamental de la criptografía es la de proveer de \textit{confidencialidad} a través de los métodos de cifrado. El mensaje a transmitir se le llama \textit{texto plano}. Alice \textit{cifra} el texto plano $m$ y obtiene un \textit{texto cifrado} $c$. El texto cifrado $c$ es transmitido a Bob. Bob \textit{descifrando} obtiene el texto plano a partir del texto crifrado. Para \textit{descifrar}, Bob necesita una información secreta, la llave de descifrado. La adversaria Eve todavía podría interceptar el mensaje cifrado. Sin embargo, el cifrado del texto plano debería garantizar la confidencialidad y prevenir que pueda extraer alguna información del texto plano a partir del texto cifrado.
 \newline
@@ -1656,7 +1665,7 @@ Cualquiera puede cifrar fácilmente el texto plano usando la llave pública $pk$
 \newline
 Los métodos de cifrado de llave pública requieren cálculos más complejos y son menos eficientes que los métodos de clásicos de cifrado simétrico. Por eso los métodos simétricos son usados para el cifrado de grandes cantidades de datos. Antes de aplicar el cifrado simétrico, el emisor y el receptor acuerdan una llave. Para mantener la llave en secreto necesitan un canal de comunicación seguro. Lo habitual es utilizar el cifrado de llave pública para este proposito.
 
-\subsection{Objetivos de la criptografía}
+\subsubsection{Objetivos de la criptografía}
 
 Proveer de \textbf{confidencialidad} no es el único objetivo de la criptografía. A su vez esta intenta dar solución a otros problemas. Estos son:
 
@@ -1686,7 +1695,7 @@ con la llave pública de Alice $pk$.
 No es común firmar el mensaje en si mismo, sino usar primero una \textit{función hash criptográfica} y despues firmar el valor hash. Las firmas digitales dependen del mensaje. Mensajes distintos producen firmas distintas. Así que, como los códigos de autenticación de mensaje, las firmas digitales pueden ser utilizadas para garantizar la integridad de los datos.
 
 
-\subsection{Protocolos criptográficos}
+\subsubsection{Protocolos criptográficos}
 
 Los algoritmos de cifrado y descifrado, funciones hash criptográficas y los generadores peusoaleatorios son básicamente los bloques de construcción (también llamados primitivas criptográficas) utilizados para resolver problemas que involucran confidencialidad, autenticación o integridad de los datos.
 \newline
@@ -1728,7 +1737,7 @@ La llave maestra se utiliza para generar las llaves de sesión. Por tanto es esp
 
 
 
-\section{Plataformas criptograficas y grupos de plataforma}
+\subsubsection{Plataformas criptograficas y grupos de plataforma}
 
 Si un protocolo criptográfico esta basado en un objeto algebraico como puede ser un grupo, un anillo u otros, entonces es llamado \textit{plataforma criptográfica} o \textit{plataforma}. En criptografía basada en un grupo a este se le llama \textit{grupo de plataforma} para el protocolo criptográfico. La seguridad de un protocolo criptográfico depende entonces de la dificultad, computacional o teórica, de resolver un problema de teoría de grupos en el grupo de plataforma.
 \newline
@@ -1760,14 +1769,14 @@ Entre los primeros intentos de usar grupos no abelianos como plataformas para cr
 
 
 
-\section{Esquemas criptográficos basados en trenzas}
+\subsection{Esquemas criptográficos basados en trenzas}
 
 En esta parte vamos a ver diferentes algoritmos que llevan a cabo varios esquemas criptográficos utilizando los grupos de trenzas, pero solo veremos en profundidad el intercambio de llaves que es el que se utiliza en la práctica. Estos algoritmos se pueden ver en \cite{Deh}.
 
-\subsection{Intercambio de llaves}
+\subsubsection{Intercambio de llaves}
 Alice y Bob desean compartir una llave secreta, de tal manera que un intruso que esté observando la comunicación no pueda deducir ninguna información útil sobre un secreto en común.
 
-\subsubsection{Esquema Anshel-Anshel-Goldfeld}
+\subsubsection*{Esquema Anshel-Anshel-Goldfeld}
 Propuesto por Anshel \& al. este esquema es una plataforma criptográfica en el que se puede utilizar cualquier grupo de plataforma en el que el Problema de Búsqueda del Conjugado sea lo suficientemente complicado.
 \newline
 \newline
@@ -1828,7 +1837,7 @@ La implementación realizada se puede ver en la Figura \ref{img:imp_anshel}.
 
 
 
-\subsubsection{Esquema Diffie-Hellman} Aunque los grupos de trenzas no son conmutativos, estos contienen grandes subgrupos donde para cada elemento de un primer subgrupo conmutan con cada elemento de un segundo subgrupo. De hecho, las trenzas que involucran conjuntos distintos de hebras conmutan. Si denotamos por $LB_n$ (respectivamente $UB_n$) al subgrupo de $B_n$ generado por $\sigma_1,...,\sigma_{m-1}$ (respectivamente $\sigma_{m+1},...,\sigma_{n-1}$) con $m=[n/2]$, cada trenza en $LB_n$ conmuta con cada trenza en $UB_n$.
+\subsubsection*{Esquema Diffie-Hellman} Aunque los grupos de trenzas no son conmutativos, estos contienen grandes subgrupos donde para cada elemento de un primer subgrupo conmutan con cada elemento de un segundo subgrupo. De hecho, las trenzas que involucran conjuntos distintos de hebras conmutan. Si denotamos por $LB_n$ (respectivamente $UB_n$) al subgrupo de $B_n$ generado por $\sigma_1,...,\sigma_{m-1}$ (respectivamente $\sigma_{m+1},...,\sigma_{n-1}$) con $m=[n/2]$, cada trenza en $LB_n$ conmuta con cada trenza en $UB_n$.
 \newline
 \newline
 Esta observación es utilizada por el esquema de intercambio de llave Diffie-Hellman propuesto por Ko \& al. En este, la llave pública consiste en una trenza $p$ en $B_n$. La llave secreta de Alice es una trenza $s$ en $LB_n$. La llave secreta de Bob es una trenza $r$ en $UB_n$. El intercambio esta formado por los siguientes pasos:
@@ -1872,10 +1881,10 @@ La implementación realizada se puede ver en la Figura \ref{img:imp_ko}.
 \label{img:imp_ko}
 \end{figure}
 
-\subsection{Cifrado}
+\subsubsection{Cifrado}
 Aquí el problema es que Bob desea enviar un mensaje $m$ a Alice, y el puede usar la llave pública de Alice para cifrar su mensaje. Alice debe ser capaz de recuperar el mensaje original de Bob usando su llave privada, de manera que un intruso que observe la comunicación no pueda.
 
-\subsubsection{Esquema Ko \& al.}
+\subsubsection*{Esquema Ko \& al.}
 La notación será la empleada en el esquema de intercambio de llaves previo. Además, asumimos que $h$ es una \textit{función hash unidireccional libre de colisión} de $B_n$ a $\{0,1\}^N$, es decir, una función calculable tal que la probabilidad de que $h(b_1)=h(b_2)$ para $b_1\neq b_2$ es despreciable (libre de colisión) y recuperar $b$ a partir de $h(b)$ es inviable.
 \newline
 \newline
@@ -1897,10 +1906,10 @@ $$m_A = m_B\oplus h(rp'r^{-1})\oplus h(sp''s^{-1})=m_B$$
 
 Aquí la seguridad esta basada en la dificultad del Problema del Conjugado inspirado en Diffie-Hellman para $B_n$. Bajo las hipótesis sobre $h$, ser capaz de romper el sistema implica tener que recuperar los valores comunes $rp'r^{-1}$ y $sp''s^{-1}$ a partir de los pares $(p,p')$ y $(p,p'')$.
 
-\subsection{Autenticación de identidad}
+\subsubsection{Autenticación de identidad}
 Ahora el problema es que Alice desea probar su identidad a Bob, es decir, ella desea probar que conoce la llave privada sin permitir que un intruso que observe la comunicación deduzca nada sobre su llave privada.
 
-\subsubsection{Esquema inspirado en Diffie-Hellman}
+\subsubsection*{Esquema inspirado en Diffie-Hellman}
 
 El siguiente esquema desafío-respuesta esta ínspirado en el esquema previo de Ko \& al. La llave pública es un par de trenzas conjugadas $(p,p')$ en $B_n$ con $p'=sps^{-1}$, mientras que la llave privada de Alice es la trenza $s$ utilizada para conjugar $p$ y $p'$. Asumimos que $s\in LB_n$. También usaremos $h$ como función hash unidireccional libre de colisión en $B_n$. Entonces para realizar la autenticación se hace el siguiente intercambio:
 
@@ -1913,7 +1922,7 @@ El siguiente esquema desafío-respuesta esta ínspirado en el esquema previo de 
 Una respuesta correcta por parte de Alice implica la aceptación por parte de Bob, debido a que las trenzas $r$ y $s$ conmutan, y por tanto, tenemos que $rp'r^{-1}=sp''s^{-1}$. Por otra parte, la aceptación ocurre solo si la respuesta de $y$ de $A$ satisface $y=h(rp'r^{-1})$, por tanto, bajo las hipotesis de $h$, solo si Alice ha sido capaz de resolver el Problema del Conjugado inspirado en Diffie-Helman para $B_n$. Una vez más, la seguridad recae en la dificultad de resolver este problema.
 
 
-\subsubsection{Esquema inspirado en Fiat-Shamir} Este esquema de autenticación es propuesto por Sibert \& al. Este esquema hereda del esquema Fiat-Shamir lo que implica repetir el desafío-respuesta en tres pasos. Como antes, las llaves públicas son un par de trenzas conjugadas $(p,p')$ con $p'=sps^{-1}$, mientras $s$, la trenza conjugadora, es la llave privada de Alice. En contraste al esquema previo $p,s\in B_n$, es decir, no asumimos que pertenezcan a un subgrupo en particular como $LB_n$ o $UB_n$. Asumimos que $h$ es una función hash unidireccional libre de colisiones en $B_n$. El procedimiento de autenticación consiste en repetir $k$ veces los siguientes tres pasos:
+\subsubsection*{Esquema inspirado en Fiat-Shamir} Este esquema de autenticación es propuesto por Sibert \& al. Este esquema hereda del esquema Fiat-Shamir lo que implica repetir el desafío-respuesta en tres pasos. Como antes, las llaves públicas son un par de trenzas conjugadas $(p,p')$ con $p'=sps^{-1}$, mientras $s$, la trenza conjugadora, es la llave privada de Alice. En contraste al esquema previo $p,s\in B_n$, es decir, no asumimos que pertenezcan a un subgrupo en particular como $LB_n$ o $UB_n$. Asumimos que $h$ es una función hash unidireccional libre de colisiones en $B_n$. El procedimiento de autenticación consiste en repetir $k$ veces los siguientes tres pasos:
 
 \begin{enumerate}
 \item Alicia elige una trenza aleatoria $r\in B_n$ el \textit{compromiso} $x=h(rp'r^{-1})$.
@@ -1927,13 +1936,13 @@ Si Alice conoce $s$ y responde correctamente, ella es aceptada por Bob. Para $c=
 \newline
 La seguridad de este esquema radica en la dificultad del Problema de Búsqueda del Conjugado original en $B_n$. Tener más de un 0.5 de probabilidad de ser aceptado significa ser capaz de responder para $c=0$ y $c=1$, es decir, conocer $y,y'$ que cumplan $x=h(ypy^{-1})$ y $x=h(y'p'y'^{-1})$. Como se supone que $h$ es libre de colisión, es decir, es virtualmente inyectiva, se tendría que $ypy^{-1}=y'p'y'^{-1}$, que es equivalente a $(y'^{-1}y)p(y'^{-1}y)^{-1}=p'$. Esto implicaría que para que suceda esto se debe solucionar el Problema de Búsqueda del Conjugado para $(p,p')$.
 
-\subsection{Firma}
+\subsubsection{Firma}
 El problema consiste en que Alice quiere enviar a Bob un mensaje (texto plano o cifrado) junto con una firma que pruebe el origen del mensaje. Observar que con la firma se puede implementar la autenticación. Esto se haría enviando Bob a Alice un mensaje y que esta se lo devolviera firmado.
 \newline
 \newline
 Vamos a ver dos esquemas de firma basados en trenzas propuestos por Ko \& al. El primer esquema es más simple y legible mietras que el segundo es el esquema recomendado. Estos esquemas usan la supuesta diferencia de complejidad entre el Problema del Conjugado y el Problema de Búsqueda del Conjugado. Para valores medios de $n$ (típicamente $n=20$), al usar una representación lineal de las trenzas hace posible decidir si dos trenzas de $B_n$ son conjugadas sin ser capaz de determinar la trenza conjugada cuando existe.
 
-\subsubsection{Esquema simple}
+\subsubsection*{Esquema simple}
 Las llaves públicas son un par de trenzas conjugadas $(p,p')$ con $p'=sps^{-1}$, mientras que $s$, que es la trenza conjugadora, es la llave privada de Alice. Las trenzas $p$ y $s$ pertenecen a $B_n$. Usamos $H$ como función hash unidireccional libre de colisión de $\{0,1\}^*$ a $B_n$. Usamos $\sim$ para la conjugación en $B_n$. El esquema es como sigue:
 
 
@@ -1944,7 +1953,7 @@ Las llaves públicas son un par de trenzas conjugadas $(p,p')$ con $p'=sps^{-1}$
 
 Si Alice usa la llave secreta $s$, tenemos que $q'=sqs^{-1}$ y que $p'q'=spqs^{-1}$, así que la firma es aceptada. La seguridad de este esquema se encuentra en el Problema de Búsqueda del Conjugado Coincidente. Este consiste en que teniendo $p'\sim p$ y $q$ en $B_n$, hay que encontrar $q'$ que satisfaga que $q'\sim q$ y $p'q'\sim pq$. Esta demostrado que este problema tiene al menos la misma complejidad que el Problema de Búsqueda del Conjugado para el par $(p,p')$.
 
-\subsubsection{Esquema recomendando}
+\subsubsection*{Esquema recomendando}
 Una posible debilidad del esquema previo está en que un uso repetido de este revela muchos pares $(q_i,q_i')$ asociados a un conjugador $s$ en común. Para abordar esto se modifica el esquema incorporando una trenza aleatoria. Aquí de nuevo usaremos $h$ como función hash unidireccional libre de colisión de $B_n$ a $\{0,1\}^*$:
 
 \begin{enumerate}
@@ -1955,14 +1964,14 @@ Una posible debilidad del esquema previo está en que un uso repetido de este re
 
 El análisis de seguridad es similar al del esquema previo.
 
-\section{Criptoanálisis}
+\subsection{Criptoanálisis}
 
 Cuando se introdujeron los criptosistemas basados en grupos de trenzas hubo una gran expectación. La dificultad de los principales problemas de teoría de grupos, el problema del conjugado y el problema de la búsqueda del conjugado, parecían lo suficientemente complejos en $B_n$ como para ser seguro. Sin embargo las investigaciones que se han realizado sobre el grupo de trenzas han hecho evidente que, sin consideraciones especiales, los criptosistemas basados en estos son inseguros. A continuación vamos a ver algunos de los posibles ataques que se han visto.
 \newline
 \newline
 Estos ataques se pueden clasificar según diferentes categorías. Ataques basados directamente en la solución del problema del conjugado vía los llamados conjuntos de cumbre, ataques basados en longitud los cuales utilizan la longitud de las trenzas, ataques teoricos de representación, y finalmente ataques en la difusión de multiplicación de elementos de grupo por variación de formas normales.
 
-\subsection{Ataques al Problema de Búsqueda del Conjugado}
+\subsubsection{Ataques al Problema de Búsqueda del Conjugado}
 
 Ya que la seguridad de los criptosistemas de grupos de trenzas iniciales estaba basada en la dificultad en resolver el problema del conjugado, el problema de búsqueda del conjugado y el problema de búsqueda del conjugador, la mayoría de los ataques han ido enfocados a estos problemas. El problema del conjugado para $B_n$ fue resuelto originalmente por Garside como ya hemos visto y se asume que es complejo. Por lo tanto pareció que usar el problema del conjugado o el problema de búsqueda del conjugador era suficientemente seguro para propósitos criptográficos. Recientemente ha habido investigaciones sobre la complejidad de la solución para varios problemas de búsqueda del conjugado y se han expuesto debilidades en los criptosistemas basados en estos.
 \newline
@@ -1980,7 +1989,7 @@ Por lo tanto para resolver el problema del conjugado, y en esencia romper los pr
 
 El problema es que la complejidad de los algoritmos para calcular estos conjuntos no esta clara ya que no se conoce su cardinalidad, pero el de este último tiene complejidad polinomial en media.
 
-\subsection{Ataques basados en longitud}
+\subsubsection{Ataques basados en longitud}
 El protocolo Anshel-Anshel-Goldfeld depende del problema de búsqueda del conjugador. Sin embargo, para atacar el protocolo no es necesario encontrar el conjugador exacto. Si $b,b'$ son conjugados entonces conociendo cualquier conjugador, es decir, un elemento $w$ tal que $wbw^{-1}=b'$ es suficiente.
 \newline
 \newline
@@ -1992,7 +2001,7 @@ En los protocolos del tipo Anshel-Anshel-Goldfeld que dependen del problema del 
 \newline
 Ha habido un considerable exito con esta técnica. Parte del exito sin embargo es debido al hecho de que los grupos de trenzas tienen la propiedad de grupo libre genérica. Hacer reducción en longitud es realmente hacer reducción de grupo libre. De hecho, muchos criptosistemas basados en grupos de trenzas han sido rotos porque los grupos de trenzas tenían la propiedad de grupo libre genérica.
 
-\subsection{Ataques teóricos de representación}
+\subsubsection{Ataques teóricos de representación}
 Muchos ataques con exito en los protocolos criptográficos de grupo de trenzas han usado varias representaciones lineales. Burau, Burau cloreado y Lawrence-Krammer. En muchos ataques encontrar la llave secreta es reducido, usando estas representaciones, a algebra lineal sobre campos finitos. Recordamos como procedía el protocolo Ko-Lee:
 \newline
 \newline
@@ -2013,7 +2022,7 @@ $$MY_bM^{-1}=\rho(b)Y_a\rho(b)^{-1}=\rho()abxb^{-1}a^{-1}$$
 
 el cual puede ser elevado a la trenza necesaria. Este ataque es efectivo porque las matrices provenientes de $\rho$ cumplen unos limites muy restrictivos. La efectividad de este método demuestra que la representación de lawrence-Krammer permite una solución al problema de Diffie-Hellman en grupos de trenzas en tiempo polinomial.
 
-\subsection{Aproximación heurística al problema del conjugado}
+\subsubsection{Aproximación heurística al problema del conjugado}
 Vamos a ver una heurística que nos permitirá resolver el problema del conjugado en ciertas ocasiones devolviendonos un conjugador, de manera que también resolvemos el problema de la búsqueda del conjugado. El algoritmo ha sido extraido de \cite{Att}. Aquí mostramos el pseudocódigo del algoritmo.
 \newline
 
