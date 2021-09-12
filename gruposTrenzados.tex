@@ -38,13 +38,16 @@
 \begin{document}
 
 \maketitle
+\newpage
+\tableofcontents
+\newpage
 \section{Grupo de trenzas}
 \subsection{Generalidades sobre grupos}
 
 En esta sección vamos a repasar algunos aspectos de la teoría de grupos que en su mayoría se han visto a lo largo de la carrera. Estos aparecen en \cite{group} y serán necesarios para desarrollar tanto el grupo de trenzas, como la parte de criptografía y criptoanálisis. En primer lugar vamos a comenzar con algunos conceptos básicos sobre grupos.
 
 \begin{defi}[Grupo]
-Un grupo es una estructura algebraica formada por un conjundo $G\neq\emptyset$ y una operación interna $G\times G$ a la que llamaremos \textit{producto}. Esta operación asigna a cada pareja $(x,y)$ el elemento $xy$ y verifica las siguientes propiedades:
+Un grupo es una estructura algebraica formada por un conjunto $G\neq\emptyset$ y una operación interna $G\times G$ a la que llamaremos \textit{producto}. Esta operación asigna a cada pareja $(x,y)$ el elemento $xy$ y verifica las siguientes propiedades:
 
 \begin{enumerate}
 \item Propiedad asociativa: $x(yz) = (xy)z$ $\ \ \forall x,y,z\in G$.
@@ -147,7 +150,7 @@ $$(a_1 \cdots a_k)^\sigma:= \sigma^{-1}(a_1 \cdots a_k)\sigma = (\sigma a_1 \cdo
 Por tanto, si $\tau=c_1\cdots c_k$ es una descomposición cíclica de $\tau$, entonces
 $$\tau^\sigma = c_1^\sigma\cdots c_k^\sigma$$
 es una descomposición cíclica de $\tau^\sigma$.
-\item Dos permutaciónes son conjugadas si y solo si tienen la misma estructura cíclica.
+\item Dos permutaciones son conjugadas si y solo si tienen la misma estructura cíclica.
 \end{enumerate}
 \end{teor}
 
@@ -163,7 +166,7 @@ Al grupo $F$ se le llama \textit{grupo libre} en $X$ y a $X$ se le denomina un c
 \end{defi}
 
 \subsection{Construcción del grupo de trenzas}
-Los términos \textit{trenza} y \textit{grupo de trenzas} fueron acuñados por primera vez por el matemático hamburgués Emil Artin en \cite{Art1}, publicación del año 1925. En esta publicación las trenzas aparencen como objetos topológicos. No fue hasta el año 1947 en el que Artin dió una presentación explícita de este grupo en la revista \textit{Annals of mathematics} \cite{Art2}. A continuación vamos a definir los grupos de trenza tanto desde un punto de vista algebraico, como topológico, las cuales se verán que son equivalentes. También veremos algunas de sus propiedades como grupo. La construcción de este grupo es la que aparece en \cite{br_gr}.
+Los términos \textit{trenza} y \textit{grupo de trenzas} fueron acuñados por primera vez por el matemático hamburgués Emil Artin en \cite{Art1}, publicación del año 1925. En esta publicación las trenzas aparecen como objetos topológicos. No fue hasta el año 1947 en el que Artin dió una presentación explícita de este grupo en la revista \textit{Annals of mathematics} \cite{Art2}. A continuación vamos a definir los grupos de trenza tanto desde un punto de vista algebraico, como topológico, las cuales se verán que son equivalentes. También veremos algunas de sus propiedades como grupo. La construcción de este grupo ha sido tomada de  \cite{br_gr} y \cite{st_br}.
 
 \subsubsection{El grupo de trenzas de Artin}
 
@@ -205,13 +208,13 @@ $$\bar{f}(\sigma_i\sigma_{i+1}\sigma{i}) = s_is_{i+1}s_i=s_{i+1}s_is_{i+1} = \ba
 
 \begin{comment}
 \begin{defi}[$n$-trenza]\label{n_trenza}
-Sea $\mathbb{D}$ el cubo unidad, de manera que $\mathbb{D} = \{(x,y,z)\ |\ 0\leq x,y,z\leq 1\}$. En la cara superior del cubo se situan $n$ puntos, $A_1, A_2,...,A_n$, y, de igual manera, se situan $n$ puntos en la cara inferior $B_1, B_2,...,B_n$.
+Sea $\mathbb{D}$ el cubo unidad, de manera que $\mathbb{D} = \{(x,y,z)\ |\ 0\leq x,y,z\leq 1\}$. En la cara superior del cubo se sitúan $n$ puntos, $A_1, A_2,...,A_n$, y, de igual manera, se sitúan $n$ puntos en la cara inferior $B_1, B_2,...,B_n$.
 \newline
 \newline
 Por conveniencia, tomaremos los puntos $A_1=(\frac{1}{2}, \frac{1}{n+1},1),\ A_2=(\frac{1}{2}, \frac{2}{n+1},1),\ ...\ ,\ A_n=(\frac{1}{2}, \frac{n}{n+1},1)$ y $B_1=(\frac{1}{2}, \frac{1}{n+1},0),\ B_2=(\frac{1}{2}, \frac{2}{n+1},0),\ ...\ ,\ B_n=(\frac{1}{2}, \frac{n}{n+1},0)$.
 \newline
 \newline
-Ahora unimos los $n$ puntos $A_1,\ A_2,\ \dotsc\ ,A_n$ con $B_1,\ B_2,\ \dotsc\ ,B_n$ por medio de $n$ segmentos poligonales/arcos $d_1,\ d_2,\ \dotsc\ ,d_n$ (estrictamente hablando, los segmentos deberían ser poligonales, pero, con el fin de hacer los diagramas de manera que sean más faciles de ver al dibujarlos, dibujaremos estos arcos como curvas suaves). Sin embargo, los arcos solo pueden unir de forma que cumplan las siguientes tres condiciones:
+Ahora unimos los $n$ puntos $A_1,\ A_2,\ \dotsc\ ,A_n$ con $B_1,\ B_2,\ \dotsc\ ,B_n$ por medio de $n$ segmentos poligonales/arcos $d_1,\ d_2,\ \dotsc\ ,d_n$ (estrictamente hablando, los segmentos deberían ser poligonales, pero, con el fin de hacer los diagramas de manera que sean más fáciles de ver al dibujarlos, dibujaremos estos arcos como curvas suaves). Sin embargo, los arcos solo pueden unir de forma que cumplan las siguientes tres condiciones:
 \begin{enumerate}
 \item $d_1,\ d_2,\ \dotsc\ ,d_n$ son mutuamente disjuntos.
 \item Cada $d_i$ conecta algún $A_j$ a algún $B_k$, donde $j$ y $k$ podrían ser o no iguales, pero $d_i$ no permite conectar $A_j$ a $A_k$ (o $B_j$ a $B_k$).
@@ -225,10 +228,10 @@ Vamos a denotar al conjunto de todas las $n$-trenzas por $\mathcal{B}_n$. A cont
 
 
 \begin{defi}[movimiento elemental]\label{mov_elem}
-Supongamos que $\mathbb{D}$ es el cubo unidad y que dentro de este cubo hay un número de cadenas como las definidas en la Definición \ref{n_trenza}. (Para el proposito de esta definición, necesitamos restringir y trabajar exclusivamente con la imagen poligonal de una cadena). Sea $\mathit{AB}$ un segmento de la cadena $d$. Sea $\mathit{C}$ un punto en $\mathbb{D}$ tal que el triángulo $\triangle\mathit{ABC}$ (en $\mathbb{D}$) no interseca a ninguna otra cadena y solo se encuentra con $d$ en $\mathit{AB}$. 
+Supongamos que $\mathbb{D}$ es el cubo unidad y que dentro de este cubo hay un número de cadenas como las definidas en la Definición \ref{n_trenza}. (Para el propósito de esta definición, necesitamos restringir y trabajar exclusivamente con la imagen poligonal de una cadena). Sea $\mathit{AB}$ un segmento de la cadena $d$. Sea $\mathit{C}$ un punto en $\mathbb{D}$ tal que el triángulo $\triangle\mathit{ABC}$ (en $\mathbb{D}$) no interseca a ninguna otra cadena y solo se encuentra con $d$ en $\mathit{AB}$. 
 \newline
 \newline
-Si suponemos que $\mathit{AC}\cup\mathit{CB}$ interseca a todos los planos de nivel $E_s$ con $s\in[0,1]$ como mucho en un punto entonces a la operación de reemplazar $AB$ por $\mathit{AC}\cup\mathit{CB}$, a la cual notaremos por $\Omega$, se le denomina \textit{movimiento elemental}. También podemos realizar la operación inversa, sustituyento $\mathit{AC}\cup\mathit{CB}$ por $AB$, a la que notamos por $\Omega^{-1}$.
+Si suponemos que $\mathit{AC}\cup\mathit{CB}$ interseca a todos los planos de nivel $E_s$ con $s\in[0,1]$ como mucho en un punto entonces a la operación de reemplazar $AB$ por $\mathit{AC}\cup\mathit{CB}$, a la cual notaremos por $\Omega$, se le denomina \textit{movimiento elemental}. También podemos realizar la operación inversa, sustituyendo $\mathit{AC}\cup\mathit{CB}$ por $AB$, a la que notamos por $\Omega^{-1}$.
 
 \end{defi}
 
@@ -254,14 +257,14 @@ Cada hebra de $\mathcal{B}$ interseca con el plano $\mathbb{R}^2\times \{t\}$ co
 Decimos que dos trenzas geométricas $\mathcal{B}$ y $\mathcal{B}'$ son isotópicas si podemos deformar de manera continua $\mathcal{B}$ en $\mathcal{B}'$. Más formalmente, $\mathcal{B}$ y $\mathcal{B}'$ son isotópicas si existe una función continua $F : \mathcal{B} \times I \rightarrow \mathbb{R}^2\times I$ de tal manera que para cada $s\in I$, la función $F_s : \mathcal{B}\rightarrow \mathbb{R}^2\times I$ con $F_s(x)= F(x,s)$ es un embebimiento cuya imagen es una trenza geométrica de $n$ hebras, cumpliendo que $F_0 = id_{\mathcal{B}}: \mathcal{B}\rightarrow \mathcal{B}$ y $F_1(\mathcal{B}) = \mathcal{B}'$. Debido a que la imagen de $F_s$ es una trenza geométrica y $F$ es una función continua tenemos automáticamente que la imagen del punto final de cada hebra por $F_s$ es el mismo.
 \newline
 \newline
-Tanto la función $F$ como la familia de trenzas geométricas $\{F_s(\mathcal{B})\}_{s\in I}$ se llaman \textit{isotopía} de $\mathcal{B}$ en $\mathcal{B}'$. Se ve facilmente que la relación de isotopía es una relación de equivalencia. Al conjunto de clases de equivalencia correspondientes se les denomina \textit{trenzas de n hebras} y lo denotamos por $\mathcal{B}_n$
+Tanto la función $F$ como la familia de trenzas geométricas $\{F_s(\mathcal{B})\}_{s\in I}$ se llaman \textit{isotopía} de $\mathcal{B}$ en $\mathcal{B}'$. Se ve fácilmente que la relación de isotopía es una relación de equivalencia. Al conjunto de clases de equivalencia correspondientes se les denomina \textit{trenzas de n hebras} y lo denotamos por $\mathcal{B}_n$
 \newline
 \newline
 Para poder especificar una trenza geométrica se puede utilizar la proyección en $\mathbb{R}\times\{0\}\times I$ e indicar de alguna manera que hebra esta por encima de otra cuando se crucen. Solo se podrá aplicar esta solución en trenzas geométricas cuya proyección solo tenga puntos donde se crucen a lo más dos hebras. Pasamos a definir formalmente un diagrama de trenza.
 
 
 \begin{defi}[Diagrama de trenza]\label{diagrama_trenza}
-Un díagrama de trenza de $n$ hebras es un conjunto $\mathcal{D}\subset\mathbb{R}\times I$ formado por la unión de $n$ intervalos topológicos llamados hebras y que cumplen las siguientes condiciones: 
+Un diagrama de trenza de $n$ hebras es un conjunto $\mathcal{D}\subset\mathbb{R}\times I$ formado por la unión de $n$ intervalos topológicos llamados hebras y que cumplen las siguientes condiciones: 
 \begin{enumerate}
 \item La proyección de $\mathbb{R}\times I\rightarrow I$ es un homeomorfismo.
 \item Cada punto de $\{1,2,...,n\}\times\{0,1\}$ es un punto final de la hebra.
@@ -274,7 +277,7 @@ Un díagrama de trenza de $n$ hebras es un conjunto $\mathcal{D}\subset\mathbb{R
 La transversalidad de los cruces y la compacidad de las hebras nos asegura que el número de cruces es finito. Gráficamente la hebra que pasa por debajo en un cruce se representará con una discontinuidad y la que pasa por encima con una linea continua. Cada trenza puede ser representada por un diagrama de trenza y cada diagrama tiene asociada una trenza. Dado $\mathcal{D}$ un diagrama, denotaremos como $\beta(\mathcal{D})$ a la trenza de $n$ hebras asociada.
 \newline
 \newline
-Dos diagramas de trenzas $\mathcal{D}, \mathcal{D}'$ de $n$ hebras se dicen que son isotópicos si se puede establecer una función continua entre $F:\mathcal{D}\times I\rightarrow\mathbb{R}\times I$ tal que para cada $s\in I$ el conjunto $\mathcal{D}_s = F(\mathcal{D}\times s)\subset\mathbb{R\times I}$ es un diagrama de $n$ hebras, con $\mathcal{D}_0 = \mathcal{D}$ y $\mathcal{D}_1 = \mathcal{D}'$. Se entiende que $F$ mapea los cruces de $\mathcal{D}$ en los cruces de $\mathcal{D}_s$ para todo $s\in I$ preservando si los cruces son por debajo o por encima. A la familia de diagramas $\{\mathcal{D}_s\}_{s\in I}$ se le llama \textit{isotopía} de $\mathcal{D}_0 = \mathcal{D}$ en $\mathcal{D}_1 = \mathcal{D}'$.
+Dos diagramas de trenzas $\mathcal{D}, \mathcal{D}'$ de $n$ hebras se dicen que son isotópicos si se puede establecer una función continua entre $F:\mathcal{D}\times I\rightarrow\mathbb{R}\times I$ tal que para cada $s\in I$ el conjunto $\mathcal{D}_s = F(\mathcal{D}\times s)\subset\mathbb{R\times I}$ es un diagrama de $n$ hebras, con $\mathcal{D}_0 = \mathcal{D}$ y $\mathcal{D}_1 = \mathcal{D}'$. Se entiende que $F$ lleva los cruces de $\mathcal{D}$ a los cruces de $\mathcal{D}_s$ para todo $s\in I$ preservando si los cruces son por debajo o por encima. A la familia de diagramas $\{\mathcal{D}_s\}_{s\in I}$ se le llama \textit{isotopía} de $\mathcal{D}_0 = \mathcal{D}$ en $\mathcal{D}_1 = \mathcal{D}'$.
 
 
 
@@ -297,7 +300,7 @@ Dos diagramas de trenzas $\mathcal{D}, \mathcal{D}'$ de $n$ hebras se dicen que 
 
 
 \begin{defi}[Movimientos de Reidemeister]  Los movimientos de Reidemester  son movimientos locales (afectan a la posición de las hebras dentro de un disco en 
-$ \mathbb{R}\times I $ ) en un diagrama de trenzas. Estos estan formados por $\Omega_2$, $\Omega_3$ (Figura \ref{MR}) y sus transformaciones inversas
+$ \mathbb{R}\times I $ ) en un diagrama de trenzas. Estos están formados por $\Omega_2$, $\Omega_3$ (Figura \ref{MR}) y sus transformaciones inversas
 $\Omega_2^{-1}$, $\Omega_3^{-1}$. 
 
 \end{defi}
@@ -615,7 +618,7 @@ Esto demuestra que $\psi$ es una función bien definida de $\mathcal{B}_n\righta
 
 
 
-Llegados a este punto ya hemos probado que las trenzas geométricas forman un grupo y que este coincide con el grupo de trenzas de Artin como habiamos dicho al principio. A continuación vamos a ver como podemos relacionar el grupo de trenzas con el grupo de permutaciones, para poder así definir un tipo de trenzas denominado trenzas puras.
+Llegados a este punto ya hemos probado que las trenzas geométricas forman un grupo y que este coincide con el grupo de trenzas de Artin como habíamos dicho al principio. A continuación vamos a ver como podemos relacionar el grupo de trenzas con el grupo de permutaciones, para poder así definir un tipo de trenzas denominado trenzas puras.
 \newline
 \newline
 Sea $\beta\in B_n$ una trenza de $n$ hebras, consideramos una trenza geométrica que la represente . La hebra $d_i$ une el punto $(i,0,0)$ con el punto $(j(i),0,1).$ Definimos la función $\pi:B_n\rightarrow S_n$ del grupo de trenzas al grupo simétrico como
@@ -628,10 +631,10 @@ j(1) & j(2) & \cdot\cdot\cdot & j(n)\\
 \newline
 
 
-Da igual la trenza geométrica tomada como representante puesto que todas tienen el mismo punto de inicio y fin para todas las hebras. Podemos decir que $\pi$ es un invariante para las trenzas geométricas y se puede ver facilmente que es un homomorfismo. Normalmente, a la permutación obtenida a partir de una trenza se le denomina \textit{permutación de hebra} y se denota por $\pi(\beta)$.
+Da igual la trenza geométrica tomada como representante puesto que todas tienen el mismo punto de inicio y fin para todas las hebras. Podemos decir que $\pi$ es un invariante para las trenzas geométricas y se puede ver fácilmente que es un homomorfismo. Normalmente, a la permutación obtenida a partir de una trenza se le denomina \textit{permutación de hebra} y se denota por $\pi(\beta)$.
 
 \begin{defi}[Trenzas puras]
-El nucleo del homomorfismo $\pi:B_n\rightarrow S_n$ es llamado \textit{grupo de trenzas puro} y es denotado por $P_n$
+El núcleo del homomorfismo $\pi:B_n\rightarrow S_n$ es llamado \textit{grupo de trenzas puro} y es denotado por $P_n$
 
 $$P_n = Ker(\pi:B_n\rightarrow S_n)$$
 
@@ -658,7 +661,7 @@ Los elementos de $P_n$ se llaman trenzas puras de $n$ hebras. Una trenza geomét
 
 \section{Monoides de Garside y monoides de trenzas}
 
-Vamos a definir una estructura algebraica denominada monoide de Garside, una herramienta muy potente que nos permitirá trabajar con las trenzas. Entre otras cosas nos será posible dar soluciones al problema del conjugado y el problema de palabra definidos más adelante, y dispondremos de una forma normal con la que poder trabajar directamente con las trenzas. Todo esto nos será indispensable para poder construir métodos criptógráficos basados en el grupo de trenzas. Comenzamos con la definición de monoide.
+Vamos a definir una estructura algebraica denominada monoide de Garside, una herramienta muy potente que nos permitirá trabajar con las trenzas. Entre otras cosas nos será posible dar soluciones al problema del conjugado y el problema de palabra definidos más adelante, y dispondremos de una forma normal con la que poder trabajar directamente con las trenzas. Todo esto nos será indispensable para poder construir métodos criptógráficos basados en el grupo de trenzas. Lo referente a monoides que se habla en esta sección aparece en \cite{br_gr} Comenzamos con la definición de monoide.
 
 \subsection{Monoides}
 
@@ -680,14 +683,14 @@ Las relaciones $\preceq$ y $\succeq$ en un monoide son reflexivas y transitivas.
 \label{lema:rel1}
 \end{lema}
 
-\textit{Demostración.} La reflexividad de $\preceq$ viene de la identidad $a=a1$. La transitividad viene dada por la asociatividad de la multiplicacion. Se procede de igual manera para $\succeq$.
+\textit{Demostración.} La reflexividad de $\preceq$ viene de la identidad $a=a1$. La transitividad viene dada por la asociatividad de la multiplicación. Se procede de igual manera para $\succeq$.
 
 \qed
 
 
 \subsubsection{Monoides atómicos}
 
-Para cualquier elemento $a\neq 1$ de un monoide $M$, definomos
+Para cualquier elemento $a\neq 1$ de un monoide $M$, definimos
 
 $$\norm{a}=\sup\{r\geq 1\ | a=a_1\cdot\cdot\cdot a_r,a_1,...,a_r\in M-\{1\}\}$$
 \newline
@@ -711,10 +714,10 @@ Esto implica que $\norm{u}=\norm{v}=0$. Por tanto $u=v=1$ y $a=b$. La relación 
 
 \qed
 
-Los Lemas \ref{lema:rel1} y \ref{lema:rel2} implican que las relaciones $\preceq$ y $\succeq$ en un monoide atómico son ordenes parciales. Dado un subconjunto $E$ de un monoide atómico $M$, decimos que un elemento $a\in E$ es \textit{maximal} (resp. \textit{minimal}) con respecto a $\preceq$, si $b\preceq a$ (resp. $a\preceq b$) para todo $b\in E$. Un elemento maximal (resp. minimal) de $E$ podría no exisitir, pero si existe, es único por el Lema \ref{lema:rel2}. Definiciones equivalentes se obtienen con la relación $\succeq$.
+Los Lemas \ref{lema:rel1} y \ref{lema:rel2} implican que las relaciones $\preceq$ y $\succeq$ en un monoide atómico son ordenes parciales. Dado un subconjunto $E$ de un monoide atómico $M$, decimos que un elemento $a\in E$ es \textit{maximal} (resp. \textit{minimal}) con respecto a $\preceq$, si $b\preceq a$ (resp. $a\preceq b$) para todo $b\in E$. Un elemento maximal (resp. minimal) de $E$ podría no existir, pero si existe, es único por el Lema \ref{lema:rel2}. Definiciones equivalentes se obtienen con la relación $\succeq$.
 \newline
 \newline
-La ecuación $ab=1$ en un monoide atómico $M$ tiene como única solución $a=1,b=1$. De hecho, si $ab=1$ para $a,b\in M$, entonces $1\preceq a \preceq 1$, por lo tanto $a=1$ y $b=1$. En particular, el elemento neutro es el unico elemento invertible de $M$.
+La ecuación $ab=1$ en un monoide atómico $M$ tiene como única solución $a=1,b=1$. De hecho, si $ab=1$ para $a,b\in M$, entonces $1\preceq a \preceq 1$, por lo tanto $a=1$ y $b=1$. En particular, el elemento neutro es el único elemento invertible de $M$.
 
 \subsubsection{Presentaciones de un monoide}
 Consideramos un conjunto $X$ y un subconjunto $R$ de $X^*\times X^*$. Sea $\sim$ la relación de equivalencia más pequeña conteniendo los pares $(\omega_1r\omega_2, \omega_1r'\omega_2)$, donde $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. En otras palabras, $\sim$ es la relación de equivalencia más pequeña en $X^*$ tal que $\omega_1r\omega_2\sim\omega_1r'\omega_2$ para todo $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. Definimos $M$ como el conjunto de clases de equivalencia inducido por $\sim$. Esta claro que $M$ tiene la única estructura de monoide tal que la proyección $P:X^*\rightarrow M$ es un homomorfismo de monoide. Decimos que $\langle X|R\rangle$ es una \textit{presentación de monoide} de $M$ y llamamos a los elementos de $X$ \textit{generadores} y a los elementos de $R$ \textit{relaciones}.
@@ -729,10 +732,10 @@ Cualquier elemento de $M$ puede ser expandido de forma única como una palabra d
 Introducimos varios tipos de presentaciones de monoides que nos serán de utilidad. Una presentación de monoide $\langle X|R\rangle$ es finita si $X$ y $R$ son finitos. Una presentación $\langle X|R\rangle$ de un monoide $M$ se dice \textit{ponderada} si existe un homomorfismo de monoide $\ell:M\rightarrow \mathbb{N}$ tal que $\ell(x)\geq 1$ para todo $x\in X$. El homomorfismo $\ell$ se llama \textit{peso}.
 \newline
 \newline
-Una presentacion $\langle X|R\rangle$ de un monoide $M$ se dice \textit{equilibrada en longitud} si $l(r)=l(r')$ para todo $(r,r')\in R$, donde $l$ es la función longitud en $X^*$ introducida anteriormente. La formula $\ell(x)=1$ para todo $x\in X$ define un \textit{peso canónico} $\ell:M\rightarrow \mathbb{N}$.
+Una presentación $\langle X|R\rangle$ de un monoide $M$ se dice \textit{equilibrada en longitud} si $l(r)=l(r')$ para todo $(r,r')\in R$, donde $l$ es la función longitud en $X^*$ introducida anteriormente. La formula $\ell(x)=1$ para todo $x\in X$ define un \textit{peso canónico} $\ell:M\rightarrow \mathbb{N}$.
 
 \begin{lema}
-Si un monoide $M$ tiene una representación ponderada $\langle X|R\rangle$, entonces $M$ es atómico y todos sus átomos estan contenidos en el conjunto $X$ de generadores. Si $M$ tiene una presentación equilibrada en longitud $\langle X|R\rangle$, entonces el conjunto de átomos de $M$ coincide con $X$ y $\norm{a}=\ell(a)$ para todo $a\in M$, donde $\ell$ es el peso canónico en $M$.
+Si un monoide $M$ tiene una representación ponderada $\langle X|R\rangle$, entonces $M$ es atómico y todos sus átomos están contenidos en el conjunto $X$ de generadores. Si $M$ tiene una presentación equilibrada en longitud $\langle X|R\rangle$, entonces el conjunto de átomos de $M$ coincide con $X$ y $\norm{a}=\ell(a)$ para todo $a\in M$, donde $\ell$ es el peso canónico en $M$.
 \label{lema:presen_mono}
 \end{lema}
 
@@ -742,12 +745,12 @@ Si un monoide $M$ tiene una representación ponderada $\langle X|R\rangle$, ento
 
 \subsubsection{El problema de palabra y el problema de divisibilidad}
 
-El \textit{problema de palabra} para una representación $\langle X|R\rangle$ de un monoide $M$ consiste en que dadas dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a=a'$. El \textit{problema de dibisibilidad por la izquierda} (resp. \textit{derecha}) esta estrechamente relacionado y consiste en que dadas
+El \textit{problema de palabra} para una representación $\langle X|R\rangle$ de un monoide $M$ consiste en que dadas dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a=a'$. El \textit{problema de divisibilidad por la izquierda} (resp. \textit{derecha}) esta estrechamente relacionado y consiste en que dadas
 dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a\preceq a'$ (resp. $a'\succeq a$).
 \newline
 \newline
-Tanto el problema de palabra como el problema de divisibilidad pueden ser facilmente resueltos con una representación finita $\langle X|R\rangle$ de $M$. Sea $\ell:M\rightarrow\mathbb{N}$ un peso, de manera que $\ell(x)\geq 1$ para todo $x\in X$. Observar que el valor de $\ell$ para cualquier $a\in M$ representado por cualquier palabra no vacía $\omega\in X^*$ es mayor o igual que la longitud de $\omega$. Sea $W(a)\subset X^*$
- el conjunto de palabras representando a $a$. Todas esas palabras tienen longitud menor que $\ell(a)$. Ya que $X$ es finito, el número de palabras de menor longitud que $\ell(a)$ es finito y por tanto también lo es el conjunto $W(a)$. Para listar todos los posibles elementos de $W(a)$, uno comienza con la palabra que representa $a$ y consecutivamente aplica todas las posibles subtituciones del tipo
+Tanto el problema de palabra como el problema de divisibilidad pueden ser fácilmente resueltos con una representación finita $\langle X|R\rangle$ de $M$. Sea $\ell:M\rightarrow\mathbb{N}$ un peso, de manera que $\ell(x)\geq 1$ para todo $x\in X$. Observar que el valor de $\ell$ para cualquier $a\in M$ representado por cualquier palabra no vacía $\omega\in X^*$ es mayor o igual que la longitud de $\omega$. Sea $W(a)\subset X^*$
+ el conjunto de palabras representando a $a$. Todas esas palabras tienen longitud menor que $\ell(a)$. Ya que $X$ es finito, el número de palabras de menor longitud que $\ell(a)$ es finito y por tanto también lo es el conjunto $W(a)$. Para listar todos los posibles elementos de $W(a)$, uno comienza con la palabra que representa $a$ y consecutivamente aplica todas las posibles substituciones del tipo
  
 
 $$\omega_1 r\omega_2\leftrightarrow \omega_1 r'\omega_2\ \ \ (r,r')\in R$$
@@ -760,11 +763,11 @@ También obtenemos una solución para el problema de divisibilidad por la izquie
 
 \subsection{Formas normales y el problema del conjugado}
 
-Ahora vamos a introducir y estudiar un cierto monoide $M_\Sigma$ derivado de un subconjunto $\sigma$ de cierto monoide $M$. Bajo la presunción de hipotesis favorables, obtenemos una forma normal para los elementos de $M_\Sigma$ y resolvemos el problema del conjugado en $M_\Sigma$.
+Ahora vamos a introducir y estudiar un cierto monoide $M_\Sigma$ derivado de un subconjunto $\sigma$ de cierto monoide $M$. Bajo la presunción de hipótesis favorables, obtenemos una forma normal para los elementos de $M_\Sigma$ y resolvemos el problema del conjugado en $M_\Sigma$.
 
 \subsubsection{El monoide $M_\Sigma$} 
 
-Sea $M$ un monoide y $\Sigma\subset M$ un subconjunto de $M$ conteniento el elemento neutro $1$. Sea $M_\Sigma$ un monoide generado por los simbolos $[a]$, donde $a\in \Sigma$, partiendo de la definición de las relaciones $[1]=1$ y $[a][b]=[ab]$, siempre que $a,b,ab\in\Sigma$. Existe un homomorfismo de monoide $p:M_\Sigma\rightarrow M$ definido por $p([a])=a$ para todo $a\in\Sigma$.
+Sea $M$ un monoide y $\Sigma\subset M$ un subconjunto de $M$ conteniendo el elemento neutro $1$. Sea $M_\Sigma$ un monoide generado por los simbolos $[a]$, donde $a\in \Sigma$, partiendo de la definición de las relaciones $[1]=1$ y $[a][b]=[ab]$, siempre que $a,b,ab\in\Sigma$. Existe un homomorfismo de monoide $p:M_\Sigma\rightarrow M$ definido por $p([a])=a$ para todo $a\in\Sigma$.
 \newline\newline
 Otra definición equivalente de $M_\Sigma$ puede hacerse identificando el producto $[a_1]\cdot\cdot\cdot[a_r]$ en $M_\Sigma$ (donde $a_,...,a_r\in \Sigma$) con la sucesión $(a_1,...,a_r)$. Entonces $M_\Sigma$ es el conjunto de clases de equivalencia de sucesiones finitas $(a_1,...,a_r)$ de elementos de $\Sigma$ bajo la equivalencia generada por
 
@@ -779,9 +782,9 @@ Sea $M$ un monoide atómico y $\Sigma$ un subconjunto de $M$ tal que $1\in \Sigm
 \begin{enumerate}
 \item Todos los divisores por la izquierda y por la derecha de elementos de $\Sigma$ pertenecen a $\Sigma$.
 \item Para cualesquiera $a,b,c\in \Sigma$, si $ab=ac$ o $ba=ca$, entonces b=c.
-\item Para cualesquiera $a,b,c\in \Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento máximal (con respecto a $\preceq$).
+\item Para cualesquiera $a,b,c\in \Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento maximal (con respecto a $\preceq$).
 \end{enumerate}
-Entonces para cualquier $\xi\in M_\Sigma$, hay un único $\alpha(\xi)\in\Sigma$ tal que $[\alpha(\xi)]$ es un divisor por la izquierda de $\xi$ que es el máximal de entre todos los divisores por la izquierda de $\xi$ que se encuentrar en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$. Además, hay un único $\omega(\xi)\in M_\Sigma$ tal que $\xi=[\alpha(\xi)]\omega(\xi)$.
+Entonces para cualquier $\xi\in M_\Sigma$, hay un único $\alpha(\xi)\in\Sigma$ tal que $[\alpha(\xi)]$ es un divisor por la izquierda de $\xi$ que es el maximal de entre todos los divisores por la izquierda de $\xi$ que se encuentra en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$. Además, hay un único $\omega(\xi)\in M_\Sigma$ tal que $\xi=[\alpha(\xi)]\omega(\xi)$.
 \end{teor}
 
 \textit{Demostración.} La prueba consiste de cinco pasos.
@@ -810,7 +813,7 @@ Por definición, $\alpha_2(b,c)=bd$, donde $d$ es maximal tal que $d\preceq c$ y
 
 $$\alpha_2(a,\alpha_2(b,c))=\alpha_2(a,bd)=ad'$$
 \newline
-donde $d'$ es maximal tal que $d'\preceq bd$ y $ad'\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$ (por hipótesis), al ser $d'$ maximal se tiene que $b\preceq d'$. Escribiendo $d'=be$ con $e\in\Sigma$, obtenemos que $\alpha_2(a,bd)=abe$, con $be\preceq bd\in\Sigma$ y $abe\in\Sigma$. Por la observación hecha previamente vemos que $e\preceq d\preceq c$, asi que $e\preceq c$. Ahora $\alpha_2(ab,c)=abf$, donde $f$ es maximal tal que $f\preceq c$ y $abf\in\Sigma$. Por tanto, $e\preceq f$. Por otra parte, $f\preceq c$ y $bf\in\Sigma$. Esto y la inclusion de $abf\in\Sigma$ implica que $bf\preceq d' = be$. Por tanto, $f\preceq e$. Por el Lema \ref{lema:rel2} $e=f$ y
+donde $d'$ es maximal tal que $d'\preceq bd$ y $ad'\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$ (por hipótesis), al ser $d'$ maximal se tiene que $b\preceq d'$. Escribiendo $d'=be$ con $e\in\Sigma$, obtenemos que $\alpha_2(a,bd)=abe$, con $be\preceq bd\in\Sigma$ y $abe\in\Sigma$. Por la observación hecha previamente vemos que $e\preceq d\preceq c$, así que $e\preceq c$. Ahora $\alpha_2(ab,c)=abf$, donde $f$ es maximal tal que $f\preceq c$ y $abf\in\Sigma$. Por tanto, $e\preceq f$. Por otra parte, $f\preceq c$ y $bf\in\Sigma$. Esto y la inclusión de $abf\in\Sigma$ implica que $bf\preceq d' = be$. Por tanto, $f\preceq e$. Por el Lema \ref{lema:rel2} $e=f$ y
 
 $$\alpha_2(ab,c)=abf=abe=ad'=\alpha_2(a,\alpha_2(b,c))$$
 
@@ -842,7 +845,7 @@ Recordamos el homomorfismo de monoide $p:M_\Sigma\rightarrow M$. Para cualquier 
 $$H(\xi\xi')\geq H(\xi)+H(\xi')$$
 \newline
 
-para cualesquiera $\xi\xi'\in M_\Sigma$. Observar que $H(\xi)=0$ si y solo si $\xi=1$, y $H(\xi)=1$ si y solo si $\xi=[a]$, donde $a$ es un átomo de $M$ perteneciente a $\Sigma$. Para ver esto, romamos una expansión $\xi=[a_1]\cdot\cdot\cdot[a_r]$ con $a_1,...,a_r\in\Sigma$. Entonces
+para cualesquiera $\xi\xi'\in M_\Sigma$. Observar que $H(\xi)=0$ si y solo si $\xi=1$, y $H(\xi)=1$ si y solo si $\xi=[a]$, donde $a$ es un átomo de $M$ perteneciente a $\Sigma$. Para ver esto, tomamos una expansión $\xi=[a_1]\cdot\cdot\cdot[a_r]$ con $a_1,...,a_r\in\Sigma$. Entonces
 
 $$H(\Sigma)=\norm{p(\xi)}\geq\norm{a_1}+\cdot\cdot\cdot\norm{a_r}$$
 
@@ -852,7 +855,7 @@ Si $H(\xi)=0$, entonces $a_1=\cdot\cdot\cdot=a_r=1$ y $\xi=1$. Si $H(\xi)=1$, en
 Dado $\xi\in M_\Sigma$, definimos $\alpha(\xi)$ por inducción sobre el peso de $\xi$. Para $\xi=1$ establecemos $\alpha(\xi)=1\in\Sigma$. Si $H(\xi)=1$, entonces $\xi=[a]=[a]1$ para algún átomo $a\in\Sigma$, y para satisfacer (ii) establecemos que $\alpha(\xi)=\alpha_2(a,1)=a$.
 \newline
 \newline
-Tomamos un entero $k\geq 1$ y suponemos que $\alpha(\xi)$ esta definido para todo $\xi$ de peso menor o igual que $k$ de manera que las condiciones (i), (ii) se satisfacen siempre que $H([a]\eta)\leq k$. Sea $\xi$ un elemento de $M_\Sigma$ de peso $k+1$. Podemos expandir $\xi=[a]\eta$, donde $a\in\Sigma$, $a\neq 1$ y $\eta\in M_\Sigma$. Entonces $H([a])\geq 1$ y $H([\eta]) < H([a]\eta)$, asi que $\alpha(\eta)$ esta ya definido. Para satisfacer (ii) establecemos $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Debemos comprobar que $\alpha_2(a,\alpha(\eta))$ no depende de la elección de la expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y por la hipotesis de inducción, es suficiente con comprobar que 
+Tomamos un entero $k\geq 1$ y suponemos que $\alpha(\xi)$ esta definido para todo $\xi$ de peso menor o igual que $k$ de manera que las condiciones (i), (ii) se satisfacen siempre que $H([a]\eta)\leq k$. Sea $\xi$ un elemento de $M_\Sigma$ de peso $k+1$. Podemos expandir $\xi=[a]\eta$, donde $a\in\Sigma$, $a\neq 1$ y $\eta\in M_\Sigma$. Entonces $H([a])\geq 1$ y $H([\eta]) < H([a]\eta)$, así que $\alpha(\eta)$ esta ya definido. Para satisfacer (ii) establecemos $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Debemos comprobar que $\alpha_2(a,\alpha(\eta))$ no depende de la elección de la expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y por la hipótesis de inducción, es suficiente con comprobar que 
 
 $$\alpha_2(a,\alpha(\eta))=\alpha_2(a',\alpha([a'']\eta))$$
 \newline
@@ -862,7 +865,7 @@ donde $a=a'a''$ con $a',a''\in \Sigma -\{1\}$. Ya que
 $$H([a'']\eta)\leq H([a]\eta) - H([a'])<H([a]\eta)$$
 \newline
 
-la hipotesis de inducción nos da que $\alpha([a''])=\alpha_2(a'',\alpha(\eta))$. Por la igualdad (\ref{eq:alfa_com}) 
+la hipótesis de inducción nos da que $\alpha([a''])=\alpha_2(a'',\alpha(\eta))$. Por la igualdad (\ref{eq:alfa_com}) 
 
 $$\alpha_2(a',\alpha([a'']\eta))=\alpha_2(a',\alpha_2(a'',\alpha(\eta)))=$$
 $$=\alpha_2(a'a'',\alpha(\eta))=\alpha_2(a,\alpha(\eta))$$
@@ -879,7 +882,7 @@ $$[\alpha(\xi)]=[ab]=[a][b]\preceq [a][\alpha(\eta)]\preceq [a]\eta=\xi$$
 \newline
 \newline
 Esto demuestra que $[\alpha(\xi)]$ es divisor por la izquierda  de $\xi$ perteneciente a $\{[a]\}_{a\in\Sigma}$. Veamos que $[\alpha(\xi)]$ es maximal. Supongamos que $\xi=[a']\eta'$
-para algún $a'\in\Sigma$, $\eta'\in M_\Sigma$. Entonces $\alpha(\xi) =\alpha_2(a',\alpha(\eta'))=a'b'$ para algún $b'\in\Sigma$. Por tanto, $a'\preceq \alpha(\xi)$ y $[a']\preceq [\alpha(\xi)]$
+para algún $a'\in\Sigma$, $\eta'\in M_\Sigma$. Entonces $\alpha(\xi) =\alpha_2(a',\alpha(\eta'))=a'b'$ para algún $b'\in\Sigma$. Por tanto, $a'\preceq \alpha(\xi)$ y $[a']\preceq [\alpha(\xi)]$.
 \newline
 \newline
 \textit{Paso 4.} Existe una única función $\omega:M_\Sigma\rightarrow\Sigma$ tal que
@@ -893,7 +896,7 @@ El valor de $\omega$ para cualquier $\xi\in M_\Sigma$ esta definido por inducci�
 
 $$\omega(\xi)=[\omega_2(a,\alpha(\eta))]\omega(\eta)$$
 
-Debemos de comprobar que $\omega(\xi)$ es independiente de la elección de expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y la inducción de hipotesis, es suficiente con comprobar que
+Debemos de comprobar que $\omega(\xi)$ es independiente de la elección de expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y la inducción de hipótesis, es suficiente con comprobar que
 
 $$\omega_2(a,\alpha(\eta))\omega(\eta)=\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta)$$
 
@@ -908,6 +911,39 @@ $$ =\omega_2(a'a'',\alpha(\eta))\omega(\eta)=  \omega_2(a,\alpha(\eta))\omega(\e
 \newline
 \newline
 Por tanto $\omega$ esta bien definido para los elementos de $M_\Sigma$ de peso menor o igual que $k+1$ y satisface las condiciones (i) y (ii). Esto completa la inducción y prueba nuestra afirmación.
+\newline
+\newline
+\textit{Paso 5.} Para completar la prueba, tenemos que demostrar que para cualquier $\xi\in M_\Sigma$, el elemento $\eta = \omega(xi)$ es el único elemento de $M_\Sigma$ tal que $\xi = [\alpha(\xi)]\eta$. Procedemos por inducción sobre $H(\xi)$. Si $H(\xi) = 0$, entonces $\xi = 1$, $\alpha(\xi) = 1,\ \omega(\xi) = 1$, y la afirmación es obvia. Supongamos que la afirmación se da para todo $\xi$ de altura menor o igual a $k$ para cualquier entero $k\geq 1$. Sea $\xi$ un elemento de $M_\Sigma$ de  altura $k+1$. Por el Paso 3, $\xi=[\alpha(\xi)]\eta$ con $\eta\in M_\Sigma$. Claramente, $\alpha(\xi)\neq 1$ y por tanto $H(\eta) < H(\xi)$.
+\newline
+\newline
+Establecemos $\theta=[\alpha(\xi)][\alpha(\eta)]$. Por definición de la función $\alpha$
+
+$$\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))=\alpha(\xi)b$$
+
+para algún $b\in\Sigma$ tal que $[b]\preceq [\alpha(\eta)]\preceq\eta$. Por tanto $\alpha(\xi)\preceq\alpha(\theta)$ y 
+
+$$[\alpha(\theta)] = [\alpha(\xi)][b]\preceq[\alpha(\xi)]\eta=\xi$$
+
+Ya que $\alpha(\xi)$ es el máximo divisor por la izquierda de $\xi$ en el conjunto $\{[a]\}_{a_\in\Sigma}$, tenemos $[\alpha(\xi)]=[\alpha(\theta)]$. Proyectando a $M$, concluimos que
+
+$$\alpha(\xi)=\alpha(\theta) = \alpha_2(\alpha(\xi),\alpha(\eta))$$
+
+Por tanto, $\alpha(\xi)\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))\alpha(\eta)$. Por otro lado, por (\ref{eq:div_max}),
+
+$$\alpha(\xi)\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))\omega_2(\alpha(\xi),\alpha(\eta))$$
+
+Combinando estas ecuaciones obtenemos
+
+$$\alpha_2(\alpha(\xi),\alpha(\eta))\alpha(\eta) = \alpha_2(\alpha(\xi),\alpha(\eta))\omega_2(\alpha(\xi),\alpha(\eta))$$
+
+Por la segunda condición del teorema, podemos cancelar $\alpha_2(\alpha(\xi),\alpha(\eta))$. Así que $\alpha(\eta) = \omega_2(\alpha(\xi),\alpha(\eta))$ y 
+
+$$\omega(\xi) = \omega([\alpha(\xi)]\eta) = [\omega_2(\alpha(\xi),\alpha(\eta))]\omega(\eta)=[\alpha(\eta)]\omega(\eta) = \eta$$
+
+donde la última igualdad viene de la hipótesis de inducción. Esto demuestra que $\xi = [\alpha(\xi)\omega(\xi)]$ y que cualquier $\eta\in M_\Sigma$ satisfaciendo $\xi = [\alpha(\xi)]\eta$ es igual a $\omega(\xi)$.
+
+\qed
+
 
 
 
@@ -917,7 +953,7 @@ Por tanto $\omega$ esta bien definido para los elementos de $M_\Sigma$ de peso m
 
 \subsubsection{Forma nomal en $M_\Sigma$}
 
-Bajo las hipotesis del Teorema \ref{teor:monoi_deriv} , cualquier $\xi$ puede ser expandido inductivamente
+Bajo las hipótesis del Teorema \ref{teor:monoi_deriv} , cualquier $\xi$ puede ser expandido inductivamente
 
 $$\xi=[\alpha(\xi)]\omega(\xi)=[\alpha(\xi)][\alpha(\omega(\xi))]\omega^2(\xi)=$$
 $$=[\alpha(\xi)][\alpha(\omega(\xi))][\alpha(\omega^2(\xi))]\omega^3(\xi)=\cdot\cdot\cdot$$
@@ -996,7 +1032,7 @@ Por el Lema \ref{lema:cancel}, podemos dividir por la izquierda por $[c_1]$. Est
 
 \qed
 
-El Lema \ref{lema:conjugado} nos da una solución al problema del conjugado en $M_\Sigma$. Suponemos que $M,\Sigma$ satisfacen las condiciones del Teorema \ref{teor:monoi_deriv} y que $\Sigma$ es finito. Suponemos también que $M_\Sigma$ admite una presentación ponderada finita de manera que el problema de palabra tiene solución. Para determinar si dos elementos $a,b\in M_\Sigma$ son conjugados, primero hay que observar que elementos conjugados de $M_\Sigma$ tienen el mismo peso. Ya que solo hay un número finito de elementos de $M_\Sigma$ para un peso específico, $a$ tiene un número finito de conjugados. El Lema \ref{lema:conjugado} nos dice que, con el objetivo de encontrarlos todos, es suficiente aplicar todas las posibles conjugaciónes por elementos de $\Sigma$ para conocer todos los conjugados de $a$ hasta que no se encuentren nuevos elementos. Así obtenemos una lista finita $a_1,\ldots,a_s$ de conjugados de $a$ en $M_\Sigma$. Si $b=a_i$ para algún $i$, entonces $b$ es conjugado de $a$. Si no es así, entonces $b$ no es conjugado de $a$.
+El Lema \ref{lema:conjugado} nos da una solución al problema del conjugado en $M_\Sigma$. Suponemos que $M,\Sigma$ satisfacen las condiciones del Teorema \ref{teor:monoi_deriv} y que $\Sigma$ es finito. Suponemos también que $M_\Sigma$ admite una presentación ponderada finita de manera que el problema de palabra tiene solución. Para determinar si dos elementos $a,b\in M_\Sigma$ son conjugados, primero hay que observar que elementos conjugados de $M_\Sigma$ tienen el mismo peso. Ya que solo hay un número finito de elementos de $M_\Sigma$ para un peso específico, $a$ tiene un número finito de conjugados. El Lema \ref{lema:conjugado} nos dice que, con el objetivo de encontrarlos todos, es suficiente aplicar todas las posibles conjugaciones por elementos de $\Sigma$ para conocer todos los conjugados de $a$ hasta que no se encuentren nuevos elementos. Así obtenemos una lista finita $a_1,\ldots,a_s$ de conjugados de $a$ en $M_\Sigma$. Si $b=a_i$ para algún $i$, entonces $b$ es conjugado de $a$. Si no es así, entonces $b$ no es conjugado de $a$.
 
 \subsubsection{Conjuntos exhaustivos}
 
@@ -1034,7 +1070,7 @@ El Lema \ref{lema:iso_mono} nos muestra que bajo las hipótesis apropiadas sobre
 Un homomorfismo de monoide $i:M\rightarrow G$ se dice que es \textit{universal} si $G$ es un grupo y para cualquier homomorfismo de monoide $f$ de $M$ a un grupo arbitrario $G'$, existe un único homomorfismo de grupo $g:G\rightarrow G'$ tal que $f=gi$. Cada monoide $M$ admite un homomorfismo universal a un grupo. Para ver esto, tomamos una representación arbitraria $\langle X | R \rangle$ de $M$ por generadores y relaciones y consideramos el grupo $G$ definido por $\langle X | R \rangle$ visto como una presentación de grupo. La función identidad $id_X:X\rightarrow X$ extiende a un homomorfismo de monoide $M\rightarrow G$, el cual es fácil ver que es universal. La definición de un homomorfismo universal $M\rightarrow G$ implica que hay una única composición con un isomorfismo de grupo. En particular, el grupo $G$ esta bien definido para isomorfismo. Este grupo llamado \textit{grupo de fracciones} de $M$ es denotado por $G_M$. Una presentación de $G_M$ por generadores y relaciones se puede obtener tomando una representación del monoide $M$ arbitraria de generadores y relaciones y verla como una representación de grupo.
 \newline
 \newline
-Un monoide $M$ es \textit{embebible} si existe un homomorfismo de monoide inyectivo de $M$ a un grupo. Es claro que $M$ es embebible si y solo si el homomorfismo universal de $M\rightarrow G_M$ es inyectvo. Por ejemplo, la inclusión $\mathbb{N}\hookrightarrow\mathbb{Z}$ demuestra que $\mathbb{N}$ es embebible. Es facil ver que la inclusión es un homomorfismo universal tal que $G_\mathbb{N}=\mathbb{Z}$.
+Un monoide $M$ es \textit{embebible} si existe un homomorfismo de monoide inyectivo de $M$ a un grupo. Es claro que $M$ es embebible si y solo si el homomorfismo universal de $M\rightarrow G_M$ es inyectvo. Por ejemplo, la inclusión $\mathbb{N}\hookrightarrow\mathbb{Z}$ demuestra que $\mathbb{N}$ es embebible. Es fácil ver que la inclusión es un homomorfismo universal tal que $G_\mathbb{N}=\mathbb{Z}$.
 \newline
 \newline
 Claramente, los monoides embebibles son cancelativos por la izquierda y por la derecha. Por ejemplo, el monoide $\{1,x\}$, con $xx=x$ no es cancelativo por la izquierda. El grupo de fracciones de este monoide es trivial.
@@ -1068,7 +1104,7 @@ Sea $(M,\Delta)$ un monoide pre-Garside y sea $\Sigma$ el conjunto de divisores 
 \textit{Demostración.} (i) Ya que $c\in\Sigma$, existe un $d\in M$ tal que $cd=\Delta$. Entonces $ac=bc$ implica $a\Delta = acd=bcd$. Por tanto $a=b$ por la segunda condición de la Definición \ref{defi:pre-garside}. Para la implicación $ca=cb\Rightarrow a=b$ se procede de igual forma.
 \newline
 \newline
-(ii) Ya que cualquier divisor por la izquierda de $\Delta$ es también un divisor por la derecha y vice versa, para cualquier $a\in\Sigma$, existe $a',\delta(a)\in\Sigma$ tal que $\Delta =a'a$ y $\Delta = \delta(a)a'$. Por la afirmación (i), a' y $\delta(a)$ están definidas únicamente. Tenemos que
+(ii) Ya que cualquier divisor por la izquierda de $\Delta$ es también un divisor por la derecha y viceversa, para cualquier $a\in\Sigma$, existe $a',\delta(a)\in\Sigma$ tal que $\Delta =a'a$ y $\Delta = \delta(a)a'$. Por la afirmación (i), a' y $\delta(a)$ están definidas únicamente. Tenemos que
 
 \begin{equation}
 \Delta a=\delta(a)a'a=\delta(a)\Delta
@@ -1129,7 +1165,7 @@ Sea $(M,\Delta)$ un monoide pre-Garside tal que $M$ es cancelativo por la izquie
 \begin{enumerate}[label=(\roman*).]
 \item El monoide $G$ construido anteriormente es un grupo y el homomorfismo $i:M\rightarrow G$ es inyectivo.
 \item Cualquier elemento de $G$ puede ser escrito de la forma $i(\Delta)^si(a)$, donde $s\in\mathbb{Z}, a\in M$.
-\item El homomorfismo de monoide $i:M\rightarrow G$ es universal, asi que $G$ es el grupo de fracciones $G_M$ de $M$.
+\item El homomorfismo de monoide $i:M\rightarrow G$ es universal, así que $G$ es el grupo de fracciones $G_M$ de $M$.
 \end{enumerate}
 \label{teor:pre-garside}
 \end{teor}
@@ -1153,7 +1189,7 @@ En otras palabras, $g'$ es también el inverso de $g$ por la izquierda. Esto dem
 (ii) Sea $\xi$ el elemento central $(1,+1)\in H=M\times\mathbb{N}$. Si establecemos $a=1,b=\Delta^N$ y $p=q=+1$ en (\ref{eq:gr-frac}), obtenemos $\pi(\xi)i(\Delta)^N=1$. Por tanto $\pi(\xi)=\i(\Delta)^{-N}$. Cualquier elemento de $H$ es de la forma $(a,p)=\xi^p(a,0)$ para algún $a\in M$ y $p\in\mathbb{N}$. Por tanto cualquier elemento de $G$ puede ser escrito de la forma $\pi(\xi)^pi(a)=i(\Delta)^{-pN}i(a)$ donde $a\in M$ y $p\in\mathbb{N}$.
 \newline
 \newline
-(iii) Dado un homomorfismo de monoide $f$ de M a un grupo $G'$, consideramos la función $H=M\times \mathbb{N}\rightarrow G'$ que envia cualquier par $(a,p)\in M\times \mathbb{N}$ a $f(\Delta)^{-pN}f(a)$. Esta función es constante que las clases de equivalencia de $H$ por $\sim$ e induce un homomorfismo de grupo $H/\sim=G\rightarrow G'$. La composición de esta última función con $i:M\rightarrow G$ es igual a $f$. La unicidad del homomorfismo de grupo $G\rightarrow G'$ cuya composición con $i$ es igual a $f$ viene del hecho de que $i(M)$ genera $G$ como grupo.
+(iii) Dado un homomorfismo de monoide $f$ de M a un grupo $G'$, consideramos la función $H=M\times \mathbb{N}\rightarrow G'$ que envía cualquier par $(a,p)\in M\times \mathbb{N}$ a $f(\Delta)^{-pN}f(a)$. Esta función es constante que las clases de equivalencia de $H$ por $\sim$ e induce un homomorfismo de grupo $H/\sim=G\rightarrow G'$. La composición de esta última función con $i:M\rightarrow G$ es igual a $f$. La unicidad del homomorfismo de grupo $G\rightarrow G'$ cuya composición con $i$ es igual a $f$ viene del hecho de que $i(M)$ genera $G$ como grupo.
 
 \qed
 
@@ -1165,11 +1201,11 @@ Los monoides pre-Garside cancelativos por la izquierda son embebibles.
 Este colorario muestra en particular que para monoides pre-Garside, la cancelatividad por la izquierda implica la cancelatividad por la derecha.
 \newline
 \newline
-A continuación identificaremos los elementos cancelativos por la izquierda de un monoide pre-Garside M con sus imagenes en $G_M$, de manera que $M$ se convierte en un subconjunto de $G_M$.
+A continuación identificaremos los elementos cancelativos por la izquierda de un monoide pre-Garside M con sus imágenes en $G_M$, de manera que $M$ se convierte en un subconjunto de $G_M$.
 
 \subsubsection{El problema del conjugado en el grupo de fracciones}
 
-Sea $(M,\Delta)$ un monoide pre-Garside canelativo por la izquierda. El problema del conjugado en su grupo de fracciones $G=G_M$ puede ser reducido al problema del conjugado en $M$ de la siguiente manera. Como ya sabemos, para cualquier $\alpha,\beta\in G$, existen $a,b\in M\subset G$ y $s,t\in\mathbb{Z}$ tal que $\alpha=\Delta^sa$ y $\beta=\Delta^t b$. Cogemos un entero $u$ tal que $u\leq \min(s,t)$ y $u$ y $u$ es divisible por N (Lema \ref{lema:pre-garside}(iii)). Sea $a'=\Delta^{s-u}a\in M$ y $b'=\Delta^{t-u}b\in M$. Claramente, $\alpha=\Delta^ua'$ y $\beta=\Delta^ub'$. Afirmamos que $\alpha$ es conjugado de $\beta$ en $G$ si y solo si $a'$ es conjugado de $b'$ en M. Supongamos que $a'c=cb'$ para algún $c\in M$. Ya que $\Delta^u$ es una potencia de $\Delta^N$ y es por tanto central en $M$,
+Sea $(M,\Delta)$ un monoide pre-Garside cancelativo por la izquierda. El problema del conjugado en su grupo de fracciones $G=G_M$ puede ser reducido al problema del conjugado en $M$ de la siguiente manera. Como ya sabemos, para cualquier $\alpha,\beta\in G$, existen $a,b\in M\subset G$ y $s,t\in\mathbb{Z}$ tal que $\alpha=\Delta^sa$ y $\beta=\Delta^t b$. Cogemos un entero $u$ tal que $u\leq \min(s,t)$ y $u$ y $u$ es divisible por N (Lema \ref{lema:pre-garside}(iii)). Sea $a'=\Delta^{s-u}a\in M$ y $b'=\Delta^{t-u}b\in M$. Claramente, $\alpha=\Delta^ua'$ y $\beta=\Delta^ub'$. Afirmamos que $\alpha$ es conjugado de $\beta$ en $G$ si y solo si $a'$ es conjugado de $b'$ en M. Supongamos que $a'c=cb'$ para algún $c\in M$. Ya que $\Delta^u$ es una potencia de $\Delta^N$ y es por tanto central en $M$,
 
 $$\alpha c=\Delta^u a'c=\Delta^u c b' = c\Delta^u b'=c\beta$$
 
@@ -1238,7 +1274,7 @@ Entonces $E$ tiene un elemento maximal (con respecto a $\preceq$).
 \label{lema:garside1}
 \end{lema}
 
-\textit{Demostración.} Sea $c$ un elemento de $E$ tal que $\norm{c}$ es maximal (decimos que $c$ es de altura maximal en $E$). Deseamos demostrar que $E=\{a\in M\ |\ c\}$. Por la condición (i), $\{a\in M\ |\ c\}\subset E$. Vamos a probar la inclusión contraria. Supongamos que no esta incluido. Entonces existe $b\in E$ tal que $b\npreceq c$. Expandimos $b$ como producto de atomos $b=s_1\cdots s_n$ para algún $n$ y $s_1,\ldots,s_n\in S$. Establecemos $a=s_1\cdots s_k$ donde $k < n$ es el entero maximal tal que $a\preceq c$ (posiblemente $k=0$, en cuyo caso $a=1$). Esta claro que $a\in E$ y que existe un átomo $s\in S$ (de hecho $s=s_{k+1}$) tal que $as\in E$ y $as\npreceq c$. Consideramos $a\in E$ de altura maximal. Ya que $c$ es de altura maximal en $E$, tenemos $\norm{a}<\norm{as}\leq \norm{c}$. Esto y la relacion $a\preceq c$ implica que existe $t\in S$ tal que $at\preceq c$. Entonces, necesariamente, $t\neq s$. Ahora tenemos  $a,as, at\in E$. Por la condición (ii) $a\Delta_{s,t}\in E$. La relación $as\preceq a\Delta_{s,t}$ y $as\npreceq c$ implica que $a\Delta_{s,t}\npreceq c$. Podemos expandir
+\textit{Demostración.} Sea $c$ un elemento de $E$ tal que $\norm{c}$ es maximal (decimos que $c$ es de altura maximal en $E$). Deseamos demostrar que $E=\{a\in M\ |\ c\}$. Por la condición (i), $\{a\in M\ |\ c\}\subset E$. Vamos a probar la inclusión contraria. Supongamos que no esta incluido. Entonces existe $b\in E$ tal que $b\npreceq c$. Expandimos $b$ como producto de átomos $b=s_1\cdots s_n$ para algún $n$ y $s_1,\ldots,s_n\in S$. Establecemos $a=s_1\cdots s_k$ donde $k < n$ es el entero maximal tal que $a\preceq c$ (posiblemente $k=0$, en cuyo caso $a=1$). Esta claro que $a\in E$ y que existe un átomo $s\in S$ (de hecho $s=s_{k+1}$) tal que $as\in E$ y $as\npreceq c$. Consideramos $a\in E$ de altura maximal. Ya que $c$ es de altura maximal en $E$, tenemos $\norm{a}<\norm{as}\leq \norm{c}$. Esto y la relación $a\preceq c$ implica que existe $t\in S$ tal que $at\preceq c$. Entonces, necesariamente, $t\neq s$. Ahora tenemos  $a,as, at\in E$. Por la condición (ii) $a\Delta_{s,t}\in E$. La relación $as\preceq a\Delta_{s,t}$ y $as\npreceq c$ implica que $a\Delta_{s,t}\npreceq c$. Podemos expandir
 
 $$\Delta_{s,t}=ts_1s_2\cdots s_m$$
 \newline
@@ -1279,7 +1315,7 @@ Un monoide de Garside $(M,\Delta)$ es \textit{exhaustivo} si el conjunto $\Sigma
 \item Cualquier $a\in M$ se expande de forma única como un producto $a=a_1a_2\cdots a_r$ de ciertos $a_1,a_2,\ldots,a_r\in\Sigma - \{1\}$ con $r\geq 0$ tal que $a_i=\alpha(a_ia_{i+1}\cdots a_r)$ para todo $i=1,\ldots,r$ (Sección Forma normal de $M_\Sigma$).
 \item El homomorfismo de monoide natural de $M$ en su grupo de fracciones $G_M$ es inyectivo (Lema \ref{lema:cancel} y Colorario \ref{colo:pre-garside-embe}). En particular, $M$ es cancelativo por la izquierda y por la derecha.
 \item Si $M\neq \{1\}$, entonces cualquier elemento de $G_M\supset M$ puede ser escrito de la forma $\Delta^s b$ con unicidad (forma normal greedy), donde $s\in\mathbb{Z}$ y $b\in M$ no es múltiplo por la derecha de $\Delta$ (Teorema \ref{teor:refi}).
-\item El problema del conjugado $G_M$ es equivalente al problema del conjugado en $M$ (Sección el problema del cojugado en el grupo de fracciones). Este último es soluble si $M$ admite una presentación ponderada (Sección el problema del conjugado en $M_\Sigma$).
+\item El problema del conjugado $G_M$ es equivalente al problema del conjugado en $M$ (Sección el problema del conjugado en el grupo de fracciones). Este último es soluble si $M$ admite una presentación ponderada (Sección el problema del conjugado en $M_\Sigma$).
 \end{enumerate}
 
 \subsubsection{Divisores y múltiplos comunes en monoides de Garside}
@@ -1334,7 +1370,7 @@ $$\Delta_n = (\sigma_1\cdots\sigma_{n-2}\sigma_{n-1})(\sigma_1\cdots\sigma_{n-2}
 
 \subsubsection{Trenzas reducidas}
 
-Consideramos el grupo simétrico $S_n$ que esta formado por todas las permutaciones del conjunto $\{1,\ldots,n\}$. Definimos la función teórica $\rho:S_n\rightarrow B_n^+$ como sigue. Consideramos las transposiciones simples $s_1,\ldots,s_{n-1}\in S_n$, donde $s_i$ permuta $i$ y $i+1$ y deja el resto de elementos fijos. Las transposiciones simples generan $S_n$, así que cada elemento $\omega\in S_n$ puede ser expresado como una palabra $\omega = s_{i_1}s_{i_2}\cdots s_{i_r}$ con $i_1,i_2,\ldots,i_r\in\{1,2,\ldots,n-1\}$. Si $r$ es minimal, entonces esta es una expresión reducida y establecemos que $\rho(\omega)=s_{i_1}s_{i_2}\cdots s_{i_r}$. Por el Teorema \ref{}, $\rho(\omega)$ es un elemento bien definido de $B_n^+$. Sea
+Consideramos el grupo simétrico $S_n$ que esta formado por todas las permutaciones del conjunto $\{1,\ldots,n\}$. Definimos la función teórica $\rho:S_n\rightarrow B_n^+$ como sigue. Consideramos las transposiciones simples $s_1,\ldots,s_{n-1}\in S_n$, donde $s_i$ permuta $i$ y $i+1$ y deja el resto de elementos fijos. Las transposiciones simples generan $S_n$, así que cada elemento $\omega\in S_n$ puede ser expresado como una palabra $\omega = s_{i_1}s_{i_2}\cdots s_{i_r}$ con $i_1,i_2,\ldots,i_r\in\{1,2,\ldots,n-1\}$. Si $r$ es minimal, entonces esta es una expresión reducida y establecemos que $\rho(\omega)=\sigma_{i_1}\sigma_{i_2}\cdots \sigma_{i_r}$. Sea
 
 $$\pi:B_n^+\rightarrow S_n$$
 
@@ -1436,7 +1472,7 @@ $$\sigma_{i,j}= \left\{ \begin{array}{lcc}
              \end{array}
    \right.$$
    
-Establecemos $s_{i,j}=\pi(\sigma_{i,j})\in S_n$. Es facil comprobar que $s_{i,j}=s_is_j$ es una expresión reducida cuando $|i-j|\geq 2$, y $s_{i,j}=s_is_js_i\in S_n$ es una expresión reducida cuando $|i-j|=1$. Entonces $\sigma_{i,j}=\rho(s_{i,j})\in B_n^{red}$ para todo $i,j$. Por lo tanto el conjunto $B_n^{red}$ es exhaustivo.
+Establecemos $s_{i,j}=\pi(\sigma_{i,j})\in S_n$. Es fácil comprobar que $s_{i,j}=s_is_j$ es una expresión reducida cuando $|i-j|\geq 2$, y $s_{i,j}=s_is_js_i\in S_n$ es una expresión reducida cuando $|i-j|=1$. Entonces $\sigma_{i,j}=\rho(s_{i,j})\in B_n^{red}$ para todo $i,j$. Por lo tanto el conjunto $B_n^{red}$ es exhaustivo.
 \newline
 \newline
 Para completar la prueba, hay que comprobar la condición de la Definición \ref{defi:garside}
@@ -1506,13 +1542,13 @@ Cualquier familia finita de elementos de $B_n^+$ tiene un único mcd por la dere
 
 $$rev(s_{i_1}s_{i_2}\cdots s_{i_{r-1}}s_{i_r})=s_{i_r}s_{i_{r-1}}\cdots s_{i_{2}}s_{i_1}$$
 
-Esta función esta bien definica, ya que las relaciones de la definición de $B_n^+$, siendo leidas de derecha a izquierda, dan las mismas relaciones. La función $rev$ es un antiautomorfismo involutivo de $B_n^+$ en el sentido en que $rev^2=id$, $rev(1)=1$ y $rev(ab)=rev(a)rev(b)$ para todo $a,b\in B_n^+$. Esta claro que $a\preceq b$ si y solo si $rev(a)\succeq rev(b)$ para $a,b\in B_n^+$. Usando estos hechos, es fácil deducir la existencia de mcd por la derecha y mcm por la izquierda a partir de la existencia de mcd por la izquierda y mcm por la derecha. La unicidad se obtiene del Lema \ref{lema:rel2}.
+Esta función esta bien definida, ya que las relaciones de la definición de $B_n^+$, siendo leidas de derecha a izquierda, dan las mismas relaciones. La función $rev$ es un antiautomorfismo involutivo de $B_n^+$ en el sentido en que $rev^2=id$, $rev(1)=1$ y $rev(ab)=rev(a)rev(b)$ para todo $a,b\in B_n^+$. Esta claro que $a\preceq b$ si y solo si $rev(a)\succeq rev(b)$ para $a,b\in B_n^+$. Usando estos hechos, es fácil deducir la existencia de mcd por la derecha y mcm por la izquierda a partir de la existencia de mcd por la izquierda y mcm por la derecha. La unicidad se obtiene del Lema \ref{lema:rel2}.
 
 \qed
 
 \subsubsection{Cálculos}
 
-La expansión $\beta=\Delta^sb$ de una trenza $\beta\in B_n$ que nos da la propiedad (5) de la sección previa puede ser explicitamente calculada. Representar $\beta$ por una palabra de generadores $\sigma_1,\ldots,\sigma_{n-1}$ y sus inversos. Definimos $\nu_i\in B_n^+$ por $\nu_i\sigma_i=\Delta_n$. Entonces $\sigma_i^{-1}=\Delta_n^{-1}\nu_i$. En la palabra representando $\beta$ reemplazamos todas las ocurrencias de $\sigma_i^{-1}$ por $\Delta_n^{-1}\nu_i$ y expandimos todo $\nu_i$ en términos de $\sigma_1,\ldots,\sigma_{n-1}$. En la palabra resultante tenemos solo los generadores $\sigma_i$ (no sus inversos) y potencias negativas de $\Delta_n$. Usando la identidad
+La expansión $\beta=\Delta^sb$ de una trenza $\beta\in B_n$ que nos da la propiedad (5) de la sección previa puede ser explícitamente calculada. Representar $\beta$ por una palabra de generadores $\sigma_1,\ldots,\sigma_{n-1}$ y sus inversos. Definimos $\nu_i\in B_n^+$ por $\nu_i\sigma_i=\Delta_n$. Entonces $\sigma_i^{-1}=\Delta_n^{-1}\nu_i$. En la palabra representando $\beta$ reemplazamos todas las ocurrencias de $\sigma_i^{-1}$ por $\Delta_n^{-1}\nu_i$ y expandimos todo $\nu_i$ en términos de $\sigma_1,\ldots,\sigma_{n-1}$. En la palabra resultante tenemos solo los generadores $\sigma_i$ (no sus inversos) y potencias negativas de $\Delta_n$. Usando la identidad
 
 \begin{equation}
 \sigma_i\Delta_n=\Delta_n\sigma_{n-i}
@@ -1573,7 +1609,7 @@ es la expansión requerida de $\beta$. La forma normal de $abc^2$ es $(a,d,e,b)$
 
 \subsection{Problema del conjugado en $B_n$}
 
-Ya hemos visto una solución para el problema del conjugado en el monoide $M_\Sigma$ y en el grupo de fracciones. Sin embargo estas soluciones a priori no son computables ya que el cardinal del conjunto de conjugados de un elemento puede ser infinito. Por tanto vamos a ver algunas definiciones y resultados que nos serán útiles en el apartado de criptoanálisis para resolver el problema del conjugado algoritmicamente.
+Ya hemos visto una solución para el problema del conjugado en el monoide $M_\Sigma$ y en el grupo de fracciones. Sin embargo estas soluciones a priori no son computables ya que el cardinal del conjunto de conjugados de un elemento puede ser infinito. Por tanto vamos a ver algunas definiciones y resultados que nos serán útiles en el apartado de criptoanálisis para resolver el problema del conjugado algorítmicamente.
 \newline
 \newline
 El orden parcial $\leq$ entre elementos de $B_n$ se define de la siguiente manera:
@@ -1639,15 +1675,15 @@ La prueba de este lema se puede ver en \cite{Alg}.
 \newline
 \section{Criptografía y criptoanálisis}
 
-En esta parte del trabajo no vamos a centrar en la criptografía. Vamos a introducir en que consiste la criptografía dando la definición de conceptos básicos necesarios. Esto nos dará pie a ver como podemos aplicar el grupo de trenzas a la criptografía de manera que podamos obtener distintas herramientas criptográficas. Por último veremos algunos de las debilidades que se pueden encontrar en el cifrado con el uso del grupo de trenzas e implementaremos un posible ataque.
+En esta parte del trabajo no vamos a centrar en la criptografía. Vamos a introducir en que consiste la criptografía dando la definición de conceptos básicos necesarios, tomados de \cite{in_cr}. Esto nos dará pie a ver como podemos aplicar el grupo de trenzas a la criptografía de manera que podamos obtener distintas herramientas criptográficas extraídas de \cite{Deh}. Por último veremos algunos de las debilidades que se pueden encontrar en el cifrado con el uso del grupo de trenzas e implementaremos un posible ataque que se pueden ver en \cite{Att} y \cite{in_cr}.
 
 \subsection{Introducción a la criptografía}
 
-La \textit{criptografía} es la ciencia de guardar los secretos a salvo. Se asume que un emisor, al que nos referiremos aquí como \textit{Alice}, quiere enviar un mensaje $m$ a un receptor, al que llamaremos \textit{Bob}. Ella usa un canal de comunicación inseguro, como puede ser una red de ordenadores o una linea de teléfono. El problema esta cuando la información que se transmite es confidencial. El mensaje puede ser interceptado y leido o incluso modificado por un agente externo al que nos referiremos como \textit{Eve}. El objetivo de la criptografía es proveer de métodos para evitar este tipo de ataques.
+La \textit{criptografía} es la ciencia de guardar los secretos a salvo. Se asume que un emisor, al que nos referiremos aquí como \textit{Alice}, quiere enviar un mensaje $m$ a un receptor, al que llamaremos \textit{Bob}. Ella usa un canal de comunicación inseguro, como puede ser una red de ordenadores o una linea de teléfono. El problema esta cuando la información que se transmite es confidencial. El mensaje puede ser interceptado y leído o incluso modificado por un agente externo al que nos referiremos como \textit{Eve}. El objetivo de la criptografía es proveer de métodos para evitar este tipo de ataques.
 
 \subsubsection{Cifrado}
 
-La tarea clásica y fundamental de la criptografía es la de proveer de \textit{confidencialidad} a través de los métodos de cifrado. El mensaje a transmitir se le llama \textit{texto plano}. Alice \textit{cifra} el texto plano $m$ y obtiene un \textit{texto cifrado} $c$. El texto cifrado $c$ es transmitido a Bob. Bob \textit{descifrando} obtiene el texto plano a partir del texto crifrado. Para \textit{descifrar}, Bob necesita una información secreta, la llave de descifrado. La adversaria Eve todavía podría interceptar el mensaje cifrado. Sin embargo, el cifrado del texto plano debería garantizar la confidencialidad y prevenir que pueda extraer alguna información del texto plano a partir del texto cifrado.
+La tarea clásica y fundamental de la criptografía es la de proveer de \textit{confidencialidad} a través de los métodos de cifrado. El mensaje a transmitir se le llama \textit{texto plano}. Alice \textit{cifra} el texto plano $m$ y obtiene un \textit{texto cifrado} $c$. El texto cifrado $c$ es transmitido a Bob. Bob \textit{descifrando} obtiene el texto plano a partir del texto cifrado. Para \textit{descifrar}, Bob necesita una información secreta, la llave de descifrado. La adversaria Eve todavía podría interceptar el mensaje cifrado. Sin embargo, el cifrado del texto plano debería garantizar la confidencialidad y prevenir que pueda extraer alguna información del texto plano a partir del texto cifrado.
 \newline
 \newline
 El cifrado es muy antiguo. Por ejemplo, el \textit{cifrado César} fue introducido hace más de $2000$ años. Cada método de cifrado provee un \textit{algoritmo de cifrado} $E$ y un \textit{algoritmo de descifrado} $D$. En los esquemas de cifrado clásicos, ambos algoritmos dependen de la misma llave secreta $k$. Esta llave $k$ se usa para cifrar y descifrar. A estos métodos de cifrado se les llama \textit{simétricos}.
@@ -1660,10 +1696,10 @@ En $1976$, Diffie y Hellman introdujeron el revolucionario concepto de \textit{c
 $$D(sk,E(pk,m))=m$$
 \
 \newline
-Cualquiera puede cifrar fácilmente el texto plano usando la llave pública $pk$, pero la otra dirección es complicada. Es practicamente imposible deducir el texto plano a partir del texto cifrado sin saber la llave secreta $sk$.
+Cualquiera puede cifrar fácilmente el texto plano usando la llave pública $pk$, pero la otra dirección es complicada. Es prácticamente imposible deducir el texto plano a partir del texto cifrado sin saber la llave secreta $sk$.
 \newline
 \newline
-Los métodos de cifrado de llave pública requieren cálculos más complejos y son menos eficientes que los métodos de clásicos de cifrado simétrico. Por eso los métodos simétricos son usados para el cifrado de grandes cantidades de datos. Antes de aplicar el cifrado simétrico, el emisor y el receptor acuerdan una llave. Para mantener la llave en secreto necesitan un canal de comunicación seguro. Lo habitual es utilizar el cifrado de llave pública para este proposito.
+Los métodos de cifrado de llave pública requieren cálculos más complejos y son menos eficientes que los métodos de clásicos de cifrado simétrico. Por eso los métodos simétricos son usados para el cifrado de grandes cantidades de datos. Antes de aplicar el cifrado simétrico, el emisor y el receptor acuerdan una llave. Para mantener la llave en secreto necesitan un canal de comunicación seguro. Lo habitual es utilizar el cifrado de llave pública para este propósito.
 
 \subsubsection{Objetivos de la criptografía}
 
@@ -1672,12 +1708,12 @@ Proveer de \textbf{confidencialidad} no es el único objetivo de la criptografí
 \begin{itemize}
 \item \textbf{Integridad de los datos:} El receptor de los datos debería ser capaz de comprobar si el mensaje ha sido modificado durante la transmisión, ya sea accidentalmente o deliberadamente. Nadie debería ser capaz de alterar total o parcialmente el mensaje original.
 
-\item \textbf{Autenticación:} El receptor del mensaje debería ser capaz de verificar su origen. Nadie debería ser capaz de enviar un mensaje a Bob haciendose pasar por Alice (\textit{autenticación del origen de los datos}). Cuando se inicia la comunicación, Alice y Bob debería ser capaz de identificar el uno al otro (\textit{autenticación de identidad}).
+\item \textbf{Autenticación:} El receptor del mensaje debería ser capaz de verificar su origen. Nadie debería ser capaz de enviar un mensaje a Bob haciéndose pasar por Alice (\textit{autenticación del origen de los datos}). Cuando se inicia la comunicación, Alice y Bob debería ser capaz de identificar el uno al otro (\textit{autenticación de identidad}).
 
 \item \textbf{No repudiación:} El emisor debería no ser capaz negar que envió el mensaje.
 \end{itemize}
 
-Hay tanto métodos simétricos como de llave pública para asegurar la integridad de los mensajes. Los métodos simétricos clásicos requieren una llave secreta $k$ que es compartida por el emisor y el receptor. El mensaje $m$ se aumenta con el \textit{código de autenticación de mensaje} (MAC acrónimo en inglés). El código es generado por un algoritmo y depende de una llave secreta. el mensaje aumentado $(m,MAC(k,m))$ está protegido contra modificaciónes. El receptor del mensaje puede comprobar la integridad del mensaje $(m,\overline{m})$ comprobando que
+Hay tanto métodos simétricos como de llave pública para asegurar la integridad de los mensajes. Los métodos simétricos clásicos requieren una llave secreta $k$ que es compartida por el emisor y el receptor. El mensaje $m$ se aumenta con el \textit{código de autenticación de mensaje} (MAC acrónimo en inglés). El código es generado por un algoritmo y depende de una llave secreta. el mensaje aumentado $(m,MAC(k,m))$ está protegido contra modificaciones. El receptor del mensaje puede comprobar la integridad del mensaje $(m,\overline{m})$ comprobando que
 
 $$MAC(k,m)=\overline{m}$$
 
@@ -1692,7 +1728,7 @@ $$Verify(pk,s,m)=ok$$
 con la llave pública de Alice $pk$.
 \newline
 \newline
-No es común firmar el mensaje en si mismo, sino usar primero una \textit{función hash criptográfica} y despues firmar el valor hash. Las firmas digitales dependen del mensaje. Mensajes distintos producen firmas distintas. Así que, como los códigos de autenticación de mensaje, las firmas digitales pueden ser utilizadas para garantizar la integridad de los datos.
+No es común firmar el mensaje en si mismo, sino usar primero una \textit{función hash criptográfica} y después firmar el valor hash. Las firmas digitales dependen del mensaje. Mensajes distintos producen firmas distintas. Así que, como los códigos de autenticación de mensaje, las firmas digitales pueden ser utilizadas para garantizar la integridad de los datos.
 
 
 \subsubsection{Protocolos criptográficos}
@@ -1703,16 +1739,16 @@ Los algoritmos de cifrado y descifrado, funciones hash criptográficas y los gen
 En muchos casos un único bloque de construcción no puede resolver un problema, sino que se necesita combinar varias primitivas. Una serie de pasos deben ser ejecutados para completar la tarea. A la sucesión de pasos bien definidos se le denomina \textit{protocolo criptográfico}. Es habitual añadir una condición a esta definición y es la de dos o más partes esten involucradas. Solo usaremos el término ``protocolo'' si se requiere al menos dos personas para completar la tarea.
 \newline
 \newline
-Como contraejemplo echamos un vistazo al esquema de firma digital. Un esquema típico para generar una firma digital es primero aplicar una función hash criptográfica $h$ al mensaje $m$ y después, en un segundo paso, calcular la firma utilizando el algoritmo de descifrado de llave pública sobre el valor hash $h(m)$. Ambos pasos estan hechos por una única persona, por lo que no se considera un protocolo.
+Como contraejemplo echamos un vistazo al esquema de firma digital. Un esquema típico para generar una firma digital es primero aplicar una función hash criptográfica $h$ al mensaje $m$ y después, en un segundo paso, calcular la firma utilizando el algoritmo de descifrado de llave pública sobre el valor hash $h(m)$. Ambos pasos están hechos por una única persona, por lo que no se considera un protocolo.
 
 \subsubsection{Intercambio de llaves}
-Los criptosistemas de llave pública y secreta asumen que los participantes tienen acesso a las llaves. En la práctica, uno puede utilizar estos sistemas si el problema de la distribución de llaves esta resuelto.
+Los criptosistemas de llave pública y secreta asumen que los participantes tienen acceso a las llaves. En la práctica, uno puede utilizar estos sistemas si el problema de la distribución de llaves esta resuelto.
 \newline
 \newline
-El concepto de seguridad para llaves tiene dos niveles. El primer nivel emplea llaves secretas de larga duración, denominadas \textit{llaves maestras}. Las llaves del segundo nivel estan asociadas con la sesión, por lo que son llamadas \textit{llaves de sesión}. Una llave de sesión es solo válida durante el breve tiempo de duración de una sesión. Las llaves maestras son normalmente las llaves empleadas en un criptosistema de llave pública.
+El concepto de seguridad para llaves tiene dos niveles. El primer nivel emplea llaves secretas de larga duración, denominadas \textit{llaves maestras}. Las llaves del segundo nivel están asociadas con la sesión, por lo que son llamadas \textit{llaves de sesión}. Una llave de sesión es solo válida durante el breve tiempo de duración de una sesión. Las llaves maestras son normalmente las llaves empleadas en un criptosistema de llave pública.
 \newline
 \newline
-Hay dos razones principales para el concepto a dos niveles. La primera es que el cifrado por llave simétrica es más eficiente que el cifrado de llave pública. por tanto, las llaves de sesión suelen ser llaves de criptosistemas simétricos, y esas deben ser intercambiadas de manera segura, usando otras llaves. La segunda razón y probablemente más importante es que el concepto a dos niveles provee de más seguridad. Si la seguridad de una sesión se ve comprometida, solo afecta a esa sesión. Dada una llave de sesión, el número de textos cifrados disponibles para el criptoanalisis es limitado. Las llaves de sesión son generadas cuando se necesitan utilizar y se desechan después de ser usadas.
+Hay dos razones principales para el concepto a dos niveles. La primera es que el cifrado por llave simétrica es más eficiente que el cifrado de llave pública. por tanto, las llaves de sesión suelen ser llaves de criptosistemas simétricos, y esas deben ser intercambiadas de manera segura, usando otras llaves. La segunda razón y probablemente más importante es que el concepto a dos niveles provee de más seguridad. Si la seguridad de una sesión se ve comprometida, solo afecta a esa sesión. Dada una llave de sesión, el número de textos cifrados disponibles para el criptoanálisis es limitado. Las llaves de sesión son generadas cuando se necesitan utilizar y se desechan después de ser usadas.
 \newline
 \newline
 La llave maestra se utiliza para generar las llaves de sesión. Por tanto es especialmente importante prevenir los ataques sobre la llave maestra. Por eso el acceso a la llave maestra esta estrictamente limitado.
@@ -1737,7 +1773,7 @@ La llave maestra se utiliza para generar las llaves de sesión. Por tanto es esp
 
 
 
-\subsubsection{Plataformas criptograficas y grupos de plataforma}
+\subsubsection{Plataformas criptográficas y grupos de plataforma}
 
 Si un protocolo criptográfico esta basado en un objeto algebraico como puede ser un grupo, un anillo u otros, entonces es llamado \textit{plataforma criptográfica} o \textit{plataforma}. En criptografía basada en un grupo a este se le llama \textit{grupo de plataforma} para el protocolo criptográfico. La seguridad de un protocolo criptográfico depende entonces de la dificultad, computacional o teórica, de resolver un problema de teoría de grupos en el grupo de plataforma.
 \newline
@@ -1798,7 +1834,7 @@ $$t_A = s\ u(p_1',...,p_l')^{-1} = s\ r\ u(p_1,...,p_l)^{-1}r^{-1}=$$
 $$=s\ r\ s^{-1}r^{-1}= s\ v(q_1,...,q_m)\ s^{-1}r^{-1}=v(q_1',...,q_m')r^{-1} = t_B$$
 \
 \newline
-La seguridad esta basada en la dificultad de resolver una variante del Problema de Búsqueda del Conjugado en $B_n$, que es llamado el Problema de Búsqueda del conjugado Múltiple, en el cual se intenta encontrar una trenza conjugadora no de un único par de trenzas conjugadas $(p,p')$ sino de una familia finita de pares de trenzas $(p_1,p_1'),...,(p_l,p_l')$. Nótese que el Problema de Búsqueda del Conjugado Múltiple es más facil que el Problema de Búsqueda del Conjugado, puesto que se tiene más información de los conjugadores. Sin embargo, es lo suficientemente complejo como para que el intruso sea incapaz de encontrar la llave secreta $r$ conociendo los pares $(p_1,p_1'),...,(p_l,p_l')$. De igual manera, no será capaz de encontrar la llave secreta $s$ conociendo los pares $(q_1,q_1'),...,(q_m,q_m')$.
+La seguridad esta basada en la dificultad de resolver una variante del Problema de Búsqueda del Conjugado en $B_n$, que es llamado el Problema de Búsqueda del conjugado Múltiple, en el cual se intenta encontrar una trenza conjugadora no de un único par de trenzas conjugadas $(p,p')$ sino de una familia finita de pares de trenzas $(p_1,p_1'),...,(p_l,p_l')$. Nótese que el Problema de Búsqueda del Conjugado Múltiple es más fácil que el Problema de Búsqueda del Conjugado, puesto que se tiene más información de los conjugadores. Sin embargo, es lo suficientemente complejo como para que el intruso sea incapaz de encontrar la llave secreta $r$ conociendo los pares $(p_1,p_1'),...,(p_l,p_l')$. De igual manera, no será capaz de encontrar la llave secreta $s$ conociendo los pares $(q_1,q_1'),...,(q_m,q_m')$.
 
 \begin{ejem}
 Vamos a realizar un ejemplo de intercambio de llaves utilizando el esquema Anshel-Anshel-Goldfeld. Para ello escogeremos como grupo de trabajo el grupo de trenza $B_6$. Tomaremos como llaves públicas de Alice y Bob las trenzas $p_1 = \sigma_1, p_2 = \sigma_3, p_3 =\sigma_5^{-1}$ y $q_1 = \sigma_4, q_2 = \sigma_2^{-1}, q_3 = \sigma_3^{-1}, q_4 = \sigma_1$ respectivamente. Obtenemos las llaves privadas utilizando
@@ -1819,7 +1855,7 @@ $$p_2' = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3 \sigma_2\sigma_3\si
 $$p_3' = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_5^{-1} \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}$$
 \ 
 \newline
-A la hora de enviar los conjugados es obvio que estos se tienen que normalizar antes, ya que si no se hace esto es facilmente visible la llave secreta. Nosotros no lo haremos en este caso para facilitar los calculos. Comprobamos que la llave común calculada por ambas partes coincide:
+A la hora de enviar los conjugados es obvio que estos se tienen que normalizar antes, ya que si no se hace esto es fácilmente visible la llave secreta. Nosotros no lo haremos en este caso para facilitar los cálculos. Comprobamos que la llave común calculada por ambas partes coincide:
 
 $$t_A = s\ u(p_1',...,p_l')^{-1} = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3\cdot\sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3^{-1} \sigma_1^{-1}\sigma_3^{-1} \sigma_1^{-1}\sigma_5 \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}=$$
 
@@ -1888,10 +1924,10 @@ Aquí el problema es que Bob desea enviar un mensaje $m$ a Alice, y el puede usa
 La notación será la empleada en el esquema de intercambio de llaves previo. Además, asumimos que $h$ es una \textit{función hash unidireccional libre de colisión} de $B_n$ a $\{0,1\}^N$, es decir, una función calculable tal que la probabilidad de que $h(b_1)=h(b_2)$ para $b_1\neq b_2$ es despreciable (libre de colisión) y recuperar $b$ a partir de $h(b)$ es inviable.
 \newline
 \newline
-Comenzamos con $p\in B_n$ y $s\in LB_n$. La llave pública de Alice es el par $(p,p')$, con $p'=sps^{-1}$. La llave privada de Alice es $s$. Con el fin de enviar el mensaje $m_B$, el cual asumimos que se encuentra en $\{0,1\}^N$, usando $\oplus$ para la operación Booleana ``or-exclusivo"(es decir, la suma en $\mathbb{Z}/2\mathbb{Z}$):
+Comenzamos con $p\in B_n$ y $s\in LB_n$. La llave pública de Alice es el par $(p,p')$, con $p'=sps^{-1}$. La llave privada de Alice es $s$. Con el fin de enviar el mensaje $m_B$, el cual asumimos que se encuentra en $\{0,1\}^N$, usando $\oplus$ para la operación booleana ``or-exclusivo"(es decir, la suma en $\mathbb{Z}/2\mathbb{Z}$):
 
 \begin{enumerate}
-\item Bob elige una trenza aleatoria $r$ en $UB_n$ y envia el texto cifrado $m''=m_B\oplus h(rp'r^{-1})$ junto con el dato auxiliar $p''=rpr^{-1}$.
+\item Bob elige una trenza aleatoria $r$ en $UB_n$ y envía el texto cifrado $m''=m_B\oplus h(rp'r^{-1})$ junto con el dato auxiliar $p''=rpr^{-1}$.
 \item Alice calcula $m_A = m_B$. 
 
 \end{enumerate}
@@ -1911,7 +1947,7 @@ Ahora el problema es que Alice desea probar su identidad a Bob, es decir, ella d
 
 \subsubsection*{Esquema inspirado en Diffie-Hellman}
 
-El siguiente esquema desafío-respuesta esta ínspirado en el esquema previo de Ko \& al. La llave pública es un par de trenzas conjugadas $(p,p')$ en $B_n$ con $p'=sps^{-1}$, mientras que la llave privada de Alice es la trenza $s$ utilizada para conjugar $p$ y $p'$. Asumimos que $s\in LB_n$. También usaremos $h$ como función hash unidireccional libre de colisión en $B_n$. Entonces para realizar la autenticación se hace el siguiente intercambio:
+El siguiente esquema desafío-respuesta esta inspirado en el esquema previo de Ko \& al. La llave pública es un par de trenzas conjugadas $(p,p')$ en $B_n$ con $p'=sps^{-1}$, mientras que la llave privada de Alice es la trenza $s$ utilizada para conjugar $p$ y $p'$. Asumimos que $s\in LB_n$. También usaremos $h$ como función hash unidireccional libre de colisión en $B_n$. Entonces para realizar la autenticación se hace el siguiente intercambio:
 
 \begin{enumerate}
 \item Bob elige una trenza aleatoria $r\in UB_n$, y le envía el desafío $p''=rpr^{-1}$ a Alice.
@@ -1919,7 +1955,7 @@ El siguiente esquema desafío-respuesta esta ínspirado en el esquema previo de 
 \item Bob comprueba que $y=h(rp'r^{-1})$.
 \end{enumerate}
 
-Una respuesta correcta por parte de Alice implica la aceptación por parte de Bob, debido a que las trenzas $r$ y $s$ conmutan, y por tanto, tenemos que $rp'r^{-1}=sp''s^{-1}$. Por otra parte, la aceptación ocurre solo si la respuesta de $y$ de $A$ satisface $y=h(rp'r^{-1})$, por tanto, bajo las hipotesis de $h$, solo si Alice ha sido capaz de resolver el Problema del Conjugado inspirado en Diffie-Helman para $B_n$. Una vez más, la seguridad recae en la dificultad de resolver este problema.
+Una respuesta correcta por parte de Alice implica la aceptación por parte de Bob, debido a que las trenzas $r$ y $s$ conmutan, y por tanto, tenemos que $rp'r^{-1}=sp''s^{-1}$. Por otra parte, la aceptación ocurre solo si la respuesta de $y$ de $A$ satisface $y=h(rp'r^{-1})$, por tanto, bajo las hipótesis de $h$, solo si Alice ha sido capaz de resolver el Problema del Conjugado inspirado en Diffie-Helman para $B_n$. Una vez más, la seguridad recae en la dificultad de resolver este problema.
 
 
 \subsubsection*{Esquema inspirado en Fiat-Shamir} Este esquema de autenticación es propuesto por Sibert \& al. Este esquema hereda del esquema Fiat-Shamir lo que implica repetir el desafío-respuesta en tres pasos. Como antes, las llaves públicas son un par de trenzas conjugadas $(p,p')$ con $p'=sps^{-1}$, mientras $s$, la trenza conjugadora, es la llave privada de Alice. En contraste al esquema previo $p,s\in B_n$, es decir, no asumimos que pertenezcan a un subgrupo en particular como $LB_n$ o $UB_n$. Asumimos que $h$ es una función hash unidireccional libre de colisiones en $B_n$. El procedimiento de autenticación consiste en repetir $k$ veces los siguientes tres pasos:
@@ -1931,7 +1967,7 @@ Una respuesta correcta por parte de Alice implica la aceptación por parte de Bo
 \item Si $c=1$, Alice envía $y=rs$, y Bob comprueba que $x=h(yp'y^{-1})$.
 \end{enumerate}
 
-Si Alice conoce $s$ y responde correctamente, ella es aceptada por Bob. Para $c=0$, tenemos directamente $x=h(yp'y^{-1})$, mientras que para $c=1$, tenemos $ypy^{-1}=(rs)p(rs)^{-1}=rp'r^{-1}$, por tanto $x=h(ypy^{-1})$. Por otra parte, si Alice es deshonesta, ella puede hacer trampas y enviar la respuesta correcta en ambos casos. En el caso $c=0$, basta con que Alice mantenga un registro de $r$ y enviar respuestas coherentes. En el caso $c=1$ es suficiente con que el compromiso $x$ se elige para anticipar la igualdad $x=h(ypy^{-1})$ que también es fácil. Pero un tramposo no puede elegir su compromiso de tal manera que acierte correctamente ambos casos. Si anticipa $c=0$, la probabilidad de responder correctamente para $c=1$ es despreciable y viceversa. Un tramposo nunca tendra más de $0.5$ de probabilidad de acertar. Así que si repetimos el intercambio $k$ veces, la probabilidad del tramposo de acertar sera de $1/2^k$.
+Si Alice conoce $s$ y responde correctamente, ella es aceptada por Bob. Para $c=0$, tenemos directamente $x=h(yp'y^{-1})$, mientras que para $c=1$, tenemos $ypy^{-1}=(rs)p(rs)^{-1}=rp'r^{-1}$, por tanto $x=h(ypy^{-1})$. Por otra parte, si Alice es deshonesta, ella puede hacer trampas y enviar la respuesta correcta en ambos casos. En el caso $c=0$, basta con que Alice mantenga un registro de $r$ y enviar respuestas coherentes. En el caso $c=1$ es suficiente con que el compromiso $x$ se elige para anticipar la igualdad $x=h(ypy^{-1})$ que también es fácil. Pero un tramposo no puede elegir su compromiso de tal manera que acierte correctamente ambos casos. Si anticipa $c=0$, la probabilidad de responder correctamente para $c=1$ es despreciable y viceversa. Un tramposo nunca tendrá más de $0.5$ de probabilidad de acertar. Así que si repetimos el intercambio $k$ veces, la probabilidad del tramposo de acertar sera de $1/2^k$.
 \newline
 \newline
 La seguridad de este esquema radica en la dificultad del Problema de Búsqueda del Conjugado original en $B_n$. Tener más de un 0.5 de probabilidad de ser aceptado significa ser capaz de responder para $c=0$ y $c=1$, es decir, conocer $y,y'$ que cumplan $x=h(ypy^{-1})$ y $x=h(y'p'y'^{-1})$. Como se supone que $h$ es libre de colisión, es decir, es virtualmente inyectiva, se tendría que $ypy^{-1}=y'p'y'^{-1}$, que es equivalente a $(y'^{-1}y)p(y'^{-1}y)^{-1}=p'$. Esto implicaría que para que suceda esto se debe solucionar el Problema de Búsqueda del Conjugado para $(p,p')$.
@@ -1940,7 +1976,7 @@ La seguridad de este esquema radica en la dificultad del Problema de Búsqueda d
 El problema consiste en que Alice quiere enviar a Bob un mensaje (texto plano o cifrado) junto con una firma que pruebe el origen del mensaje. Observar que con la firma se puede implementar la autenticación. Esto se haría enviando Bob a Alice un mensaje y que esta se lo devolviera firmado.
 \newline
 \newline
-Vamos a ver dos esquemas de firma basados en trenzas propuestos por Ko \& al. El primer esquema es más simple y legible mietras que el segundo es el esquema recomendado. Estos esquemas usan la supuesta diferencia de complejidad entre el Problema del Conjugado y el Problema de Búsqueda del Conjugado. Para valores medios de $n$ (típicamente $n=20$), al usar una representación lineal de las trenzas hace posible decidir si dos trenzas de $B_n$ son conjugadas sin ser capaz de determinar la trenza conjugada cuando existe.
+Vamos a ver dos esquemas de firma basados en trenzas propuestos por Ko \& al. El primer esquema es más simple y legible mientras que el segundo es el esquema recomendado. Estos esquemas usan la supuesta diferencia de complejidad entre el Problema del Conjugado y el Problema de Búsqueda del Conjugado. Para valores medios de $n$ (típicamente $n=20$), al usar una representación lineal de las trenzas hace posible decidir si dos trenzas de $B_n$ son conjugadas sin ser capaz de determinar la trenza conjugada cuando existe.
 
 \subsubsection*{Esquema simple}
 Las llaves públicas son un par de trenzas conjugadas $(p,p')$ con $p'=sps^{-1}$, mientras que $s$, que es la trenza conjugadora, es la llave privada de Alice. Las trenzas $p$ y $s$ pertenecen a $B_n$. Usamos $H$ como función hash unidireccional libre de colisión de $\{0,1\}^*$ a $B_n$. Usamos $\sim$ para la conjugación en $B_n$. El esquema es como sigue:
@@ -1969,21 +2005,21 @@ El análisis de seguridad es similar al del esquema previo.
 Cuando se introdujeron los criptosistemas basados en grupos de trenzas hubo una gran expectación. La dificultad de los principales problemas de teoría de grupos, el problema del conjugado y el problema de la búsqueda del conjugado, parecían lo suficientemente complejos en $B_n$ como para ser seguro. Sin embargo las investigaciones que se han realizado sobre el grupo de trenzas han hecho evidente que, sin consideraciones especiales, los criptosistemas basados en estos son inseguros. A continuación vamos a ver algunos de los posibles ataques que se han visto.
 \newline
 \newline
-Estos ataques se pueden clasificar según diferentes categorías. Ataques basados directamente en la solución del problema del conjugado vía los llamados conjuntos de cumbre, ataques basados en longitud los cuales utilizan la longitud de las trenzas, ataques teoricos de representación, y finalmente ataques en la difusión de multiplicación de elementos de grupo por variación de formas normales.
+Estos ataques se pueden clasificar según diferentes categorías. Ataques basados directamente en la solución del problema del conjugado vía los llamados conjuntos de cumbre, ataques basados en longitud los cuales utilizan la longitud de las trenzas, ataques teóricos de representación, y finalmente ataques en la difusión de multiplicación de elementos de grupo por variación de formas normales.
 
 \subsubsection{Ataques al Problema de Búsqueda del Conjugado}
 
 Ya que la seguridad de los criptosistemas de grupos de trenzas iniciales estaba basada en la dificultad en resolver el problema del conjugado, el problema de búsqueda del conjugado y el problema de búsqueda del conjugador, la mayoría de los ataques han ido enfocados a estos problemas. El problema del conjugado para $B_n$ fue resuelto originalmente por Garside como ya hemos visto y se asume que es complejo. Por lo tanto pareció que usar el problema del conjugado o el problema de búsqueda del conjugador era suficientemente seguro para propósitos criptográficos. Recientemente ha habido investigaciones sobre la complejidad de la solución para varios problemas de búsqueda del conjugado y se han expuesto debilidades en los criptosistemas basados en estos.
 \newline
 \newline
-La solución para el problema del conjugado en $B_n$ usa lo que llamamos \textit{conjuntos de cumbre}. Para cada $b\in B_n$ su conjunto de cumbre, el cual denotaremos por $SS(b)$ consiste de un conjunto finito de conjugados de $b$. El conjunto de cumbre contiene un subconjunto llamado super conjunto de cumbre denotado por $SSS(b)$ que es algoritmicamente computable. El-Rifai y Morton demostraron como calcular para cada $b\in B_n$ el superconjunto de cumbre $SSS(b)$. Es más, dos trenzas $b,b'\in B_n$ son conjugadas si y solo si sus super conjuntos de cumbre coinciden, o equivalentemente, si y solo si se intersecan.
+La solución para el problema del conjugado en $B_n$ usa lo que llamamos \textit{conjuntos de cumbre}. Para cada $b\in B_n$ su conjunto de cumbre, el cual denotaremos por $SS(b)$ consiste de un conjunto finito de conjugados de $b$. El conjunto de cumbre contiene un subconjunto llamado super conjunto de cumbre denotado por $SSS(b)$ que es algorítmicamente computable. El-Rifai y Morton demostraron como calcular para cada $b\in B_n$ el super conjunto de cumbre $SSS(b)$. Es más, dos trenzas $b,b'\in B_n$ son conjugadas si y solo si sus super conjuntos de cumbre coinciden, o equivalentemente, si y solo si se intersecan.
 \newline
 \begin{teor}
 Para cada $b\in B_n$ el conjunto $SSS(b)$ es finito y computacionalmente computable. Si $b,b'\in B_n$ entonces $b$ y $b'$ son conjugados si y solo si $SSS(b)\ \cap\ SSS(b')\neq \emptyset$.
 \end{teor}
 \ 
 \newline
-Por lo tanto para resolver el problema del conjugado, y en esencia romper los protocolos de tipo Ko-Lee, hay que encontrar el superconjunto de cumbre de los elementos. Recientemente se ha encontrado un refinamiento del superconjunto de cumbre llamado ultra conjunto de cumbre $USS(b)$ introducido por Gebhardt. El tamaño de $USS(b)$ es a menudo mucho más pequeño que $SSS(b)$.
+Por lo tanto para resolver el problema del conjugado, y en esencia romper los protocolos de tipo Ko-Lee, hay que encontrar el super conjunto de cumbre de los elementos. Recientemente se ha encontrado un refinamiento del super conjunto de cumbre llamado ultra conjunto de cumbre $USS(b)$ introducido por Gebhardt. El tamaño de $USS(b)$ es a menudo mucho más pequeño que $SSS(b)$.
 \ 
 \newline
 
@@ -1996,13 +2032,13 @@ El protocolo Anshel-Anshel-Goldfeld depende del problema de búsqueda del conjug
 Los ataques basados en longitud han sido usados efectivamente en ataques al problema de búsqueda del conjugador. Recordamos que usando la forma normal de Garside cada trenza tiene una longitud bien definida. Esto nos da una función de longitud bien definida en el grupo de trenzas $B_n$.
 \newline
 \newline
-En los protocolos del tipo Anshel-Anshel-Goldfeld que dependen del problema del conjugador un atacante tiene acceso a multiples conjuntos de pares $(a,axa^{-1})$ para un valor secreto $a$ tomado de un conjunto con un número finito de generadores conocidos. El principio común en los ataques basados en longitud es intentar recuperar un conjugador para el par $(b,b')$ el cual se supone se deriva a la forma de $b$ conjugando iterativamente $b'$ en un nuevo elemento $tb't^{-1}$ de manera que la longitud sea mínima. Si definimos la distancia entre dos trenzas $a,b$ como $d(a,b)=l(ab^{-1})$, esto nos da una verdadera métrica en el grupo de trenzas la cual satisface la desigualdad triangular. La idea en un ataque basado en longitud es que no existe demasiada cancelación multiplicando por generadores $\sigma_i$ y por lo tanto si un generador $\sigma_i$ no es un segmento inicial de un conjugador $a$ entonces con una probabilidad distinta de cero la longitud $\sigma(at_ia^{-1})\sigma^{-1}$ es mayor que la longitud de $at_ia^{-1}$. Entonces aplicar cada generador $\sigma_i$ hasta que la longitud se reduzca y este generador puede ser despegado del conjugador.
+En los protocolos del tipo Anshel-Anshel-Goldfeld que dependen del problema del conjugador un atacante tiene acceso a múltiples conjuntos de pares $(a,axa^{-1})$ para un valor secreto $a$ tomado de un conjunto con un número finito de generadores conocidos. El principio común en los ataques basados en longitud es intentar recuperar un conjugador para el par $(b,b')$ el cual se supone se deriva a la forma de $b$ conjugando iterativamente $b'$ en un nuevo elemento $tb't^{-1}$ de manera que la longitud sea mínima. Si definimos la distancia entre dos trenzas $a,b$ como $d(a,b)=l(ab^{-1})$, esto nos da una verdadera métrica en el grupo de trenzas la cual satisface la desigualdad triangular. La idea en un ataque basado en longitud es que no existe demasiada cancelación multiplicando por generadores $\sigma_i$ y por lo tanto si un generador $\sigma_i$ no es un segmento inicial de un conjugador $a$ entonces con una probabilidad distinta de cero la longitud $\sigma(at_ia^{-1})\sigma^{-1}$ es mayor que la longitud de $at_ia^{-1}$. Entonces aplicar cada generador $\sigma_i$ hasta que la longitud se reduzca y este generador puede ser despegado del conjugador.
 \newline
 \newline
-Ha habido un considerable exito con esta técnica. Parte del exito sin embargo es debido al hecho de que los grupos de trenzas tienen la propiedad de grupo libre genérica. Hacer reducción en longitud es realmente hacer reducción de grupo libre. De hecho, muchos criptosistemas basados en grupos de trenzas han sido rotos porque los grupos de trenzas tenían la propiedad de grupo libre genérica.
+Ha habido un considerable éxito con esta técnica. Parte del éxito sin embargo es debido al hecho de que los grupos de trenzas tienen la propiedad de grupo libre genérica. Hacer reducción en longitud es realmente hacer reducción de grupo libre. De hecho, muchos criptosistemas basados en grupos de trenzas han sido rotos porque los grupos de trenzas tenían la propiedad de grupo libre genérica.
 
 \subsubsection{Ataques teóricos de representación}
-Muchos ataques con exito en los protocolos criptográficos de grupo de trenzas han usado varias representaciones lineales. Burau, Burau cloreado y Lawrence-Krammer. En muchos ataques encontrar la llave secreta es reducido, usando estas representaciones, a algebra lineal sobre campos finitos. Recordamos como procedía el protocolo Ko-Lee:
+Muchos ataques con éxito en los protocolos criptográficos de grupo de trenzas han usado varias representaciones lineales. Burau, Burau cloreado y Lawrence-Krammer. En muchos ataques encontrar la llave secreta es reducido, usando estas representaciones, a álgebra lineal sobre campos finitos. Recordamos como procedía el protocolo Ko-Lee:
 \newline
 \newline
 Bob y Alice eligen un subgrupo dentro de $B_n$ con elementos conmutativos. $A$ es el subgrupo de Alice y $B$ el subgrupo de Bob. Alice elige aleatoriamente un $a\in A$. Este elemento $a$ será su llave secreta. Su llave pública será $(g,g^a)$ donde $g^a=aga^{-1}$ es el conjugado de $g$ por su llave secreta $a$. Toda información pública y comunicación está en términos de las formas normales de estos elementos.
@@ -2011,7 +2047,7 @@ Bob y Alice eligen un subgrupo dentro de $B_n$ con elementos conmutativos. $A$ e
 De igual manera Bob elige aleatoriamente un elemento $b\in B$. Este elemento $b$ será su llave secreta. Su llave pública es $(g,g^b)$ donde $g^b = b^{-1}gb$ es el conjugado de $g$ por su llave secreta $b$. Como Alice, toda su información publica y comunicación esta en términos de la forma normal de estos elementos.
 \newline
 \newline
-La llave secreta compartida es $g^{ab}$. Cheon y Jun demostraron como usar la representación de Lawrence-Krammer para encontrar la llave secreta conociendo solo $g^a$ y $g^b$. Supongamos que $Y_a=\rho(g^a)$ y  $Y_b=\rho(g^b)$ son las imagenes de $g^a$ y $g^b$ bajo la representación de Lawrence-Krammer $\rho$. Cheon y Kim trabajando módulo un primo $p$ y ciertos polinomios irreducibles en $t$ y $q$ solucionan para la matriz $M$ en las ecuaciones
+La llave secreta compartida es $g^{ab}$. Cheon y Jun demostraron como usar la representación de Lawrence-Krammer para encontrar la llave secreta conociendo solo $g^a$ y $g^b$. Supongamos que $Y_a=\rho(g^a)$ y  $Y_b=\rho(g^b)$ son las imágenes de $g^a$ y $g^b$ bajo la representación de Lawrence-Krammer $\rho$. Cheon y Kim trabajando módulo un primo $p$ y ciertos polinomios irreducibles en $t$ y $q$ solucionan para la matriz $M$ en las ecuaciones
 
 $$Y_aM=MY_b$$
 $$\rho(\sigma_i)M=M\rho(\sigma_i)\ \ \ \sigma_i\in B_{2n}$$
@@ -2023,7 +2059,7 @@ $$MY_bM^{-1}=\rho(b)Y_a\rho(b)^{-1}=\rho()abxb^{-1}a^{-1}$$
 el cual puede ser elevado a la trenza necesaria. Este ataque es efectivo porque las matrices provenientes de $\rho$ cumplen unos limites muy restrictivos. La efectividad de este método demuestra que la representación de lawrence-Krammer permite una solución al problema de Diffie-Hellman en grupos de trenzas en tiempo polinomial.
 
 \subsubsection{Aproximación heurística al problema del conjugado}
-Vamos a ver una heurística que nos permitirá resolver el problema del conjugado en ciertas ocasiones devolviendonos un conjugador, de manera que también resolvemos el problema de la búsqueda del conjugado. El algoritmo ha sido extraido de \cite{Att}. Aquí mostramos el pseudocódigo del algoritmo.
+Vamos a ver una heurística que nos permitirá resolver el problema del conjugado en ciertas ocasiones devolviendonos un conjugador, de manera que también resolvemos el problema de la búsqueda del conjugado. El algoritmo ha sido extraído de \cite{Att}. Aquí mostramos el pseudocódigo del algoritmo.
 \newline
 
 %\lstset{  numbers=left, numbersep=-7pt}
@@ -2051,29 +2087,13 @@ Vamos a ver una heurística que nos permitirá resolver el problema del conjugad
 \ 
 \newline
 
-Como se puede ver, el algoritmo restringe la entrada para trenzas conjugadas positivamente. También requiere que la trenza conjugadora $x = \Delta_n^{r}X_1\cdots X_s$ cumpla que $\inf x = r = 0$. Estras restricciones no son relevantes, puesto que si tenemos $w = x^{-1}vx$, entonces se tiene también que $w = \tilde{x}^{-1}v\tilde{x}$ para $\tilde{x} := \Delta_n^{r\ mod\ 2}X_1\cdots X_s$. Por tanto o $\tilde{x}$ o $\Delta_n^{-1}\tilde{x}$ es una trenza positiva con ínfimo $0$. Así que en el caso general habrá que ejecutar el algoritmo para las entradas $v,w$ y $\Delta_n^{-1}v\Delta_n,w$.
+Como se puede ver, el algoritmo restringe la entrada para trenzas conjugadas positivamente. También requiere que la trenza conjugadora $x = \Delta_n^{r}X_1\cdots X_s$ cumpla que $\inf x = r = 0$. Estas restricciones no son relevantes, puesto que si tenemos $w = x^{-1}vx$, entonces se tiene también que $w = \tilde{x}^{-1}v\tilde{x}$ para $\tilde{x} := \Delta_n^{r\ mod\ 2}X_1\cdots X_s$. Por tanto o $\tilde{x}$ o $\Delta_n^{-1}\tilde{x}$ es una trenza positiva con ínfimo $0$. Así que en el caso general habrá que ejecutar el algoritmo para las entradas $v,w$ y $\Delta_n^{-1}v\Delta_n,w$.
 \newline
 \newline
-Pasamos a explicar el algoritmo. En los pasos 1 y 2 preparamos $\alpha$ para calcular el conjugador $x$ y preparamos $v,w\in B_n$ normalizandolos. En los pasos 3 y 4 utilizamos el Lema \ref{lema:criptoanalisis}, de forma que al completar estos pasos tenemos un nuevo problema del conjugado donde  la longitud canónica de $w$ es menor que la de $v$. Durante estos pasos se va construyendo $\alpha$, de manera que en virtud del Lema, al principio del paso 5 tenemos que $w = x'^{-1}vx'$ con $x = x'\alpha$ y $x\in B_n^+$. Asumimos en esta situación que si todavía no se ha descubierto la parte $x'$ de la palabra conjugadora $x$, está esencialemente determinada por la permutación $\pi(x')$. Consecuentemente, en este paso, adivinamos la permutación $\pi(x')$, es decir, la función GuessPermutation(v,w) nos devuelve un factor canónico $\mu$ tal que $\pi(\mu)=\pi(x')$. Encontrar dicha palabra de trenza $\mu$ en el caso general consistirá en resolver el problema del conjugado $\pi(w)=\pi(x')^{-1}\pi(v)\pi(x')$ en el grupo simétrico $S_n$. En el caso de trenzas puras esto no funcionaría y habria que utilizar otro método mencionado en \cite{}. Finalmente si $w$ y $v$ coinciden, esto significa que las trenzas originales de la entrada son conjugadas y que el conjugador es el $\alpha$ devuelto. Si devuelve 'failed' no se obtiene ninguna conclusión.
+Pasamos a explicar el algoritmo. En los pasos 1 y 2 inicializamos $\alpha$ como una palabra vacía para calcular el conjugador $x$ y preparamos $v,w\in B_n$ normalizándolos. En los pasos 3 y 4 utilizamos el Lema \ref{lema:criptoanalisis}, de forma que al completar estos pasos tenemos un nuevo problema del conjugado donde  la longitud canónica de $w$ es menor que la de $v$. Durante estos pasos se va construyendo $\alpha$, de manera que en virtud del Lema \ref{lema:criptoanalisis}, al principio del paso 5 tenemos que $w = x'^{-1}vx'$ con $x = x'\alpha$ y $x\in B_n^+$. Asumimos en esta situación que si todavía no se ha descubierto la parte $x'$ de la palabra conjugadora $x$, está esencialmente determinada por la permutación $\pi(x')$. Consecuentemente, en este paso, adivinamos la permutación $\pi(x')$, es decir, la función GuessPermutation(v,w) nos devuelve un factor canónico $\mu$ tal que $\pi(\mu)=\pi(x')$. Encontrar dicha palabra de trenza $\mu$ en el caso general consistirá en resolver el problema del conjugado $\pi(w)=\pi(x')^{-1}\pi(v)\pi(x')$ en el grupo simétrico $S_n$. En el caso de trenzas puras esto no funcionaría y habría que utilizar otro método mencionado en \cite{Att}. Finalmente si $w$ y $v$ coinciden, esto significa que las trenzas originales de la entrada son conjugadas y que el conjugador es el $\alpha$ devuelto. Si devuelve 'failed' no se obtiene ninguna conclusión.
 \newline
 \newline
-En la Figura \ref{img:alg_a} vemos la implementación realizada del algoritmo. La Figura \ref{img:guess_per} muestra la función GuessPermutation, la cual nos devuelve una trenza simple cuya permutación asociada nos da la solucion al problema del conjugado en el grupo simétrico que se obtiene a partir de nuestras trenzas. Por último, En la Figura \ref{img:pi_inverse} aparece una función en la que, dada una permutación, nos devuelve la trenza simple asociada. Para la implementación de estas dos funciones ha sido neecesaria la utilización de las propiedades vistas sobre las permutaciones.
-\newline
-\newline
-\begin{figure}
-\includegraphics[scale=0.5]{imgs/breakConjugate.png} 
-\caption{Heurística del problema del conjugado}
-\label{img:alg_a}
-\end{figure}
-\ 
-\newline
-\newline
-\begin{figure}
-\includegraphics[scale=0.5]{imgs/GuessPermutation.png} 
-\caption{Función GuessPermutacion}
-\label{img:guess_per}
-\end{figure}
-
+En la Figura \ref{img:alg_a} vemos la implementación realizada del algoritmo. La Figura \ref{img:guess_per} muestra la función GuessPermutation, la cual nos devuelve una trenza reducida cuya permutación asociada nos da la solución al problema del conjugado en el grupo simétrico que se obtiene a partir de nuestras trenzas. Por último, En la Figura \ref{img:pi_inverse} aparece una función en la que, dada una permutación, nos devuelve la trenza reducida asociada. Para la implementación de estas dos funciones ha sido necesaria la utilización de las propiedades vistas sobre las permutaciones.
 \ 
 \newline
 \newline
@@ -2082,11 +2102,33 @@ En la Figura \ref{img:alg_a} vemos la implementación realizada del algoritmo. L
 \caption{Implementación de la función $\pi^{-1}$}
 \label{img:pi_inverse}
 \end{figure}
+\ 
+\newline
+\newline
+\begin{figure}
+\includegraphics[scale=0.5]{imgs/GuessPermutation.png} 
+\caption{Función GuessPermutation}
+\label{img:guess_per}
+\end{figure}
+\ 
+\newline
+\newline
+\begin{figure}
+\includegraphics[scale=0.5]{imgs/breakConjugate.png} 
+\caption{Heurística del problema del conjugado}
+\label{img:alg_a}
+\end{figure}
 
 
 
 
+\ 
 
+
+
+
+\newpage
+\newpage
 
 \begin{thebibliography}{X}
 \bibitem{Art1}\textsc{Artin, Emil}, \textit{Theorie der z\"opfe}, 1925.
@@ -2096,7 +2138,13 @@ En la Figura \ref{img:alg_a} vemos la implementación realizada del algoritmo. L
 \bibitem{Att}\textsc{Dennis Hofheinz},\textsc{Rainer Steinwandt}, \textit{A Practical Attack on Some Braid Group Based
 Cryptographic Primitives}.
 \bibitem{group}\textsc{Stevev Roman}, \textit{Fundamentals of group theory. An advance aproach}.
-\bibitem{br_gr}\textsc{Christian Kassel},\textsc{Vladimir Turaev}, \textit{Braid groups}.
+\bibitem{br_gr}\textsc{Christian Kassel}, \textsc{Vladimir Turaev}, \textit{Braid groups}.
+\bibitem{st_br}\textsc{Kunio Murasugi}, \textsc{Bohdan l. Kurpita}, \textit{A study of braids}.
+\bibitem{in_cr}\textsc{Hans Delfs}, \textsc{Helmut Knebl}, \textit{Introduction to cryptography. Principles and Applications.}.
+
+\bibitem{sa_br}\textit{Manual Sage. Grupo de trenzas.}\newline https://doc.sagemath.org/html/en/reference/groups/sage/groups/braid.html
+
+\bibitem{sa_pe} \textit{Manual Sage. Grupo de permutaciones.}\newline https://doc.sagemath.org/html/en/reference/groups/sage/groups/perm\_gps/\newline permgroup\_element.html
 \end{thebibliography}
 
 
