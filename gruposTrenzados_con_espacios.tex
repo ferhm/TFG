@@ -98,6 +98,9 @@ $$w = x_1\cdots x_n.$$
 
 El número de elementos de $w$ es la \textit{longitud} de $w$. Solo hay una única palabra con longitud 0, la cual se llama \textit{palabra vacía} y se denota por $\varepsilon$. El conjunto de todas las palabras de $X$ se denota por $X^*$ y a $X$ se le dice el \textit{alfabeto} de $X^*$. Una \textit{subpalabra} o \textit{subcadena} de una palabra $w$ es una subsucesión de $w$ que consiste de elementos consecutivos de $w$. La palabra se considera una subpalabra de todas las palabras.
 \end{defi}
+
+
+
 A continuación vamos a definir los grupos simétricos con los que más adelante estableceremos una relación con los grupos de trenzas. También vamos a ver algunas de sus propiedades que nos serán de utilidad.
 
 \begin{defi}[Grupo simétrico]
@@ -105,7 +108,8 @@ Sea $X \neq \emptyset$. Denominamos a una función biyectiva de $X$ en si misma 
 \end{defi}
 
 El orden de $S_X$ es $|X|!$ cuando $X$ es finito. $S_X$ es no abeliano para $|X|\geq 3$. El grupo simétrico del conjunto $I_n=\{1,\ldots,n\}$ se denota por $S_n$ y tiene orden $n!$.
-
+\newline
+\newline
 Si $X$ es finito consideramos $X = \{a_1,\ldots,a_n\}$. Podemos expresar $\sigma\in S_X$ de forma matricial
 
 $$\sigma = 
@@ -114,7 +118,8 @@ a_1 & a_2 & \cdots & a_n\\
 a_{i_1} & a_{i_2} & \cdots & a_{i_n}
 \end{pmatrix}
 .$$
-
+\ 
+\newline
 Si $a_1,\ldots,a_k$ son elementos distintos de $X$, la expresión
 $$(a_1\cdots a_k)$$
 denota la permutación que envía $a_i$ a $a_{i+1}$ para $i=1,\ldots,k-1$ y el último elemento $a_k$ al primer elemento $a_1$. Los demás elementos de $X$ se mantienen fijos. A esta permutación se le llama \textit{ciclo de longitud} $k$ en $S_X$. Llamamos a un ciclo de longitud $2$ $(a\ b)$ transposición, ya que simplemente transpone $a$ y $b$, dejando al resto de elementos de $X$ fijos.
@@ -130,18 +135,18 @@ Sea $S_x$ un grupo simétrico, se cumple lo siguiente:
 \begin{prop}
 Todo ciclo puede descomponerse como producto de transposiciones.
 \end{prop}
-\textit{Demostración.} Basta con comprobar la siguiente igualdad
+\textit{Demostración.} Basta con comprobar la siguiente igualdad igualdad
 
-$$(i_1,i_2,i_3,\ldots,i_{r-1},i_r) = (i_1,i_r)(i_1,i_{r-1})\cdots(i_1,i_3)(i_1,i_2),$$
+$$(i_1,i_2,i_3,\ldots,i_{r-1},i_r) = (i_1,i_r)(i_1,i_{r-1})\cdots(i_1,i_3)(i_1,i_2)$$
 
 recordando que la composición se realiza de derecha a izquierda.
-
-\begin{teor}
 \ 
-
+\newline
+\begin{teor}
+\ \newline
 \begin{enumerate}
 \item Sea $\sigma\in S_n$. Para cualquier ciclo $(a_1\cdots a_k)$,
-$$(a_1 \cdots a_k)^\sigma:= \sigma^{-1}(a_1 \cdots a_k)\sigma = (\sigma a_1 \cdots \sigma a_k).$$
+$$(a_1 \cdots a_k)^\sigma:= \sigma^{-1}(a_1 \cdots a_k)\sigma = (\sigma a_1 \cdots \sigma a_k)$$
 Por tanto, si $\tau=c_1\cdots c_k$ es una descomposición cíclica de $\tau$, entonces
 $$\tau^\sigma = c_1^\sigma\cdots c_k^\sigma$$
 es una descomposición cíclica de $\tau^\sigma$.
@@ -154,7 +159,7 @@ Por último vemos la definición de grupo libre que utilizaremos para la constru
 \begin{defi}[Grupo libre]
 Sea X un conjunto no vacío. Un par $(F,\kappa:X\rightarrow F)$ donde $F$ es un grupo se dice \textit{universal} para $X$ si para cualquier función $f:X\rightarrow G$ de $X$ al grupo G hay un único homomorfismo de grupo $\tau_f:F\rightarrow G$ tal que
 
-$$\tau_f\circ\kappa = f.$$
+$$\tau_f\circ\kappa = f$$
 
 Al grupo $F$ se le llama \textit{grupo libre} en $X$ y a $X$ se le denomina un conjunto de \textit{generadores libres} de $F$. La función $\kappa$ se llama función universal para el par $(F,\kappa)$. Usamos la notación $F_X$ para denotar el grupo libre de $X$.
 
@@ -171,16 +176,17 @@ Ahora vamos a dar la definición algebraica del grupo de trenzas $B_n$ para cual
 
 \begin{defi}
 El grupo de trenzas de Artin $B_n$ es el grupo generado por $n-1$ elementos $\sigma_1, \sigma_2,...,\sigma_{n-1}$ y las relaciones de trenza
-$$\sigma_i\sigma_j = \sigma_j\sigma_i,$$
+$$\sigma_i\sigma_j = \sigma_j\sigma_i$$
 
 para todo $i,j=1,2,...,n-1$ con $|i-j|\geq 2$ y
 
-$$\sigma_i\sigma_{i+1}\sigma_i =\sigma_{i+1}\sigma_i\sigma_{i+1},$$
+$$\sigma_i\sigma_{i+1}\sigma_i =\sigma_{i+1}\sigma_i\sigma_{i+1}$$
 
 para todo $i=1,2,...,n-2$.
 \label{defi:artin}
 \end{defi}
-
+\ 
+\newline
 El siguiente lema nos relaciona el grupo de trenzas con otros grupos en los que se cumplan las condiciones de la definición previa para ciertos elementos.
 
 \begin{lema}
@@ -188,11 +194,13 @@ Si $s_1,...,s_{n-1}$ son elementos de un grupo $G$ que satisfacen las relaciones
 \label{uni_homo}
 \end{lema}
 
-\textit{Demostración}. Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $\bar{f}:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i=1,...,n-1$. Este homomorfismo induce un homomorfismo de grupo $f:B_n\rightarrow G$ en el que sabemos que si $r$ y $r'$ son dos trenzas tal que $r = r'$ entonces $f(r) = f(r')$. De esta manera obtenemos que el homomorfismo conserva las relaciones de trenza teniendo en cuenta la hipótesis inicial,
+\textit{Demostración}. Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $\bar{f}:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i=1,...,n-1$. Este homomorfismo induce un homomorfismo de grupo $f:B_n\rightarrow G$ en el que sabemos que si $r$ y $r'$ son dos trenzas tal que $r = r'$ entonces $f(r) = f(r')$. De esta manera obtenemos que el homomorfismo conserva las relaciones de trenza teniendo en cuenta la hipótesis inicial
 
-$$\bar{f}(\sigma_i\sigma_{j})=\bar{f}(\sigma_i)\bar{f}(\sigma_{j})=s_is_j=s_js_i=\bar{f}(\sigma_j)\bar{f}(\sigma_{i})=\bar{f}(\sigma_j\sigma_{i}),$$
+$$\bar{f}(\sigma_i\sigma_{j})=\bar{f}(\sigma_i)\bar{f}(\sigma_{j})=s_is_j=s_js_i=\bar{f}(\sigma_j)\bar{f}(\sigma_{i})=\bar{f}(\sigma_j\sigma_{i})$$
 
-$$\bar{f}(\sigma_i\sigma_{i+1}\sigma{i}) = s_is_{i+1}s_i=s_{i+1}s_is_{i+1} = \bar{f}(\sigma_{i+1}\sigma_i\sigma_{i+1}).$$ \qed 
+$$\bar{f}(\sigma_i\sigma_{i+1}\sigma{i}) = s_is_{i+1}s_i=s_{i+1}s_is_{i+1} = \bar{f}(\sigma_{i+1}\sigma_i\sigma_{i+1})$$
+
+\qed 
 
 
 
@@ -239,8 +247,8 @@ Procedemos a realizar la construcción topológica del grupo de trenzas. Para el
 \begin{defi}[Trenza geométrica]\label{trenza_geom}
 Una trenza geométrica de $n$ hebras, con $n \geq 1$, es un subconjunto $\mathcal{B}\subset\mathbb{R}^2\times I$ formado por $n$ intervalos topológicos disjuntos llamados hebras de tal manera que la proyección $\mathbb{R}^2\times I\rightarrow I$ establezca un homeomorfismo de cada hebra en $I$ y
 $$$$
-$$\mathcal{B}\cap(\mathbb{R}^2\times \{0\})=\{(1,0,0),(2,0,0),...,(n,0,0)\},$$
-$$\mathcal{B}\cap(\mathbb{R}^2\times \{1\})=\{(1,0,1),(2,0,1),...,(n,0,1)\}.$$
+$$\mathcal{B}\cap(\mathbb{R}^2\times \{0\})=\{(1,0,0),(2,0,0),...,(n,0,0)\}$$
+$$\mathcal{B}\cap(\mathbb{R}^2\times \{1\})=\{(1,0,1),(2,0,1),...,(n,0,1)\}$$
 $$$$
 Cada hebra de $\mathcal{B}$ interseca con el plano $\mathbb{R}^2\times \{t\}$ con $t\in I$ en un único punto y conecta un punto $(i,0,0)$ con un punto $(s(i),0,0)$ donde $i,s(i)\in\{1,2,...,n\}$. La sucesión $(s(1),s(2),...,s(n))$ es una permutación del conjunto $\{1,2,...,n\}$ llamada permutación subyacente de $\mathcal{B}$.
 \end{defi}
@@ -267,7 +275,8 @@ Un diagrama de trenza de $n$ hebras es un conjunto $\mathcal{D}\subset\mathbb{R}
 \end{defi}
 
 La transversalidad de los cruces y la compacidad de las hebras nos asegura que el número de cruces es finito. Gráficamente la hebra que pasa por debajo en un cruce se representará con una discontinuidad y la que pasa por encima con una linea continua. Cada trenza puede ser representada por un diagrama de trenza y cada diagrama tiene asociada una trenza. Dado $\mathcal{D}$ un diagrama, denotaremos como $\beta(\mathcal{D})$ a la trenza de $n$ hebras asociada.
-
+\newline
+\newline
 Dos diagramas de trenzas $\mathcal{D}, \mathcal{D}'$ de $n$ hebras se dicen que son isotópicos si se puede establecer una función continua entre $F:\mathcal{D}\times I\rightarrow\mathbb{R}\times I$ tal que para cada $s\in I$ el conjunto $\mathcal{D}_s = F(\mathcal{D}\times s)\subset\mathbb{R\times I}$ es un diagrama de $n$ hebras, con $\mathcal{D}_0 = \mathcal{D}$ y $\mathcal{D}_1 = \mathcal{D}'$. Se entiende que $F$ lleva los cruces de $\mathcal{D}$ a los cruces de $\mathcal{D}_s$ para todo $s\in I$ preservando si los cruces son por debajo o por encima. A la familia de diagramas $\{\mathcal{D}_s\}_{s\in I}$ se le llama \textit{isotopía} de $\mathcal{D}_0 = \mathcal{D}$ en $\mathcal{D}_1 = \mathcal{D}'$.
 
 
@@ -342,6 +351,7 @@ $\Omega_2^{-1}$, $\Omega_3^{-1}$.
 
 
 Estos movimientos preservan la correspondencia entre diagrama de trenza y trenza. Decimos que dos diagramas de trenzas $\mathcal{D}, \mathcal{D}'$ son $\mathcal{R}$\textit{-equivalentes} si $\mathcal{D}$ puede ser transformado en $\mathcal{D}'$ mediante una sucesión finita de isotopías y movimientos de Reidemeister. Esta claro que si $\mathcal{D}, \mathcal{D}'$ son $\mathcal{R}$\textit{-equivalentes}, entonces $\beta(\mathcal{D}) = \beta(\mathcal{D'})$.
+\newline
 
 Hemos construido dos equivalencias, una para trenzas geométricas y otra para diagramas de trenzas. El Teorema \ref{teor:equiv} nos permite trabajar indiferentemente con unas o con otras utilizando ambas equivalencias. Tambíen nos garantiza que los diagramas $\mathcal{R}$-\textit{equivalentes} presentan la misma trenza. La prueba se puede ver en \cite{br_gr}.
 
@@ -500,13 +510,17 @@ Sea $\beta\in\mathcal{B}_n$, existe un elemento $\beta^{-1}\in\mathcal{B}_n$ que
 \textit{Demostración}. Para $i = 1,2,n-1$, definimos dos trenzas elementales $\sigma_i^+$ y $\sigma_i^-$ representadas por los diagramas con un único cruce mostradas en la Figura \ref{fig:elem_braids}. Las trenzas $\sigma_1^+,...,\sigma_{n-1}^+, \sigma_1^-,...,\sigma_{n-1}^-\in\mathcal{B}_n$ generan $\mathcal{B}_n$ como un monoide. Para ver esto, consideramos una trenza $\beta$ de $n$ hebras representada por un diagrama de trenza $\mathcal{D}$. A través de una ligera deformación de $\mathcal{D}\subset\mathbb{R}\times I$ en un vecindario de sus puntos de cruce, podemos hacer que los cruces de $\mathcal{D}$ tengan distinta su segunda coordenada. Por tanto podemos establecer una partición
 
 $$0=t_0,t_1,...,t_{k_-1},t_k = 1$$
-
+\ 
+\newline
 tal que la intersección de $\mathcal{D}$ con cada banda $\mathbb{R}\times[t_j, t_{j-1}]$ tiene exactamente un cruce dentro. Esta intersección es en realmente un diagrama de $\sigma_i^+$ o $\sigma_i^-$ para algún $i = 1,2,...,n-1$. El resultado de la división de $\mathcal{D}$ como el producto de $k$ diagrama de hebras muestra que
 
-$$\beta = \beta(\mathcal{D}) = \sigma_{i_1}^{\varepsilon_1}\sigma_{i_2}^{\varepsilon_2}\cdot\cdot\cdot\sigma_{i_k}^{\varepsilon_k},$$
-
+$$\beta = \beta(\mathcal{D}) = \sigma_{i_1}^{\varepsilon_1}\sigma_{i_2}^{\varepsilon_2}\cdot\cdot\cdot\sigma_{i_k}^{\varepsilon_k}$$
+\ 
+\newline
 donde cada $\varepsilon_j$ es o $+$ o $-$ y $i_1,...,i_k\in{1,2,...,n-1}$.
 Claramente, $\sigma_i^+\sigma_i^- = \sigma_i^-\sigma_i^+=1$ para todo $i$. Por tanto $\beta^{-1} = \sigma_{i_k}^{-\varepsilon_k}\cdot\cdot\cdot\sigma_{i_2}^{-\varepsilon_2}\sigma_{i_k}^{-\varepsilon_k}$ (utilizamos el convenio de $--=+\ +-=-$).
+\newline
+\newline
 \qed
 
 
@@ -582,32 +596,39 @@ Para $\varepsilon = \pm$, existe un único homomorfismo $\varphi_\varepsilon : B
 \end{teor}
 
 \textit{Demostración.} Lo probamos para $\varepsilon = +$, el caso $\varepsilon = -$ es quivalente. La existencia y unicidad de $\varphi_+$ vienen proporcionadas por los Lemas \ref{uni_homo} y \ref{lema:rel_geom}. En la prueba del Lema \ref{lema:inverso} se demuestra que $\sigma_1^+,\sigma_2^+,...,\sigma_n^+$ son generadores de $\mathcal{B}_n$. Estos generadores pertenecen a la imagen de $\varphi_+$. Por tanto $\sigma_+$ es sobreyectiva.
-
+\newline
+\newline
 Ahora tomamos la función teórica $\psi :\mathcal{B}_n\rightarrow B_n$ tal que $\psi \circ \varphi = id$. Esto implica que $\varphi_+$ es inyectiva. Como en la prueba del Lema \ref{lema:inverso}, representamos cualquier $\beta\in\mathcal{B}_n$ por el diagrama $\mathcal{D}$ en el cual los cruces tienen la segunda coordenada diferente. Esto lleva a una expansión de la forma \label{hola}
 
 \begin{equation}\label{form:expansion}
-\psi(\mathcal{D})=(\sigma_{i_1})^{\varepsilon_1}(\sigma_{i_2})^{\varepsilon_2}\cdot\cdot\cdot(\sigma_{i_k})^{\varepsilon_k}\in B_n,
+\psi(\mathcal{D})=(\sigma_{i_1})^{\varepsilon_1}(\sigma_{i_2})^{\varepsilon_2}\cdot\cdot\cdot(\sigma_{i_k})^{\varepsilon_k}\in B_n
 \end{equation}
 
 donde $(\sigma_i)^+=\sigma_i$ y $(\sigma_i)^-=\sigma_i^{-1}$. Se tiene que $\psi(\mathcal{D})$ depende exclusivamente de $\beta$. Por el Teorema \ref{teor:equiv} solo nos hace falta verificar que $\psi(\mathcal{D})$ es invariable bajo isotopías y movimientos de Reidmeister sobre $\mathcal{D}$. Isotopías de $\mathcal{D}$ que conservan el orden de los puntos dobles de $\mathcal{D}$ con respecto a la segunda coordenada mantienen la expansión (\ref{form:expansion}) y por tanto preserva $\psi(\mathcal{D})$. Una isotopía que cambia el orden de dos dobles puntos en $\mathcal{D}$ (como en la Figura \ref{fig:d_iso}) reemplaza el termino $\sigma_i^{\varepsilon_i}\sigma_j^{\varepsilon_j}$ en (\ref{form:expansion}) por $\sigma_j^{\varepsilon_j}\sigma_i^{\varepsilon_i}$ para algún $i,j\in\{1,2,...,n-1\}$ con $|i-j|\geq 2$. Bajo $\psi$, a estas expresiones les corresponde el mismo elemento de $B_n$ debido a la primera relación de trenza en Definición
  \ref{defi:artin}.
-
+\newline
+\newline
 El movimiento $\Omega_2$ (respectivamente $\omega_2^{-1}$) en $\mathcal{D}$ inserta (respectivamente elimina) en la expansión (\ref{form:expansion}) un término $\sigma_i^+\sigma_i^-$ o $\sigma_i^-\sigma_i^+$. Claramente esto preserva $\psi(\mathcal{D})$.
-
+\newline
+\newline
 El movimiento $\Omega_3$ en $\mathcal{D}$ reemplaza la secuancia $\sigma_{i}\sigma_{i+1}\sigma_{i}$ en (\ref{form:expansion}) por $\sigma_{i+1}\sigma_{i}\sigma_{i+1}$. Bajo $\psi$, esta expresión corresponde al mismo elemento de $B_n$ debido a la segunda relación de trenza en Definición \ref{defi:artin}. El movimiento $\omega_3^{-1}$ se ve de forma similar.
-
+\newline
+\newline
 Esto demuestra que $\psi$ es una función bien definida de $\mathcal{B}_n\rightarrow B_n$. Por construcción $\psi\circ\varphi_+=id$. Por tanto $\varphi_+$ es sobreyectiva e inyectiva. \qed
 
-\ 
+
 
 Llegados a este punto ya hemos probado que las trenzas geométricas forman un grupo y que este coincide con el grupo de trenzas de Artin como habíamos dicho al principio. A continuación vamos a ver como podemos relacionar el grupo de trenzas con el grupo de permutaciones, para poder así definir un tipo de trenzas denominado trenzas puras.
-
+\newline
+\newline
 Sea $\beta\in B_n$ una trenza de $n$ hebras, consideramos una trenza geométrica que la represente . La hebra $d_i$ une el punto $(i,0,0)$ con el punto $(j(i),0,1).$ Definimos la función $\pi:B_n\rightarrow S_n$ del grupo de trenzas al grupo simétrico como
 
 $$\pi(\beta) = \begin{pmatrix}
 1 & 2 & \cdot\cdot\cdot & n\\
 j(1) & j(2) & \cdot\cdot\cdot & j(n)\\
-\end{pmatrix}. $$
+\end{pmatrix} $$
+\
+\newline
 
 
 Da igual la trenza geométrica tomada como representante puesto que todas tienen el mismo punto de inicio y fin para todas las hebras. Podemos decir que $\pi$ es un invariante para las trenzas geométricas y se puede ver fácilmente que es un homomorfismo. Normalmente, a la permutación obtenida a partir de una trenza se le denomina \textit{permutación de hebra} y se denota por $\pi(\beta)$.
@@ -615,7 +636,7 @@ Da igual la trenza geométrica tomada como representante puesto que todas tienen
 \begin{defi}[Trenzas puras]
 El núcleo del homomorfismo $\pi:B_n\rightarrow S_n$ es llamado \textit{grupo de trenzas puro} y es denotado por $P_n$
 
-$$P_n = Ker(\pi:B_n\rightarrow S_n).$$
+$$P_n = Ker(\pi:B_n\rightarrow S_n)$$
 
 Los elementos de $P_n$ se llaman trenzas puras de $n$ hebras. Una trenza geométrica representa a un elemento de $P_n$ si y solo si la hebra que parte de $(i,0,0)$ termina en $(i,0,1)$.
 
@@ -645,11 +666,12 @@ Vamos a definir una estructura algebraica denominada monoide de Garside, una her
 \subsection{Monoides}
 
 Un monoide es un conjunto que cuenta con una operación binaria (multiplicación) $M\times M \rightarrow M$ la cual es asociativa y tiene un elemento neutro. Es básicamente un grupo que no cuenta con la propiedad de existencia de elemento simétrico.
-
+\newline
+\newline
 Un monoide $M$ es \textit{cancelativo por la izquierda} (resp. \textit{por la derecha}) si para todo $a,b,c\in M$
 
-$$ab=ac\Longrightarrow b=c\ \ \ \ (\textrm{resp.}\ \  ba=ca\Longrightarrow b=c).$$
-
+$$ab=ac\Longrightarrow b=c\ \ \ \ (\textrm{resp.}\ \  ba=ca\Longrightarrow b=c)$$
+\newline
 Un elemento $a$ de un monoide $M$ es \textit{invertible} si existe $b\in M$ tal que $ab=ba=1$.
 
 \subsubsection{Divisibilidad en monoides}
@@ -661,47 +683,55 @@ Las relaciones $\preceq$ y $\succeq$ en un monoide son reflexivas y transitivas.
 \label{lema:rel1}
 \end{lema}
 
-\textit{Demostración.} La reflexividad de $\preceq$ viene de la identidad $a=a1$. La transitividad viene dada por la asociatividad de la multiplicación. Se procede de igual manera para $\succeq$. \qed
+\textit{Demostración.} La reflexividad de $\preceq$ viene de la identidad $a=a1$. La transitividad viene dada por la asociatividad de la multiplicación. Se procede de igual manera para $\succeq$.
+
+\qed
 
 
 \subsubsection{Monoides atómicos}
 
 Para cualquier elemento $a\neq 1$ de un monoide $M$, definimos
 
-$$\norm{a}=\sup\{r\geq 1\ | a=a_1\cdot\cdot\cdot a_r,a_1,...,a_r\in M-\{1\}\}.$$
-
+$$\norm{a}=\sup\{r\geq 1\ | a=a_1\cdot\cdot\cdot a_r,a_1,...,a_r\in M-\{1\}\}$$
+\newline
 Según esta definición $\norm{a}\in\{1,2,...,\infty\}$. Establecemos que $\norm{1}=0$. Es fácil de ver que para todo $a,b\in M$
 
-$$\norm{ab}\geq\norm{a}+\norm{b}.$$
-
+$$\norm{ab}\geq\norm{a}+\norm{b}$$
+\newline
 Observar que $\norm{a}=0$ si y solo si $a=1$. A un elemento $a\in M$ se le llama átomo si $\norm{a}=1$. En otras palabras, $a\in M$ es un átomo si $a\neq 1$ y $a=a_1\cdot\cdot\cdot a_r$ implica que $a_i=1$ para todo $i$ excepto uno. Cualquier $a\in M$ con $\norm{a} < \infty$ tiene una expansión $a=a_1\cdot\cdot\cdot a_r$, donde $\norm{a}=r$ y $a_1,...,a_r$ son átomos. Esto justifica la siguiente definición. Un monoide $M$ es \textit{atómico} si $\norm{a} < \infty$ para todo $a\in M$.
 
 \begin{lema}
 Si dos elementos $a,b$ de un monoide atómico $M$ satisfacen $a\preceq b$ y $b\preceq a$, entonces $a=b$. De igual manera, si $a\succeq b$ y $b\succeq a$, entonces $a=b$.
 \label{lema:rel2}
 \end{lema}
-
+\ 
+\newline
 \textit{Demostración.} Ya que $a\preceq b\preceq a$, significa que existen $u,v\in M$ tal que $b=au$ y $a=bv$. Entonces $a=auv$ y
 
-$$\norm{a}=\norm{auv}\geq \norm{a}+\norm{u}+\norm{v}.$$
+$$\norm{a}=\norm{auv}\geq \norm{a}+\norm{u}+\norm{v}$$
 
-Esto implica que $\norm{u}=\norm{v}=0$. Por tanto $u=v=1$ y $a=b$. La relación $\succeq$ es tratada de forma similar. \qed
+Esto implica que $\norm{u}=\norm{v}=0$. Por tanto $u=v=1$ y $a=b$. La relación $\succeq$ es tratada de forma similar.
 
-\ 
+\qed
 
 Los Lemas \ref{lema:rel1} y \ref{lema:rel2} implican que las relaciones $\preceq$ y $\succeq$ en un monoide atómico son ordenes parciales. Dado un subconjunto $E$ de un monoide atómico $M$, decimos que un elemento $a\in E$ es \textit{maximal} (resp. \textit{minimal}) con respecto a $\preceq$, si $b\preceq a$ (resp. $a\preceq b$) para todo $b\in E$. Un elemento maximal (resp. minimal) de $E$ podría no existir, pero si existe, es único por el Lema \ref{lema:rel2}. Definiciones equivalentes se obtienen con la relación $\succeq$.
-
+\newline
+\newline
 La ecuación $ab=1$ en un monoide atómico $M$ tiene como única solución $a=1,b=1$. De hecho, si $ab=1$ para $a,b\in M$, entonces $1\preceq a \preceq 1$, por lo tanto $a=1$ y $b=1$. En particular, el elemento neutro es el único elemento invertible de $M$.
 
 \subsubsection{Presentaciones de un monoide}
 Consideramos un conjunto $X$ y un subconjunto $R$ de $X^*\times X^*$. Sea $\sim$ la relación de equivalencia más pequeña conteniendo los pares $(\omega_1r\omega_2, \omega_1r'\omega_2)$, donde $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. En otras palabras, $\sim$ es la relación de equivalencia más pequeña en $X^*$ tal que $\omega_1r\omega_2\sim\omega_1r'\omega_2$ para todo $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. Definimos $M$ como el conjunto de clases de equivalencia inducido por $\sim$. Esta claro que $M$ tiene la única estructura de monoide tal que la proyección $P:X^*\rightarrow M$ es un homomorfismo de monoide. Decimos que $\langle X|R\rangle$ es una \textit{presentación de monoide} de $M$ y llamamos a los elementos de $X$ \textit{generadores} y a los elementos de $R$ \textit{relaciones}.
-
+\newline
+\newline
 Esta claro que el conjunto $P(X)\subset M$ genera $M$ en el sentido de que cada elemento de $M$ es un producto de elementos de este conjunto. Para cada relación $(r,r')\in R$, el elemento $P(r)=P(r')$ de $M$ se le llama \textit{relator} asociado a la presentación $\langle X|R\rangle$. Como notación habitual se usa $r=r'$ para la relación $(r,r'\in R)$ y no se hace distinción entre un generador $x\in X$ y su proyección $P(x)$ en $M$. 
-
+\newline
+\newline
 Cualquier elemento de $M$ puede ser expandido de forma única como una palabra de $X$, es decir, como un producto de elementos de $X$. El número de elementos de $X$ de esta expansión de $w\in M$ se denomina \textit{longitud} de $w$ y se denota por $l(w)$. Se tiene que $l(1)=0,\ l(x)=1$ para $x\in X$ y que $l(ww')=l(w)+l(w')$ con $w,w'\in$
-
+\newline
+\newline
 Introducimos varios tipos de presentaciones de monoides que nos serán de utilidad. Una presentación de monoide $\langle X|R\rangle$ es finita si $X$ y $R$ son finitos. Una presentación $\langle X|R\rangle$ de un monoide $M$ se dice \textit{ponderada} si existe un homomorfismo de monoide $\ell:M\rightarrow \mathbb{N}$ tal que $\ell(x)\geq 1$ para todo $x\in X$. El homomorfismo $\ell$ se llama \textit{peso}.
-
+\newline
+\newline
 Una presentación $\langle X|R\rangle$ de un monoide $M$ se dice \textit{equilibrada en longitud} si $l(r)=l(r')$ para todo $(r,r')\in R$, donde $l$ es la función longitud en $X^*$ introducida anteriormente. La formula $\ell(x)=1$ para todo $x\in X$ define un \textit{peso canónico} $\ell:M\rightarrow \mathbb{N}$.
 
 \begin{lema}
@@ -709,21 +739,26 @@ Si un monoide $M$ tiene una representación ponderada $\langle X|R\rangle$, ento
 \label{lema:presen_mono}
 \end{lema}
 
-\textit{Demostración.} Sea $\ell: M\rightarrow \mathbb{N}$ un homomorfismo de monoide tal que $\ell(x)\geq 1$ para todo generador $x\in X$. Entonces $\ell(a)\geq 1$ para todo $a\in M-\{1\}$. Si $a\in M$ se expande como el producto $a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M-\{1\}$, entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r$. Por tanto $\ell(a)\geq \norm{a}$. Que todos los átomos de $M$ pertenecen a $X$ viene del hecho de que cualquier conjunto que genere un monoide debe contener a sus átomos, ya que estos no se pueden obtener como producto de otros elementos y forman parte del monoide. \qed
+\textit{Demostración.} Sea $\ell: M\rightarrow \mathbb{N}$ un homomorfismo de monoide tal que $\ell(x)\geq 1$ para todo generador $x\in X$. Entonces $\ell(a)\geq 1$ para todo $a\in M-\{1\}$. Si $a\in M$ se expande como el producto $a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M-\{1\}$, entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r$. Por tanto $\ell(a)\geq \norm{a}$. Que todos los átomos de $M$ pertenecen a $X$ viene del hecho de que cualquier conjunto que genere un monoide debe contener a sus átomos, ya que estos no se pueden obtener como producto de otros elementos y forman parte del monoide.
+
+\qed
 
 \subsubsection{El problema de palabra y el problema de divisibilidad}
 
 El \textit{problema de palabra} para una representación $\langle X|R\rangle$ de un monoide $M$ consiste en que dadas dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a=a'$. El \textit{problema de divisibilidad por la izquierda} (resp. \textit{derecha}) esta estrechamente relacionado y consiste en que dadas
 dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a\preceq a'$ (resp. $a'\succeq a$).
-
-Tanto el problema de palabra como el problema de divisibilidad pueden ser fácilmente resueltos con una representación finita $\langle X|R\rangle$ de $M$. Sea $\ell:M\rightarrow\mathbb{N}$ un peso, de manera que $\ell(x)\geq 1$ para todo $x\in X$. Observar que el valor de $\ell$ para cualquier $a\in M$ representado por cualquier palabra no vacía $\omega\in X^*$ es mayor o igual que la longitud de $\omega$. Sea $W(a)\subset X^*$ el conjunto de palabras representando a $a$. Todas esas palabras tienen longitud menor que $\ell(a)$. Ya que $X$ es finito, el número de palabras de menor longitud que $\ell(a)$ es finito y por tanto también lo es el conjunto $W(a)$. Para listar todos los posibles elementos de $W(a)$, uno comienza con la palabra que representa $a$ y consecutivamente aplica todas las posibles substituciones del tipo
+\newline
+\newline
+Tanto el problema de palabra como el problema de divisibilidad pueden ser fácilmente resueltos con una representación finita $\langle X|R\rangle$ de $M$. Sea $\ell:M\rightarrow\mathbb{N}$ un peso, de manera que $\ell(x)\geq 1$ para todo $x\in X$. Observar que el valor de $\ell$ para cualquier $a\in M$ representado por cualquier palabra no vacía $\omega\in X^*$ es mayor o igual que la longitud de $\omega$. Sea $W(a)\subset X^*$
+ el conjunto de palabras representando a $a$. Todas esas palabras tienen longitud menor que $\ell(a)$. Ya que $X$ es finito, el número de palabras de menor longitud que $\ell(a)$ es finito y por tanto también lo es el conjunto $W(a)$. Para listar todos los posibles elementos de $W(a)$, uno comienza con la palabra que representa $a$ y consecutivamente aplica todas las posibles substituciones del tipo
  
 
 $$\omega_1 r\omega_2\leftrightarrow \omega_1 r'\omega_2\ \ \ (r,r')\in R$$
 \ 
 \newline
 a cualquier elemento de $W(a)$ ya encontrado. Ya que $R$ es finito, este procedimiento también es finito. Esto da una solución al problema de palabra. Dadas dos palabras $\omega,\omega'\in X^*$ representando a $a,a'\in M$ respectivamente, sabemos que $a=a'$ si $W(a)=W(a')$. 
-
+\newline
+\newline
 También obtenemos una solución para el problema de divisibilidad por la izquierda y por la derecha. Se tiene que $a\preceq a'$ si y solo si algún prefijo (segmento inicial) de una palabra en $W(a')$ pertenece a $W(a)$. De igual manera, $a'\succeq a$ si y solo si algún sufijo (segmento final) de una palabra en $W(a')$ pertenece a $W(a)$.
 
 \subsection{Formas normales y el problema del conjugado}
@@ -733,10 +768,10 @@ Ahora vamos a introducir y estudiar un cierto monoide $M_\Sigma$ derivado de un 
 \subsubsection{El monoide $M_\Sigma$} 
 
 Sea $M$ un monoide y $\Sigma\subset M$ un subconjunto de $M$ conteniendo el elemento neutro $1$. Sea $M_\Sigma$ un monoide generado por los simbolos $[a]$, donde $a\in \Sigma$, partiendo de la definición de las relaciones $[1]=1$ y $[a][b]=[ab]$, siempre que $a,b,ab\in\Sigma$. Existe un homomorfismo de monoide $p:M_\Sigma\rightarrow M$ definido por $p([a])=a$ para todo $a\in\Sigma$.
-
+\newline\newline
 Otra definición equivalente de $M_\Sigma$ puede hacerse identificando el producto $[a_1]\cdot\cdot\cdot[a_r]$ en $M_\Sigma$ (donde $a_,...,a_r\in \Sigma$) con la sucesión $(a_1,...,a_r)$. Entonces $M_\Sigma$ es el conjunto de clases de equivalencia de sucesiones finitas $(a_1,...,a_r)$ de elementos de $\Sigma$ bajo la equivalencia generada por
 
-$$(a_1,...,a_{i-1}, a_i'a_i'',a_{i+1},...,a_r)\sim (a_1,...,a_{i-1}, a_i',a_i'',a_{i+1},...,a_r),$$
+$$(a_1,...,a_{i-1}, a_i'a_i'',a_{i+1},...,a_r)\sim (a_1,...,a_{i-1}, a_i',a_i'',a_{i+1},...,a_r)$$
 
 siempre que $a_i'a_i''\in\Sigma$. La sucesión vacía es equivalente a la sucesión de un elemento $(1)$, donde $1\in\Sigma$. El producto en $M_\Sigma$ esta inducido por la concatenación de sucesiones.
 
@@ -753,55 +788,51 @@ Entonces para cualquier $\xi\in M_\Sigma$, hay un único $\alpha(\xi)\in\Sigma$ 
 \end{teor}
 
 \textit{Demostración.} La prueba consiste de cinco pasos.
-
-\ 
-
+\newline
 \textit{Paso 1.} Por la tercera hipótesis, para cualquier $a,b\in\Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento maximal $c\in\Sigma$. Entonces $b=cd$ para algún $d\in M$. Por la primera hipótesis, $d\in\Sigma$, y por la segunda, $d$ es único. Sea $\alpha_2(a,b)=ac\in\Sigma$ y $\omega_2(a,b)=d\in\Sigma$. Claramente se tiene
 
 \begin{equation}
 \label{eq:div_max}
-\alpha_2(a,b)\omega_2(a,b)=ab.
+\alpha_2(a,b)\omega_2(a,b)=ab
 \end{equation}
 
 Nuestro objetivo en este paso va a ser probar las siguientes igualdades. Dados $a,b,c\in\Sigma$ tal que $a,b\in\Sigma$
 
 \begin{equation}
 \label{eq:alfa_com}
-\alpha_2(ab,c)=\alpha_2(a,\alpha_2(b,c)),
+\alpha_2(ab,c)=\alpha_2(a,\alpha_2(b,c))
 \end{equation}
 \begin{equation}
 \label{eq:omega_com}
-\omega_2(ab,c)=\omega_2(a,\alpha_2(a,b))\omega_2(b,c).
+\omega_2(ab,c)=\omega_2(a,\alpha_2(a,b))\omega_2(b,c)
 \end{equation}
 
-Podemos usar la siguiente observación. Si $a,b,c\in M$ satisfacen que $ac\in\Sigma$ y $ab\preceq ac$, entonces $b\preceq c$. De hecho, si $ac=abd$ con $d\in M$, entonces la presunción de que $ac\in\Sigma$ junto con la primera hipótesis implica que $a,c,bd\in\Sigma$. Por la segunda hipótesis tenemos que $c=bd$.
+Podemos usar la siguiente observación. Si $a,b,c\in M$ satisfacen que $ac\in\Sigma$ y $ab\preceq ac$, entonces $b\preceq c$. De hecho, si $ac=abd$ con $d\in M$, entonces la presunción de que $ac\in\Sigma$ junto con la primera hipótesis implica que $a,c,bd\in\Sigma$. Por la segunda hipótesis tenemos que $c=bd$
 
 Por definición, $\alpha_2(b,c)=bd$, donde $d$ es maximal tal que $d\preceq c$ y $bd\in \Sigma$. Entonces
 
-$$\alpha_2(a,\alpha_2(b,c))=\alpha_2(a,bd)=ad',$$
-
+$$\alpha_2(a,\alpha_2(b,c))=\alpha_2(a,bd)=ad'$$
+\newline
 donde $d'$ es maximal tal que $d'\preceq bd$ y $ad'\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$ (por hipótesis), al ser $d'$ maximal se tiene que $b\preceq d'$. Escribiendo $d'=be$ con $e\in\Sigma$, obtenemos que $\alpha_2(a,bd)=abe$, con $be\preceq bd\in\Sigma$ y $abe\in\Sigma$. Por la observación hecha previamente vemos que $e\preceq d\preceq c$, así que $e\preceq c$. Ahora $\alpha_2(ab,c)=abf$, donde $f$ es maximal tal que $f\preceq c$ y $abf\in\Sigma$. Por tanto, $e\preceq f$. Por otra parte, $f\preceq c$ y $bf\in\Sigma$. Esto y la inclusión de $abf\in\Sigma$ implica que $bf\preceq d' = be$. Por tanto, $f\preceq e$. Por el Lema \ref{lema:rel2} $e=f$ y
 
-$$\alpha_2(ab,c)=abf=abe=ad'=\alpha_2(a,\alpha_2(b,c)).$$
+$$\alpha_2(ab,c)=abf=abe=ad'=\alpha_2(a,\alpha_2(b,c))$$
 
-Esto prueba la igualdad (\ref{eq:alfa_com}). Para probar la igualdad (\ref{eq:omega_com}) observar (\ref{eq:div_max}) y (\ref{eq:alfa_com}),
+Esto prueba la igualdad (\ref{eq:alfa_com}). Para probar la igualdad (\ref{eq:omega_com}) observar (\ref{eq:div_max}) y (\ref{eq:alfa_com}).
 
-$$\alpha_2(ab,c)\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=\alpha_2(a,\alpha_2(b,c))\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=$$
+$$\alpha_2(ab,c)\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=\alpha_2(a,\alpha_2(b,c))\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$$
 
-$$=a\alpha_2(b,c)\omega_2(b,c)=abc=\alpha_2(ab,c)\omega_2(ab,c).$$
+$$=a\alpha_2(b,c)\omega_2(b,c)=abc=\alpha_2(ab,c)\omega_2(ab,c)$$
 
 Por la segunda condición, para deducir (\ref{eq:omega_com}) es suficiente probar que el producto $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ pertenece a $\Sigma$. Por definición, existe $d\in\Sigma$ tal que $\alpha_2(b,c)=bd\in\Sigma$ y $c=d\omega_2(b,c)$. Sea $f$ el elemento maximal de $\Sigma$ tal que $f\preceq bd$ y $af\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$, existe $e\in\Sigma$ tal que $f=be$. Entonces
 
-$$bd=f\omega_2(a,bd)=be\omega_2(a,bd).$$
+$$bd=f\omega_2(a,bd)=be\omega_2(a,bd)$$
 
 Por la segunda condición, $d=e\omega_2(a,bd)$ y
 
-$$e\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=e\omega_2(a,bd)\omega_2(b,c)=d\omega_2(b,c)=c.$$
+$$e\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=e\omega_2(a,bd)\omega_2(b,c)=d\omega_2(b,c)=c$$
 
 Esto demuestra que $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ es divisor por la derecha de $c\in\Sigma$, por tanto es un elemento de $\Sigma$.
 
-\ 
- 
 \textit{Paso 2}. En este paso probaremos la siguiente afirmación. Existe una única función $\alpha:M_\Sigma\rightarrow\Sigma$ tal que
 
 \begin{enumerate}[label=\roman*.]
@@ -811,40 +842,45 @@ Esto demuestra que $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ es divisor por la de
 
 Recordamos el homomorfismo de monoide $p:M_\Sigma\rightarrow M$. Para cualquier $\xi\in M_\Sigma$ definimos $H(\xi)=\norm{p(\xi)}\geq 0$. Llamamos a $H(\xi)$ el peso de $\xi$. Esta claro que
 
-$$H(\xi\xi')\geq H(\xi)+H(\xi'),$$
-
+$$H(\xi\xi')\geq H(\xi)+H(\xi')$$
+\newline
 
 para cualesquiera $\xi\xi'\in M_\Sigma$. Observar que $H(\xi)=0$ si y solo si $\xi=1$, y $H(\xi)=1$ si y solo si $\xi=[a]$, donde $a$ es un átomo de $M$ perteneciente a $\Sigma$. Para ver esto, tomamos una expansión $\xi=[a_1]\cdot\cdot\cdot[a_r]$ con $a_1,...,a_r\in\Sigma$. Entonces
 
-$$H(\Sigma)=\norm{p(\xi)}\geq\norm{a_1}+\cdot\cdot\cdot\norm{a_r}.$$
+$$H(\Sigma)=\norm{p(\xi)}\geq\norm{a_1}+\cdot\cdot\cdot\norm{a_r}$$
 
 Si $H(\xi)=0$, entonces $a_1=\cdot\cdot\cdot=a_r=1$ y $\xi=1$. Si $H(\xi)=1$, entonces todos los elementos $a_1,...,a_r\in\Sigma$ son iguales a $1$ excepto un elemento, el cual es un átomo.
-
+\newline
+\newline
 Dado $\xi\in M_\Sigma$, definimos $\alpha(\xi)$ por inducción sobre el peso de $\xi$. Para $\xi=1$ establecemos $\alpha(\xi)=1\in\Sigma$. Si $H(\xi)=1$, entonces $\xi=[a]=[a]1$ para algún átomo $a\in\Sigma$, y para satisfacer (ii) establecemos que $\alpha(\xi)=\alpha_2(a,1)=a$.
-
+\newline
+\newline
 Tomamos un entero $k\geq 1$ y suponemos que $\alpha(\xi)$ esta definido para todo $\xi$ de peso menor o igual que $k$ de manera que las condiciones (i), (ii) se satisfacen siempre que $H([a]\eta)\leq k$. Sea $\xi$ un elemento de $M_\Sigma$ de peso $k+1$. Podemos expandir $\xi=[a]\eta$, donde $a\in\Sigma$, $a\neq 1$ y $\eta\in M_\Sigma$. Entonces $H([a])\geq 1$ y $H([\eta]) < H([a]\eta)$, así que $\alpha(\eta)$ esta ya definido. Para satisfacer (ii) establecemos $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Debemos comprobar que $\alpha_2(a,\alpha(\eta))$ no depende de la elección de la expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y por la hipótesis de inducción, es suficiente con comprobar que 
 
-$$\alpha_2(a,\alpha(\eta))=\alpha_2(a',\alpha([a'']\eta)),$$
-
+$$\alpha_2(a,\alpha(\eta))=\alpha_2(a',\alpha([a'']\eta))$$
+\newline
+\newline
 donde $a=a'a''$ con $a',a''\in \Sigma -\{1\}$. Ya que
 
-$$H([a'']\eta)\leq H([a]\eta) - H([a'])<H([a]\eta),$$
-
+$$H([a'']\eta)\leq H([a]\eta) - H([a'])<H([a]\eta)$$
+\newline
 
 la hipótesis de inducción nos da que $\alpha([a''])=\alpha_2(a'',\alpha(\eta))$. Por la igualdad (\ref{eq:alfa_com}) 
 
 $$\alpha_2(a',\alpha([a'']\eta))=\alpha_2(a',\alpha_2(a'',\alpha(\eta)))=$$
-$$=\alpha_2(a'a'',\alpha(\eta))=\alpha_2(a,\alpha(\eta)).$$
+$$=\alpha_2(a'a'',\alpha(\eta))=\alpha_2(a,\alpha(\eta))$$
 
 Por tanto $\alpha$ esta bien definido para los elementos de $M_\Sigma$ de peso menor o igual que $k +1$ y satisface las condiciones (i) y (ii). Esto completa la inducción y prueba nuestra afirmación.
 \newline
 \newline
 \textit{Paso 3}. Ahora comprobamos que para cualquier $\xi\in M_\Sigma$, el elemento $[\alpha(\xi)]\in M_\Sigma$ es un divisor por la izquierda de $\xi$ que es maximal entre todos los divisores por la izquierda de $\xi$ que se encuentrar en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$.
+\newline
+\newline
+Utilizando la proyección $p:M_\Sigma\rightarrow M$, es fácil demostrar que todos los divisores de $1\in M_\Sigma$ son iguales a $1$. Por tanto si $H(\xi)=0$, entonces $[\alpha(\xi)]=\xi=1$ es el único divisor por la izquierda de $1\in\Sigma$. Si $H(\xi)\geq 1$, escribimos $\xi=[a]\eta$ para algún $a\in\Sigma - \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Por tanto, $\alpha(\xi)=ab$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(eta)$. Por el supuesto de inducción, $[\alpha(\eta)]$ es un divisor por la izquierda de $\eta$. Por tanto
 
-Utilizando la proyección $p:M_\Sigma\rightarrow M$, es fácil demostrar que todos los divisores de $1\in M_\Sigma$ son iguales a $1$. Por tanto si $H(\xi)=0$, entonces $[\alpha(\xi)]=\xi=1$ es el único divisor por la izquierda de $1\in\Sigma$. Si $H(\xi)\geq 1$, escribimos $\xi=[a]\eta$ para algún $a\in\Sigma - \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Por tanto, $\alpha(\xi)=ab$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(eta)$. Por el supuesto de inducción, $[\alpha(\eta)]$ es un divisor por la izquierda de $\eta$. Por tanto,
-
-$$[\alpha(\xi)]=[ab]=[a][b]\preceq [a][\alpha(\eta)]\preceq [a]\eta=\xi.$$
-
+$$[\alpha(\xi)]=[ab]=[a][b]\preceq [a][\alpha(\eta)]\preceq [a]\eta=\xi$$
+\newline
+\newline
 Esto demuestra que $[\alpha(\xi)]$ es divisor por la izquierda  de $\xi$ perteneciente a $\{[a]\}_{a\in\Sigma}$. Veamos que $[\alpha(\xi)]$ es maximal. Supongamos que $\xi=[a']\eta'$
 para algún $a'\in\Sigma$, $\eta'\in M_\Sigma$. Entonces $\alpha(\xi) =\alpha_2(a',\alpha(\eta'))=a'b'$ para algún $b'\in\Sigma$. Por tanto, $a'\preceq \alpha(\xi)$ y $[a']\preceq [\alpha(\xi)]$.
 \newline
@@ -858,11 +894,11 @@ para algún $a'\in\Sigma$, $\eta'\in M_\Sigma$. Entonces $\alpha(\xi) =\alpha_2(
 
 El valor de $\omega$ para cualquier $\xi\in M_\Sigma$ esta definido por inducción sobre el peso de $\xi$. Establecemos que $\omega(1)=1$. Tomamos un entero $k\geq 1$ y suponemos que $\omega(\xi)$ esta definido para todo $\xi$ de peso menor o igual que $k$, de manera que las condiciones (i) y (ii) se satisfacen siempre que $H([a]\eta)\leq k$. Sea $\xi=[a]\eta$ un elemento de $M_\Sigma$ de peso $k+1$ con un $q\in\Sigma - \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\omega(\eta)$ esta definido. Para satisfacer (ii), establecemos que 
 
-$$\omega(\xi)=[\omega_2(a,\alpha(\eta))]\omega(\eta).$$
+$$\omega(\xi)=[\omega_2(a,\alpha(\eta))]\omega(\eta)$$
 
 Debemos de comprobar que $\omega(\xi)$ es independiente de la elección de expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y la inducción de hipótesis, es suficiente con comprobar que
 
-$$\omega_2(a,\alpha(\eta))\omega(\eta)=\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta),$$
+$$\omega_2(a,\alpha(\eta))\omega(\eta)=\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta)$$
 
 donde $a=a'a''$ con $a',a''\in\Sigma-\{1\}$. Sabemos que $\alpha([a'']\eta)=\alpha_2(a'',\alpha(\eta))$. Ya que $H([a'']\eta) < H([a]\eta)$, la hipótesis de inducción nos da la igualdad $\omega([a'']\eta)=[\omega_2(a'',\alpha(\eta))]\omega(\eta)$. Por la igualdad (\ref{eq:omega_com})
 
@@ -871,38 +907,42 @@ $$\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta)=\omega_2(a',\alpha_2(a'',\alph
 
 $$= \omega_2(a',\alpha_2(a'',\alpha(\eta)))[\omega_2(a'',\alpha(\eta))]\omega(\eta)=$$
 
-$$ =\omega_2(a'a'',\alpha(\eta))\omega(\eta)=  \omega_2(a,\alpha(\eta))\omega(\eta).$$
-
+$$ =\omega_2(a'a'',\alpha(\eta))\omega(\eta)=  \omega_2(a,\alpha(\eta))\omega(\eta)$$
+\newline
+\newline
 Por tanto $\omega$ esta bien definido para los elementos de $M_\Sigma$ de peso menor o igual que $k+1$ y satisface las condiciones (i) y (ii). Esto completa la inducción y prueba nuestra afirmación.
 \newline
 \newline
 \textit{Paso 5.} Para completar la prueba, tenemos que demostrar que para cualquier $\xi\in M_\Sigma$, el elemento $\eta = \omega(xi)$ es el único elemento de $M_\Sigma$ tal que $\xi = [\alpha(\xi)]\eta$. Procedemos por inducción sobre $H(\xi)$. Si $H(\xi) = 0$, entonces $\xi = 1$, $\alpha(\xi) = 1,\ \omega(\xi) = 1$, y la afirmación es obvia. Supongamos que la afirmación se da para todo $\xi$ de altura menor o igual a $k$ para cualquier entero $k\geq 1$. Sea $\xi$ un elemento de $M_\Sigma$ de  altura $k+1$. Por el Paso 3, $\xi=[\alpha(\xi)]\eta$ con $\eta\in M_\Sigma$. Claramente, $\alpha(\xi)\neq 1$ y por tanto $H(\eta) < H(\xi)$.
-
-Establecemos $\theta=[\alpha(\xi)][\alpha(\eta)]$. Por definición de la función $\alpha$,
+\newline
+\newline
+Establecemos $\theta=[\alpha(\xi)][\alpha(\eta)]$. Por definición de la función $\alpha$
 
 $$\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))=\alpha(\xi)b$$
 
 para algún $b\in\Sigma$ tal que $[b]\preceq [\alpha(\eta)]\preceq\eta$. Por tanto $\alpha(\xi)\preceq\alpha(\theta)$ y 
 
-$$[\alpha(\theta)] = [\alpha(\xi)][b]\preceq[\alpha(\xi)]\eta=\xi.$$
+$$[\alpha(\theta)] = [\alpha(\xi)][b]\preceq[\alpha(\xi)]\eta=\xi$$
 
 Ya que $\alpha(\xi)$ es el máximo divisor por la izquierda de $\xi$ en el conjunto $\{[a]\}_{a_\in\Sigma}$, tenemos $[\alpha(\xi)]=[\alpha(\theta)]$. Proyectando a $M$, concluimos que
 
-$$\alpha(\xi)=\alpha(\theta) = \alpha_2(\alpha(\xi),\alpha(\eta)).$$
+$$\alpha(\xi)=\alpha(\theta) = \alpha_2(\alpha(\xi),\alpha(\eta))$$
 
 Por tanto, $\alpha(\xi)\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))\alpha(\eta)$. Por otro lado, por (\ref{eq:div_max}),
 
-$$\alpha(\xi)\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))\omega_2(\alpha(\xi),\alpha(\eta)).$$
+$$\alpha(\xi)\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))\omega_2(\alpha(\xi),\alpha(\eta))$$
 
 Combinando estas ecuaciones obtenemos
 
-$$\alpha_2(\alpha(\xi),\alpha(\eta))\alpha(\eta) = \alpha_2(\alpha(\xi),\alpha(\eta))\omega_2(\alpha(\xi),\alpha(\eta)).$$
+$$\alpha_2(\alpha(\xi),\alpha(\eta))\alpha(\eta) = \alpha_2(\alpha(\xi),\alpha(\eta))\omega_2(\alpha(\xi),\alpha(\eta))$$
 
 Por la segunda condición del teorema, podemos cancelar $\alpha_2(\alpha(\xi),\alpha(\eta))$. Así que $\alpha(\eta) = \omega_2(\alpha(\xi),\alpha(\eta))$ y 
 
-$$\omega(\xi) = \omega([\alpha(\xi)]\eta) = [\omega_2(\alpha(\xi),\alpha(\eta))]\omega(\eta)=[\alpha(\eta)]\omega(\eta) = \eta,$$
+$$\omega(\xi) = \omega([\alpha(\xi)]\eta) = [\omega_2(\alpha(\xi),\alpha(\eta))]\omega(\eta)=[\alpha(\eta)]\omega(\eta) = \eta$$
 
-donde la última igualdad viene de la hipótesis de inducción. Esto demuestra que $\xi = [\alpha(\xi)\omega(\xi)]$ y que cualquier $\eta\in M_\Sigma$ satisfaciendo $\xi = [\alpha(\xi)]\eta$ es igual a $\omega(\xi)$. \qed
+donde la última igualdad viene de la hipótesis de inducción. Esto demuestra que $\xi = [\alpha(\xi)\omega(\xi)]$ y que cualquier $\eta\in M_\Sigma$ satisfaciendo $\xi = [\alpha(\xi)]\eta$ es igual a $\omega(\xi)$.
+
+\qed
 
 
 
@@ -914,12 +954,15 @@ donde la última igualdad viene de la hipótesis de inducción. Esto demuestra q
 \subsubsection{Forma nomal en $M_\Sigma$}
 
 Bajo las hipótesis del Teorema \ref{teor:monoi_deriv} , cualquier $\xi$ puede ser expandido inductivamente
+
 $$\xi=[\alpha(\xi)]\omega(\xi)=[\alpha(\xi)][\alpha(\omega(\xi))]\omega^2(\xi)=$$
-$$=[\alpha(\xi)][\alpha(\omega(\xi))][\alpha(\omega^2(\xi))]\omega^3(\xi)=\cdot\cdot\cdot\ .$$
+$$=[\alpha(\xi)][\alpha(\omega(\xi))][\alpha(\omega^2(\xi))]\omega^3(\xi)=\cdot\cdot\cdot$$
 
 Este proceso de expansión puede ser parado en el $r$-ésimo paso, donde $r$ el el mínimo entero tal que $\omega^{r+1}(\xi)=1$. Tal $r$ existe ya que una expansión de $\xi$ como producto de  generadores de $[a]$ con $a\in\Sigma$ tiene como mucho un cierto $k$ (visto en la demostración del Teorema \ref{teor:monoi_deriv}) de generadores distintos de $1$.
+\newline\newline
 
 Esta observación nos lleva a una forma normal para cada elemento de $M_\Sigma$. Una \textit{forma normal} para $\xi\in M_\Sigma$ para una sucesión $(a_1,a_2,...,a_r)$ de elementos de $\Sigma$, todos diferentes de $1$, tal que $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ y 
+
 $$a_i=\alpha([a_i][a_{i+1}]\cdot\cdot\cdot[a_r])$$
 
 para todo $i=1,2,...,r$. La unicidad en la última afirmación del Teorema \ref{teor:monoi_deriv} implica la unicidad de la forma normal.
@@ -935,17 +978,21 @@ Bajo las hipótesis del Teorema \ref{teor:monoi_deriv}, el monoide $M_\Sigma$ es
 \end{lema}
 
 \textit{Demostración.} Necesitamos demostrar que $\xi\eta=\xi\theta\Rightarrow\eta=\theta$ para todo $\xi,\eta,\theta\in M_\Sigma$. Suponemos primero que $\xi=[a]$ para algún $a\in\Sigma$. Entonces $\alpha(\xi\eta))=\alpha_2(a,\alpha(\eta))=ab\in\Sigma$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(\eta)$
+
 $$ab=\alpha(\xi\eta)=\alpha(\xi\theta)=\alpha([a]\theta)=\alpha_2(a,\alpha(\theta))=ac$$
 
 para algún $c\preceq\alpha(\theta)$ implica que $b=c\preceq\alpha(\theta)$. Entonces existen $\eta',\theta'\in M_\Sigma$ tal que $[b]\eta'=\eta$ y $[b]\theta'=\theta$. Como ya sabemos, $\omega(\xi\eta)$ es el único elemento $x\in M_\Sigma$ tal que $\xi\eta=[\alpha(\xi\eta)]x=[ab]x$. Ya que
-$$\xi\eta=[a][b]\eta'=[ab]\eta',$$
+
+$$\xi\eta=[a][b]\eta'=[ab]\eta'$$
 
 tenemos que $\omega(\xi\eta) = \eta'$. De igual manera, $\omega(\xi\theta)=\theta'$. Por tanto,
 
-$$\eta'=\omega(\xi\eta)=\omega(\xi\theta)=\theta',$$
-$$\eta=[b]\eta'=[b]\theta'=\theta.$$
+$$\eta'=\omega(\xi\eta)=\omega(\xi\theta)=\theta'$$
+$$\eta=[b]\eta'=[b]\theta'=\theta$$
 
-En general, $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ con $a_1,a_2,...,a_r\in\Sigma$. Como ya sabemos, $[a_1][a_2]\cdot\cdot\cdot[a_r]\eta=[a_1][a_2]\cdot\cdot\cdot[a_r]\theta$ implica que $[a_2]\cdot\cdot\cdot[a_r]\eta=[a_2]\cdot\cdot\cdot[a_r]\theta$. Repitiendo este proceso, obtenemos que $\eta=\theta$. \qed
+En general, $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ con $a_1,a_2,...,a_r\in\Sigma$. Como ya sabemos, $[a_1][a_2]\cdot\cdot\cdot[a_r]\eta=[a_1][a_2]\cdot\cdot\cdot[a_r]\theta$ implica que $[a_2]\cdot\cdot\cdot[a_r]\eta=[a_2]\cdot\cdot\cdot[a_r]\theta$. Repitiendo este proceso, obtenemos que $\eta=\theta$.
+
+\qed
 
 \subsubsection{El problema de palabra en $M_\Sigma$}
 
@@ -956,32 +1003,34 @@ El \textit{problema del conjugado en un grupo} $G$ consiste en encontrar un proc
 
 \begin{lema}
 Sea $M,\Sigma\subset M$ satisfaciendo las hipótesis del Teorema \ref{teor:monoi_deriv}. Dados $a,b\in M_\Sigma$, existe $c\in M_\Sigma$ tal que $ac=cb$ si y solo si existe una una sucesión $a=a_0,a_1,\ldots,a_r=b$ de elementos de $M_\Sigma$ y una sucesión $c_1,\ldots,c_r$ de elementos de $\Sigma$ tal que
-$$a_{i-1}[c_i]=[c_i]a_i$$
 
-para todo $i=1,\ldots,r$.
+$$a_{i-1}[c_i]=[c_i]a_i\ \ \ \ i=1,\ldots,r $$
 
 \label{lema:conjugado}
 \end{lema}
 
-\textit{Demostración.} Si nosotros tenemos tales sucesiones, entonces $ac=cb$ para $c=[c_1][c_2]\cdots[c_r]$. En la otra implicación tenemos que $c\in M_\Sigma$ tal que $ac=cb$. Demostramos la afirmación por inducción en la longitud $r$ de la forma normal $(c_1,\ldots,c_r)$ de $c$. Si $r=1$, entonces $c = [c_1]$ y queda probado. Supongamos que $r\geq 2$. Ya que
-$$[c_1]=[\alpha(c)]\preceq c \preceq cb = ac,$$
+\textit{Demostración.} Si nosotros tenemos tales sucesiones, entonces $ac=cb$ para $c=[c_1][c_2]\cdots[c_r]$. En la otra implicación tenemos que $c\in M_\Sigma$ tal que $ac=cb$. Demostramos la afirmación por inducción en la longitud $r$ de la forma normal $(c_1,\ldots,c_r)$ de $c$. Si $r=1$, entonces $c = [c_1]$ y queda probado. Supongamos que $r\geq 2$.
 
-tenemos que
-$$c_1\preceq\alpha(ac)=\alpha_2(a,\alpha(c))=\alpha_2(a,c_1).$$
+$$[c_1]=[\alpha(c)]\preceq c \preceq cb = ac$$
 
-Por tanto,
-$$[c_1]\preceq [\alpha_2(a,c_1)]\preceq ac_1.$$
+Tenemos que
+
+$$c_1\preceq\alpha(ac)=\alpha_2(a,\alpha(c))=\alpha_2(a,c_1)$$
+
+Por tanto
+$$[c_1]\preceq [\alpha_2(a,c_1)]\preceq ac_1$$
 
 Existe $a_1\in M_\Sigma$ tal que
-$$[c_1]a_1=a[c_1],$$
+
+$$[c_1]a_1=a[c_1]$$
 
 por lo que obtenemos que 
 
-$$[c_1]a_1[c_2]\cdots[c_r]=a[c_1][c_2]\cdots[c_r]=ac=cb=[c_1][c_2]\cdots[c_r]b.$$
+$$[c_1]a_1[c_2]\cdots[c_r]=a[c_1][c_2]\cdots[c_r]=ac=cb=[c_1][c_2]\cdots[c_r]b$$
 
-Por el Lema \ref{lema:cancel}, podemos dividir por la izquierda por $[c_1]$. Esto nos da que $a_1c'=c'b$, donde $c'=[c_2]\cdots[c_r]$ tiene una forma normal de longitud $r-1$ a la que se le puede aplicar la hipótesis de inducción. \qed
+Por el Lema \ref{lema:cancel}, podemos dividir por la izquierda por $[c_1]$. Esto nos da que $a_1c'=c'b$, donde $c'=[c_2]\cdots[c_r]$ tiene una forma normal de longitud $r-1$ a la que se le puede aplicar la hipótesis de inducción.
 
-\ 
+\qed
 
 El Lema \ref{lema:conjugado} nos da una solución al problema del conjugado en $M_\Sigma$. Suponemos que $M,\Sigma$ satisfacen las condiciones del Teorema \ref{teor:monoi_deriv} y que $\Sigma$ es finito. Suponemos también que $M_\Sigma$ admite una presentación ponderada finita de manera que el problema de palabra tiene solución. Para determinar si dos elementos $a,b\in M_\Sigma$ son conjugados, primero hay que observar que elementos conjugados de $M_\Sigma$ tienen el mismo peso. Ya que solo hay un número finito de elementos de $M_\Sigma$ para un peso específico, $a$ tiene un número finito de conjugados. El Lema \ref{lema:conjugado} nos dice que, con el objetivo de encontrarlos todos, es suficiente aplicar todas las posibles conjugaciones por elementos de $\Sigma$ para conocer todos los conjugados de $a$ hasta que no se encuentren nuevos elementos. Así obtenemos una lista finita $a_1,\ldots,a_s$ de conjugados de $a$ en $M_\Sigma$. Si $b=a_i$ para algún $i$, entonces $b$ es conjugado de $a$. Si no es así, entonces $b$ no es conjugado de $a$.
 
@@ -998,12 +1047,16 @@ Si $\Sigma$ es un subconjunto exhaustivo de un monoide $M$ tal que todos los div
 \newline
 \newline
 Cosideramos ahora una presentación $\langle X| R\rangle$ de $M$ por generadores y relaciones y sea $P:X^*\rightarrow M$ la proyección natural. Asumimos que $P(x)\in\Sigma$ para todo $x\in X$ y $P(r)=P(r')\in\Sigma$ para todo $(r,r')\in R$. Definimos un homomorfismo de monoide $Q:X^*\rightarrow M_\Sigma$ por $Q(x)=[P(x)]$ para $x\in X$. La observación anterior implica que para cualquier $r\in X^*$ con $P(r)\in\Sigma$, tenemos que $Q(r)=[P(r)]$. Por tanto para cualquier relación $(r,r')\in R$ tenemos que
-$$Q(r)=[P(r)]=[P(r')]=Q(r').$$
+
+$$Q(r)=[P(r)]=[P(r')]=Q(r')$$
 
 Esto implica que existe un homomorfismo de monoide $q:M\rightarrow M_\Sigma$ tal que $Q=qP$. Entonces
+
 $$qp([P(x)])=q(P(x))=Q(x)=[P(x)]$$
 
-para todo $x\in X$. Ya que el conjunto $P(X)$ genera $M$, tenemos $qp=id$. Por tanto $p$ es inyectiva.\qed
+para todo $x\in X$. Ya que el conjunto $P(X)$ genera $M$, tenemos $qp=id$. Por tanto $p$ es inyectiva.
+
+\qed
 \newline
 \newline
 El Lema \ref{lema:iso_mono} nos muestra que bajo las hipótesis apropiadas sobre $\Sigma$ tenemos que $M_\Sigma\cong M$, asi que todas las propiedades de $M_\Sigma$ las obtiene $M$.
@@ -1015,9 +1068,11 @@ El Lema \ref{lema:iso_mono} nos muestra que bajo las hipótesis apropiadas sobre
 \subsubsection{Grupo de fracciones}
 
 Un homomorfismo de monoide $i:M\rightarrow G$ se dice que es \textit{universal} si $G$ es un grupo y para cualquier homomorfismo de monoide $f$ de $M$ a un grupo arbitrario $G'$, existe un único homomorfismo de grupo $g:G\rightarrow G'$ tal que $f=gi$. Cada monoide $M$ admite un homomorfismo universal a un grupo. Para ver esto, tomamos una representación arbitraria $\langle X | R \rangle$ de $M$ por generadores y relaciones y consideramos el grupo $G$ definido por $\langle X | R \rangle$ visto como una presentación de grupo. La función identidad $id_X:X\rightarrow X$ extiende a un homomorfismo de monoide $M\rightarrow G$, el cual es fácil ver que es universal. La definición de un homomorfismo universal $M\rightarrow G$ implica que hay una única composición con un isomorfismo de grupo. En particular, el grupo $G$ esta bien definido para isomorfismo. Este grupo llamado \textit{grupo de fracciones} de $M$ es denotado por $G_M$. Una presentación de $G_M$ por generadores y relaciones se puede obtener tomando una representación del monoide $M$ arbitraria de generadores y relaciones y verla como una representación de grupo.
-
+\newline
+\newline
 Un monoide $M$ es \textit{embebible} si existe un homomorfismo de monoide inyectivo de $M$ a un grupo. Es claro que $M$ es embebible si y solo si el homomorfismo universal de $M\rightarrow G_M$ es inyectvo. Por ejemplo, la inclusión $\mathbb{N}\hookrightarrow\mathbb{Z}$ demuestra que $\mathbb{N}$ es embebible. Es fácil ver que la inclusión es un homomorfismo universal tal que $G_\mathbb{N}=\mathbb{Z}$.
-
+\newline
+\newline
 Claramente, los monoides embebibles son cancelativos por la izquierda y por la derecha. Por ejemplo, el monoide $\{1,x\}$, con $xx=x$ no es cancelativo por la izquierda. El grupo de fracciones de este monoide es trivial.
 
 \subsubsection{Monoides pre-Garside}
@@ -1027,7 +1082,7 @@ Un monoide pre-Garside es un par que consiste de un monoide $M$ y un elemento $\
 
 \begin{enumerate}
 \item $\Sigma$ es finito, genera $M$ y  coincide con el conjunto de divisores por la derecha de $\Delta$.
-\item Si $a,b\in\Sigma$ cumplen que $\Delta a=\Delta b$ o $a\Delta=b\Delta$, entonces $a=b$.
+\item Si $a,b\in\Sigma$ cumplen que $\Delta a=\Delta b$ o $a\Delta=b\Delta$, entonces $a=b$
 \end{enumerate}
 \label{defi:pre-garside}
 \end{defi}
@@ -1050,13 +1105,15 @@ Sea $(M,\Delta)$ un monoide pre-Garside y sea $\Sigma$ el conjunto de divisores 
 \newline
 \newline
 (ii) Ya que cualquier divisor por la izquierda de $\Delta$ es también un divisor por la derecha y viceversa, para cualquier $a\in\Sigma$, existe $a',\delta(a)\in\Sigma$ tal que $\Delta =a'a$ y $\Delta = \delta(a)a'$. Por la afirmación (i), a' y $\delta(a)$ están definidas únicamente. Tenemos que
+
 \begin{equation}
-\Delta a=\delta(a)a'a=\delta(a)\Delta.
+\Delta a=\delta(a)a'a=\delta(a)\Delta
 \label{eq:deltas}
 \end{equation}
 
 Ya que $\Sigma$ es finito, con el objetivo de probar que la función $\delta:\Sigma\rightarrow\Sigma$ es biyectiva, es suficiente probar que es inyectiva. La igualdad $\delta(a)=\delta(b)$ nos da que
-$$\Delta a= \delta(a)\Delta = \delta(b)\Delta = \Delta b.$$
+
+$$\Delta a= \delta(a)\Delta = \delta(b)\Delta = \Delta b$$
 
 Esto implica que $a=b$ por la segunda condición de la Definición \ref{defi:pre-garside}.
 \newline
@@ -1071,28 +1128,36 @@ $$=\delta^{r-1}(b_r)\cdots\delta(b_2)\Delta a_2\cdots a_r$$
 $$=\delta^{r-1}(b_r)\cdots\Delta b_2a_2\cdots a_r$$
 $$=\delta^{r-1}(b_r)\cdots\delta^2(b_3)\Delta^2 a_3\cdots a_r$$
 $$=\delta^{r-1}(b_r)\cdots\Delta^2 b_3a_3\cdots a_r$$
-$$=\cdots= \Delta^{r-1}b_ra_r=\Delta^r.$$
-
+$$=\cdots= \Delta^{r-1}b_ra_r=\Delta^r$$
+\newline
 De forma similar se prueba que si $a_ic_i=\Delta$ para $i=1,\ldots,r$ y
-$$c=c_r\delta^{-1}(c_{r-1})\cdots\delta^{-(r-1)}(c_1)$$
 
-entonces $ac=\Delta^r$ y por tanto $a\preceq\Delta^r$. \qed
+$$c=c_r\delta^{-1}(c_{r-1})\cdots\delta^{-(r-1)}(c_1)$$
+\newline
+entonces $ac=\Delta^r$ y por tanto $a\preceq\Delta^r$.
+
+\qed
 
 \subsubsection{Embebilidad de los monoides pre-Garside}
 
 Sea $(M,\Delta)$ un monoide pre-Garside. Bajo la hipótesis de que $M$ es cancelativo por la izquierda, damos una construcción explicita del grupo de fracciones de $M$. La construcción implicará que $M$ es embebible.
-
+\newline
+\newline
 Sea $N\geq 1$ el orden de $\delta:\Sigma\rightarrow\Sigma$. Por el Lema \ref{lema:pre-garside}, $\Delta^N$ es central en $M$. Consideramos el producto $H=M\times\mathbb{N}$ de los monoides $M$ y $\mathbb{N}$ con la correspondiente multiplicación
+
 $$(a,p)(b,q)=ab,p+q$$
-
+\newline
 para todo $a,b\in M$ y $p,q\in\mathbb{N}$. El elemento neutro de $H$ es $(1,0)$.
+\newline
+\newline
+Definimos la relación $\sim$ en $H$ por $(a,p)\sim(b,q)$ si $\Delta^{qN}a=\Delta^{pN}b$. Por ejemplo, $(\Delta^{qN}a,1)=(1,0)$. Vamos a demostrar que $\sim$ es una relación de equivalencia. La reflexividad y la simetría son obvias. Comprobamos la transitividad. Supongamos que $(a,p)\sim(b,q)\sim(c,r)$. Entonces $\Delta^{qN}a=\Delta^{pN}b$ y $\Delta^{rN}b=\Delta^{qN}c$. Por tanto
 
-Definimos la relación $\sim$ en $H$ por $(a,p)\sim(b,q)$ si $\Delta^{qN}a=\Delta^{pN}b$. Por ejemplo, $(\Delta^{qN}a,1)=(1,0)$. Vamos a demostrar que $\sim$ es una relación de equivalencia. La reflexividad y la simetría son obvias. Comprobamos la transitividad. Supongamos que $(a,p)\sim(b,q)\sim(c,r)$. Entonces $\Delta^{qN}a=\Delta^{pN}b$ y $\Delta^{rN}b=\Delta^{qN}c$. Por tanto,
-$$\Delta^{qN}\Delta^{rN}a=\Delta^{rN}\Delta^{rqN}a=\Delta^{rN}\Delta^{pN}b=$$
-$$=\Delta^{pN}\Delta^{rN}b=\Delta^{pN}\Delta^{qN}c=\Delta^{qN}\Delta^{pN}c.$$
-
+$$\Delta^{qN}\Delta^{rN}a=\Delta^{rN}\Delta^{rqN}a=\Delta^{rN}\Delta^{pN}b$$
+$$=\Delta^{pN}\Delta^{rN}b=\Delta^{pN}\Delta^{qN}c=\Delta^{qN}\Delta^{pN}c$$
+\newline
 Ya que $M$ es cancelativo por la izquierda, podemos dividir en ambos lados por $\Delta^{qN}$ y obtenemos que $\Delta^{rN}a=\Delta^{pN}c$. Esto nos da $(a,p)\sim(c,r)$.
-
+\newline
+\newline
 Sea $G=H/\sim$ el conjunto de clases de equivalencia y sea $\pi:H\rightarrow G$ la proyección. Ya que $\Delta^N$ es central en $M$, el conjunto $G$ tiene una única estructura de monoide tal que $\pi$ es un homomorfismo de monoide. Definimos un homomorfismo de monoide $i:M\rightarrow G$ por $i(a)=\pi(a,0)$ para $a\in M$.
 
 \begin{teor}
@@ -1112,35 +1177,42 @@ Cualquier elemento $g\in G$ tiene la forma $\pi(a,p)$ para unos ciertos $a\in M$
 
 
 \begin{equation}
-(a,p)(b,q-p)=(ab,q).
+(a,p)(b,q-p)=(ab,q)
 \label{eq:gr-frac}
 \end{equation}
-
+\newline
 Ya que $\Delta^0ab=\Delta^r=\Delta^{qN}1$, tenemos que $(ab,q)\sim(1,0)$ y $\pi(ab,q)=\pi(1,0)=1$. Esto prueba que $g=\pi(a,p)$ tiene inverso por la derecha, que denotamos por $g'$. Aplicando el mismo razonamiento, $g'$ también tiene un inverso por la derecha  $g''$ y
-$$g=g(g'g'')=(gg')g''=g''.$$
 
+$$g=g(g'g'')=(gg')g''=g''$$
+\newline
 En otras palabras, $g'$ es también el inverso de $g$ por la izquierda. Esto demuestra que G es un grupo.
 (ii) Sea $\xi$ el elemento central $(1,+1)\in H=M\times\mathbb{N}$. Si establecemos $a=1,b=\Delta^N$ y $p=q=+1$ en (\ref{eq:gr-frac}), obtenemos $\pi(\xi)i(\Delta)^N=1$. Por tanto $\pi(\xi)=\i(\Delta)^{-N}$. Cualquier elemento de $H$ es de la forma $(a,p)=\xi^p(a,0)$ para algún $a\in M$ y $p\in\mathbb{N}$. Por tanto cualquier elemento de $G$ puede ser escrito de la forma $\pi(\xi)^pi(a)=i(\Delta)^{-pN}i(a)$ donde $a\in M$ y $p\in\mathbb{N}$.
 \newline
 \newline
-(iii) Dado un homomorfismo de monoide $f$ de M a un grupo $G'$, consideramos la función $H=M\times \mathbb{N}\rightarrow G'$ que envía cualquier par $(a,p)\in M\times \mathbb{N}$ a $f(\Delta)^{-pN}f(a)$. Esta función es constante que las clases de equivalencia de $H$ por $\sim$ e induce un homomorfismo de grupo $H/\sim=G\rightarrow G'$. La composición de esta última función con $i:M\rightarrow G$ es igual a $f$. La unicidad del homomorfismo de grupo $G\rightarrow G'$ cuya composición con $i$ es igual a $f$ viene del hecho de que $i(M)$ genera $G$ como grupo. \qed
+(iii) Dado un homomorfismo de monoide $f$ de M a un grupo $G'$, consideramos la función $H=M\times \mathbb{N}\rightarrow G'$ que envía cualquier par $(a,p)\in M\times \mathbb{N}$ a $f(\Delta)^{-pN}f(a)$. Esta función es constante que las clases de equivalencia de $H$ por $\sim$ e induce un homomorfismo de grupo $H/\sim=G\rightarrow G'$. La composición de esta última función con $i:M\rightarrow G$ es igual a $f$. La unicidad del homomorfismo de grupo $G\rightarrow G'$ cuya composición con $i$ es igual a $f$ viene del hecho de que $i(M)$ genera $G$ como grupo.
+
+\qed
 
 \begin{colo}
 Los monoides pre-Garside cancelativos por la izquierda son embebibles.
 \label{colo:pre-garside-embe}
 \end{colo}
-Este colorario muestra en particular que para monoides pre-Garside, la cancelatividad por la izquierda implica la cancelatividad por la derecha.
 
+Este colorario muestra en particular que para monoides pre-Garside, la cancelatividad por la izquierda implica la cancelatividad por la derecha.
+\newline
+\newline
 A continuación identificaremos los elementos cancelativos por la izquierda de un monoide pre-Garside M con sus imágenes en $G_M$, de manera que $M$ se convierte en un subconjunto de $G_M$.
 
 \subsubsection{El problema del conjugado en el grupo de fracciones}
 
 Sea $(M,\Delta)$ un monoide pre-Garside cancelativo por la izquierda. El problema del conjugado en su grupo de fracciones $G=G_M$ puede ser reducido al problema del conjugado en $M$ de la siguiente manera. Como ya sabemos, para cualquier $\alpha,\beta\in G$, existen $a,b\in M\subset G$ y $s,t\in\mathbb{Z}$ tal que $\alpha=\Delta^sa$ y $\beta=\Delta^t b$. Cogemos un entero $u$ tal que $u\leq \min(s,t)$ y $u$ y $u$ es divisible por N (Lema \ref{lema:pre-garside}(iii)). Sea $a'=\Delta^{s-u}a\in M$ y $b'=\Delta^{t-u}b\in M$. Claramente, $\alpha=\Delta^ua'$ y $\beta=\Delta^ub'$. Afirmamos que $\alpha$ es conjugado de $\beta$ en $G$ si y solo si $a'$ es conjugado de $b'$ en M. Supongamos que $a'c=cb'$ para algún $c\in M$. Ya que $\Delta^u$ es una potencia de $\Delta^N$ y es por tanto central en $M$,
-$$\alpha c=\Delta^u a'c=\Delta^u c b' = c\Delta^u b'=c\beta.$$
+
+$$\alpha c=\Delta^u a'c=\Delta^u c b' = c\Delta^u b'=c\beta$$
 
 En el otro sentido, si $\alpha\gamma=\gamma\beta$ con $\gamma\in G$, entonces $\gamma=\Delta^v c$ para algún $c\in M$ y algún entero $v$ divisible por $N$. Reemplazando $\alpha\beta\gamma$ en la fórmula $\alpha\gamma=\gamma\beta$ por sus expansiones con $a',b',c'$ y usando la centralidad de $\Delta^u,\Delta^v$, obtenemos
-$$\Delta^{u+v}a'c=\Delta^{u+v}cb'.$$
 
+$$\Delta^{u+v}a'c=\Delta^{u+v}cb'$$
+\newline
 Dividimos entre $\Delta^{u+v}$ y concluimos que $a'c=cb'$.
 
 \subsubsection{El caso de $M$ atómico}
@@ -1153,12 +1225,15 @@ Sea $(M,\Delta)$ un monoide pre-Garside tal que $M$ es no trivial, cancelativo p
 \end{teor}
 
 \textit{Demostración.} Observamos primero que $\norm{\Delta}>0$. En efecto, si $\norm{\Delta}= 0$, entonces $\Delta=1$. Ya que $M$ es atómico. Eso implica que $\Sigma_\Delta=\{1\}$. Ya que $\Sigma_\Delta$ genera $M$, tenemos que $M=\{1\}$. Esto contradice la no trivialidad de $M$.
-
+\newline
+\newline
 Por el Teorema \ref{teor:pre-garside}, cualquier elemento de $G$ tiene la forma $\Delta^sa$ con $s\in\mathbb{Z}$ y $a\in M$. Sea $t$ el mayor entero no negativo tal que $\Delta^t\preceq a$ en $M$. Tal $t$ existe porque la relación $\Delta^t\preceq a$ implica que
-$$t\norm{\Delta}\leq \norm{\Delta^t}\leq \norm{a}<\infty.$$
+
+$$t\norm{\Delta}\leq \norm{\Delta^t}\leq \norm{a}<\infty$$
 
 Entonces $a=\Delta^t b$ para algún $b\in M$ tal que $\Delta\npreceq b$ y $\Delta^s a=\Delta^{s+t} b$. Esto prueba la existencia de la forma declarada.
-
+\newline
+\newline
 Supongamos que $\Delta^s b=\Delta^{s'}b'$ para $s,s'\in\mathbb{Z}$ y $b,b'\in M$ tal que $\Delta\npreceq b$ y $\Delta\npreceq b'$. Podemos asumir que $s\geq s'$. Dividiendo por $\Delta^{s'}$, obtenemos que $\Delta^{s-s'}b=b'$. Ya que $b'$ no es múltiplo por la derecha de $\Delta$ en $M$, tenemos que $s-s'=0$. Por tanto, $s=s'$ y $b=b'$, lo que prueba la unicidad.
 
 \subsection{Monoides de Garside}
@@ -1169,18 +1244,20 @@ Sea $(M,\Delta)$ un monoide pre-Garside y sea $\Sigma$ el conjunto de divisores 
 \begin{defi}
 El par $(M,\Delta)$ es un \textit{monoide de Garside} si $M$ es atómico y para cualesquiera dos átomos $s,t$ de $M$, el conjunto
 $$\{a\in\Sigma\ |\ s\preceq a,\ t\preceq a \}$$
-
+\newline
 tiene un elemento minimal $\Delta_{s,t}$ (con respecto a $\preceq$).
-
+\newline
+\newline
 Por el Lema \ref{lema:rel2}, el elemento minimal $\Delta_{s,t}$ es único. Se observa que $\Delta_{s,t}=\Delta_{t,s}\in\Sigma,\ s\preceq\Delta_{s,t},\ t\preceq\Delta_{s,t}$ y 
-$$\{a\in\Sigma\ |\ s\preceq a,\ t\preceq a \}=\{a\in\Sigma\ |\ \Delta_{s,t}\preceq a\}.$$
 
-Cualquier átomo $s\in M$ es un elemento minimal del conjunto $\{a\in\Sigma\ |\ s\preceq a\}$, así que $\Delta_{s,s}=s$.
+$$\{a\in\Sigma\ |\ s\preceq a,\ t\preceq a \}=\{a\in\Sigma\ |\ \Delta_{s,t}\preceq a\}$$
+
+Cualquier átomo $s\in M$ es un elemento minimal del conjunto $\{a\in\Sigma\ |\ s\preceq a\}$, así que $\Delta_{s,s}=s$
 \label{defi:garside}
 \end{defi}
 
 \begin{lema}
-Si $(M,\Delta)$ es un monoide de Garside, entonces el conjunto $\Sigma$ satisface todas las condiciones del Teorema \ref{teor:monoi_deriv}.
+Si $(M,\Delta)$ es un monoide de Garside, entonces el conjunto $\Sigma$ satisface todas las condiciones del Teorema \ref{teor:monoi_deriv}
 \label{lema:garside}
 \end{lema}
 
@@ -1198,9 +1275,12 @@ Entonces $E$ tiene un elemento maximal (con respecto a $\preceq$).
 \end{lema}
 
 \textit{Demostración.} Sea $c$ un elemento de $E$ tal que $\norm{c}$ es maximal (decimos que $c$ es de altura maximal en $E$). Deseamos demostrar que $E=\{a\in M\ |\ c\}$. Por la condición (i), $\{a\in M\ |\ c\}\subset E$. Vamos a probar la inclusión contraria. Supongamos que no esta incluido. Entonces existe $b\in E$ tal que $b\npreceq c$. Expandimos $b$ como producto de átomos $b=s_1\cdots s_n$ para algún $n$ y $s_1,\ldots,s_n\in S$. Establecemos $a=s_1\cdots s_k$ donde $k < n$ es el entero maximal tal que $a\preceq c$ (posiblemente $k=0$, en cuyo caso $a=1$). Esta claro que $a\in E$ y que existe un átomo $s\in S$ (de hecho $s=s_{k+1}$) tal que $as\in E$ y $as\npreceq c$. Consideramos $a\in E$ de altura maximal. Ya que $c$ es de altura maximal en $E$, tenemos $\norm{a}<\norm{as}\leq \norm{c}$. Esto y la relación $a\preceq c$ implica que existe $t\in S$ tal que $at\preceq c$. Entonces, necesariamente, $t\neq s$. Ahora tenemos  $a,as, at\in E$. Por la condición (ii) $a\Delta_{s,t}\in E$. La relación $as\preceq a\Delta_{s,t}$ y $as\npreceq c$ implica que $a\Delta_{s,t}\npreceq c$. Podemos expandir
-$$\Delta_{s,t}=ts_1s_2\cdots s_m,$$
+
+$$\Delta_{s,t}=ts_1s_2\cdots s_m$$
 \newline
-donde $s_1,\ldots,s_m\in S$. Existe $i=1,\ldots,m$ tal que $ats_1s_2\cdots s_{i-1}\preceq c$ y $ats_1s_2\cdots s_{i}\npreceq c$. Sea $a'=ats_1s_2\cdots s_{i-1}$. La inclusión $a\Delta_{s,t}\in E$ implica que $a',a's_i\in E$. Por la elección de $i$ tenemos que $a's_i\npreceq c$. Por lo tanto, $a'$ satisface las mismas condiciones de $a$, pero $\norm{a'}\geq \norm{at}> \norm{a}$. Tenemos una contradicción con la elección de $a$.\qed
+donde $s_1,\ldots,s_m\in S$. Existe $i=1,\ldots,m$ tal que $ats_1s_2\cdots s_{i-1}\preceq c$ y $ats_1s_2\cdots s_{i}\npreceq c$. Sea $a'=ats_1s_2\cdots s_{i-1}$. La inclusión $a\Delta_{s,t}\in E$ implica que $a',a's_i\in E$. Por la elección de $i$ tenemos que $a's_i\npreceq c$. Por lo tanto, $a'$ satisface las mismas condiciones de $a$, pero $\norm{a'}\geq \norm{at}> \norm{a}$. Tenemos una contradicción con la elección de $a$.
+
+\qed
 
 \begin{lema}
 Para cualquier $a,b\in\Sigma$, el conjunto
@@ -1211,15 +1291,19 @@ tiene un elemento maximal (con respecto a $\preceq$).
 \label{lema:garside2}
 \end{lema}
 
-\textit{Demostración.} Ya que $\Sigma$ es finito, también lo es $E$. Claramente, $1\in E$. El conjunto $E$ es no vacío ya que $1\in E$, y obviamente satisface la condición $(i)$ del Lema \ref{lema:garside1}. Vamos a comprobar la condición (ii). Tenemos que probar que si $xs$ y $xt$ son divisores por la izquierda de $a$ y $b$ para algún $s,t\in S$, entonces $x\in\Delta_{s,t}$. Sea $y\in\Sigma$ tal que $xy=a$. Por hipótesis, $xs\preceq a = xy$ y $xt\preceq a = xy$. Por el Lema \ref{lema:pre-garside} (i), esto implica que $s\preceq y$ y $t\preceq y$ . Por la Definición \ref{defi:garside}, $\Delta_{s,t}\preceq y$, y por tanto $x\Delta{s,t}\preceq xy=a$. De igual manera $x\Delta_{s,t} b$. Ahora el Lema \ref{lema:garside1} implica que $E$ tiene elemento maximal. \qed
+\textit{Demostración.} Ya que $\Sigma$ es finito, también lo es $E$. Claramente, $1\in E$. El conjunto $E$ es no vacío ya que $1\in E$, y obviamente satisface la condición $(i)$ del Lema \ref{lema:garside1}. Vamos a comprobar la condición (ii). Tenemos que probar que si $xs$ y $xt$ son divisores por la izquierda de $a$ y $b$ para algún $s,t\in S$, entonces $x\in\Delta_{s,t}$. Sea $y\in\Sigma$ tal que $xy=a$. Por hipótesis, $xs\preceq a = xy$ y $xt\preceq a = xy$. Por el Lema \ref{lema:pre-garside} (i), esto implica que $s\preceq y$ y $t\preceq y$ . Por la Definición \ref{defi:garside}, $\Delta_{s,t}\preceq y$, y por tanto $x\Delta{s,t}\preceq xy=a$. De igual manera $x\Delta_{s,t} b$. Ahora el Lema \ref{lema:garside1} implica que $E$ tiene elemento maximal.
 
-\ 
+\qed
 
 Ahora estamos en condiciones de verificar la condición (3.) del Teorema \ref{teor:monoi_deriv}. Tomamos cualesquiera $a,b\in\Sigma$. Ya que $a\preceq\Delta$, tenemos que $\Delta=aa'$ para algún $a'\in\Sigma$. Por el Lema \ref{lema:garside2}, el conjunto
-$$\{x\in M\ |\ x\preceq a',\ x\preceq b\}\subset\Sigma$$ tiene un elemento maximal con respecto a $\preceq$. Afirmamos que $c$ es maximal en 
-$$\{x\in\Sigma\ |\ x\preceq b,\ ax\in\Sigma\}.$$
 
-En efecto, por definición, $c\preceq a'$, por lo cual $ac\preceq aa'=\Delta$ y $ac\in\Sigma$. Sea $d\in\Sigma$ tal que $d\preceq b$ y $ad\in\Sigma$. Entonces $ad\preceq\Delta=aa'$ y en consecuencia, por el Lema \ref{lema:pre-garside} (i) (cancelación por la izquierda en $\Sigma$) implica que $d\preceq a'$. Por lo tanto, $d\preceq c$.\qed
+$$\{x\in M\ |\ x\preceq a',\ x\preceq b\}\subset\Sigma$$ tiene un elemento maximal con respecto a $\preceq$. Afirmamos que $c$ es maximal en 
+
+$$\{x\in\Sigma\ |\ x\preceq b,\ ax\in\Sigma\}$$
+
+En efecto, por definición, $c\preceq a'$, por lo cual $ac\preceq aa'=\Delta$ y $ac\in\Sigma$. Sea $d\in\Sigma$ tal que $d\preceq b$ y $ad\in\Sigma$. Entonces $ad\preceq\Delta=aa'$ y en consecuencia, por el Lema \ref{lema:pre-garside} (i) (cancelación por la izquierda en $\Sigma$) implica que $d\preceq a'$. Por lo tanto, $d\preceq c$.
+
+\qed
 
 \subsubsection{Monoides de Garside exhaustivos}
 
@@ -1243,20 +1327,26 @@ Decimos que $m\in M$ es un \textit{mínimo común múltiplo} (mcm) de $a_1,\ldot
 \begin{teor}
 Sea $(M,\Delta)$ un monoide de Garside exhaustivo. Entonces cualquier familia finita de elementos de $M$ tienen un único mcd por la izquierda y un único mcm por la derecha.
 \end{teor}
-\textit{Demostración.} Sean $b,c\in M$. Consideramos el conjunto
-$$E=\{a\in M\ |\ a\preceq b,\ a\preceq c\}.$$
 
+\textit{Demostración.} Sean $b,c\in M$. Consideramos el conjunto
+
+$$E=\{a\in M\ |\ a\preceq b,\ a\preceq c\}$$
+\newline
 Con el objetivo de probar que $b$ y $c$ tienen un mcd por la izquierda en $M$, es suficiente con comprobar que $E$ satisface las condiciones del Lema \ref{lema:garside1}. El conjunto $E$ claramente satisface la condición (i). El conjunto $E$ es finito porque $\norm{a}<\norm{b}$ para cualquier $a\in E$, así que $a$ es el producto de como mucho $\norm{b}$ átomos de $M$, y el conjunto de átomos de $M$, siendo un subconjunto de $\Sigma$, es finito.
 
 Vamos a comprobar la condición $(ii)$. Supongamos que tenemos $a\in E$ y los átomos $s,t\in M$ tal que $as,at\in E$. Escribimos $b=ab_1$ con $b_1\in M$. Ya que $M$ es cancelativo por la izquierda, $as\preceq b =ab_1$ implica $s\preceq b_1$ y $at\preceq b = ab_1$ implica $t\preceq b_1$. Consideramos el divisor por la izquierda maximal $\alpha(b_1)$ de $b_1$ en $\Sigma$. Tenemos que $s\preceq\alpha(b_1)$ y $t\preceq\alpha(b_1)$. Por tanto $\alpha_{s,t}\preceq \alpha(b_1)\preceq b_1$. Por eso $\Delta_{s,t}\preceq b_1$ y $a\Delta_{s,t}\preceq ab_1= b$. De igual forma $a\Delta_{s,t}\preceq c$. Esto prueba que $a\Delta_{s,t}\in E$.
-
+\newline
+\newline
 Que cualquier familia finita de elementos de $M$ tiene un mcm por la izquierda se sigue facilmente por inducción sobre la cardinalidad de la familia.
-
+\newline
+\newline
 Vamos a probar la existencia de mcm por la derecha. Sea $a_1,\ldots,a_k\in M$. En vista al Lema \ref{lema:pre-garside} (iv), existe $r\geq 1$ tal que $a_i\preceq\Delta^r$ para todo $i=1,\ldots,k$. Consideramos el conjunto
-$$X=\{x\in M\ |\ a_i\preceq c\preceq\Delta^r\ \ \forall i\in\{1,\ldots,k\}\}.$$
+
+$$X=\{x\in M\ |\ a_i\preceq c\preceq\Delta^r\ \ \forall i\in\{1,\ldots,k\}\}$$
 
 Ya que el conjunto de átomos de $M$ es finito y todos los divisores por la izquierda de $\Delta^r$ se expanden como producto de a lo máximo $r\norm{\Delta}$ átomos, el conjunto de divisores por la izquierda de $\Delta^r$ es finito. Dado que contiene a $X$, este es finito también. Sea $m$ el máximo común divisor por la izquierda de los elementos de $X$. Afirmamos que $m$ es mínimo común múltiplo por la derecha de $a_1,\ldots,a_k$. En efecto, $a_1,\ldots,a_k$ son divisores por la izquierda de todos los elementos de $X$. Por lo tanto, son divisores por la izquierda de $m$. Esto demuestra que $m$ es múltiplo común por la derecha de $a_1,\ldots,a_k$.
-
+\newline
+\newline
 Sea $m'$ otro común múltiplo por la derecha de $a_1,\ldots,a_k$. Denotamos por $m''$ un máximo común divisor por la izquierda de $m'$ y $\Delta^r$. Comprobamos que $m''\in X$. Primero, $m''\preceq\Delta^r$. Ya que $a_i$ es un divisor por la izquierda de $m'$ y de $\Delta^r$, es un divisor por la izquierda de $m''$. Esto prueba que $m''\in X$. Por definición de $m$, tenemos que $m\preceq m''$. Dado que $m''\preceq m'$, obtenemos $m\preceq m'$. Esto prueba nuestra afirmación.
 
 \subsection{El monoide de trenza}
@@ -1264,34 +1354,43 @@ Sea $m'$ otro común múltiplo por la derecha de $a_1,\ldots,a_k$. Denotamos por
 \subsubsection{Una presentación por generadores y relaciones}
 
 Para cualquier $n\geq 1$, denotamos por $B_n^+$ el monoide generado por $n-1$ generadores $\sigma_1,\sigma_2,\ldots,\sigma_{n-1}$ y las relaciones
-$$\sigma_i\sigma_j=\sigma_j\sigma_i\ \ \ si\ |i-j|\geq 2,$$
-$$\sigma_i\sigma_j\sigma_i=\sigma_j\sigma_i\sigma_i\ \ \ si\ |i-j|= 1,$$
+
+$$\sigma_i\sigma_j=\sigma_j\sigma_i\ \ \ si\ |i-j|\geq 2$$
+$$\sigma_i\sigma_j\sigma_i=\sigma_j\sigma_i\sigma_i\ \ \ si\ |i-j|= 1$$
 
 donde $i,j=1,2,\ldots,n-1$. El monoide $B_n^+$ se llama \textit{monoide de trenza} de $n$ hebras. A los elementos de $B_n^+$ se les llama \textit{trenzas positivas} de $n$ hebras. Por definición, $B_1^+$ es el monoide trivial. El monoide $B_2^+$ esta generado por un único generador y un conjunto vacío de relaciones. Es isomorfo al monoide $\mathbb{N}$ de enteros no negativos.
-
+\newline
+\newline
 La presentación de $B_n^+$ dada previamente es finita y equilibrada en longitud en el sentido ya visto, lo que nos provee de una solución para el problema de palabra para $B_n^+$. Además, el Lema \ref{lema:presen_mono} implica que el monoide $B_n^+$ es atómico cuyos átomos son $\sigma_1,\sigma_2,\ldots,\sigma_{n-1}$ y $\norm{a}=\ell(a)$ para todo $a\in B_n^+$, donde $\ell : B_n^+\rightarrow \mathbb{N}$ es el homomorfismo de monoide definido por $\ell(\sigma_i)=1$ para $i=1,\ldots,n-1$.
-
+\newline
+\newline
 Establecemos
+
 $$\Delta_n = (\sigma_1\cdots\sigma_{n-2}\sigma_{n-1})(\sigma_1\cdots\sigma_{n-2})\cdots(\sigma_1\sigma_2)\sigma_1\in B_n^+$$
 
 \subsubsection{Trenzas reducidas}
 
 Consideramos el grupo simétrico $S_n$ que esta formado por todas las permutaciones del conjunto $\{1,\ldots,n\}$. Definimos la función teórica $\rho:S_n\rightarrow B_n^+$ como sigue. Consideramos las transposiciones simples $s_1,\ldots,s_{n-1}\in S_n$, donde $s_i$ permuta $i$ y $i+1$ y deja el resto de elementos fijos. Las transposiciones simples generan $S_n$, así que cada elemento $\omega\in S_n$ puede ser expresado como una palabra $\omega = s_{i_1}s_{i_2}\cdots s_{i_r}$ con $i_1,i_2,\ldots,i_r\in\{1,2,\ldots,n-1\}$. Si $r$ es minimal, entonces esta es una expresión reducida y establecemos que $\rho(\omega)=\sigma_{i_1}\sigma_{i_2}\cdots \sigma_{i_r}$. Sea
+
 $$\pi:B_n^+\rightarrow S_n$$
 
 el homomorfismo de monoide definido por $\pi(\sigma)=s_i$ para todo $i=1,\ldots,n-1$. Esta claro que $\pi\circ\rho = id$, lo que implica que $\rho$ es inyectiva.
+\newline
+\newline
+Establecemos $B_n^{red}=\rho(S_n)\subset B_n^+$. Este es un conjunto finito de cardinalidad $n!$ y el homomorfismo $\pi:B_n^+\rightarrow S_n$ es una biyección cuando se restringe a $B_n^{red}$. Decimos que un elemento de $B_n^+$ es reducido si se encuentra en $B_n^{red}$. Los átomos $\sigma_1,\ldots,\sigma_{n-1}$ de $B_n^+$ son reducidos, ya que $\sigma_i=\rho(s_i)$ para $i=1,\ldots,n-1$. Denotamos por $\lambda(\omega)$ para $\omega\in S_n$ como la longitud $r$ de cualquier expresión reducida $s_{i_1}s_{i_2}\cdots s_{i_r}$ para $\omega$. A partir de esta definición esta claro que 
 
-Establecemos $B_n^{red}=\rho(S_n)\subset B_n^+$. Este es un conjunto finito de cardinalidad $n!$ y el homomorfismo $\pi:B_n^+\rightarrow S_n$ es una biyección cuando se restringe a $B_n^{red}$. Decimos que un elemento de $B_n^+$ es reducido si se encuentra en $B_n^{red}$. Los átomos $\sigma_1,\ldots,\sigma_{n-1}$ de $B_n^+$ son reducidos, ya que $\sigma_i=\rho(s_i)$ para $i=1,\ldots,n-1$. Denotamos por $\lambda(\omega)$ para $\omega\in S_n$ como la longitud $r$ de cualquier expresión reducida $s_{i_1}s_{i_2}\cdots s_{i_r}$ para $\omega$. Decimos que $s_{i_1}s_{i_2}\cdots s_{i_r}$ es una \textit{expresión reducida} si $r$ es minimal  para todas las expansiones de $w$. A partir de esta definición esta claro que 
 $$\lambda(\pi(a))=\ell(a)$$
-
+\newline
 para todo $a\in B_n^+$. El siguiente lema es una útil caracterización algebraica de $B_n^{red}$.
 
 \begin{lema}
-Un elemento de $B_n^+$ es reducido si y solo si $\lambda(\pi(a))=\ell(a)$.
+Un elemento de $B_n^+$ es reducido si y solo si $\lambda(\pi(a))=\ell(a)$
 \label{lema:reduced1}
 \end{lema}
 
-\textit{Demostración.} Si $a=\rho(\omega)$ para algún $\omega\in S_n$, entonces $\ell(a)=\lambda(\omega)=\lambda(\pi(a))$. Por el contrario, sea $a=s_{i_1}s_{i_2}\cdots s_{i_r}\in B_n^+$ con $r=\ell(a)=\lambda(\pi(a))$. Entonces $\pi(a)=s_{i_1}s_{i_2}\cdots s_{i_r}$ es una expresión reducida de $S_n$ y $a=\rho(\pi(a))\in B_n^{red}$. \qed
+\textit{Demostración.} Si $a=\rho(\omega)$ para algún $\omega\in S_n$, entonces $\ell(a)=\lambda(\omega)=\lambda(\pi(a))$. Por el contrario, sea $a=s_{i_1}s_{i_2}\cdots s_{i_r}\in B_n^+$ con $r=\ell(a)=\lambda(\pi(a))$. Entonces $\pi(a)=s_{i_1}s_{i_2}\cdots s_{i_r}$ es una expresión reducida de $S_n$ y $a=\rho(\pi(a))\in B_n^{red}$.
+
+\qed
 
 \begin{lema}
 Un divisor por la izquierda o por la derecha de un elemento reducido de $B_n^+$ es reducido.
@@ -1299,9 +1398,12 @@ Un divisor por la izquierda o por la derecha de un elemento reducido de $B_n^+$ 
 \end{lema}
 
 \textit{Demostración.} Si $a,b\in B_n$ y $ab\in B_n^{red}$, entonces
-$$\ell(a) + \ell(b)= \ell(ab)=\lambda(\pi(ab))=\lambda(\pi(a)\pi(b))\leq \lambda(\pi(a))+\lambda(\pi(a)).$$
 
-Ya que $\ell(a)\geq \lambda(\pi(a))$ y $\ell(b)\geq \lambda(\pi(b))$, estas desigualdades son realmente igualdades. Por el Lema \ref{lema:reduced1}, se sigue que $a,b\in B_n^{red}$.\qed
+$$\ell(a) + \ell(b)= \ell(ab)=\lambda(\pi(ab))=\lambda(\pi(a)\pi(b))\leq \lambda(\pi(a))+\lambda(\pi(a))$$
+
+Ya que $\ell(a)\geq \lambda(\pi(a))$ y $\ell(b)\geq \lambda(\pi(b))$, estas desigualdades son realmente igualdades. Por el Lema \ref{lema:reduced1}, se sigue que $a,b\in B_n^{red}$.
+
+\qed
 
 \begin{lema}
 Para $u,v\in S_n$, tenemos que $\rho(u)\rho(v)=\rho(uv)$ si y solo si $\lambda(u)+\lambda(v)=\lambda(uv)$.
@@ -1309,18 +1411,20 @@ Para $u,v\in S_n$, tenemos que $\rho(u)\rho(v)=\rho(uv)$ si y solo si $\lambda(u
 \end{lema}
 
 \textit{Demostración.} Sea $a=(\rho(u)\rho(v)\in B_n^+)$. Tenemos que $\pi(a)= uv$ y 
-$$\lambda(uv)=\lambda(\pi(a))\leq\ell(a)=\ell(\rho(u))+\ell(\rho(v))=\lambda(u)+\lambda(v).$$
 
-Por tanto $a\in B_n^{red}$ si y solo si $\lambda(uv)=\lambda(u)+\lambda(v)$. Por otra parte, $a\in B_n^{red}$ si y solo si $a=\rho(\pi(a))=\rho(uv)$. \qed
-\ 
-\newline
+$$\lambda(uv)=\lambda(\pi(a))\leq\ell(a)=\ell(\rho(u))+\ell(\rho(v))=\lambda(u)+\lambda(v)$$
 
+Por tanto $a\in B_n^{red}$ si y solo si $\lambda(uv)=\lambda(u)+\lambda(v)$. Por otra parte, $a\in B_n^{red}$ si y solo si $a=\rho(\pi(a))=\rho(uv)$.
 
-La permutación $\omega_0=(n,n-1,\ldots,2,1)$ es el único elemento de $\omega_0\in S_n$ de longitud máxima. Es fácil comprobar que
-$$\omega_0=(s_1\cdots s_{n-2}s_{n-1})s_1\cdots s_{n-2})\cdots(s_1s_2)s_1.$$
+\qed
+
+La permutación $\omega_0=(n,n-1,\ldots,2,1)$ es el único elemento de $\omega_0\in S_n$ de longitud máxima. Es facil comprobar que
+
+$$\omega_0=(s_1\cdots s_{n-2}s_{n-1})s_1\cdots s_{n-2})\cdots(s_1s_2)s_1$$
 
 Ya que la palabra en la parte derecha tiene longitud $\lambda(\omega_0)=n(n-1)/2$, es reducido. Por lo tanto
-$$\rho(\omega_0)(\sigma_1\cdots \sigma_{n-2}\sigma_{n-1})\sigma_1\cdots \sigma_{n-2})\cdots(\sigma_1\sigma_2)\sigma_1=\Delta_n.$$
+
+$$\rho(\omega_0)(\sigma_1\cdots \sigma_{n-2}\sigma_{n-1})\sigma_1\cdots \sigma_{n-2})\cdots(\sigma_1\sigma_2)\sigma_1=\Delta_n$$
 
 Esto demuestra que $\Delta_n$ es reducido.
 
@@ -1330,12 +1434,13 @@ Un elemento de $B_n^+$ es reducido si y solo si es un divisor por la izquierda o
 \end{lema}
 
 \textit{Demostración.} Ya que $\Delta_n$ es reducido, todos sus divisores por la izquierda y por la derecha son reducidos por el Lema \ref{lema:reduced2}.
-
+\newline
+\newline
 Por el contrario, sea $a=\rho(\pi(a))\in B_n^{red}$. Establecemos $b=\rho(\pi(a)^{-1}\omega_0)\in B_n^{red},\ u=\pi(a)$ y $v=\pi(b)=\pi(a)^{-1}\omega_0$. Tenemos $uv=\omega_0$. Por tanto, por el Lema \ref{}
 
 $$\lambda(u)\lambda(v)=\lambda(\omega_0)$$
 
-Esta igualdad por el Lema \ref{lema:longi} implica que $ab=\Delta_n$. Por tanto, $a$ es un divisor de $\Delta_n$. Un argumento simiar prueba que $a$ es un divisor por la derecha de $\Delta_n$. \qed
+Esta igualdad por el Lema \ref{lema:longi} implica que $ab=\Delta_n$. Por tanto, $a$ es un divisor de $\Delta_n$. Un argumento simiar prueba que $a$ es un divisor por la derecha de $\Delta_n$.
 
 \begin{teor}
 Para todo $n\geq 1$, el par $B_n^+,\Delta_n$ es un monoide de Garside exhaustivo.
@@ -1343,16 +1448,21 @@ Para todo $n\geq 1$, el par $B_n^+,\Delta_n$ es un monoide de Garside exhaustivo
 \end{teor}
 
 \textit{Demostración.} Ya observamos que $B_n^+$ es atómico con átomos $\sigma_1,\ldots,\sigma_{n-1}$. Vamos a probar que $(B_n^+,\Delta_n)$ es un monoide pre-Garside comprobando las condiciones (a), (b) de la Definición \ref{defi:pre-garside}.
-
+\newline
+\newline
 Por el Lema \ref{lema:reduced3}, el conjunto de divisores por la izquierda de $\Delta_n$ coincide con el conjunto de divisores por la derecha de $\Delta_n$ y coincide con el conjunto $B_n^{red}$. Este último es finito y coincide con los generadores $\sigma_1,\ldots,\sigma_{n-1}$ de $B_n^+$. Esto verifica la condición (a).
 
 Condición (b): vamos a probar que $\Delta_a=\Delta_b\Rightarrow a=b$ para $a,b\in B_n^{red}.$ Aplicando el homomorfismo de monoide $\pi: B_n^+\rightarrow S_n$, obtenemos
-$$\pi(\Delta_n)\pi(a)=\pi(\Delta_n a)=\pi(\Delta_n b)=\pi(\Delta_n)\pi(b)\in S_n.$$
+
+$$\pi(\Delta_n)\pi(a)=\pi(\Delta_n a)=\pi(\Delta_n b)=\pi(\Delta_n)\pi(b)\in S_n$$
 
 Ya que $S_n$ es un grupo, $\pi(a)=\pi(b)$. Esto implica que
-$$a=\rho(\pi(a))=\rho(\pi(b))=b.$$
+
+$$a=\rho(\pi(a))=\rho(\pi(b))=b$$
 
 La implicación $a\Delta_n=b\Delta_n\Rightarrow a=b$ se prueba de igual forma.
+\newline
+\newline
 Para cualesquiera $i,j\in\{1,\ldots,n-1\}$, establecemos
 
 $$\sigma_{i,j}= \left\{ \begin{array}{lcc}
@@ -1363,42 +1473,54 @@ $$\sigma_{i,j}= \left\{ \begin{array}{lcc}
    \right.$$
    
 Establecemos $s_{i,j}=\pi(\sigma_{i,j})\in S_n$. Es fácil comprobar que $s_{i,j}=s_is_j$ es una expresión reducida cuando $|i-j|\geq 2$, y $s_{i,j}=s_is_js_i\in S_n$ es una expresión reducida cuando $|i-j|=1$. Entonces $\sigma_{i,j}=\rho(s_{i,j})\in B_n^{red}$ para todo $i,j$. Por lo tanto el conjunto $B_n^{red}$ es exhaustivo.
-
+\newline
+\newline
 Para completar la prueba, hay que comprobar la condición de la Definición \ref{defi:garside}
 . Observamos que $\sigma_i\preceq \sigma_{i,j}$ y $\sigma_j\preceq\sigma_{i,j}$ para todo $i,j$. Afirmamos que $\sigma_{i,j}$ es el elemento minimal del conjunto
-$$\{a\in B_n^{red}\ |\ \sigma_i\preceq a,\ \sigma_j\preceq a\}.$$
 
+$$\{a\in B_n^{red}\ |\ \sigma_i\preceq a,\ \sigma_j\preceq a\}$$
+\newline
 Debemos demostrar que para cualquier $a\in B_n^{red}$, tal que $\sigma_i\preceq a$ y $\sigma_j\preceq a$, se da que $\sigma_{i,j}\preceq a$. El caso $i=j$ es trivial, por lo que consideraremos el caso $i\neq j$. Ya que los elementos de $B_n^{red}$ están en biyección con los elementos de $S_n$ a través de la función $\pi: B_n^+\rightarrow S_n$, es suficiente establecer que si
+
 $$w=\pi(a)=s_iu=s_jv$$
 
 para algún $u,v\in S_n$ con $\lambda(u)=\lambda(v)=\lambda(w)-1$, entonces existe $w'\in S_n$ tal que $w=s_{i,j}w'$ y $\lambda(w')=\lambda(w)-\lambda(s_{i,j})$.
+\newline
+\newline
+Demostramos la última afirmación. Primero observamos que $u\neq v$, ya que $s_i\neq s_j$. Sea $s_{i_1}s_{i_2}\cdots s_{i_r}$ una expresión reducida para $v$, donde $r=\lambda(w)-1$. Tenemos
 
-Demostramos la última afirmación. Primero observamos que $u\neq v$, ya que $s_i\neq s_j$. Sea $s_{i_1}s_{i_2}\cdots s_{i_r}$ una expresión reducida para $v$, donde $r=\lambda(w)-1$. Tenemos que
-$$u=s_iw=s_is_jv=s_is_js_{i_1}s_{i_2}\cdots s_{i_r}.$$
+$$u=s_iw=s_is_jv=s_is_js_{i_1}s_{i_2}\cdots s_{i_r}$$
 
 Ya que $\lambda(u)<\lambda(w)$, $u$ se obtiene de $s_js_{i_1}s_{i_2}\cdots s_{i_r}$ por eliminación de uno de los generadores. Si eliminamos el generador más a la izquierda $s_j$, entonces $u=s_{i_1}s_{i_2}\cdots s_{i_r}=v$, lo que es imposible. Por tanto, $u=s_jw'$ con
-$$w'=s_{i_1}\cdots\widehat{s_{i_p}}\cdots s_{i_r},$$
 
+$$w'=s_{i_1}\cdots\widehat{s_{i_p}}\cdots s_{i_r}$$
+\newline
 donde algún $s_{i_p}$ es eliminado. Por lo tanto, $\lambda(w')\leq r-1=\lambda(w)-2$. Ya que
-$$w=s_iu=s_is_jw',$$
+
+$$w=s_iu=s_is_jw'$$
 
 debemos tener $\lambda(w')=\lambda(w)-2$. Esto prueba la afirmación cuando $|i-j|\geq 2$, es decir, cuando $s_{i,j}=s_is_j$.
+\newline
+\newline
+Consideramos el caso $|i-j|=1$. Por el calculo previo
 
-Consideramos el caso $|i-j|=1$. Por el calculo previo,
-$$v=s_jw=s_js_iu=s_js_is_jw'=s_js_is_js_{i_1}\cdots\widehat{s_{i_p}}\cdots s_{i_r}.$$
+$$v=s_jw=s_js_iu=s_js_is_jw'=s_js_is_js_{i_1}\cdots\widehat{s_{i_p}}\cdots s_{i_r}$$
 
 Ya que $\lambda(v)<\lambda(w)=r+1$, $u$ se obtiene de $s_is_js_{i_1}s_{i_2}\cdots s_{i_r}$ por eliminación de uno de los generadores. Si eliminamos el generador más a la izquierda $s_i$, entonces
-$$v=s_js_{i_1}s_{i_2}\cdots s_{i_r}=s_jw'=u,$$
+
+$$v=s_js_{i_1}s_{i_2}\cdots s_{i_r}=s_jw'=u$$
 
 lo que es imposible. Si el generador eliminado es $s_j$ en la segunda posición, entonces
-$$v=s_is_{i_1}s_{i_2}\cdots s_{i_r}=s_jw'.$$
+
+$$v=s_is_{i_1}s_{i_2}\cdots s_{i_r}=s_jw'$$
 
 Obtenemos $s_is_jw'=w=s_jv=s_js_iw'$, lo que implica $s_is_j=s_js_i$. Esto es imposible ya que $|i-j|=1$. Por tanto $v=s_is_jw''$, donde $w''$ se obtiene por borrar un generador de $w'=s_{i_1}s_{i_2}\cdots s_{i_r}$. En consecuencia $\lambda(w'')\leq r-2=\lambda(w)-3$ y
-$$w=s_jv=s_js_is_jw''=s_{i,j}w''.$$
 
-Entonces $\lambda(w'')=\lambda(w)-3$. \qed
-\ 
-\newline
+$$w=s_jv=s_js_is_jw''=s_{i,j}w''$$
+
+Entonces $\lambda(w'')=\lambda(w)-3$.
+
+\qed
 
 Por el Teorema \ref{teor:trenzas-garside}, el par $(B_n^+,\Delta_n)$, comparte todas las propiedades de los monoides de Garside exhaustivos. Hacemos un resumen de esas propiedades.
 
@@ -1417,54 +1539,70 @@ Completamos la lista con el siguiente teorema.
 Cualquier familia finita de elementos de $B_n^+$ tiene un único mcd por la derecha y un único mcm por la izquierda.
 \end{teor}
 \textit{Demostración.} Consideramos la función $rev: B_n^+\rightarrow B_n^+$ obtenida al leer las palabras de generadores $\sigma_1,\ldots, \sigma_{n-1}$ de derecha a izquierda:
-$$rev(s_{i_1}s_{i_2}\cdots s_{i_{r-1}}s_{i_r})=s_{i_r}s_{i_{r-1}}\cdots s_{i_{2}}s_{i_1}.$$
 
-Esta función esta bien definida, ya que las relaciones de la definición de $B_n^+$, siendo leidas de derecha a izquierda, dan las mismas relaciones. La función $rev$ es un antiautomorfismo involutivo de $B_n^+$ en el sentido en que $rev^2=id$, $rev(1)=1$ y $rev(ab)=rev(a)rev(b)$ para todo $a,b\in B_n^+$. Esta claro que $a\preceq b$ si y solo si $rev(a)\succeq rev(b)$ para $a,b\in B_n^+$. Usando estos hechos, es fácil deducir la existencia de mcd por la derecha y mcm por la izquierda a partir de la existencia de mcd por la izquierda y mcm por la derecha. La unicidad se obtiene del Lema \ref{lema:rel2}.\qed
+$$rev(s_{i_1}s_{i_2}\cdots s_{i_{r-1}}s_{i_r})=s_{i_r}s_{i_{r-1}}\cdots s_{i_{2}}s_{i_1}$$
+
+Esta función esta bien definida, ya que las relaciones de la definición de $B_n^+$, siendo leidas de derecha a izquierda, dan las mismas relaciones. La función $rev$ es un antiautomorfismo involutivo de $B_n^+$ en el sentido en que $rev^2=id$, $rev(1)=1$ y $rev(ab)=rev(a)rev(b)$ para todo $a,b\in B_n^+$. Esta claro que $a\preceq b$ si y solo si $rev(a)\succeq rev(b)$ para $a,b\in B_n^+$. Usando estos hechos, es fácil deducir la existencia de mcd por la derecha y mcm por la izquierda a partir de la existencia de mcd por la izquierda y mcm por la derecha. La unicidad se obtiene del Lema \ref{lema:rel2}.
+
+\qed
 
 \subsubsection{Cálculos}
 
 La expansión $\beta=\Delta^sb$ de una trenza $\beta\in B_n$ que nos da la propiedad (5) de la sección previa puede ser explícitamente calculada. Representar $\beta$ por una palabra de generadores $\sigma_1,\ldots,\sigma_{n-1}$ y sus inversos. Definimos $\nu_i\in B_n^+$ por $\nu_i\sigma_i=\Delta_n$. Entonces $\sigma_i^{-1}=\Delta_n^{-1}\nu_i$. En la palabra representando $\beta$ reemplazamos todas las ocurrencias de $\sigma_i^{-1}$ por $\Delta_n^{-1}\nu_i$ y expandimos todo $\nu_i$ en términos de $\sigma_1,\ldots,\sigma_{n-1}$. En la palabra resultante tenemos solo los generadores $\sigma_i$ (no sus inversos) y potencias negativas de $\Delta_n$. Usando la identidad
+
 \begin{equation}
-\sigma_i\Delta_n=\Delta_n\sigma_{n-i},
+\sigma_i\Delta_n=\Delta_n\sigma_{n-i}
 \end{equation}
-
+\newline
 donde $i=1,\ldots,n-1$, podemos mover todas las potencias de $\Delta_n$ a la izquierda. De esta forma obtenemos una expansión $\beta=\Delta_n^sb$ con $s\in\mathbb{Z}$ y $b\in B_n^+$. Si $b$ no es un múltiplo por la derecha de $\Delta_n$, entonces tenemos la deseada expansión de $\beta$. Si $\Delta_n\preceq b$, entonces $b=\Delta_n b'$ con $b'\in B_n^+$ y $\beta=\Delta_n^{s+1}b'$. Observar que comprobar si $\Delta_n\preceq b$, es suficiente calcular $\alpha(b)\in B_n^{red}$ y ver si $\alpha(b)=\Delta_n$. Después comprobamos si $b'$ es múltiplo por la derecha de $\Delta_n$ y así sucesivamente. El proceso se para antes de $2\ell(b)/(n(n-1))$ pasos.
+\newline
+\newline
+Damos un ejemplo, aplicamos este procedimiento a
 
-Damos un ejemplo aplicando este procedimiento a
-$$\beta=\sigma_1^{-1}\sigma_2\sigma_1\sigma_2^{-2}\in B_4.$$
-
+$$\beta=\sigma_1^{-1}\sigma_2\sigma_1\sigma_2^{-2}\in B_4$$
+\newline
 Denotamos por $W(a)$ al conjunto de palabras de $\sigma_1,\ldots,\sigma_{n-1}$ representado a un elemento $a\in B_n^+$. De
+
 $$\Delta_4=\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2\sigma_1=\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1\sigma_2$$
-
+\newline
 derivamos que $\sigma_1^{-1}=\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2$ y $\sigma_2^{-1}=\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1$. En consecuencia
-$$\beta=(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2)(\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)=$$
+\newline
 
-$$=(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2)(\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_3\sigma_2\sigma_1\sigma_2\sigma_3)(\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)=$$
+$$\beta=(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2)(\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)$$
 
-$$=\Delta_4^{-3}abc^2,$$
+$$=(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2)(\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_3\sigma_2\sigma_1\sigma_2\sigma_3)(\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)$$
+
+$$=\Delta_4^{-3}abc^2$$
 
 donde
+
 $$a=\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2\ \ \ b=\sigma_2\sigma_1\ \ \ c=\sigma_3\sigma_2\sigma_1\sigma_2\sigma_3=\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1$$
 
-Vamos a calcular $\alpha(abc^2)$ con el objetivo de ver si $abc^2$ es un múltiplo por la derecha de $\Delta_4$. Observamos que $a,b$ y $c$ son trenzas reducidas. Ya que $c\alpha_2=\Delta_4$, tenemos que $\alpha(c^2)=\alpha_2(c,c)=cc'$, donde $c'$ es el mcd por la izquierda de $\sigma_2$ y $c$. Ahora $W(c)$ consiste de seis palabras.
+Vamos a calcular $\alpha(abc^2)$ con el objetivo de ver si $abc^2$ es un múltiplo por la derecha de $\Delta_4$. Observamos que $a,b$ y $c$ son trenzas reducidas. Ya que $c\alpha_2=\Delta_4$, tenemos que $\alpha(c^2)=\alpha_2(c,c)=cc'$, donde $c'$ es el mcd por la izquierda de $\sigma_2$ y $c$. Ahora $W(c)$ consiste de seis palabras
+
 $$\sigma_3\sigma_2\sigma_1\sigma_2\sigma_3\ \ \sigma_1\sigma_2\sigma_3\sigma_2\sigma_1\ \ \sigma_1\sigma_3\sigma_2\sigma_3\sigma_1$$
 $$\sigma_1\sigma_3\sigma_2\sigma_1\sigma_3\ \ \sigma_3\sigma_1\sigma_2\sigma_3\sigma_1\ \ \sigma_3\sigma_1\sigma_2\sigma_1\sigma_3$$
 
 Por lo tanto, $c'=1$ y $\alpha(c^2)=c$. De $b(\sigma_2\sigma_3\sigma_2\sigma_1)=\Delta^4$, obtenemos
-$$\alpha(bc^2)=\alpha_2(b,\alpha(c^2))=\alpha_2(b,c)=bb',$$
+
+$$\alpha(bc^2)=\alpha_2(b,\alpha(c^2))=\alpha_2(b,c)=bb'$$
 
 donde $b'$ es el mcd por la izquierda de $\sigma_2\sigma_3\sigma_2\sigma_1$ y c. Ahora
-$$W(\sigma_2\sigma_3\sigma_2\sigma_1)=\{\sigma_2\sigma_3\sigma_2\sigma_1,\sigma_3\sigma_2\sigma_3\sigma_1,\sigma_3\sigma_2\sigma_1\sigma_3\}.$$
 
+$$W(\sigma_2\sigma_3\sigma_2\sigma_1)=\{\sigma_2\sigma_3\sigma_2\sigma_1,\sigma_3\sigma_2\sigma_3\sigma_1,\sigma_3\sigma_2\sigma_1\sigma_3\}$$
+\newline
 Comparando con $W(c)$, obtenemos $b'=\sigma_3\sigma_2\sigma_1$. Por tanto, $\alpha(bc^2)=d$, donde $d=\sigma_2\sigma_1\sigma_3\sigma_2\sigma_1$. Finalmente, $a\sigma_1=\Delta_4$, implica
+
 $$\alpha(abc^2)=\alpha_2(a,\alpha(bc^2))=\alpha_2(a,d)=aa'$$
 
 donde $a'$ es el mcd por la izquierda de $\sigma_1$ y $d$. La lista
+
 $$W(d)=\{\sigma_2\sigma_1\sigma_3\sigma_2\sigma_1,\sigma_2\sigma_3\sigma_1\sigma_2\sigma_1,
 \sigma_2\sigma_3\sigma_2\sigma_1\sigma_2,\sigma_3\sigma_2\sigma_3\sigma_1\sigma_2,
 \sigma_3\sigma_2\sigma_1\sigma_3\sigma_2\}$$
 
 demuestra que $a'=1$. Por tanto, $\alpha(abc^2)=a\neq\Delta_4$. Por lo tanto, $abc^2$ no es múltiplo por la derecha de $\Delta_4$ y 
+
 $$\beta=\Delta_4^{-3}abc^2$$
 
 es la expansión requerida de $\beta$. La forma normal de $abc^2$ es $(a,d,e,b)$ donde $e=\sigma_1\sigma_2\sigma_1\sigma_3\sigma_2$.
@@ -1472,7 +1610,8 @@ es la expansión requerida de $\beta$. La forma normal de $abc^2$ es $(a,d,e,b)$
 \subsection{Problema del conjugado en $B_n$}
 
 Ya hemos visto una solución para el problema del conjugado en el monoide $M_\Sigma$ y en el grupo de fracciones. Sin embargo estas soluciones a priori no son computables ya que el cardinal del conjunto de conjugados de un elemento puede ser infinito. Por tanto vamos a ver algunas definiciones y resultados extraídos de \cite{Att} que nos serán útiles en el apartado de criptoanálisis para resolver el problema del conjugado algorítmicamente.
-
+\newline
+\newline
 El orden parcial $\leq$ entre elementos de $B_n$ se define de la siguiente manera:
 
 \begin{defi}
@@ -1480,7 +1619,8 @@ Sean $v,w\in B_n$, entonces $v\leq w$, si y solo si, existen trenzas positivas $
 \end{defi}
 
 Como ya hemos visto, dada una trenza $w\in B_n$, podemos escribir esta de forma única como
-$$w = \Delta_n^r W_1\cdots W_s.$$
+
+$$w = \Delta_n^r W_1\cdots W_s$$
 
 Definiremos como $inf(w) = r$ y $sup(w)=s+r$. Las definiciones originales de ínfimo y supremo se encuentran en \cite{Alg}, pero nosotros utilizaremos estas las cuales son equivalentes y en la práctica serán las que necesitaremos.
 
@@ -1544,15 +1684,21 @@ La \textit{criptografía} es la ciencia de guardar los secretos a salvo. Se asum
 \subsubsection{Cifrado}
 
 La tarea clásica y fundamental de la criptografía es la de proveer de \textit{confidencialidad} a través de los métodos de cifrado. El mensaje a transmitir se le llama \textit{texto plano}. Alice \textit{cifra} el texto plano $m$ y obtiene un \textit{texto cifrado} $c$. El texto cifrado $c$ es transmitido a Bob. Bob \textit{descifrando} obtiene el texto plano a partir del texto cifrado. Para \textit{descifrar}, Bob necesita una información secreta, la llave de descifrado. La adversaria Eve todavía podría interceptar el mensaje cifrado. Sin embargo, el cifrado del texto plano debería garantizar la confidencialidad y prevenir que pueda extraer alguna información del texto plano a partir del texto cifrado.
+\newline
+\newline
+El cifrado es muy antiguo. Por ejemplo, el \textit{cifrado César} fue introducido hace más de $2000$ años. Cada método de cifrado provee un \textit{algoritmo de cifrado} $E$ y un \textit{algoritmo de descifrado} $D$. En los esquemas de cifrado clásicos, ambos algoritmos dependen de la misma llave secreta $k$. Esta llave $k$ se usa para cifrar y descifrar. A estos métodos de cifrado se les llama \textit{simétricos}.
 
-El cifrado es muy antiguo. Por ejemplo, el \textit{cifrado César} fue introducido hace más de $2000$ años. Cada método de cifrado provee un \textit{algoritmo de cifrado} $E$ y un \textit{algoritmo de descifrado} $D$. En los esquemas de cifrado clásicos, ambos algoritmos dependen de la misma llave secreta $k$. Esta llave $k$ se usa para cifrar y descifrar. A estos métodos de cifrado se les llama \textit{simétricos},
-$$D(k,E(k,m))=m.$$
+$$D(k,E(k,m))=m$$
+\
+\newline
+En $1976$, Diffie y Hellman introdujeron el revolucionario concepto de \textit{criptografía de llave pública}. Proporcionaron una solución al problema del intercambio de llaves y señalaron el camino a las firmas digitales. A los métodos de \textit{cifrado de llave pública} se les llama \textit{asimétricos}. Cada destinatario de mensajes tiene una llave personal $k = (pk,sk)$ que se compone de dos partes: $pk$ es la llave de cifrado y esta se hace pública, y $sk$ es la llave de descifrado y se mantiene en secreto. Si Alice quiere enviar un mensaje $M$ a Bob, ella cifra $m$ usando la llave de cifrado de Bob $pk$, la cual es pública. Bob descifra el texto cifrado usando su llave de descifrado $sk$ que solo conoce él.
 
-En $1976$, Diffie y Hellman introdujeron el revolucionario concepto de \textit{criptografía de llave pública}. Proporcionaron una solución al problema del intercambio de llaves y señalaron el camino a las firmas digitales. A los métodos de \textit{cifrado de llave pública} se les llama \textit{asimétricos}. Cada destinatario de mensajes tiene una llave personal $k = (pk,sk)$ que se compone de dos partes: $pk$ es la llave de cifrado y esta se hace pública, y $sk$ es la llave de descifrado y se mantiene en secreto. Si Alice quiere enviar un mensaje $M$ a Bob, ella cifra $m$ usando la llave de cifrado de Bob $pk$, la cual es pública. Bob descifra el texto cifrado usando su llave de descifrado $sk$ que solo conoce él,
-$$D(sk,E(pk,m))=m.$$
-
+$$D(sk,E(pk,m))=m$$
+\
+\newline
 Cualquiera puede cifrar fácilmente el texto plano usando la llave pública $pk$, pero la otra dirección es complicada. Es prácticamente imposible deducir el texto plano a partir del texto cifrado sin saber la llave secreta $sk$.
-
+\newline
+\newline
 Los métodos de cifrado de llave pública requieren cálculos más complejos y son menos eficientes que los métodos de clásicos de cifrado simétrico. Por eso los métodos simétricos son usados para el cifrado de grandes cantidades de datos. Antes de aplicar el cifrado simétrico, el emisor y el receptor acuerdan una llave. Para mantener la llave en secreto necesitan un canal de comunicación seguro. Lo habitual es utilizar el cifrado de llave pública para este propósito.
 
 \subsubsection{Objetivos de la criptografía}
@@ -1568,33 +1714,43 @@ Proveer de \textbf{confidencialidad} no es el único objetivo de la criptografí
 \end{itemize}
 
 Hay tanto métodos simétricos como de llave pública para asegurar la integridad de los mensajes. Los métodos simétricos clásicos requieren una llave secreta $k$ que es compartida por el emisor y el receptor. El mensaje $m$ se aumenta con el \textit{código de autenticación de mensaje} (MAC acrónimo en inglés). El código es generado por un algoritmo y depende de una llave secreta. el mensaje aumentado $(m,MAC(k,m))$ está protegido contra modificaciones. El receptor del mensaje puede comprobar la integridad del mensaje $(m,\overline{m})$ comprobando que
-$$MAC(k,m)=\overline{m}.$$
+
+$$MAC(k,m)=\overline{m}$$
 
 Los códigos de autenticación de mensaje se implementan mediante funciones hash con llave.
-
+\newline
+\newline
 Las \textit{firmas digitales} requieren métodos de llave pública. Como las clásicas firmas a mano, tienen la intención de proveer de autenticación y no repudiación. Las firmas digitales dependen de la clave secreta del firmante (solo pueden ser generadas por él). Por otra parte cualquier persona puede comprobar la validez de la firma utilizando un algoritmo de verificación público \textit{Verify} el cual depende de la llave pública del firmante. Si Alice quiere firmar un mensaje $m$, ella utiliza el algoritmo \textit{Sign} con su llave secreta $sk$ y consigue su firma $Sign(sk,m)$. Bob recibe una firma $s$ para el mensaje $m$ y puede comprobar la firma viendo si
+
 $$Verify(pk,s,m)=ok$$
-
+\ 
+\newline
 con la llave pública de Alice $pk$.
-
+\newline
+\newline
 No es común firmar el mensaje en si mismo, sino usar primero una \textit{función hash criptográfica} y después firmar el valor hash. Las firmas digitales dependen del mensaje. Mensajes distintos producen firmas distintas. Así que, como los códigos de autenticación de mensaje, las firmas digitales pueden ser utilizadas para garantizar la integridad de los datos.
 
 
 \subsubsection{Protocolos criptográficos}
 
 Los algoritmos de cifrado y descifrado, funciones hash criptográficas y los generadores peusoaleatorios son básicamente los bloques de construcción (también llamados primitivas criptográficas) utilizados para resolver problemas que involucran confidencialidad, autenticación o integridad de los datos.
-
+\newline
+\newline
 En muchos casos un único bloque de construcción no puede resolver un problema, sino que se necesita combinar varias primitivas. Una serie de pasos deben ser ejecutados para completar la tarea. A la sucesión de pasos bien definidos se le denomina \textit{protocolo criptográfico}. Es habitual añadir una condición a esta definición y es la de dos o más partes esten involucradas. Solo usaremos el término ``protocolo'' si se requiere al menos dos personas para completar la tarea.
-
+\newline
+\newline
 Como contraejemplo echamos un vistazo al esquema de firma digital. Un esquema típico para generar una firma digital es primero aplicar una función hash criptográfica $h$ al mensaje $m$ y después, en un segundo paso, calcular la firma utilizando el algoritmo de descifrado de llave pública sobre el valor hash $h(m)$. Ambos pasos están hechos por una única persona, por lo que no se considera un protocolo.
 
 \subsubsection{Intercambio de llaves}
 Los criptosistemas de llave pública y secreta asumen que los participantes tienen acceso a las llaves. En la práctica, uno puede utilizar estos sistemas si el problema de la distribución de llaves esta resuelto.
-
+\newline
+\newline
 El concepto de seguridad para llaves tiene dos niveles. El primer nivel emplea llaves secretas de larga duración, denominadas \textit{llaves maestras}. Las llaves del segundo nivel están asociadas con la sesión, por lo que son llamadas \textit{llaves de sesión}. Una llave de sesión es solo válida durante el breve tiempo de duración de una sesión. Las llaves maestras son normalmente las llaves empleadas en un criptosistema de llave pública.
-
+\newline
+\newline
 Hay dos razones principales para el concepto a dos niveles. La primera es que el cifrado por llave simétrica es más eficiente que el cifrado de llave pública. por tanto, las llaves de sesión suelen ser llaves de criptosistemas simétricos, y esas deben ser intercambiadas de manera segura, usando otras llaves. La segunda razón y probablemente más importante es que el concepto a dos niveles provee de más seguridad. Si la seguridad de una sesión se ve comprometida, solo afecta a esa sesión. Dada una llave de sesión, el número de textos cifrados disponibles para el criptoanálisis es limitado. Las llaves de sesión son generadas cuando se necesitan utilizar y se desechan después de ser usadas.
-
+\newline
+\newline
 La llave maestra se utiliza para generar las llaves de sesión. Por tanto es especialmente importante prevenir los ataques sobre la llave maestra. Por eso el acceso a la llave maestra esta estrictamente limitado.
 
 
@@ -1620,22 +1776,29 @@ La llave maestra se utiliza para generar las llaves de sesión. Por tanto es esp
 \subsubsection{Plataformas criptográficas y grupos de plataforma}
 
 Si un protocolo criptográfico esta basado en un objeto algebraico como puede ser un grupo, un anillo u otros, entonces es llamado \textit{plataforma criptográfica} o \textit{plataforma}. En criptografía basada en un grupo a este se le llama \textit{grupo de plataforma} para el protocolo criptográfico. La seguridad de un protocolo criptográfico depende entonces de la dificultad, computacional o teórica, de resolver un problema de teoría de grupos en el grupo de plataforma.
+\newline
+\newline
+Para que un grupo de plataforma $G$ sea adecuado para un protocolo criptográfico basado en grupos, $G$ debe poseer ciertas propiedades que hagan el protocolo tanto eficiente de implementar como seguro. Se asume que el grupo posee una representación finita
 
-Para que un grupo de plataforma $G$ sea adecuado para un protocolo criptográfico basado en grupos, $G$ debe poseer ciertas propiedades que hagan el protocolo tanto eficiente de implementar como seguro. Se asume que el grupo posee una representación finita,
-$$G = \langle X;R\rangle=\langle x_1,...,x_n: R_1=\cdot\cdot\cdot=R_m=1\rangle,$$
+$$G = \langle X;R\rangle=\langle x_1,...,x_n: R_1=\cdot\cdot\cdot=R_m=1\rangle$$
 
 y que el protocolo de seguridad esta basado en un problema de teoría de grupos que denotamos por $\mathcal{P}$. La primera necesidad es que haya una forma de representar unicamente y multiplicar los elementos de $G$. En la mayoría de casos esto requiere una \textit{forma normal} para los elementos $g\in G$ en término de unos generadores $\{x_1,...,x_n\}$. Una forma normal es, para cada $g\in G$, una única representación en término de los generadores. Las formas normales proveen de un método efectivo para distinguir los elementos del grupo. La existencia de una forma normal en un grupo implica que el problema de palabra tiene solución para este, lo que es esencial para estos protocolos. Para $g\in G$ denotaremos su forma normal, en términos del conjunto de generadores $X$, por $NF_X(g)$. Para que sea útil en criptografía, dado $g\in G$ expresado como una palabra en $x_1,...,x_n$, el proceso de pasar de la palabra a la forma normal única debe ser computacionalmente eficiente.
-
+\newline
+\newline
 Además de que el grupo de plataforma tenga forma normal, idealmente debería presentar un crecimiento exponencial. Es decir, que la función crecimiento para $G$,
-$$\gamma:\mathbb{N}\rightarrow\mathbb{R},$$
-$$\gamma(n)=\#\{w\in G:l(w)\leq n\},$$
+
+$$\gamma:\mathbb{N}\rightarrow\mathbb{R}$$
+$$\gamma(n)=\#\{w\in G:l(w)\leq n\}$$
 
 tiene un ratio de crecimiento exponencial. En la definición $l(w)$ se entiende como el número de letras mínimo necesitado para expresar $w$ como una palabra en $x_1,...,x_n$. El crecimiento exponencial es necesario, ya que esto asegura tener un gran espacio de llaves, haciendo que una búsqueda de fuerza bruta para la llave secreta sea un algoritmo no factible.
-
+\newline
+\newline
 A parte la forma normal debe presentar buena difusión al determinar las formas normales de los productos. Esto quiere decir que al encontrar la forma normal de un producto es difícil computacionalmente descubrir los factores. Esto es formalmente que si nosotros conocemos $NF_X(g_1g_2)$ es difícil computacionalmente encontrar $g_1,g_2$ o $NF_X(g_1)$,$NF_X(g_2)$.
-
+\newline
+\newline
 Otras necesidades para el grupo plataforma dependen del protocolo en particular. Si la seguridad esta basada en el problema de grupo $\mathcal{P}$, tales como el problema de palabra o el problema del conjugado, se tiene que asumir que en $G$, la solución a $\mathcal{P}$ es computacionalmente compleja (NP-Complejo) o irresoluble. Sin embargo, lo que realmente queremos es que sea \textit{generalmente complejo}, es decir, complejo para la mayoría de entradas. La solución de $\mathcal{P}$ podría ser irresoluble pero tener una complejidad en el caso promedio polinomial. En este caso, si no tenemos cuidado al elegir las entradas, la solución de $\mathcal{P}$ es fácil y el protocolo criptográfico esta roto. Esto no elimina a $G$ como un posible grupo de plataforma pero indica que hay que tener cuidado al escoger las entradas.
-
+\newline
+\newline
 Entre los primeros intentos de usar grupos no abelianos como plataformas para criptosistemas de llave pública estuvieron los esquemas de Anshel-Anshel-Goldfeld y Ko, Lee et al que veremos a continuación.
 
 
@@ -1651,7 +1814,8 @@ Alice y Bob desean compartir una llave secreta, de tal manera que un intruso que
 
 \subsubsection*{Esquema Anshel-Anshel-Goldfeld}
 Propuesto por Anshel \& al. este esquema es una plataforma criptográfica en el que se puede utilizar cualquier grupo de plataforma en el que el Problema de Búsqueda del Conjugado sea lo suficientemente complicado.
-
+\newline
+\newline
 La llave pública consiste en dos conjuntos de trenzas $\{p_1,...,p_l\},\{q_1,...,q_m\}\subset B_n$. La llave secreta de Alice es una palabra $u$ formada por $l$ letras y sus inversas y la llave secreta de Bob es una palabra $u$ formada por $m$ letras y sus inversas. El intercambio de llave esta esta compuesto de los siguientes pasos:
 
 \begin{enumerate}
@@ -1674,9 +1838,11 @@ La seguridad esta basada en la dificultad de resolver una variante del Problema 
 
 \begin{ejem}
 Vamos a realizar un ejemplo de intercambio de llaves utilizando el esquema Anshel-Anshel-Goldfeld. Para ello escogeremos como grupo de trabajo el grupo de trenza $B_6$. Tomaremos como llaves públicas de Alice y Bob las trenzas $p_1 = \sigma_1, p_2 = \sigma_3, p_3 =\sigma_5^{-1}$ y $q_1 = \sigma_4, q_2 = \sigma_2^{-1}, q_3 = \sigma_3^{-1}, q_4 = \sigma_1$ respectivamente. Obtenemos las llaves privadas utilizando
-$$u(p_1,p_2,p_3)= p_3p_1p_2p_1p_2,$$
-$$v(q_1,q_2,q_3,q_4)= q_4q_1q_3q_2,$$
 
+$$u(p_1,p_2,p_3)= p_3p_1p_2p_1p_2$$
+$$v(q_1,q_2,q_3,q_4)= q_4q_1q_3q_2$$
+\ 
+\newline
 de manera que la llave privada de Alice es $s=\sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3$ y la llave privada de Bob es $r = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1}$. Calculamos los conjugados a partir de las llaves públicas y privadas.
 $$q_1' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_4 \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5$$
 $$q_2' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_2^{-1} \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5$$
@@ -1690,8 +1856,10 @@ $$p_3' = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_5^{-1} \sigma_2\sigma
 \ 
 \newline
 A la hora de enviar los conjugados es obvio que estos se tienen que normalizar antes, ya que si no se hace esto es fácilmente visible la llave secreta. Nosotros no lo haremos en este caso para facilitar los cálculos. Comprobamos que la llave común calculada por ambas partes coincide:
+
 $$t_A = s\ u(p_1',...,p_l')^{-1} = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3\cdot\sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3^{-1} \sigma_1^{-1}\sigma_3^{-1} \sigma_1^{-1}\sigma_5 \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}=$$
-$$=\sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3\sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3^{-1} \sigma_1^{-1}\sigma_3^{-1} \sigma_1^{-1}\sigma_5 \cdot\sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}=v(q_1',...,q_m')r^{-1} = t_B.$$
+
+$$=\sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3\sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3^{-1} \sigma_1^{-1}\sigma_3^{-1} \sigma_1^{-1}\sigma_5 \cdot\sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}=v(q_1',...,q_m')r^{-1} = t_B$$
 
 \end{ejem}
 
@@ -1706,7 +1874,8 @@ La implementación realizada se puede ver en la Figura \ref{img:imp_anshel}.
 
 
 \subsubsection*{Esquema Diffie-Hellman} Aunque los grupos de trenzas no son conmutativos, estos contienen grandes subgrupos donde para cada elemento de un primer subgrupo conmutan con cada elemento de un segundo subgrupo. De hecho, las trenzas que involucran conjuntos distintos de hebras conmutan. Si denotamos por $LB_n$ (respectivamente $UB_n$) al subgrupo de $B_n$ generado por $\sigma_1,...,\sigma_{m-1}$ (respectivamente $\sigma_{m+1},...,\sigma_{n-1}$) con $m=[n/2]$, cada trenza en $LB_n$ conmuta con cada trenza en $UB_n$.
-
+\newline
+\newline
 Esta observación es utilizada por el esquema de intercambio de llave Diffie-Hellman propuesto por Ko \& al. En este, la llave pública consiste en una trenza $p$ en $B_n$. La llave secreta de Alice es una trenza $s$ en $LB_n$. La llave secreta de Bob es una trenza $r$ en $UB_n$. El intercambio esta formado por los siguientes pasos:
 
 \begin{enumerate}
@@ -1717,22 +1886,27 @@ Esta observación es utilizada por el esquema de intercambio de llave Diffie-Hel
 \end{enumerate}
 
 La llave compartida es $t_A = t_B$. Esto es debido a que $s$ y $r$ conmutan:
-$$t_A=s\ p''s^{-1}=s\ r\ p\ r^{-1}s^{-1} = r\ s\ p\ s^{-1}r^{-1} = r\ p'r^{-1}=t_B.$$
+
+$$t_A=s\ p''s^{-1}=s\ r\ p\ r^{-1}s^{-1} = r\ s\ p\ s^{-1}r^{-1} = r\ p'r^{-1}=t_B$$
 
 Aquí la seguridad también esta basada en la dificultad de resolver una variante del Problema de Búsqueda del Conjugado donde dada una trenza $p$ de $B_n$ y las trenzas $p'=sps^{-1}$ y $p''=rpr^{-1}$, con $s$ y $r$ pertenecientes a $LB_n$ y $UB_n$ respectivamente, hay que encontrar la trenza $rp'r^{-1}$ o lo que es igual $sp''s^{-1}$. El problema es lo bastante complejo como para no poder encontrar $rp'r^{-1}=sp''s^{-1}$ conociendo los pares $(p,p')$ y $(p,p'')$.
 
 \begin{ejem}
 Procedemos a realizar un intercambio de llave utilizando el esquema Diffie-Hellman. Para ello utilizaremos el grupo de trenza $B_{10}$. De esta manera Alice utilizará el subgrupo $LB_{10}$ generado por $\sigma_1,\sigma_2,\sigma_3,\sigma_4$ y Bob el subgrupo $RB_{10}$ generado por $\sigma_6,\sigma_7,\sigma_8,\sigma_8$ para obtener la llave privada. Establecemos como llave pública $p=\sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4$ y como llaves privadas de Alice y Bob $s = \sigma_3^{-1}\sigma_1^{-1}\sigma_4\sigma_3\sigma_2$ y $r = \sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8$ respectivamente. Cada uno de ellos calcula el conjugado con su llave privada y pública:
-$$p' = sps^{-1}=\sigma_3^{-1}\sigma_1^{-1}\sigma_4\sigma_3\sigma_2 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_2^{-1}\sigma_3^{-1}\sigma_4^{-1}\sigma_1\sigma_3,$$
-$$p'' = rpr^{-1} = \sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_8^{-1}\sigma_9\sigma_6\sigma_7^{-1}\sigma_8^{-1}\sigma_7^{-1}.$$
 
+$$p' = sps^{-1}=\sigma_3^{-1}\sigma_1^{-1}\sigma_4\sigma_3\sigma_2 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_2^{-1}\sigma_3^{-1}\sigma_4^{-1}\sigma_1\sigma_3$$
 
+$$p'' = rpr^{-1} = \sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_8^{-1}\sigma_9\sigma_6\sigma_7^{-1}\sigma_8^{-1}\sigma_7^{-1}$$
+
+\ 
+\newline
 Observamos que debido a la conmutatividad ambos pueden calcular la llave común de forma que coincide:
 
 $$t_A = s\ p''s^{-1} =$$$$= \sigma_3^{-1}\sigma_1^{-1}\sigma_4\sigma_3\sigma_2\cdot \sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_8^{-1}\sigma_9\sigma_6\sigma_7^{-1}\sigma_8^{-1}\sigma_7^{-1}\cdot\sigma_2^{-1}\sigma_3^{-1}\sigma_4^{-1}\sigma_1\sigma_3=$$
 $$=\sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8\cdot \sigma_3^{-1}\sigma_1^{-1}\sigma_4\sigma_3\sigma_2 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_2^{-1}\sigma_3^{-1}\sigma_4^{-1}\sigma_1\sigma_3\cdot
 \sigma_8^{-1}\sigma_9\sigma_6\sigma_7^{-1}\sigma_8^{-1}\sigma_7^{-1} =$$
-$$= rp'r^{-1} = t_B.$$ \qed
+$$= rp'r^{-1} = t_B$$
+\qed
 \end{ejem}
 
 La implementación realizada se puede ver en la Figura \ref{img:imp_ko}.
@@ -1748,7 +1922,8 @@ Aquí el problema es que Bob desea enviar un mensaje $m$ a Alice, y el puede usa
 
 \subsubsection*{Esquema Ko \& al.}
 La notación será la empleada en el esquema de intercambio de llaves previo. Además, asumimos que $h$ es una \textit{función hash unidireccional libre de colisión} de $B_n$ a $\{0,1\}^N$, es decir, una función calculable tal que la probabilidad de que $h(b_1)=h(b_2)$ para $b_1\neq b_2$ es despreciable (libre de colisión) y recuperar $b$ a partir de $h(b)$ es inviable.
-
+\newline
+\newline
 Comenzamos con $p\in B_n$ y $s\in LB_n$. La llave pública de Alice es el par $(p,p')$, con $p'=sps^{-1}$. La llave privada de Alice es $s$. Con el fin de enviar el mensaje $m_B$, el cual asumimos que se encuentra en $\{0,1\}^N$, usando $\oplus$ para la operación booleana ``or-exclusivo"(es decir, la suma en $\mathbb{Z}/2\mathbb{Z}$):
 
 \begin{enumerate}
@@ -1757,11 +1932,13 @@ Comenzamos con $p\in B_n$ y $s\in LB_n$. La llave pública de Alice es el par $(
 
 \end{enumerate}
 
-Entonces tenemos que $m_A = m_B$ es decir, Alice recupera el mensaje original de Bob. Esto se debe a que las trenzas $r$ y $s$ conmutan,
-$$sp''s^{-1}=s\ r\ p\ r^{-1}s^{-1}=r\ s\ p\ s^{-1}r^{-1},$$
+Entonces tenemos que $m_A = m_B$ es decir, Alice recupera el mensaje original de Bob. Esto se debe a que las trenzas $r$ y $s$ conmutan
+
+$$sp''s^{-1}=s\ r\ p\ r^{-1}s^{-1}=r\ s\ p\ s^{-1}r^{-1}$$
 
 y entonces tenemos que 
-$$m_A = m_B\oplus h(rp'r^{-1})\oplus h(sp''s^{-1})=m_B.$$
+
+$$m_A = m_B\oplus h(rp'r^{-1})\oplus h(sp''s^{-1})=m_B$$
 
 Aquí la seguridad esta basada en la dificultad del Problema del Conjugado inspirado en Diffie-Hellman para $B_n$. Bajo las hipótesis sobre $h$, ser capaz de romper el sistema implica tener que recuperar los valores comunes $rp'r^{-1}$ y $sp''s^{-1}$ a partir de los pares $(p,p')$ y $(p,p'')$.
 
@@ -1791,12 +1968,14 @@ Una respuesta correcta por parte de Alice implica la aceptación por parte de Bo
 \end{enumerate}
 
 Si Alice conoce $s$ y responde correctamente, ella es aceptada por Bob. Para $c=0$, tenemos directamente $x=h(yp'y^{-1})$, mientras que para $c=1$, tenemos $ypy^{-1}=(rs)p(rs)^{-1}=rp'r^{-1}$, por tanto $x=h(ypy^{-1})$. Por otra parte, si Alice es deshonesta, ella puede hacer trampas y enviar la respuesta correcta en ambos casos. En el caso $c=0$, basta con que Alice mantenga un registro de $r$ y enviar respuestas coherentes. En el caso $c=1$ es suficiente con que el compromiso $x$ se elige para anticipar la igualdad $x=h(ypy^{-1})$ que también es fácil. Pero un tramposo no puede elegir su compromiso de tal manera que acierte correctamente ambos casos. Si anticipa $c=0$, la probabilidad de responder correctamente para $c=1$ es despreciable y viceversa. Un tramposo nunca tendrá más de $0.5$ de probabilidad de acertar. Así que si repetimos el intercambio $k$ veces, la probabilidad del tramposo de acertar sera de $1/2^k$.
-
+\newline
+\newline
 La seguridad de este esquema radica en la dificultad del Problema de Búsqueda del Conjugado original en $B_n$. Tener más de un 0.5 de probabilidad de ser aceptado significa ser capaz de responder para $c=0$ y $c=1$, es decir, conocer $y,y'$ que cumplan $x=h(ypy^{-1})$ y $x=h(y'p'y'^{-1})$. Como se supone que $h$ es libre de colisión, es decir, es virtualmente inyectiva, se tendría que $ypy^{-1}=y'p'y'^{-1}$, que es equivalente a $(y'^{-1}y)p(y'^{-1}y)^{-1}=p'$. Esto implicaría que para que suceda esto se debe solucionar el Problema de Búsqueda del Conjugado para $(p,p')$.
 
 \subsubsection{Firma}
 El problema consiste en que Alice quiere enviar a Bob un mensaje (texto plano o cifrado) junto con una firma que pruebe el origen del mensaje. Observar que con la firma se puede implementar la autenticación. Esto se haría enviando Bob a Alice un mensaje y que esta se lo devolviera firmado.
-
+\newline
+\newline
 Vamos a ver dos esquemas de firma basados en trenzas propuestos por Ko \& al. El primer esquema es más simple y legible mientras que el segundo es el esquema recomendado. Estos esquemas usan la supuesta diferencia de complejidad entre el Problema del Conjugado y el Problema de Búsqueda del Conjugado. Para valores medios de $n$ (típicamente $n=20$), al usar una representación lineal de las trenzas hace posible decidir si dos trenzas de $B_n$ son conjugadas sin ser capaz de determinar la trenza conjugada cuando existe.
 
 \subsubsection*{Esquema simple}
@@ -1824,45 +2003,58 @@ El análisis de seguridad es similar al del esquema previo.
 \subsection{Criptoanálisis}
 
 Cuando se introdujeron los criptosistemas basados en grupos de trenzas hubo una gran expectación. La dificultad de los principales problemas de teoría de grupos, el problema del conjugado y el problema de la búsqueda del conjugado, parecían lo suficientemente complejos en $B_n$ como para ser seguro. Sin embargo las investigaciones que se han realizado sobre el grupo de trenzas han hecho evidente que, sin consideraciones especiales, los criptosistemas basados en estos son inseguros. A continuación vamos a ver algunos de los posibles ataques que se han visto.
-
+\newline
+\newline
 Estos ataques se pueden clasificar según diferentes categorías. Ataques basados directamente en la solución del problema del conjugado vía los llamados conjuntos de cumbre, ataques basados en longitud los cuales utilizan la longitud de las trenzas, ataques teóricos de representación, y finalmente ataques en la difusión de multiplicación de elementos de grupo por variación de formas normales.
 
 \subsubsection{Ataques al Problema de Búsqueda del Conjugado}
 
 Ya que la seguridad de los criptosistemas de grupos de trenzas iniciales estaba basada en la dificultad en resolver el problema del conjugado, el problema de búsqueda del conjugado y el problema de búsqueda del conjugador, la mayoría de los ataques han ido enfocados a estos problemas. El problema del conjugado para $B_n$ fue resuelto originalmente por Garside como ya hemos visto y se asume que es complejo. Por lo tanto pareció que usar el problema del conjugado o el problema de búsqueda del conjugador era suficientemente seguro para propósitos criptográficos. Recientemente ha habido investigaciones sobre la complejidad de la solución para varios problemas de búsqueda del conjugado y se han expuesto debilidades en los criptosistemas basados en estos.
-
+\newline
+\newline
 La solución para el problema del conjugado en $B_n$ usa lo que llamamos \textit{conjuntos de cumbre}. Para cada $b\in B_n$ su conjunto de cumbre, el cual denotaremos por $SS(b)$ consiste de un conjunto finito de conjugados de $b$. El conjunto de cumbre contiene un subconjunto llamado super conjunto de cumbre denotado por $SSS(b)$ que es algorítmicamente computable. El-Rifai y Morton demostraron como calcular para cada $b\in B_n$ el super conjunto de cumbre $SSS(b)$. Es más, dos trenzas $b,b'\in B_n$ son conjugadas si y solo si sus super conjuntos de cumbre coinciden, o equivalentemente, si y solo si se intersecan.
-
+\newline
 \begin{teor}
 Para cada $b\in B_n$ el conjunto $SSS(b)$ es finito y computacionalmente computable. Si $b,b'\in B_n$ entonces $b$ y $b'$ son conjugados si y solo si $SSS(b)\ \cap\ SSS(b')\neq \emptyset$.
 \end{teor}
-
+\ 
+\newline
 Por lo tanto para resolver el problema del conjugado, y en esencia romper los protocolos de tipo Ko-Lee, hay que encontrar el super conjunto de cumbre de los elementos. Recientemente se ha encontrado un refinamiento del super conjunto de cumbre llamado ultra conjunto de cumbre $USS(b)$ introducido por Gebhardt. El tamaño de $USS(b)$ es a menudo mucho más pequeño que $SSS(b)$.
+\ 
+\newline
 
 El problema es que la complejidad de los algoritmos para calcular estos conjuntos no esta clara ya que no se conoce su cardinalidad, pero el de este último tiene complejidad polinomial en media.
 
 \subsubsection{Ataques basados en longitud}
 El protocolo Anshel-Anshel-Goldfeld depende del problema de búsqueda del conjugador. Sin embargo, para atacar el protocolo no es necesario encontrar el conjugador exacto. Si $b,b'$ son conjugados entonces conociendo cualquier conjugador, es decir, un elemento $w$ tal que $wbw^{-1}=b'$ es suficiente.
-
+\newline
+\newline
 Los ataques basados en longitud han sido usados efectivamente en ataques al problema de búsqueda del conjugador. Recordamos que usando la forma normal de Garside cada trenza tiene una longitud bien definida. Esto nos da una función de longitud bien definida en el grupo de trenzas $B_n$.
-
+\newline
+\newline
 En los protocolos del tipo Anshel-Anshel-Goldfeld que dependen del problema del conjugador un atacante tiene acceso a múltiples conjuntos de pares $(a,axa^{-1})$ para un valor secreto $a$ tomado de un conjunto con un número finito de generadores conocidos. El principio común en los ataques basados en longitud es intentar recuperar un conjugador para el par $(b,b')$ el cual se supone se deriva a la forma de $b$ conjugando iterativamente $b'$ en un nuevo elemento $tb't^{-1}$ de manera que la longitud sea mínima. Si definimos la distancia entre dos trenzas $a,b$ como $d(a,b)=l(ab^{-1})$, esto nos da una verdadera métrica en el grupo de trenzas la cual satisface la desigualdad triangular. La idea en un ataque basado en longitud es que no existe demasiada cancelación multiplicando por generadores $\sigma_i$ y por lo tanto si un generador $\sigma_i$ no es un segmento inicial de un conjugador $a$ entonces con una probabilidad distinta de cero la longitud $\sigma(at_ia^{-1})\sigma^{-1}$ es mayor que la longitud de $at_ia^{-1}$. Entonces aplicar cada generador $\sigma_i$ hasta que la longitud se reduzca y este generador puede ser despegado del conjugador.
-
+\newline
+\newline
 Ha habido un considerable éxito con esta técnica. Parte del éxito sin embargo es debido al hecho de que los grupos de trenzas tienen la propiedad de grupo libre genérica. Hacer reducción en longitud es realmente hacer reducción de grupo libre. De hecho, muchos criptosistemas basados en grupos de trenzas han sido rotos porque los grupos de trenzas tenían la propiedad de grupo libre genérica.
 
 \subsubsection{Ataques teóricos de representación}
 Muchos ataques con éxito en los protocolos criptográficos de grupo de trenzas han usado varias representaciones lineales. Burau, Burau coloreado y Lawrence-Krammer. En muchos ataques encontrar la llave secreta es reducido, usando estas representaciones, a álgebra lineal sobre campos finitos. Recordamos como procedía el protocolo Ko-Lee:
-
+\newline
+\newline
 Bob y Alice eligen un subgrupo dentro de $B_n$ con elementos conmutativos. $A$ es el subgrupo de Alice y $B$ el subgrupo de Bob. Alice elige aleatoriamente un $a\in A$. Este elemento $a$ será su llave secreta. Su llave pública será $(g,g^a)$ donde $g^a=aga^{-1}$ es el conjugado de $g$ por su llave secreta $a$. Toda información pública y comunicación está en términos de las formas normales de estos elementos.
-
+\newline
+\newline
 De igual manera Bob elige aleatoriamente un elemento $b\in B$. Este elemento $b$ será su llave secreta. Su llave pública es $(g,g^b)$ donde $g^b = b^{-1}gb$ es el conjugado de $g$ por su llave secreta $b$. Como Alice, toda su información publica y comunicación esta en términos de la forma normal de estos elementos.
-
+\newline
+\newline
 La llave secreta compartida es $g^{ab}$. Cheon y Jun demostraron como usar la representación de Lawrence-Krammer para encontrar la llave secreta conociendo solo $g^a$ y $g^b$. Supongamos que $Y_a=\rho(g^a)$ y  $Y_b=\rho(g^b)$ son las imágenes de $g^a$ y $g^b$ bajo la representación de Lawrence-Krammer $\rho$. Cheon y Kim trabajando módulo un primo $p$ y ciertos polinomios irreducibles en $t$ y $q$ solucionan para la matriz $M$ en las ecuaciones
-$$Y_aM=MY_b,$$
-$$\rho(\sigma_i)M=M\rho(\sigma_i)\ \ \ \sigma_i\in B_{2n}.$$
+
+$$Y_aM=MY_b$$
+$$\rho(\sigma_i)M=M\rho(\sigma_i)\ \ \ \sigma_i\in B_{2n}$$
 
 En este ataque incluso aunque la solución a las ecuaciones lineales pueda no ser $\rho(a)$la conmutatividad de las ecuaciones nos da
-$$MY_bM^{-1}=\rho(b)Y_a\rho(b)^{-1}=\rho(abxb^{-1}a^{-1}),$$
+
+$$MY_bM^{-1}=\rho(b)Y_a\rho(b)^{-1}=\rho(abxb^{-1}a^{-1})$$
 
 el cual puede ser elevado a la trenza necesaria. Este ataque es efectivo porque las matrices provenientes de $\rho$ cumplen unos limites muy restrictivos. La efectividad de este método demuestra que la representación de lawrence-Krammer permite una solución al problema de Diffie-Hellman en grupos de trenzas en tiempo polinomial.
 
@@ -1896,9 +2088,11 @@ Vamos a ver una heurística que nos permitirá, de forma eficiente, resolver en 
 \newline
 
 Como se puede ver, el algoritmo restringe la entrada para trenzas conjugadas positivamente. También requiere que la trenza conjugadora $x = \Delta_n^{r}X_1\cdots X_s$ cumpla que $\inf x = r = 0$. Estas restricciones no son relevantes, puesto que si tenemos $w = x^{-1}vx$, entonces se tiene también que $w = \tilde{x}^{-1}v\tilde{x}$ para $\tilde{x} := \Delta_n^{r\ mod\ 2}X_1\cdots X_s$. Por tanto o $\tilde{x}$ o $\Delta_n^{-1}\tilde{x}$ es una trenza positiva con ínfimo $0$. Así que en el caso general habrá que ejecutar el algoritmo para las entradas $v,w$ y $\Delta_n^{-1}v\Delta_n,w$.
-
+\newline
+\newline
 Pasamos a explicar el algoritmo. En los pasos 1 y 2 inicializamos $\alpha$ como una palabra vacía para calcular el conjugador $x$ y preparamos $v,w\in B_n$ normalizándolos. En los pasos 3 y 4 utilizamos el Lema \ref{lema:criptoanalisis}, de forma que al completar estos pasos tenemos un nuevo problema del conjugado donde  la longitud canónica de $w$ es menor que la de $v$. Durante estos pasos se va construyendo $\alpha$, de manera que en virtud del Lema \ref{lema:criptoanalisis}, al principio del paso 5 tenemos que $w = x'^{-1}vx'$ con $x = x'\alpha$ y $x\in B_n^+$. Asumimos en esta situación que si todavía no se ha descubierto la parte $x'$ de la palabra conjugadora $x$, está esencialmente determinada por la permutación $\pi(x')$. Consecuentemente, en este paso, adivinamos la permutación $\pi(x')$, es decir, la función GuessPermutation(v,w) nos devuelve un factor canónico $\mu$ tal que $\pi(\mu)=\pi(x')$. Encontrar dicha palabra de trenza $\mu$ en el caso general consistirá en resolver el problema del conjugado $\pi(w)=\pi(x')^{-1}\pi(v)\pi(x')$ en el grupo simétrico $S_n$. En el caso de trenzas puras esto no funcionaría y habría que utilizar otro método mencionado en \cite{Att}. Finalmente si $w$ y $v$ coinciden, esto significa que las trenzas originales de la entrada son conjugadas y que el conjugador es el $\alpha$ devuelto. Si devuelve 'failed' no se obtiene ninguna conclusión.
-
+\newline
+\newline
 En la Figura \ref{img:alg_a} vemos la implementación realizada del algoritmo. La Figura \ref{img:guess_per} muestra la función GuessPermutation, la cual nos devuelve una trenza reducida cuya permutación asociada nos da la solución al problema del conjugado en el grupo simétrico que se obtiene a partir de nuestras trenzas. Por último, En la Figura \ref{img:pi_inverse} aparece una función en la que, dada una permutación, nos devuelve la trenza reducida asociada. Para la implementación de estas dos funciones ha sido necesaria la utilización de las propiedades vistas sobre las permutaciones.
 
 \ 
