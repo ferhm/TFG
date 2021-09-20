@@ -47,56 +47,64 @@
 En esta sección vamos a repasar algunos aspectos de la teoría de grupos que en su mayoría se han visto a lo largo de la carrera. Estos aparecen en \cite{group} y serán necesarios para desarrollar tanto el grupo de trenzas, como la parte de criptografía y criptoanálisis. En primer lugar vamos a comenzar con algunos conceptos básicos sobre grupos.
 
 \begin{defi}[Grupo]
-Un grupo es una estructura algebraica formada por un conjunto $G\neq\emptyset$ y una operación interna $G\times G$ a la que llamaremos \textit{producto}. Esta operación asigna a cada pareja $(x,y)$ el elemento $xy$ y verifica las siguientes propiedades:
+Un grupo es una estructura algebraica formada por un conjunto $G\neq\emptyset$ y una operación interna $G\times G\rightarrow G$ a la que llamaremos \textit{producto}. Esta operación asigna a cada pareja $(x,y)$ el elemento $xy$ y verifica las siguientes propiedades:
 
 \begin{enumerate}
-\item Propiedad asociativa: $x(yz) = (xy)z$ $\ \ \forall x,y,z\in G$.
-\item Existencia de elemento neutro: Existe $1\in G$ tal que $x1= x = 1x\ \ \forall x\in G$.
-\item Existencia de elemento simétrico: Para cada $x \in G$ existe $x^{-1}\in G$.
+\item Propiedad asociativa: $x(yz) = (xy)z$ para todo $x,y,z\in G$.
+\item Existencia de elemento neutro: Existe $1\in G$ tal que $x1= x = 1x$ para todo $ x\in G$.
+\item Existencia de elemento simétrico: Para cada $x \in G$ existe $y\in G$ tal que $xy=yx = 1$. El elemento $y$ es único y se deonta por $y^{-1}$
 \end{enumerate}
 \end{defi}
 
 \begin{defi}[Subgrupo]
 Sea $G$ un grupo. Un subgrupo de $G$ es un subconjunto $H\subseteq G$, $H\neq\emptyset$ que verifica
 \begin{enumerate}
-\item $xy\in H\ \ \ \forall x,y\in H$ 
-\item $1\in H$
-\item $x^{-1}\in H\ \ \ \forall x\in H$
+\item $xy\in H$,
+\item $1\in H$,
+\item $x^{-1}\in H,$
 \end{enumerate}
+para todo $x,y\in H.$
+\newline
 
-Si $H$ es un subgrupo de $G$, lo denotaremos $H\leq G$.
+Si $H$ es un subgrupo de $G$, lo denotaremos $H\leq G$. Definimos $Sub(G)$ como el conjunto formado por todos los subgrupos de $G$, $Sub(G)=\{H:H\leq G\}$. La siguiente proposición es una caracterización de los subgrupos más práctica.
+
+\begin{prop}
+Sea $H$ un subconjunto no vacío de un grupo $G$, entonces $H\leq G$ si y solo si para todo $x,y\in H$ se tiene que $xy^{-1}\in H$.
+\end{prop}
+
+Ahora vemos que la la intersección de subgrupos es una operación cerrada en $Sub(G)$.
+\begin{prop}
+Sean $H,K\leq G$, entonces $H\cap K\leq G.$
+\end{prop}
 
 
 
 \end{defi}
 
 \begin{defi}[Subgrupo generado]
-Sea G un grupo y $X\subseteq G$ un subconjunto $X\neq\emptyset$. Definimos el subgrupo generado por $X$, que denotaremos $<X>$, como el menor subgrupo de $G$ que contiene al conjunto $X$. Se tiene que
-
-$$<X>\ \ =\bigcap_{X\subset K\in Sub(G)}K$$
+Sea G un grupo y $X\subseteq G$ un subconjunto $X\neq\emptyset$. Definimos el subgrupo generado por $X$, que denotaremos $\langle X\rangle$, como el menor subgrupo de $G$ que contiene al conjunto $X$. Se tiene que
+$$\langle X\rangle\ \ =\bigcap_{X\subset K\in Sub(G)}K.$$
 
 \end{defi}
 
 \begin{prop}
 Para $X\subseteq G$ siendo $X\neq\emptyset$ se tiene que
-
-$$<X>\  = \{x_1^{n_1}x_2^{n_2}\cdot\cdot\cdot x_r^{n_r} :\ x_i\in X,\ n_i\in\mathbb{Z},\ r\geq 1\}$$
+$$\langle X\rangle = \{x_1^{n_1}x_2^{n_2}\cdot\cdot\cdot x_r^{n_r} :\ x_i\in X,\ n_i\in\mathbb{Z}\}.$$
 
 \end{prop}
 
 
 
-Si $X=\{x_1,x_2,...,x_k\}\subseteq G$ es un subconjunto finito entonces $<x_1,x_2,...,x_k>=<X>$.
+Si $X=\{x_1,x_2,...,x_k\}\subseteq G$ es un subconjunto finito entonces $\langle x_1,x_2,...,x_k\rangle=\langle X\rangle$.
 
-Si $<X> = G$ diremos que $X$ es un conjunto de generadores de G. Diremos que $G$ es finitamente generado si existe $\{x_1,x_2,...,x_k\}\subseteq G$.
+Si $\langle X\rangle = G$ diremos que $X$ es un conjunto de generadores de G. Diremos que $G$ es finitamente generado si existe $X=\{x_1,x_2,...,x_k\}\subseteq G$, con $G=\langle X\rangle$. 
 \newline
 
 \begin{defi}
 Sea $X$ un conjunto no vacío. Una sucesión finita $w = (x_1,\ldots,x_n)$ de elementos de $X$ se denomina como \textit{palabra} o \textit{cadena} de $X$ y normalmente se escribe de la forma
-
 $$w = x_1\cdots x_n.$$
 
-El número de elementos de $w$ es la \textit{longitud} de $w$. Solo hay una única palabra con longitud 0, la cual se llama \textit{palabra vacía} y se denota por $\varepsilon$. El conjunto de todas las palabras de $X$ se denota por $X^*$ y a $X$ se le dice el \textit{alfabeto} de $X^*$. Una \textit{subpalabra} o \textit{subcadena} de una palabra $w$ es una subsucesión de $w$ que consiste de elementos consecutivos de $w$. La palabra se considera una subpalabra de todas las palabras.
+El número de elementos de $w$ es la \textit{longitud} de $w$. Solo hay una única palabra con longitud 0, la cual se llama \textit{palabra vacía} y se denota por $\varepsilon$. El conjunto de todas las palabras de $X$ se denota por $X^*$ y a $X$ se le dice el \textit{alfabeto} de $X^*$. Una \textit{subpalabra} o \textit{subcadena} de una palabra $w$ es una subsucesión de $w$ que consiste de elementos consecutivos de $w$. La palabra vacía se considera una subpalabra de todas las palabras.
 \end{defi}
 A continuación vamos a definir los grupos simétricos con los que más adelante estableceremos una relación con los grupos de trenzas. También vamos a ver algunas de sus propiedades que nos serán de utilidad.
 
@@ -107,7 +115,6 @@ Sea $X \neq \emptyset$. Denominamos a una función biyectiva de $X$ en si misma 
 El orden de $S_X$ es $|X|!$ cuando $X$ es finito. $S_X$ es no abeliano para $|X|\geq 3$. El grupo simétrico del conjunto $I_n=\{1,\ldots,n\}$ se denota por $S_n$ y tiene orden $n!$.
 
 Si $X$ es finito consideramos $X = \{a_1,\ldots,a_n\}$. Podemos expresar $\sigma\in S_X$ de forma matricial
-
 $$\sigma = 
 \begin{pmatrix}
 a_1 & a_2 & \cdots & a_n\\
@@ -120,28 +127,33 @@ $$(a_1\cdots a_k)$$
 denota la permutación que envía $a_i$ a $a_{i+1}$ para $i=1,\ldots,k-1$ y el último elemento $a_k$ al primer elemento $a_1$. Los demás elementos de $X$ se mantienen fijos. A esta permutación se le llama \textit{ciclo de longitud} $k$ en $S_X$. Llamamos a un ciclo de longitud $2$ $(a\ b)$ transposición, ya que simplemente transpone $a$ y $b$, dejando al resto de elementos de $X$ fijos.
 
 \begin{teor}
-Sea $S_x$ un grupo simétrico, se cumple lo siguiente:
+Sea $S_X$ un grupo simétrico, se cumple lo siguiente:
 \begin{enumerate}
-\item Los ciclos disjuntos en $S_x$ conmutan.
-\item Cada permutación en $S_X$ es un producto de ciclos disjuntos, siendo el producto único excepto por el orden de los factores. Una representación de $\sigma$ como producto de ciclos disjuntos se le llama \textit{representación cíclica} o \textit{descomposición cíclica} de $\sigma$. La \textit{estructura cíclica} de una permutación $\sigma$ es la sucesión de longitudes de ciclo de una descomposición cíclica de $\sigma$, o equivalentemente, el número de ciclos de cada longitud en una descomposición cíclica de $\sigma$.
+\item Los ciclos disjuntos en $S_X$ conmutan.
+\item Cada permutación en $S_X$ es un producto de ciclos disjuntos, siendo el producto único excepto por el orden de los factores. 
 \end{enumerate}
 \end{teor}
-\ 
+Una representación de $\sigma$ como producto de ciclos disjuntos se le llama \textit{representación cíclica} o \textit{descomposición cíclica} de $\sigma$. La \textit{estructura cíclica} de una permutación $\sigma$ es la sucesión de longitudes de ciclo de una descomposición cíclica de $\sigma$, o equivalentemente, el número de ciclos de cada longitud en una descomposición cíclica de $\sigma$. 
 \begin{prop}
 Todo ciclo puede descomponerse como producto de transposiciones.
 \end{prop}
 \textit{Demostración.} Basta con comprobar la siguiente igualdad
-
 $$(i_1,i_2,i_3,\ldots,i_{r-1},i_r) = (i_1,i_r)(i_1,i_{r-1})\cdots(i_1,i_3)(i_1,i_2),$$
 
 recordando que la composición se realiza de derecha a izquierda.
+
+\begin{defi}
+Sean $\alpha,\beta\in S_X$, decimos que son conjugados si existe $\sigma\in S_X$ tal que $$\alpha = \sigma^{-1}\beta\sigma.$$
+Denominamos a $\alpha$ el conjugado de $\beta$ por $\sigma$ y lo denotamos por $\beta^\sigma$.
+\end{defi}
+
 
 \begin{teor}
 \ 
 
 \begin{enumerate}
 \item Sea $\sigma\in S_n$. Para cualquier ciclo $(a_1\cdots a_k)$,
-$$(a_1 \cdots a_k)^\sigma:= \sigma^{-1}(a_1 \cdots a_k)\sigma = (\sigma a_1 \cdots \sigma a_k).$$
+$$(a_1 \cdots a_k)^\sigma= \sigma^{-1}(a_1 \cdots a_k)\sigma = (\sigma a_1 \cdots \sigma a_k).$$
 Por tanto, si $\tau=c_1\cdots c_k$ es una descomposición cíclica de $\tau$, entonces
 $$\tau^\sigma = c_1^\sigma\cdots c_k^\sigma$$
 es una descomposición cíclica de $\tau^\sigma$.
@@ -161,7 +173,7 @@ Al grupo $F$ se le llama \textit{grupo libre} en $X$ y a $X$ se le denomina un c
 \end{defi}
 
 \subsection{Construcción del grupo de trenzas}
-Los términos \textit{trenza} y \textit{grupo de trenzas} fueron acuñados por primera vez por el matemático hamburgués Emil Artin en \cite{Art1}, publicación del año 1925. En esta publicación las trenzas aparecen como objetos topológicos. No fue hasta el año 1947 en el que Artin dió una presentación explícita de este grupo en la revista \textit{Annals of mathematics} \cite{Art2}. A continuación vamos a definir los grupos de trenza tanto desde un punto de vista algebraico, como topológico, las cuales se verán que son equivalentes. También veremos algunas de sus propiedades como grupo. La construcción de este grupo ha sido tomada de  \cite{br_gr} y \cite{st_br}.
+Los términos \textit{trenza} y \textit{grupo de trenzas} fueron acuñados por primera vez por el matemático hamburgués Emil Artin en \cite{Art1}, publicación del año 1925. En esta, las trenzas aparecen como objetos topológicos. No fue hasta el año 1947 en el que Artin dió una presentación explícita de este grupo en la revista \textit{Annals of mathematics} \cite{Art2}. A continuación vamos a definir los grupos de trenza tanto desde un punto de vista algebraico, como topológico, las cuales se verán que son equivalentes. También estudiaremos algunas de sus propiedades como grupo. La construcción de este grupo ha sido tomada de  \cite{br_gr} y \cite{st_br}.
 
 \subsubsection{El grupo de trenzas de Artin}
 
@@ -192,7 +204,7 @@ Si $s_1,...,s_{n-1}$ son elementos de un grupo $G$ que satisfacen las relaciones
 
 $$\bar{f}(\sigma_i\sigma_{j})=\bar{f}(\sigma_i)\bar{f}(\sigma_{j})=s_is_j=s_js_i=\bar{f}(\sigma_j)\bar{f}(\sigma_{i})=\bar{f}(\sigma_j\sigma_{i}),$$
 
-$$\bar{f}(\sigma_i\sigma_{i+1}\sigma{i}) = s_is_{i+1}s_i=s_{i+1}s_is_{i+1} = \bar{f}(\sigma_{i+1}\sigma_i\sigma_{i+1}).$$ \qed 
+$$\bar{f}(\sigma_i\sigma_{i+1}\sigma{i}) = s_is_{i+1}s_i=s_{i+1}s_is_{i+1} = \bar{f}(\sigma_{i+1}\sigma_i\sigma_{i+1}).$$\qed 
 
 
 
@@ -237,21 +249,18 @@ Procedemos a realizar la construcción topológica del grupo de trenzas. Para el
 
 
 \begin{defi}[Trenza geométrica]\label{trenza_geom}
-Una trenza geométrica de $n$ hebras, con $n \geq 1$, es un subconjunto $\mathcal{B}\subset\mathbb{R}^2\times I$ formado por $n$ intervalos topológicos disjuntos llamados hebras de tal manera que la proyección $\mathbb{R}^2\times I\rightarrow I$ establezca un homeomorfismo de cada hebra en $I$ y
-$$$$
+Una trenza geométrica de $n$ hebras, con $n \geq 1$, es un subconjunto $\mathcal{B}\subset\mathbb{R}^2\times I$ formado por $n$ intervalos topológicos (subconjuntos de $\mathbb{R}^2\times I$ homeomorfos a los intervalos de $\mathbb{R}$) disjuntos llamados hebras de tal manera que la proyección $\mathbb{R}^2\times I\rightarrow I$ establezca un homeomorfismo de cada hebra en $I$ y
 $$\mathcal{B}\cap(\mathbb{R}^2\times \{0\})=\{(1,0,0),(2,0,0),...,(n,0,0)\},$$
 $$\mathcal{B}\cap(\mathbb{R}^2\times \{1\})=\{(1,0,1),(2,0,1),...,(n,0,1)\}.$$
-$$$$
+
 Cada hebra de $\mathcal{B}$ interseca con el plano $\mathbb{R}^2\times \{t\}$ con $t\in I$ en un único punto y conecta un punto $(i,0,0)$ con un punto $(s(i),0,0)$ donde $i,s(i)\in\{1,2,...,n\}$. La sucesión $(s(1),s(2),...,s(n))$ es una permutación del conjunto $\{1,2,...,n\}$ llamada permutación subyacente de $\mathcal{B}$.
 \end{defi}
 
 
-Decimos que dos trenzas geométricas $\mathcal{B}$ y $\mathcal{B}'$ son isotópicas si podemos deformar de manera continua $\mathcal{B}$ en $\mathcal{B}'$. Más formalmente, $\mathcal{B}$ y $\mathcal{B}'$ son isotópicas si existe una función continua $F : \mathcal{B} \times I \rightarrow \mathbb{R}^2\times I$ de tal manera que para cada $s\in I$, la función $F_s : \mathcal{B}\rightarrow \mathbb{R}^2\times I$ con $F_s(x)= F(x,s)$ es un embebimiento cuya imagen es una trenza geométrica de $n$ hebras, cumpliendo que $F_0 = id_{\mathcal{B}}: \mathcal{B}\rightarrow \mathcal{B}$ y $F_1(\mathcal{B}) = \mathcal{B}'$. Debido a que la imagen de $F_s$ es una trenza geométrica y $F$ es una función continua tenemos automáticamente que la imagen del punto final de cada hebra por $F_s$ es el mismo.
-\newline
-\newline
-Tanto la función $F$ como la familia de trenzas geométricas $\{F_s(\mathcal{B})\}_{s\in I}$ se llaman \textit{isotopía} de $\mathcal{B}$ en $\mathcal{B}'$. Se ve fácilmente que la relación de isotopía es una relación de equivalencia. Al conjunto de clases de equivalencia correspondientes se les denomina \textit{trenzas de n hebras} y lo denotamos por $\mathcal{B}_n$
-\newline
-\newline
+Decimos que dos trenzas geométricas $\mathcal{B}$ y $\mathcal{B}'$ son isotópicas si podemos deformar de manera continua $\mathcal{B}$ en $\mathcal{B}'$. Más formalmente, $\mathcal{B}$ y $\mathcal{B}'$ son isotópicas si existe una función continua $F : \mathcal{B} \times I \rightarrow \mathbb{R}^2\times I$ de tal manera qué para cada $s\in I$, la función $F_s : \mathcal{B}\rightarrow \mathbb{R}^2\times I$ con $F_s(x)= F(x,s)$ es un embebimiento cuya imagen es una trenza geométrica de $n$ hebras, cumpliendo que $F_0 = id_{\mathcal{B}}: \mathcal{B}\rightarrow \mathcal{B}$ y $F_1(\mathcal{B}) = \mathcal{B}'$. Debido a que la imagen de $F_s$ es una trenza geométrica y $F$ es una función continua tenemos automáticamente que la imagen del punto final de cada hebra por $F_s$ es el mismo.
+
+Tanto la función $F$ como la familia de trenzas geométricas $\{F_s(\mathcal{B})\}_{s\in I}$ se llaman \textit{isotopía} de $\mathcal{B}$ en $\mathcal{B}'$. Se ve fácilmente que la relación de isotopía es una relación de equivalencia. Al conjunto de clases de equivalencia correspondientes se les denomina \textit{trenzas de n hebras} y lo denotamos por $\mathcal{B}_n$.
+
 Para poder especificar una trenza geométrica se puede utilizar la proyección en $\mathbb{R}\times\{0\}\times I$ e indicar de alguna manera que hebra esta por encima de otra cuando se crucen. Solo se podrá aplicar esta solución en trenzas geométricas cuya proyección solo tenga puntos donde se crucen a lo más dos hebras. Pasamos a definir formalmente un diagrama de trenza.
 
 
@@ -268,7 +277,7 @@ Un diagrama de trenza de $n$ hebras es un conjunto $\mathcal{D}\subset\mathbb{R}
 
 La transversalidad de los cruces y la compacidad de las hebras nos asegura que el número de cruces es finito. Gráficamente la hebra que pasa por debajo en un cruce se representará con una discontinuidad y la que pasa por encima con una linea continua. Cada trenza puede ser representada por un diagrama de trenza y cada diagrama tiene asociada una trenza. Dado $\mathcal{D}$ un diagrama, denotaremos como $\beta(\mathcal{D})$ a la trenza de $n$ hebras asociada.
 
-Dos diagramas de trenzas $\mathcal{D}, \mathcal{D}'$ de $n$ hebras se dicen que son isotópicos si se puede establecer una función continua entre $F:\mathcal{D}\times I\rightarrow\mathbb{R}\times I$ tal que para cada $s\in I$ el conjunto $\mathcal{D}_s = F(\mathcal{D}\times s)\subset\mathbb{R\times I}$ es un diagrama de $n$ hebras, con $\mathcal{D}_0 = \mathcal{D}$ y $\mathcal{D}_1 = \mathcal{D}'$. Se entiende que $F$ lleva los cruces de $\mathcal{D}$ a los cruces de $\mathcal{D}_s$ para todo $s\in I$ preservando si los cruces son por debajo o por encima. A la familia de diagramas $\{\mathcal{D}_s\}_{s\in I}$ se le llama \textit{isotopía} de $\mathcal{D}_0 = \mathcal{D}$ en $\mathcal{D}_1 = \mathcal{D}'$.
+Dos diagramas de trenzas $\mathcal{D}, \mathcal{D}'$ de $n$ hebras se dicen que son isotópicos si se puede establecer una función continua entre $F:\mathcal{D}\times I\rightarrow\mathbb{R}\times I$ tal que para cada $s\in I$ el conjunto $\mathcal{D}_s = F(\mathcal{D}\times s)\subset\mathbb{R}\times I$ es un diagrama de $n$ hebras, con $\mathcal{D}_0 = \mathcal{D}$ y $\mathcal{D}_1 = \mathcal{D}'$. Se entiende que $F$ lleva los cruces de $\mathcal{D}$ a los cruces de $\mathcal{D}_s$ para todo $s\in I$ preservando si los cruces son por debajo o por encima. A la familia de diagramas $\{\mathcal{D}_s\}_{s\in I}$ se le llama \textit{isotopía} de $\mathcal{D}_0 = \mathcal{D}$ en $\mathcal{D}_1 = \mathcal{D}'$.
 
 
 
@@ -364,7 +373,7 @@ Dado dos diagrama de trenzas $\mathcal{D}_1$, $\mathcal{D}_2$, representando las
 \end{defi} 
 
 \begin{ejem}
-Sean $\beta_1,\beta_2\in \mathcal{B}_3$, cuyos diagramas se pueden ver en \subref{subfig:factores}, el resultado del producto $\beta_1\beta_2$ 
+Sean $\beta_1,\beta_2\in \mathcal{B}_3$, cuyos diagramas se pueden ver en \subref{subfig:factores}, el resultado del producto $\beta_1\beta_2$ se representa en la Figura \ref{fig:producto_hebras} (b).
 \begin{figure}[h!]
 \centering
 	\begin{subfigure}[b]{0.45\linewidth}
@@ -429,7 +438,7 @@ hola
 \end{figure}
 
 
-Trivialmente también se tiene la asociatividad del producto de trenzas como se puede ver en el ejemplo \ref{ejem:asoci}.
+Trivialmente también se tiene la asociatividad del producto de trenzas como se ilustra en el ejemplo \ref{ejem:asoci}.
 
 \begin{ejem}[Asociatibidad]
 
@@ -498,16 +507,13 @@ Por último probamos el siguiente lema el cual implica que $\mathcal{B}_n$ es un
 Sea $\beta\in\mathcal{B}_n$, existe un elemento $\beta^{-1}\in\mathcal{B}_n$ que es el inverso por ambos lados de $\beta$.
 \end{lema}
 \textit{Demostración}. Para $i = 1,2,n-1$, definimos dos trenzas elementales $\sigma_i^+$ y $\sigma_i^-$ representadas por los diagramas con un único cruce mostradas en la Figura \ref{fig:elem_braids}. Las trenzas $\sigma_1^+,...,\sigma_{n-1}^+, \sigma_1^-,...,\sigma_{n-1}^-\in\mathcal{B}_n$ generan $\mathcal{B}_n$ como un monoide. Para ver esto, consideramos una trenza $\beta$ de $n$ hebras representada por un diagrama de trenza $\mathcal{D}$. A través de una ligera deformación de $\mathcal{D}\subset\mathbb{R}\times I$ en un vecindario de sus puntos de cruce, podemos hacer que los cruces de $\mathcal{D}$ tengan distinta su segunda coordenada. Por tanto podemos establecer una partición
-
 $$0=t_0,t_1,...,t_{k_-1},t_k = 1$$
 
 tal que la intersección de $\mathcal{D}$ con cada banda $\mathbb{R}\times[t_j, t_{j-1}]$ tiene exactamente un cruce dentro. Esta intersección es en realmente un diagrama de $\sigma_i^+$ o $\sigma_i^-$ para algún $i = 1,2,...,n-1$. El resultado de la división de $\mathcal{D}$ como el producto de $k$ diagrama de hebras muestra que
-
 $$\beta = \beta(\mathcal{D}) = \sigma_{i_1}^{\varepsilon_1}\sigma_{i_2}^{\varepsilon_2}\cdot\cdot\cdot\sigma_{i_k}^{\varepsilon_k},$$
 
 donde cada $\varepsilon_j$ es o $+$ o $-$ y $i_1,...,i_k\in{1,2,...,n-1}$.
-Claramente, $\sigma_i^+\sigma_i^- = \sigma_i^-\sigma_i^+=1$ para todo $i$. Por tanto $\beta^{-1} = \sigma_{i_k}^{-\varepsilon_k}\cdot\cdot\cdot\sigma_{i_2}^{-\varepsilon_2}\sigma_{i_k}^{-\varepsilon_k}$ (utilizamos el convenio de $--=+\ +-=-$).
-\qed
+Claramente, $\sigma_i^+\sigma_i^- = \sigma_i^-\sigma_i^+=1$ para todo $i$. Por tanto $\beta^{-1} = \sigma_{i_k}^{-\varepsilon_k}\cdot\cdot\cdot\sigma_{i_2}^{-\varepsilon_2}\sigma_{i_k}^{-\varepsilon_k}$ (utilizamos el convenio de $--=+\ +-=-$). \qed
 
 
 \begin{figure}[h!]
@@ -575,16 +581,15 @@ Los elementos $\sigma_1^+,...,\sigma_{n-1}^+\in\mathcal{B}_n$ satisfacen las rel
 \label{lema:rel_geom}
 \end{lema}
 
-\textit{Demostración}. La primera relación viene del hecho de que ambas partes representan diagramas isotópicos. Los diagramas que representan ambos lados de la segunda relación se diferencian por un movimiento de Reidmeister $\Omega_3$.
+\textit{Demostración}. La primera relación viene del hecho de que ambas partes representan diagramas isotópicos. Los diagramas que representan ambos lados de la segunda relación se diferencian por un movimiento de Reidmeister $\Omega_3$.\qed
 
 \begin{teor}
 Para $\varepsilon = \pm$, existe un único homomorfismo $\varphi_\varepsilon : B_n\rightarrow\mathcal{B}_n$ tal que $\varphi_\varepsilon(\sigma_i) = \sigma_i^\varepsilon$ para cada $i=1,2,...,n-1$. El homomorfismo $\varphi_\varepsilon$ es un isomorfismo.
 \end{teor}
 
-\textit{Demostración.} Lo probamos para $\varepsilon = +$, el caso $\varepsilon = -$ es quivalente. La existencia y unicidad de $\varphi_+$ vienen proporcionadas por los Lemas \ref{uni_homo} y \ref{lema:rel_geom}. En la prueba del Lema \ref{lema:inverso} se demuestra que $\sigma_1^+,\sigma_2^+,...,\sigma_n^+$ son generadores de $\mathcal{B}_n$. Estos generadores pertenecen a la imagen de $\varphi_+$. Por tanto $\sigma_+$ es sobreyectiva.
+\textit{Demostración.} Lo probamos para $\varepsilon = +$, el caso $\varepsilon = -$ es similar. La existencia y unicidad de $\varphi_+$ vienen proporcionadas por los Lemas \ref{uni_homo} y \ref{lema:rel_geom}. En la prueba del Lema \ref{lema:inverso} se demuestra que $\sigma_1^+,\sigma_2^+,...,\sigma_n^+$ son generadores de $\mathcal{B}_n$. Estos generadores pertenecen a la imagen de $\varphi_+$. Por tanto $\sigma_+$ es sobreyectiva.
 
 Ahora tomamos la función teórica $\psi :\mathcal{B}_n\rightarrow B_n$ tal que $\psi \circ \varphi = id$. Esto implica que $\varphi_+$ es inyectiva. Como en la prueba del Lema \ref{lema:inverso}, representamos cualquier $\beta\in\mathcal{B}_n$ por el diagrama $\mathcal{D}$ en el cual los cruces tienen la segunda coordenada diferente. Esto lleva a una expansión de la forma \label{hola}
-
 \begin{equation}\label{form:expansion}
 \psi(\mathcal{D})=(\sigma_{i_1})^{\varepsilon_1}(\sigma_{i_2})^{\varepsilon_2}\cdot\cdot\cdot(\sigma_{i_k})^{\varepsilon_k}\in B_n,
 \end{equation}
@@ -594,7 +599,7 @@ donde $(\sigma_i)^+=\sigma_i$ y $(\sigma_i)^-=\sigma_i^{-1}$. Se tiene que $\psi
 
 El movimiento $\Omega_2$ (respectivamente $\omega_2^{-1}$) en $\mathcal{D}$ inserta (respectivamente elimina) en la expansión (\ref{form:expansion}) un término $\sigma_i^+\sigma_i^-$ o $\sigma_i^-\sigma_i^+$. Claramente esto preserva $\psi(\mathcal{D})$.
 
-El movimiento $\Omega_3$ en $\mathcal{D}$ reemplaza la secuancia $\sigma_{i}\sigma_{i+1}\sigma_{i}$ en (\ref{form:expansion}) por $\sigma_{i+1}\sigma_{i}\sigma_{i+1}$. Bajo $\psi$, esta expresión corresponde al mismo elemento de $B_n$ debido a la segunda relación de trenza en Definición \ref{defi:artin}. El movimiento $\omega_3^{-1}$ se ve de forma similar.
+El movimiento $\Omega_3$ en $\mathcal{D}$ reemplaza la secuencia $\sigma_{i}\sigma_{i+1}\sigma_{i}$ en (\ref{form:expansion}) por $\sigma_{i+1}\sigma_{i}\sigma_{i+1}$. Bajo $\psi$, esta expresión corresponde al mismo elemento de $B_n$ debido a la segunda relación de trenza en Definición \ref{defi:artin}. El movimiento $\omega_3^{-1}$ se ve de forma similar.
 
 Esto demuestra que $\psi$ es una función bien definida de $\mathcal{B}_n\rightarrow B_n$. Por construcción $\psi\circ\varphi_+=id$. Por tanto $\varphi_+$ es sobreyectiva e inyectiva. \qed
 
@@ -602,7 +607,7 @@ Esto demuestra que $\psi$ es una función bien definida de $\mathcal{B}_n\righta
 
 Llegados a este punto ya hemos probado que las trenzas geométricas forman un grupo y que este coincide con el grupo de trenzas de Artin como habíamos dicho al principio. A continuación vamos a ver como podemos relacionar el grupo de trenzas con el grupo de permutaciones, para poder así definir un tipo de trenzas denominado trenzas puras.
 
-Sea $\beta\in B_n$ una trenza de $n$ hebras, consideramos una trenza geométrica que la represente . La hebra $d_i$ une el punto $(i,0,0)$ con el punto $(j(i),0,1).$ Definimos la función $\pi:B_n\rightarrow S_n$ del grupo de trenzas al grupo simétrico como
+Sea $\beta\in B_n$ una trenza de $n$ hebras, consideramos una trenza geométrica que la represente. Denotamos por $d_i$ a la hebra que une el punto $(i,0,0)$ con el punto $(j(i),0,1)$ con $i = 1,\ldots,n$, siendo $j$ una permutación que nos lleva la primera coordenada del extremo superior de una trenza a la primera coordenada del extremo inferior de la misma. Definimos la función $\pi:B_n\rightarrow S_n$ del grupo de trenzas al grupo simétrico como
 
 $$\pi(\beta) = \begin{pmatrix}
 1 & 2 & \cdot\cdot\cdot & n\\
@@ -615,9 +620,9 @@ Da igual la trenza geométrica tomada como representante puesto que todas tienen
 \begin{defi}[Trenzas puras]
 El núcleo del homomorfismo $\pi:B_n\rightarrow S_n$ es llamado \textit{grupo de trenzas puro} y es denotado por $P_n$
 
-$$P_n = Ker(\pi:B_n\rightarrow S_n).$$
+$$P_n = Ker(\pi).$$
 
-Los elementos de $P_n$ se llaman trenzas puras de $n$ hebras. Una trenza geométrica representa a un elemento de $P_n$ si y solo si la hebra que parte de $(i,0,0)$ termina en $(i,0,1)$.
+Los elementos de $P_n$ se llaman trenzas puras de $n$ hebras. Una trenza geométrica representa a un elemento de $P_n$ si y solo si la hebra que parte de $(i,0,0)$ termina en $(i,0,1)$, con $i = 1,\ldots,n$.
 
 \end{defi}
 
@@ -644,13 +649,12 @@ Vamos a definir una estructura algebraica denominada monoide de Garside, una her
 
 \subsection{Monoides}
 
-Un monoide es un conjunto que cuenta con una operación binaria (multiplicación) $M\times M \rightarrow M$ la cual es asociativa y tiene un elemento neutro. Es básicamente un grupo que no cuenta con la propiedad de existencia de elemento simétrico.
+Un monoide es un conjunto que cuenta con una operación binaria (multiplicación) $M\times M \rightarrow M$ la cual es asociativa y tiene un elemento neutro que denotaremos por 1. 
 
 Un monoide $M$ es \textit{cancelativo por la izquierda} (resp. \textit{por la derecha}) si para todo $a,b,c\in M$
+$$ab=ac\Longrightarrow b=c\ \ \ \ (\textrm{resp.}\ \  ba=ca\Rightarrow b=c).$$
 
-$$ab=ac\Longrightarrow b=c\ \ \ \ (\textrm{resp.}\ \  ba=ca\Longrightarrow b=c).$$
-
-Un elemento $a$ de un monoide $M$ es \textit{invertible} si existe $b\in M$ tal que $ab=ba=1$.
+Un elemento $a$ de un monoide $M$ es \textit{invertible} si existe $b\in M$ tal que $ab=ba=1$. De esta forma, un grupo es un monoide en el que todo elemento es invertible.
 
 \subsubsection{Divisibilidad en monoides}
 
@@ -667,11 +671,9 @@ Las relaciones $\preceq$ y $\succeq$ en un monoide son reflexivas y transitivas.
 \subsubsection{Monoides atómicos}
 
 Para cualquier elemento $a\neq 1$ de un monoide $M$, definimos
+$$\norm{a}=\sup\{r\geq 1\ | a=a_1\cdot\cdot\cdot a_r,a_1,...,a_r\in M\backslash \{1\}\}.$$
 
-$$\norm{a}=\sup\{r\geq 1\ | a=a_1\cdot\cdot\cdot a_r,a_1,...,a_r\in M-\{1\}\}.$$
-
-Según esta definición $\norm{a}\in\{1,2,...,\infty\}$. Establecemos que $\norm{1}=0$. Es fácil de ver que para todo $a,b\in M$
-
+Según esta definición $\norm{a}\in \mathbb{N}^*\cup\{\infty\}$. Establecemos que $\norm{1}=0$. Es fácil de ver que para todo $a,b\in M$
 $$\norm{ab}\geq\norm{a}+\norm{b}.$$
 
 Observar que $\norm{a}=0$ si y solo si $a=1$. A un elemento $a\in M$ se le llama átomo si $\norm{a}=1$. En otras palabras, $a\in M$ es un átomo si $a\neq 1$ y $a=a_1\cdot\cdot\cdot a_r$ implica que $a_i=1$ para todo $i$ excepto uno. Cualquier $a\in M$ con $\norm{a} < \infty$ tiene una expansión $a=a_1\cdot\cdot\cdot a_r$, donde $\norm{a}=r$ y $a_1,...,a_r$ son átomos. Esto justifica la siguiente definición. Un monoide $M$ es \textit{atómico} si $\norm{a} < \infty$ para todo $a\in M$.
@@ -682,8 +684,7 @@ Si dos elementos $a,b$ de un monoide atómico $M$ satisfacen $a\preceq b$ y $b\p
 \end{lema}
 
 \textit{Demostración.} Ya que $a\preceq b\preceq a$, significa que existen $u,v\in M$ tal que $b=au$ y $a=bv$. Entonces $a=auv$ y
-
-$$\norm{a}=\norm{auv}\geq \norm{a}+\norm{u}+\norm{v}.$$
+$$\norm{a}=\norm{auv}\geq \norm{a}+\norm{u}+\norm{v}\geq \norm{a}.$$
 
 Esto implica que $\norm{u}=\norm{v}=0$. Por tanto $u=v=1$ y $a=b$. La relación $\succeq$ es tratada de forma similar. \qed
 
@@ -694,22 +695,22 @@ Los Lemas \ref{lema:rel1} y \ref{lema:rel2} implican que las relaciones $\preceq
 La ecuación $ab=1$ en un monoide atómico $M$ tiene como única solución $a=1,b=1$. De hecho, si $ab=1$ para $a,b\in M$, entonces $1\preceq a \preceq 1$, por lo tanto $a=1$ y $b=1$. En particular, el elemento neutro es el único elemento invertible de $M$.
 
 \subsubsection{Presentaciones de un monoide}
-Consideramos un conjunto $X$ y un subconjunto $R$ de $X^*\times X^*$. Sea $\sim$ la relación de equivalencia más pequeña conteniendo los pares $(\omega_1r\omega_2, \omega_1r'\omega_2)$, donde $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. En otras palabras, $\sim$ es la relación de equivalencia más pequeña en $X^*$ tal que $\omega_1r\omega_2\sim\omega_1r'\omega_2$ para todo $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. Definimos $M$ como el conjunto de clases de equivalencia inducido por $\sim$. Esta claro que $M$ tiene la única estructura de monoide tal que la proyección $P:X^*\rightarrow M$ es un homomorfismo de monoide. Decimos que $\langle X|R\rangle$ es una \textit{presentación de monoide} de $M$ y llamamos a los elementos de $X$ \textit{generadores} y a los elementos de $R$ \textit{relaciones}.
+Consideramos un conjunto $X$ y un subconjunto $R$ de $X^*\times X^*$. Sea $\sim$ la relación de equivalencia más pequeña conteniendo los pares $(\omega_1r\omega_2, \omega_1r'\omega_2)$, donde $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. En otras palabras, $\sim$ es la relación de equivalencia más pequeña en $X^*$ tal que $\omega_1r\omega_2\sim\omega_1r'\omega_2$ para todo $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. Definimos $M$ como el conjunto de clases de equivalencia inducido por $\sim$. Esta claro que $M$ tiene la única estructura de monoide tal que la proyección $P:X^*\rightarrow M$ es un homomorfismo de monoide. Decimos que $\langle X\mid R\rangle$ es una \textit{presentación de monoide} de $M$ y llamamos a los elementos de $X$ \textit{generadores} y a los elementos de $R$ \textit{relaciones}.
 
-Esta claro que el conjunto $P(X)\subset M$ genera $M$ en el sentido de que cada elemento de $M$ es un producto de elementos de este conjunto. Para cada relación $(r,r')\in R$, el elemento $P(r)=P(r')$ de $M$ se le llama \textit{relator} asociado a la presentación $\langle X|R\rangle$. Como notación habitual se usa $r=r'$ para la relación $(r,r'\in R)$ y no se hace distinción entre un generador $x\in X$ y su proyección $P(x)$ en $M$. 
+Esta claro que el conjunto $P(X)\subset M$ genera $M$ en el sentido de que cada elemento de $M$ es un producto de elementos de este conjunto. Para cada relación $(r,r')\in R$, el elemento $P(r)=P(r')$ de $M$ se le llama \textit{relator} asociado a la presentación $\langle X\mid R\rangle$. Como notación habitual se usa $r=r'$ para la relación $(r,r'\in R)$ y no se hace distinción entre un generador $x\in X$ y su proyección $P(x)$ en $M$. 
 
-Cualquier elemento de $M$ puede ser expandido de forma única como una palabra de $X$, es decir, como un producto de elementos de $X$. El número de elementos de $X$ de esta expansión de $w\in M$ se denomina \textit{longitud} de $w$ y se denota por $l(w)$. Se tiene que $l(1)=0,\ l(x)=1$ para $x\in X$ y que $l(ww')=l(w)+l(w')$ con $w,w'\in$
+Cualquier elemento de $M$ puede ser expresado como una palabra de $X$, es decir, como un producto de elementos de $X$. El número de elementos de $X$ de esta expansión de $w\in M$ se denomina \textit{longitud} de $w$ y se denota por $l(w)$. Se tiene que $l(1)=0,\ l(x)=1$ para $x\in X$ y que $l(ww')=l(w)+l(w')$ con $w,w'\in$
 
-Introducimos varios tipos de presentaciones de monoides que nos serán de utilidad. Una presentación de monoide $\langle X|R\rangle$ es finita si $X$ y $R$ son finitos. Una presentación $\langle X|R\rangle$ de un monoide $M$ se dice \textit{ponderada} si existe un homomorfismo de monoide $\ell:M\rightarrow \mathbb{N}$ tal que $\ell(x)\geq 1$ para todo $x\in X$. El homomorfismo $\ell$ se llama \textit{peso}.
+Introducimos varios tipos de presentaciones de monoides que nos serán de utilidad. Una presentación de monoide $\langle X\mid R\rangle$ es finita si $X$ y $R$ son finitos. Una presentación $\langle X\mid R\rangle$ de un monoide $M$ se dice \textit{ponderada} si existe un homomorfismo de monoide $\ell:M\rightarrow \mathbb{N}$ tal que $\ell(x)\geq 1$ para todo $x\in X$. El homomorfismo $\ell$ se llama \textit{peso}.
 
-Una presentación $\langle X|R\rangle$ de un monoide $M$ se dice \textit{equilibrada en longitud} si $l(r)=l(r')$ para todo $(r,r')\in R$, donde $l$ es la función longitud en $X^*$ introducida anteriormente. La formula $\ell(x)=1$ para todo $x\in X$ define un \textit{peso canónico} $\ell:M\rightarrow \mathbb{N}$.
+Una presentación $\langle X\mid R\rangle$ de un monoide $M$ se dice \textit{equilibrada en longitud} si $l(r)=l(r')$ para todo $(r,r')\in R$, donde $l$ es la función longitud en $X^*$ introducida anteriormente. La formula $\ell(x)=1$ para todo $x\in X$ define un \textit{peso canónico} $\ell:M\rightarrow \mathbb{N}$.
 
 \begin{lema}
-Si un monoide $M$ tiene una representación ponderada $\langle X|R\rangle$, entonces $M$ es atómico y todos sus átomos están contenidos en el conjunto $X$ de generadores. Si $M$ tiene una presentación equilibrada en longitud $\langle X|R\rangle$, entonces el conjunto de átomos de $M$ coincide con $X$ y $\norm{a}=\ell(a)$ para todo $a\in M$, donde $\ell$ es el peso canónico en $M$.
+Si un monoide $M$ tiene una representación ponderada $\langle X\mid R\rangle$, entonces $M$ es atómico y todos sus átomos están contenidos en el conjunto $X$ de generadores. Si $M$ tiene una presentación equilibrada en longitud $\langle X\mid R\rangle$, entonces el conjunto de átomos de $M$ coincide con $X$ y $\norm{a}=\ell(a)$ para todo $a\in M$, donde $\ell$ es el peso canónico en $M$.
 \label{lema:presen_mono}
 \end{lema}
 
-\textit{Demostración.} Sea $\ell: M\rightarrow \mathbb{N}$ un homomorfismo de monoide tal que $\ell(x)\geq 1$ para todo generador $x\in X$. Entonces $\ell(a)\geq 1$ para todo $a\in M-\{1\}$. Si $a\in M$ se expande como el producto $a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M-\{1\}$, entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r$. Por tanto $\ell(a)\geq \norm{a}$. Que todos los átomos de $M$ pertenecen a $X$ viene del hecho de que cualquier conjunto que genere un monoide debe contener a sus átomos, ya que estos no se pueden obtener como producto de otros elementos y forman parte del monoide. \qed
+\textit{Demostración.} Sea $\ell: M\rightarrow \mathbb{N}$ un homomorfismo de monoide tal que $\ell(x)\geq 1$ para todo generador $x\in X$. Entonces $\ell(a)\geq 1$ para todo $a\in M\backslash\{1\}$. Si $a\in M$ se expande como el producto $a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M\backslash\{1\}$, entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r$. Por tanto $\ell(a)\geq \norm{a}$. Que todos los átomos de $M$ pertenecen a $X$ viene del hecho de que cualquier conjunto que genere un monoide debe contener a sus átomos, ya que estos no se pueden obtener como producto de otros elementos y forman parte del monoide. \qed
 
 \subsubsection{El problema de palabra y el problema de divisibilidad}
 
@@ -717,25 +718,21 @@ El \textit{problema de palabra} para una representación $\langle X|R\rangle$ de
 dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a\preceq a'$ (resp. $a'\succeq a$).
 
 Tanto el problema de palabra como el problema de divisibilidad pueden ser fácilmente resueltos con una representación finita $\langle X|R\rangle$ de $M$. Sea $\ell:M\rightarrow\mathbb{N}$ un peso, de manera que $\ell(x)\geq 1$ para todo $x\in X$. Observar que el valor de $\ell$ para cualquier $a\in M$ representado por cualquier palabra no vacía $\omega\in X^*$ es mayor o igual que la longitud de $\omega$. Sea $W(a)\subset X^*$ el conjunto de palabras representando a $a$. Todas esas palabras tienen longitud menor que $\ell(a)$. Ya que $X$ es finito, el número de palabras de menor longitud que $\ell(a)$ es finito y por tanto también lo es el conjunto $W(a)$. Para listar todos los posibles elementos de $W(a)$, uno comienza con la palabra que representa $a$ y consecutivamente aplica todas las posibles substituciones del tipo
- 
-
 $$\omega_1 r\omega_2\leftrightarrow \omega_1 r'\omega_2\ \ \ (r,r')\in R$$
-\ 
-\newline
-a cualquier elemento de $W(a)$ ya encontrado. Ya que $R$ es finito, este procedimiento también es finito. Esto da una solución al problema de palabra. Dadas dos palabras $\omega,\omega'\in X^*$ representando a $a,a'\in M$ respectivamente, sabemos que $a=a'$ si $W(a)=W(a')$. 
+
+a cualquier elemento de $W(a)$ ya encontrado. Ya que $R$ es finito, este procedimiento también es finito. Esto da una solución al problema de palabra. Dadas dos palabras $\omega,\omega'\in X^*$ representando a $a,a'\in M$ respectivamente, sabemos que $a=a'$ si $W(a)=W(a')$.
 
 También obtenemos una solución para el problema de divisibilidad por la izquierda y por la derecha. Se tiene que $a\preceq a'$ si y solo si algún prefijo (segmento inicial) de una palabra en $W(a')$ pertenece a $W(a)$. De igual manera, $a'\succeq a$ si y solo si algún sufijo (segmento final) de una palabra en $W(a')$ pertenece a $W(a)$.
 
 \subsection{Formas normales y el problema del conjugado}
 
-Ahora vamos a introducir y estudiar un cierto monoide $M_\Sigma$ derivado de un subconjunto $\sigma$ de cierto monoide $M$. Bajo la presunción de hipótesis favorables, obtenemos una forma normal para los elementos de $M_\Sigma$ y resolvemos el problema del conjugado en $M_\Sigma$.
+Ahora vamos a introducir y estudiar un cierto monoide $M_\Sigma$ derivado de un subconjunto $\Sigma$ de cierto monoide $M$. Bajo la presunción de hipótesis favorables, obtenemos una forma normal para los elementos de $M_\Sigma$ y resolvemos el problema del conjugado en $M_\Sigma$.
 
 \subsubsection{El monoide $M_\Sigma$} 
 
-Sea $M$ un monoide y $\Sigma\subset M$ un subconjunto de $M$ conteniendo el elemento neutro $1$. Sea $M_\Sigma$ un monoide generado por los simbolos $[a]$, donde $a\in \Sigma$, partiendo de la definición de las relaciones $[1]=1$ y $[a][b]=[ab]$, siempre que $a,b,ab\in\Sigma$. Existe un homomorfismo de monoide $p:M_\Sigma\rightarrow M$ definido por $p([a])=a$ para todo $a\in\Sigma$.
+Sea $M$ un monoide y $\Sigma$ un subconjunto de $M$ conteniendo el elemento neutro $1$. Sea $M_\Sigma$ un monoide generado por los simbolos $[a]$, donde $a\in \Sigma$, partiendo de la definición de las relaciones $[1]=1$ y $[a][b]=[ab]$, siempre que $a,b,ab\in\Sigma$. Existe un homomorfismo de monoide $p:M_\Sigma\rightarrow M$ definido por $p([a])=a$ para todo $a\in\Sigma$.
 
 Otra definición equivalente de $M_\Sigma$ puede hacerse identificando el producto $[a_1]\cdot\cdot\cdot[a_r]$ en $M_\Sigma$ (donde $a_,...,a_r\in \Sigma$) con la sucesión $(a_1,...,a_r)$. Entonces $M_\Sigma$ es el conjunto de clases de equivalencia de sucesiones finitas $(a_1,...,a_r)$ de elementos de $\Sigma$ bajo la equivalencia generada por
-
 $$(a_1,...,a_{i-1}, a_i'a_i'',a_{i+1},...,a_r)\sim (a_1,...,a_{i-1}, a_i',a_i'',a_{i+1},...,a_r),$$
 
 siempre que $a_i'a_i''\in\Sigma$. La sucesión vacía es equivalente a la sucesión de un elemento $(1)$, donde $1\in\Sigma$. El producto en $M_\Sigma$ esta inducido por la concatenación de sucesiones.
@@ -745,9 +742,9 @@ siempre que $a_i'a_i''\in\Sigma$. La sucesión vacía es equivalente a la sucesi
 \label{teor:monoi_deriv}
 Sea $M$ un monoide atómico y $\Sigma$ un subconjunto de $M$ tal que $1\in \Sigma$ y cumple las siguientes condiciones:
 \begin{enumerate}
-\item Todos los divisores por la izquierda y por la derecha de elementos de $\Sigma$ pertenecen a $\Sigma$.
-\item Para cualesquiera $a,b,c\in \Sigma$, si $ab=ac$ o $ba=ca$, entonces b=c.
-\item Para cualesquiera $a,b,c\in \Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento maximal (con respecto a $\preceq$).
+\item Todos los divisores por la izquierda y por la derecha de elementos de $\Sigma$ pertenecen a $\Sigma$. (Cerrado para divisores a izquierda y a derecha)
+\item Para cualesquiera $a,b,c\in \Sigma$, si $ab=ac$ o $ba=ca$, entonces b=c. (Cancelativo)
+\item Para cualesquiera $a,b\in \Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento maximal (con respecto a $\preceq$).
 \end{enumerate}
 Entonces para cualquier $\xi\in M_\Sigma$, hay un único $\alpha(\xi)\in\Sigma$ tal que $[\alpha(\xi)]$ es un divisor por la izquierda de $\xi$ que es el maximal de entre todos los divisores por la izquierda de $\xi$ que se encuentra en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$. Además, hay un único $\omega(\xi)\in M_\Sigma$ tal que $\xi=[\alpha(\xi)]\omega(\xi)$.
 \end{teor}
@@ -757,14 +754,12 @@ Entonces para cualquier $\xi\in M_\Sigma$, hay un único $\alpha(\xi)\in\Sigma$ 
 \ 
 
 \textit{Paso 1.} Por la tercera hipótesis, para cualquier $a,b\in\Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento maximal $c\in\Sigma$. Entonces $b=cd$ para algún $d\in M$. Por la primera hipótesis, $d\in\Sigma$, y por la segunda, $d$ es único. Sea $\alpha_2(a,b)=ac\in\Sigma$ y $\omega_2(a,b)=d\in\Sigma$. Claramente se tiene
-
 \begin{equation}
 \label{eq:div_max}
 \alpha_2(a,b)\omega_2(a,b)=ab.
 \end{equation}
 
-Nuestro objetivo en este paso va a ser probar las siguientes igualdades. Dados $a,b,c\in\Sigma$ tal que $a,b\in\Sigma$
-
+Nuestro objetivo en este paso va a ser probar las siguientes igualdades. Dados $a,b,c\in\Sigma$ tales que $a,b\in\Sigma$
 \begin{equation}
 \label{eq:alfa_com}
 \alpha_2(ab,c)=\alpha_2(a,\alpha_2(b,c)),
@@ -777,25 +772,20 @@ Nuestro objetivo en este paso va a ser probar las siguientes igualdades. Dados $
 Podemos usar la siguiente observación. Si $a,b,c\in M$ satisfacen que $ac\in\Sigma$ y $ab\preceq ac$, entonces $b\preceq c$. De hecho, si $ac=abd$ con $d\in M$, entonces la presunción de que $ac\in\Sigma$ junto con la primera hipótesis implica que $a,c,bd\in\Sigma$. Por la segunda hipótesis tenemos que $c=bd$.
 
 Por definición, $\alpha_2(b,c)=bd$, donde $d$ es maximal tal que $d\preceq c$ y $bd\in \Sigma$. Entonces
-
 $$\alpha_2(a,\alpha_2(b,c))=\alpha_2(a,bd)=ad',$$
 
 donde $d'$ es maximal tal que $d'\preceq bd$ y $ad'\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$ (por hipótesis), al ser $d'$ maximal se tiene que $b\preceq d'$. Escribiendo $d'=be$ con $e\in\Sigma$, obtenemos que $\alpha_2(a,bd)=abe$, con $be\preceq bd\in\Sigma$ y $abe\in\Sigma$. Por la observación hecha previamente vemos que $e\preceq d\preceq c$, así que $e\preceq c$. Ahora $\alpha_2(ab,c)=abf$, donde $f$ es maximal tal que $f\preceq c$ y $abf\in\Sigma$. Por tanto, $e\preceq f$. Por otra parte, $f\preceq c$ y $bf\in\Sigma$. Esto y la inclusión de $abf\in\Sigma$ implica que $bf\preceq d' = be$. Por tanto, $f\preceq e$. Por el Lema \ref{lema:rel2} $e=f$ y
-
 $$\alpha_2(ab,c)=abf=abe=ad'=\alpha_2(a,\alpha_2(b,c)).$$
 
 Esto prueba la igualdad (\ref{eq:alfa_com}). Para probar la igualdad (\ref{eq:omega_com}) observar (\ref{eq:div_max}) y (\ref{eq:alfa_com}),
 
-$$\alpha_2(ab,c)\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=\alpha_2(a,\alpha_2(b,c))\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=$$
-
+$$\alpha_2(ab,c)\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=\alpha_2(a,\alpha_2(b,c))\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$$
 $$=a\alpha_2(b,c)\omega_2(b,c)=abc=\alpha_2(ab,c)\omega_2(ab,c).$$
 
 Por la segunda condición, para deducir (\ref{eq:omega_com}) es suficiente probar que el producto $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ pertenece a $\Sigma$. Por definición, existe $d\in\Sigma$ tal que $\alpha_2(b,c)=bd\in\Sigma$ y $c=d\omega_2(b,c)$. Sea $f$ el elemento maximal de $\Sigma$ tal que $f\preceq bd$ y $af\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$, existe $e\in\Sigma$ tal que $f=be$. Entonces
-
 $$bd=f\omega_2(a,bd)=be\omega_2(a,bd).$$
 
 Por la segunda condición, $d=e\omega_2(a,bd)$ y
-
 $$e\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=e\omega_2(a,bd)\omega_2(b,c)=d\omega_2(b,c)=c.$$
 
 Esto demuestra que $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ es divisor por la derecha de $c\in\Sigma$, por tanto es un elemento de $\Sigma$.
@@ -805,17 +795,15 @@ Esto demuestra que $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ es divisor por la de
 \textit{Paso 2}. En este paso probaremos la siguiente afirmación. Existe una única función $\alpha:M_\Sigma\rightarrow\Sigma$ tal que
 
 \begin{enumerate}[label=\roman*.]
-\item $\alpha(1)=1$
-\item $\alpha([a]\eta)=\alpha_2(a,\alpha(\eta))$ para todo $a\in\Sigma$, $\eta\in M_\Sigma$
+\item $\alpha(1)=1$,
+\item $\alpha([a]\eta)=\alpha_2(a,\alpha(\eta))$ para todo $a\in\Sigma$, $\eta\in M_\Sigma$.
 \end{enumerate}
 
 Recordamos el homomorfismo de monoide $p:M_\Sigma\rightarrow M$. Para cualquier $\xi\in M_\Sigma$ definimos $H(\xi)=\norm{p(\xi)}\geq 0$. Llamamos a $H(\xi)$ el peso de $\xi$. Esta claro que
-
 $$H(\xi\xi')\geq H(\xi)+H(\xi'),$$
 
 
 para cualesquiera $\xi\xi'\in M_\Sigma$. Observar que $H(\xi)=0$ si y solo si $\xi=1$, y $H(\xi)=1$ si y solo si $\xi=[a]$, donde $a$ es un átomo de $M$ perteneciente a $\Sigma$. Para ver esto, tomamos una expansión $\xi=[a_1]\cdot\cdot\cdot[a_r]$ con $a_1,...,a_r\in\Sigma$. Entonces
-
 $$H(\Sigma)=\norm{p(\xi)}\geq\norm{a_1}+\cdot\cdot\cdot\norm{a_r}.$$
 
 Si $H(\xi)=0$, entonces $a_1=\cdot\cdot\cdot=a_r=1$ y $\xi=1$. Si $H(\xi)=1$, entonces todos los elementos $a_1,...,a_r\in\Sigma$ son iguales a $1$ excepto un elemento, el cual es un átomo.
@@ -823,17 +811,14 @@ Si $H(\xi)=0$, entonces $a_1=\cdot\cdot\cdot=a_r=1$ y $\xi=1$. Si $H(\xi)=1$, en
 Dado $\xi\in M_\Sigma$, definimos $\alpha(\xi)$ por inducción sobre el peso de $\xi$. Para $\xi=1$ establecemos $\alpha(\xi)=1\in\Sigma$. Si $H(\xi)=1$, entonces $\xi=[a]=[a]1$ para algún átomo $a\in\Sigma$, y para satisfacer (ii) establecemos que $\alpha(\xi)=\alpha_2(a,1)=a$.
 
 Tomamos un entero $k\geq 1$ y suponemos que $\alpha(\xi)$ esta definido para todo $\xi$ de peso menor o igual que $k$ de manera que las condiciones (i), (ii) se satisfacen siempre que $H([a]\eta)\leq k$. Sea $\xi$ un elemento de $M_\Sigma$ de peso $k+1$. Podemos expandir $\xi=[a]\eta$, donde $a\in\Sigma$, $a\neq 1$ y $\eta\in M_\Sigma$. Entonces $H([a])\geq 1$ y $H([\eta]) < H([a]\eta)$, así que $\alpha(\eta)$ esta ya definido. Para satisfacer (ii) establecemos $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Debemos comprobar que $\alpha_2(a,\alpha(\eta))$ no depende de la elección de la expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y por la hipótesis de inducción, es suficiente con comprobar que 
-
 $$\alpha_2(a,\alpha(\eta))=\alpha_2(a',\alpha([a'']\eta)),$$
 
 donde $a=a'a''$ con $a',a''\in \Sigma -\{1\}$. Ya que
-
 $$H([a'']\eta)\leq H([a]\eta) - H([a'])<H([a]\eta),$$
 
 
 la hipótesis de inducción nos da que $\alpha([a''])=\alpha_2(a'',\alpha(\eta))$. Por la igualdad (\ref{eq:alfa_com}) 
-
-$$\alpha_2(a',\alpha([a'']\eta))=\alpha_2(a',\alpha_2(a'',\alpha(\eta)))=$$
+$$\alpha_2(a',\alpha([a'']\eta))=\alpha_2(a',\alpha_2(a'',\alpha(\eta)))$$
 $$=\alpha_2(a'a'',\alpha(\eta))=\alpha_2(a,\alpha(\eta)).$$
 
 Por tanto $\alpha$ esta bien definido para los elementos de $M_\Sigma$ de peso menor o igual que $k +1$ y satisface las condiciones (i) y (ii). Esto completa la inducción y prueba nuestra afirmación.
@@ -841,8 +826,7 @@ Por tanto $\alpha$ esta bien definido para los elementos de $M_\Sigma$ de peso m
 \newline
 \textit{Paso 3}. Ahora comprobamos que para cualquier $\xi\in M_\Sigma$, el elemento $[\alpha(\xi)]\in M_\Sigma$ es un divisor por la izquierda de $\xi$ que es maximal entre todos los divisores por la izquierda de $\xi$ que se encuentrar en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$.
 
-Utilizando la proyección $p:M_\Sigma\rightarrow M$, es fácil demostrar que todos los divisores de $1\in M_\Sigma$ son iguales a $1$. Por tanto si $H(\xi)=0$, entonces $[\alpha(\xi)]=\xi=1$ es el único divisor por la izquierda de $1\in\Sigma$. Si $H(\xi)\geq 1$, escribimos $\xi=[a]\eta$ para algún $a\in\Sigma - \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Por tanto, $\alpha(\xi)=ab$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(eta)$. Por el supuesto de inducción, $[\alpha(\eta)]$ es un divisor por la izquierda de $\eta$. Por tanto,
-
+Utilizando la proyección $p:M_\Sigma\rightarrow M$, es fácil demostrar que todos los divisores de $1\in M_\Sigma$ son iguales a $1$. Por tanto si $H(\xi)=0$, entonces $[\alpha(\xi)]=\xi=1$ es el único divisor por la izquierda de $1\in\Sigma$. Si $H(\xi)\geq 1$, escribimos $\xi=[a]\eta$ para algún $a\in\Sigma \backslash \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Por tanto, $\alpha(\xi)=ab$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(eta)$. Por el supuesto de inducción, $[\alpha(\eta)]$ es un divisor por la izquierda de $\eta$. Por tanto,
 $$[\alpha(\xi)]=[ab]=[a][b]\preceq [a][\alpha(\eta)]\preceq [a]\eta=\xi.$$
 
 Esto demuestra que $[\alpha(\xi)]$ es divisor por la izquierda  de $\xi$ perteneciente a $\{[a]\}_{a\in\Sigma}$. Veamos que $[\alpha(\xi)]$ es maximal. Supongamos que $\xi=[a']\eta'$
@@ -852,25 +836,19 @@ para algún $a'\in\Sigma$, $\eta'\in M_\Sigma$. Entonces $\alpha(\xi) =\alpha_2(
 \textit{Paso 4.} Existe una única función $\omega:M_\Sigma\rightarrow\Sigma$ tal que
 
 \begin{enumerate}[label=\roman*.]
-\item $\omega(1)=1$
-\item $\omega([a]\eta)=[\omega_2(a,\alpha(\eta))]\omega(\eta)$ para todo $a\in\Sigma$, $\eta\in M_\Sigma$
+\item $\omega(1)=1$,
+\item $\omega([a]\eta)=[\omega_2(a,\alpha(\eta))]\omega(\eta)$ para todo $a\in\Sigma$, $\eta\in M_\Sigma$.
 \end{enumerate}
 
 El valor de $\omega$ para cualquier $\xi\in M_\Sigma$ esta definido por inducción sobre el peso de $\xi$. Establecemos que $\omega(1)=1$. Tomamos un entero $k\geq 1$ y suponemos que $\omega(\xi)$ esta definido para todo $\xi$ de peso menor o igual que $k$, de manera que las condiciones (i) y (ii) se satisfacen siempre que $H([a]\eta)\leq k$. Sea $\xi=[a]\eta$ un elemento de $M_\Sigma$ de peso $k+1$ con un $q\in\Sigma - \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\omega(\eta)$ esta definido. Para satisfacer (ii), establecemos que 
-
 $$\omega(\xi)=[\omega_2(a,\alpha(\eta))]\omega(\eta).$$
 
 Debemos de comprobar que $\omega(\xi)$ es independiente de la elección de expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y la inducción de hipótesis, es suficiente con comprobar que
-
 $$\omega_2(a,\alpha(\eta))\omega(\eta)=\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta),$$
 
 donde $a=a'a''$ con $a',a''\in\Sigma-\{1\}$. Sabemos que $\alpha([a'']\eta)=\alpha_2(a'',\alpha(\eta))$. Ya que $H([a'']\eta) < H([a]\eta)$, la hipótesis de inducción nos da la igualdad $\omega([a'']\eta)=[\omega_2(a'',\alpha(\eta))]\omega(\eta)$. Por la igualdad (\ref{eq:omega_com})
-
-
-$$\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta)=\omega_2(a',\alpha_2(a'',\alpha(\eta)))\omega([a'']\eta)=$$
-
-$$= \omega_2(a',\alpha_2(a'',\alpha(\eta)))[\omega_2(a'',\alpha(\eta))]\omega(\eta)=$$
-
+$$\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta)=\omega_2(a',\alpha_2(a'',\alpha(\eta)))\omega([a'']\eta)$$
+$$= \omega_2(a',\alpha_2(a'',\alpha(\eta)))[\omega_2(a'',\alpha(\eta))]\omega(\eta)$$
 $$ =\omega_2(a'a'',\alpha(\eta))\omega(\eta)=  \omega_2(a,\alpha(\eta))\omega(\eta).$$
 
 Por tanto $\omega$ esta bien definido para los elementos de $M_\Sigma$ de peso menor o igual que $k+1$ y satisface las condiciones (i) y (ii). Esto completa la inducción y prueba nuestra afirmación.
@@ -879,27 +857,21 @@ Por tanto $\omega$ esta bien definido para los elementos de $M_\Sigma$ de peso m
 \textit{Paso 5.} Para completar la prueba, tenemos que demostrar que para cualquier $\xi\in M_\Sigma$, el elemento $\eta = \omega(xi)$ es el único elemento de $M_\Sigma$ tal que $\xi = [\alpha(\xi)]\eta$. Procedemos por inducción sobre $H(\xi)$. Si $H(\xi) = 0$, entonces $\xi = 1$, $\alpha(\xi) = 1,\ \omega(\xi) = 1$, y la afirmación es obvia. Supongamos que la afirmación se da para todo $\xi$ de altura menor o igual a $k$ para cualquier entero $k\geq 1$. Sea $\xi$ un elemento de $M_\Sigma$ de  altura $k+1$. Por el Paso 3, $\xi=[\alpha(\xi)]\eta$ con $\eta\in M_\Sigma$. Claramente, $\alpha(\xi)\neq 1$ y por tanto $H(\eta) < H(\xi)$.
 
 Establecemos $\theta=[\alpha(\xi)][\alpha(\eta)]$. Por definición de la función $\alpha$,
-
 $$\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))=\alpha(\xi)b$$
 
 para algún $b\in\Sigma$ tal que $[b]\preceq [\alpha(\eta)]\preceq\eta$. Por tanto $\alpha(\xi)\preceq\alpha(\theta)$ y 
-
 $$[\alpha(\theta)] = [\alpha(\xi)][b]\preceq[\alpha(\xi)]\eta=\xi.$$
 
 Ya que $\alpha(\xi)$ es el máximo divisor por la izquierda de $\xi$ en el conjunto $\{[a]\}_{a_\in\Sigma}$, tenemos $[\alpha(\xi)]=[\alpha(\theta)]$. Proyectando a $M$, concluimos que
-
 $$\alpha(\xi)=\alpha(\theta) = \alpha_2(\alpha(\xi),\alpha(\eta)).$$
 
 Por tanto, $\alpha(\xi)\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))\alpha(\eta)$. Por otro lado, por (\ref{eq:div_max}),
-
 $$\alpha(\xi)\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))\omega_2(\alpha(\xi),\alpha(\eta)).$$
 
 Combinando estas ecuaciones obtenemos
-
 $$\alpha_2(\alpha(\xi),\alpha(\eta))\alpha(\eta) = \alpha_2(\alpha(\xi),\alpha(\eta))\omega_2(\alpha(\xi),\alpha(\eta)).$$
 
 Por la segunda condición del teorema, podemos cancelar $\alpha_2(\alpha(\xi),\alpha(\eta))$. Así que $\alpha(\eta) = \omega_2(\alpha(\xi),\alpha(\eta))$ y 
-
 $$\omega(\xi) = \omega([\alpha(\xi)]\eta) = [\omega_2(\alpha(\xi),\alpha(\eta))]\omega(\eta)=[\alpha(\eta)]\omega(\eta) = \eta,$$
 
 donde la última igualdad viene de la hipótesis de inducción. Esto demuestra que $\xi = [\alpha(\xi)\omega(\xi)]$ y que cualquier $\eta\in M_\Sigma$ satisfaciendo $\xi = [\alpha(\xi)]\eta$ es igual a $\omega(\xi)$. \qed
@@ -919,7 +891,7 @@ $$=[\alpha(\xi)][\alpha(\omega(\xi))][\alpha(\omega^2(\xi))]\omega^3(\xi)=\cdot\
 
 Este proceso de expansión puede ser parado en el $r$-ésimo paso, donde $r$ el el mínimo entero tal que $\omega^{r+1}(\xi)=1$. Tal $r$ existe ya que una expansión de $\xi$ como producto de  generadores de $[a]$ con $a\in\Sigma$ tiene como mucho un cierto $k$ (visto en la demostración del Teorema \ref{teor:monoi_deriv}) de generadores distintos de $1$.
 
-Esta observación nos lleva a una forma normal para cada elemento de $M_\Sigma$. Una \textit{forma normal} para $\xi\in M_\Sigma$ para una sucesión $(a_1,a_2,...,a_r)$ de elementos de $\Sigma$, todos diferentes de $1$, tal que $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ y 
+Esta observación nos lleva a una forma normal para cada elemento de $M_\Sigma$. Una \textit{forma normal} para $\xi\in M_\Sigma$ es una sucesión $(a_1,a_2,...,a_r)$ de elementos de $\Sigma$, todos diferentes de $1$, tal que $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ y 
 $$a_i=\alpha([a_i][a_{i+1}]\cdot\cdot\cdot[a_r])$$
 
 para todo $i=1,2,...,r$. La unicidad en la última afirmación del Teorema \ref{teor:monoi_deriv} implica la unicidad de la forma normal.
@@ -934,10 +906,10 @@ Bajo las hipótesis del Teorema \ref{teor:monoi_deriv}, el monoide $M_\Sigma$ es
 \label{lema:cancel}
 \end{lema}
 
-\textit{Demostración.} Necesitamos demostrar que $\xi\eta=\xi\theta\Rightarrow\eta=\theta$ para todo $\xi,\eta,\theta\in M_\Sigma$. Suponemos primero que $\xi=[a]$ para algún $a\in\Sigma$. Entonces $\alpha(\xi\eta))=\alpha_2(a,\alpha(\eta))=ab\in\Sigma$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(\eta)$
+\textit{Demostración.} Necesitamos demostrar que $\xi\eta=\xi\theta$ implica $\eta=\theta$ para todo $\xi,\eta,\theta\in M_\Sigma$. Suponemos primero que $\xi=[a]$ para algún $a\in\Sigma$. Entonces $\alpha(\xi\eta))=\alpha_2(a,\alpha(\eta))=ab\in\Sigma$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(\eta)$. Así
 $$ab=\alpha(\xi\eta)=\alpha(\xi\theta)=\alpha([a]\theta)=\alpha_2(a,\alpha(\theta))=ac$$
 
-para algún $c\preceq\alpha(\theta)$ implica que $b=c\preceq\alpha(\theta)$. Entonces existen $\eta',\theta'\in M_\Sigma$ tal que $[b]\eta'=\eta$ y $[b]\theta'=\theta$. Como ya sabemos, $\omega(\xi\eta)$ es el único elemento $x\in M_\Sigma$ tal que $\xi\eta=[\alpha(\xi\eta)]x=[ab]x$. Ya que
+para algún $c\preceq\alpha(\theta)$ implica que $b=c\preceq\alpha(\theta)$. Entonces existen $\eta',\theta'\in M_\Sigma$ tales que $[b]\eta'=\eta$ y $[b]\theta'=\theta$. Como ya sabemos, $\omega(\xi\eta)$ es el único elemento $x\in M_\Sigma$ tal que $\xi\eta=[\alpha(\xi\eta)]x=[ab]x$. Ya que
 $$\xi\eta=[a][b]\eta'=[ab]\eta',$$
 
 tenemos que $\omega(\xi\eta) = \eta'$. De igual manera, $\omega(\xi\theta)=\theta'$. Por tanto,
