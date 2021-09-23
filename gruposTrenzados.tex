@@ -1,5 +1,7 @@
 \documentclass[12pt]{article}
-\setlength{\parindent}{0pt}
+%\setlength{\parindent}{0pt}
+\usepackage[spanish]{babel}
+
 \usepackage{enumitem}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -43,8 +45,8 @@
 \newpage
 \section{Grupo de trenzas}
 \subsection{Generalidades sobre grupos}
-
-En esta sección vamos a repasar algunos aspectos de la teoría de grupos que en su mayoría se han visto a lo largo de la carrera. Estos aparecen en \cite{group} y serán necesarios para desarrollar tanto el grupo de trenzas, como la parte de criptografía y criptoanálisis. En primer lugar vamos a comenzar con algunos conceptos básicos sobre grupos.
+\label{sec:grupos}
+En esta sección vamos a repasar algunos aspectos de la teoría de grupos que en su mayoría se han visto a lo largo de la carrera. Estos aparecen en \cite{group} y \cite{br_gr}, y serán necesarios para desarrollar tanto el grupo de trenzas, como la parte de criptografía y criptoanálisis. En primer lugar vamos a comenzar con algunos conceptos básicos sobre grupos.
 
 \begin{defi}[Grupo]
 Un grupo es una estructura algebraica formada por un conjunto $G\neq\emptyset$ y una operación interna $G\times G\rightarrow G$ a la que llamaremos \textit{producto}. Esta operación asigna a cada pareja $(x,y)$ el elemento $xy$ y verifica las siguientes propiedades:
@@ -52,7 +54,7 @@ Un grupo es una estructura algebraica formada por un conjunto $G\neq\emptyset$ y
 \begin{enumerate}
 \item Propiedad asociativa: $x(yz) = (xy)z$ para todo $x,y,z\in G$.
 \item Existencia de elemento neutro: Existe $1\in G$ tal que $x1= x = 1x$ para todo $ x\in G$.
-\item Existencia de elemento simétrico: Para cada $x \in G$ existe $y\in G$ tal que $xy=yx = 1$. El elemento $y$ es único y se deonta por $y^{-1}$
+\item Existencia de elemento simétrico: Para cada $x \in G$ existe $y\in G$ tal que $xy=yx = 1$. El elemento $y$ es único y se denota por $y^{-1}$.
 \end{enumerate}
 \end{defi}
 
@@ -72,7 +74,7 @@ Si $H$ es un subgrupo de $G$, lo denotaremos $H\leq G$. Definimos $Sub(G)$ como 
 Sea $H$ un subconjunto no vacío de un grupo $G$, entonces $H\leq G$ si y solo si para todo $x,y\in H$ se tiene que $xy^{-1}\in H$.
 \end{prop}
 
-Ahora vemos que la la intersección de subgrupos es una operación cerrada en $Sub(G)$.
+Tenemos que la intersección de subgrupos es una operación cerrada en $Sub(G)$.
 \begin{prop}
 Sean $H,K\leq G$, entonces $H\cap K\leq G.$
 \end{prop}
@@ -132,10 +134,12 @@ Sea $S_X$ un grupo simétrico, se cumple lo siguiente:
 \item Los ciclos disjuntos en $S_X$ conmutan.
 \item Cada permutación en $S_X$ es un producto de ciclos disjuntos, siendo el producto único excepto por el orden de los factores. 
 \end{enumerate}
+\label{teor:trans}
 \end{teor}
 Una representación de $\sigma$ como producto de ciclos disjuntos se le llama \textit{representación cíclica} o \textit{descomposición cíclica} de $\sigma$. La \textit{estructura cíclica} de una permutación $\sigma$ es la sucesión de longitudes de ciclo de una descomposición cíclica de $\sigma$, o equivalentemente, el número de ciclos de cada longitud en una descomposición cíclica de $\sigma$. 
 \begin{prop}
 Todo ciclo puede descomponerse como producto de transposiciones.
+\label{prop:trans}
 \end{prop}
 \textit{Demostración.} Basta con comprobar la siguiente igualdad
 $$(i_1,i_2,i_3,\ldots,i_{r-1},i_r) = (i_1,i_r)(i_1,i_{r-1})\cdots(i_1,i_3)(i_1,i_2),$$
@@ -160,6 +164,25 @@ es una descomposición cíclica de $\tau^\sigma$.
 \item Dos permutaciones son conjugadas si y solo si tienen la misma estructura cíclica.
 \end{enumerate}
 \end{teor}
+
+Denotamos por $s_i$ con $i=1,\ldots,n-1$ a la transposición $(i\ \ i+1)\in S_n$. Ya que $s_i^{-1}= s_i$ para $i=1,\ldots,n-1$ y $s_1,\ldots,s_n$ son generadores de $S_n$, consecuencia inmediata del Teorema \ref{teor:trans} y la Proposición \ref{prop:trans}, cualquier permutación de $S_n$ se puede expresar como un producto $\sigma = s_{i_1}s_{i_2}\cdots s_{i_r}$ con $s_{i_1}s_{i_2}\ldots s_{i_r}\in\{1,2,\ldots,n-1\}$. Si $r$ es mínimo para todas las expresiones de $\sigma$, entonces decimos que $s_{i_1}s_{i_2}\cdots s_{i_r}$ es una \textit{expresión reducida} de $\sigma$ y que $s_{i_1}s_{i_2}\cdots s_{i_r}$ es una \textit{palabra reducida}. Una permutación puede tener diferentes palabras reducidas. Definimos como \textit{longitud} $\lambda(w)$ de una permutación $\sigma$ como la longitud $r$ de una expresión reducida $s_{i_1}s_{i_2}\cdots s_{i_r}$ para $\sigma$.
+
+Sea $w_0\in S_n$ la permutación $i\mapsto n-1+i$ para todo $i = 1,\ldots,n-1$:
+$$w_0 = 
+\begin{pmatrix} 
+1 & 2 & \cdots & n-1 & n \\
+n & n-1 & \cdots & 2 & 1
+\end{pmatrix}
+.$$
+Esta permutación cumple que $\lambda(w_0)=n(n-1)/2$ y se da que $\lambda(\sigma)<n(n-1)/2$ para todo $\sigma\in S_n$ con $\sigma\neq w_0$. Por eso se conoce a $w_0$ como el \textit{elemento más largo} de $S_n$.
+
+\begin{lema}
+Para cuales quiera $\alpha,\beta\in S_n$, tales que $\alpha\beta = w_0$,
+$$\lambda(\alpha)+\lambda(\beta)=\lambda(w_0).$$
+\label{lema:long_per}
+\end{lema}
+
+Las justificaciones de estas afirmaciones sobre $w_0$ se encuentran en \cite{br_gr}.
 
 Por último vemos la definición de grupo libre que utilizaremos para la construcción del grupo de trenzas.
 
@@ -200,7 +223,7 @@ Si $s_1,...,s_{n-1}$ son elementos de un grupo $G$ que satisfacen las relaciones
 \label{uni_homo}
 \end{lema}
 
-\textit{Demostración}. Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $\bar{f}:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i=1,...,n-1$. Este homomorfismo induce un homomorfismo de grupo $f:B_n\rightarrow G$ en el que sabemos que si $r$ y $r'$ son dos trenzas tal que $r = r'$ entonces $f(r) = f(r')$. De esta manera obtenemos que el homomorfismo conserva las relaciones de trenza teniendo en cuenta la hipótesis inicial,
+\textit{Demostración}. Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $\bar{f}:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i=1,...,n-1$. Este homomorfismo induce un homomorfismo de grupo $f:B_n\rightarrow G$ en el que sabemos que si $r$ y $r'$ son dos trenzas tal que $r = r'$ entonces $f(r) = f(r')$. De esta manera obtenemos que el homomorfismo conserva las relaciones de trenza teniendo en cuenta la hipótesis inicial
 
 $$\bar{f}(\sigma_i\sigma_{j})=\bar{f}(\sigma_i)\bar{f}(\sigma_{j})=s_is_j=s_js_i=\bar{f}(\sigma_j)\bar{f}(\sigma_{i})=\bar{f}(\sigma_j\sigma_{i}),$$
 
@@ -261,7 +284,7 @@ Decimos que dos trenzas geométricas $\mathcal{B}$ y $\mathcal{B}'$ son isotópi
 
 Tanto la función $F$ como la familia de trenzas geométricas $\{F_s(\mathcal{B})\}_{s\in I}$ se llaman \textit{isotopía} de $\mathcal{B}$ en $\mathcal{B}'$. Se ve fácilmente que la relación de isotopía es una relación de equivalencia. Al conjunto de clases de equivalencia correspondientes se les denomina \textit{trenzas de n hebras} y lo denotamos por $\mathcal{B}_n$.
 
-Para poder especificar una trenza geométrica se puede utilizar la proyección en $\mathbb{R}\times\{0\}\times I$ e indicar de alguna manera que hebra esta por encima de otra cuando se crucen. Solo se podrá aplicar esta solución en trenzas geométricas cuya proyección solo tenga puntos donde se crucen a lo más dos hebras. Pasamos a definir formalmente un diagrama de trenza.
+Para poder especificar una trenza geométrica se puede utilizar la proyección en $\mathbb{R}\times\{0\}\times I$ e indicar de alguna manera qué hebra esta por encima de otra cuando se crucen. Solo se podrá aplicar esta solución en trenzas geométricas cuya proyección solo tenga puntos donde se crucen a lo más dos hebras. Pasamos a definir formalmente un diagrama de trenza.
 
 
 \begin{defi}[Diagrama de trenza]\label{diagrama_trenza}
@@ -373,7 +396,7 @@ Dado dos diagrama de trenzas $\mathcal{D}_1$, $\mathcal{D}_2$, representando las
 \end{defi} 
 
 \begin{ejem}
-Sean $\beta_1,\beta_2\in \mathcal{B}_3$, cuyos diagramas se pueden ver en \subref{subfig:factores}, el resultado del producto $\beta_1\beta_2$ se representa en la Figura \ref{fig:producto_hebras} (b).
+Sean $\beta_1,\beta_2\in \mathcal{B}_3$, cuyos diagramas se pueden ver en la Figura \ref{fig:producto_hebras} \subref{subfig:factores}, el resultado del producto $\beta_1\beta_2$ se representa en la Figura \ref{fig:producto_hebras} (b).
 \begin{figure}[h!]
 \centering
 	\begin{subfigure}[b]{0.45\linewidth}
@@ -438,8 +461,7 @@ hola
 \end{figure}
 
 
-Trivialmente también se tiene la asociatividad del producto de trenzas como se ilustra en el ejemplo \ref{ejem:asoci}.
-
+Trivialmente también se tiene la asociatividad del producto de trenzas como se ilustra en el Ejemplo \ref{ejem:asoci}.
 \begin{ejem}[Asociatibidad]
 
 
@@ -499,7 +521,6 @@ Trivialmente también se tiene la asociatividad del producto de trenzas como se 
 \label{ejem:asoci}
 
 \end{ejem}
-
 Por último probamos el siguiente lema el cual implica que $\mathcal{B}_n$ es un grupo.
 
 \begin{lema}
@@ -513,7 +534,7 @@ tal que la intersección de $\mathcal{D}$ con cada banda $\mathbb{R}\times[t_j, 
 $$\beta = \beta(\mathcal{D}) = \sigma_{i_1}^{\varepsilon_1}\sigma_{i_2}^{\varepsilon_2}\cdot\cdot\cdot\sigma_{i_k}^{\varepsilon_k},$$
 
 donde cada $\varepsilon_j$ es o $+$ o $-$ y $i_1,...,i_k\in{1,2,...,n-1}$.
-Claramente, $\sigma_i^+\sigma_i^- = \sigma_i^-\sigma_i^+=1$ para todo $i$. Por tanto $\beta^{-1} = \sigma_{i_k}^{-\varepsilon_k}\cdot\cdot\cdot\sigma_{i_2}^{-\varepsilon_2}\sigma_{i_k}^{-\varepsilon_k}$ (utilizamos el convenio de $--=+\ +-=-$). \qed
+Claramente, $\sigma_i^+\sigma_i^- = \sigma_i^-\sigma_i^+=1$ para todo $i$. Por tanto $\beta^{-1} = \sigma_{i_k}^{-\varepsilon_k}\cdot\cdot\cdot\sigma_{i_2}^{-\varepsilon_2}\sigma_{i_k}^{-\varepsilon_k}$ (utilizamos el convenio de $--=+$\newline$+-=-$). \qed
 
 
 \begin{figure}[h!]
@@ -656,6 +677,8 @@ $$ab=ac\Longrightarrow b=c\ \ \ \ (\textrm{resp.}\ \  ba=ca\Rightarrow b=c).$$
 
 Un elemento $a$ de un monoide $M$ es \textit{invertible} si existe $b\in M$ tal que $ab=ba=1$. De esta forma, un grupo es un monoide en el que todo elemento es invertible.
 
+
+
 \subsubsection{Divisibilidad en monoides}
 
 Si $a=bc$, donde $a,b,c$ son elementos de un monoide $M$, entonces decimos que $b$ es un \textit{divisor por la izquierda} de $a$ y $c$ es un \textit{divisor por la derecha}. También decimos que $a$ es un \textit{múltiplo por la derecha} de $b$ y que $a$ es \textit{múltiplo por la izquierda} de $c$. Lo denotaremos por $b\preceq a$ y $a\succeq c$. Por ejemplo, $1\preceq a$ y $a\succeq 1$ para todo $a\in M$, ya que $a=1a=a1$.
@@ -667,7 +690,12 @@ Las relaciones $\preceq$ y $\succeq$ en un monoide son reflexivas y transitivas.
 
 \textit{Demostración.} La reflexividad de $\preceq$ viene de la identidad $a=a1$. La transitividad viene dada por la asociatividad de la multiplicación. Se procede de igual manera para $\succeq$. \qed
 
+\subsubsection{Monoide libre}
+Un \textit{monoide libre} sobre un conjunto $X$ es un monoide $X^*$ conteniendo a $X$ como un subconjunto y tal que cualquier función de $X$ a $M$ se extiende de forma única a un homomorfismo de monoide $X^*\rightarrow M$. Esta propiedad se define bajo isomorfismo de monoide sobre $X^*$.
 
+
+Cualquier elemento $w$ de $X^*$ puede ser expresado como una palabra de $X$, es decir, como un producto de elementos de $X$. El número de elementos de $X$ de esta expresión de $w\in X^*$ se denomina \textit{longitud} de $w$ y se denota por $l(w)$. Se tiene que $l(1)=0,\ l(x)=1$ para $x\in X$ y que $l(ww')=l(w)+l(w')$ con $w,w'\in X^*$.
+\label{monoide_libre}
 \subsubsection{Monoides atómicos}
 
 Para cualquier elemento $a\neq 1$ de un monoide $M$, definimos
@@ -690,7 +718,7 @@ Esto implica que $\norm{u}=\norm{v}=0$. Por tanto $u=v=1$ y $a=b$. La relación 
 
 \ 
 
-Los Lemas \ref{lema:rel1} y \ref{lema:rel2} implican que las relaciones $\preceq$ y $\succeq$ en un monoide atómico son ordenes parciales. Dado un subconjunto $E$ de un monoide atómico $M$, decimos que un elemento $a\in E$ es \textit{maximal} (resp. \textit{minimal}) con respecto a $\preceq$, si $b\preceq a$ (resp. $a\preceq b$) para todo $b\in E$. Un elemento maximal (resp. minimal) de $E$ podría no existir, pero si existe, es único por el Lema \ref{lema:rel2}. Definiciones equivalentes se obtienen con la relación $\succeq$.
+Los Lemas \ref{lema:rel1} y \ref{lema:rel2} implican que las relaciones $\preceq$ y $\succeq$ en un monoide atómico son órdenes parciales. Dado un subconjunto $E$ de un monoide atómico $M$, decimos que un elemento $a\in E$ es \textit{máximo} (resp. \textit{mínimo}) con respecto a $\preceq$, si $b\preceq a$ (resp. $a\preceq b$) para todo $b\in E$. Un elemento máximo (resp. mínimo) de $E$ podría no existir, pero si existe, es único por el Lema \ref{lema:rel2}. Definiciones equivalentes se obtienen con la relación $\succeq$.
 
 La ecuación $ab=1$ en un monoide atómico $M$ tiene como única solución $a=1,b=1$. De hecho, si $ab=1$ para $a,b\in M$, entonces $1\preceq a \preceq 1$, por lo tanto $a=1$ y $b=1$. En particular, el elemento neutro es el único elemento invertible de $M$.
 
@@ -699,18 +727,21 @@ Consideramos un conjunto $X$ y un subconjunto $R$ de $X^*\times X^*$. Sea $\sim$
 
 Esta claro que el conjunto $P(X)\subset M$ genera $M$ en el sentido de que cada elemento de $M$ es un producto de elementos de este conjunto. Para cada relación $(r,r')\in R$, el elemento $P(r)=P(r')$ de $M$ se le llama \textit{relator} asociado a la presentación $\langle X\mid R\rangle$. Como notación habitual se usa $r=r'$ para la relación $(r,r'\in R)$ y no se hace distinción entre un generador $x\in X$ y su proyección $P(x)$ en $M$. 
 
-Cualquier elemento de $M$ puede ser expresado como una palabra de $X$, es decir, como un producto de elementos de $X$. El número de elementos de $X$ de esta expansión de $w\in M$ se denomina \textit{longitud} de $w$ y se denota por $l(w)$. Se tiene que $l(1)=0,\ l(x)=1$ para $x\in X$ y que $l(ww')=l(w)+l(w')$ con $w,w'\in$
 
-Introducimos varios tipos de presentaciones de monoides que nos serán de utilidad. Una presentación de monoide $\langle X\mid R\rangle$ es finita si $X$ y $R$ son finitos. Una presentación $\langle X\mid R\rangle$ de un monoide $M$ se dice \textit{ponderada} si existe un homomorfismo de monoide $\ell:M\rightarrow \mathbb{N}$ tal que $\ell(x)\geq 1$ para todo $x\in X$. El homomorfismo $\ell$ se llama \textit{peso}.
 
-Una presentación $\langle X\mid R\rangle$ de un monoide $M$ se dice \textit{equilibrada en longitud} si $l(r)=l(r')$ para todo $(r,r')\in R$, donde $l$ es la función longitud en $X^*$ introducida anteriormente. La formula $\ell(x)=1$ para todo $x\in X$ define un \textit{peso canónico} $\ell:M\rightarrow \mathbb{N}$.
+
+Introducimos varios tipos de presentaciones de monoides que nos serán de utilidad. Una presentación de monoide $\langle X\mid R\rangle$ es finita si $X$ y $R$ son finitos. Una presentación $\langle X\mid R\rangle$ de un monoide $M$ se dice \textit{ponderada} si existe un homomorfismo de monoide $\ell:M\rightarrow \mathbb{N}$ tal que $\ell(x)\geq 1$ para todo $x\in X$. El homomorfismo $\ell$ se llama \textit{peso}. Consideramos que $\ell:M\rightarrow \mathbb{N}$ es un \textit{peso canónico} si cumple que $\ell(x)=1$ para todo $x\in X$.
+
+Una presentación $\langle X\mid R\rangle$ de un monoide $M$ se dice \textit{equilibrada en longitud} si $l(r)=l(r')$ para todo $(r,r')\in R$, donde $l$ es la función longitud en $X^*$ introducida en la Sección \ref{monoide_libre} y existe un peso canónico para esta. En particular, una presentación equilibrada en longitud es una presentación ponderada.
 
 \begin{lema}
-Si un monoide $M$ tiene una representación ponderada $\langle X\mid R\rangle$, entonces $M$ es atómico y todos sus átomos están contenidos en el conjunto $X$ de generadores. Si $M$ tiene una presentación equilibrada en longitud $\langle X\mid R\rangle$, entonces el conjunto de átomos de $M$ coincide con $X$ y $\norm{a}=\ell(a)$ para todo $a\in M$, donde $\ell$ es el peso canónico en $M$.
+Si un monoide $M$ tiene una presentación ponderada $\langle X\mid R\rangle$, entonces $M$ es atómico y todos sus átomos están contenidos en el conjunto $X$ de generadores. Si $M$ tiene una presentación equilibrada en longitud $\langle X\mid R\rangle$, entonces el conjunto de átomos de $M$ coincide con $X$ y $\norm{a}=\ell(a)$ para todo $a\in M$, donde $\ell$ es el peso canónico en $M$.
 \label{lema:presen_mono}
 \end{lema}
 
-\textit{Demostración.} Sea $\ell: M\rightarrow \mathbb{N}$ un homomorfismo de monoide tal que $\ell(x)\geq 1$ para todo generador $x\in X$. Entonces $\ell(a)\geq 1$ para todo $a\in M\backslash\{1\}$. Si $a\in M$ se expande como el producto $a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M\backslash\{1\}$, entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r$. Por tanto $\ell(a)\geq \norm{a}$. Que todos los átomos de $M$ pertenecen a $X$ viene del hecho de que cualquier conjunto que genere un monoide debe contener a sus átomos, ya que estos no se pueden obtener como producto de otros elementos y forman parte del monoide. \qed
+\textit{Demostración.} Sea $\ell: M\rightarrow \mathbb{N}$ un homomorfismo de monoide tal que $\ell(x)\geq 1$ para todo generador $x\in X$, que sabemos que existe por tener M  una presentación ponderada $\langle X\mid R\rangle$. Entonces $\ell(a)\geq 1$ para todo $a\in M \backslash\{1\}$. Si $a\in M$ se expande como el producto $a_1\cdot\cdot\cdot a_r$ con $a = a_1,...,a_r\in M\backslash\{1\}$, entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r$. Por tanto $\ell(a)\geq \norm{a}$. Que todos los átomos de $M$ pertenecen a $X$ viene del hecho de que cualquier conjunto que genere un monoide debe contener a sus átomos, ya que estos no se pueden obtener como producto de otros elementos y forman parte del monoide. 
+
+Para la segunda afirmación, al tener una presentación equilibrada en longitud, en particular, tiene una presentación ponderada, por lo que sabemos que $M$ es atómico y el conjunto de átomos de $M$ esta incluido en $X$. Para comprobar la igualdad, tomamos un elemento $x\in X$ y lo expresamos como producto de elementos de $M\backslash\{1\}$, $x = a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M\backslash\{1\}$. Como $\ell$ es un peso canónico tenemos que $1=\ell(x)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r\geq 1$. Por tanto, $\norm{x}=1$ para todo $x\in X$, es decir, todo elemento de $X$ es un átomo. Por último, al ser $M$ atómico, podemos expresar $a\in M$ como producto de átomos $a =a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M\backslash\{1\},\ \norm{a_i}=1$  para $i=1,\ldots,r$. Entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r) = r = \norm{a}$ por ser $\ell$ peso canónico y $\norm{a_i}=1$ para $i=1,\ldots,r$.\qed
 
 \subsubsection{El problema de palabra y el problema de divisibilidad}
 
@@ -744,16 +775,16 @@ Sea $M$ un monoide atómico y $\Sigma$ un subconjunto de $M$ tal que $1\in \Sigm
 \begin{enumerate}
 \item Todos los divisores por la izquierda y por la derecha de elementos de $\Sigma$ pertenecen a $\Sigma$. (Cerrado para divisores a izquierda y a derecha)
 \item Para cualesquiera $a,b,c\in \Sigma$, si $ab=ac$ o $ba=ca$, entonces b=c. (Cancelativo)
-\item Para cualesquiera $a,b\in \Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento maximal (con respecto a $\preceq$).
+\item Para cualesquiera $a,b\in \Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento máximo (con respecto a $\preceq$).
 \end{enumerate}
-Entonces para cualquier $\xi\in M_\Sigma$, hay un único $\alpha(\xi)\in\Sigma$ tal que $[\alpha(\xi)]$ es un divisor por la izquierda de $\xi$ que es el maximal de entre todos los divisores por la izquierda de $\xi$ que se encuentra en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$. Además, hay un único $\omega(\xi)\in M_\Sigma$ tal que $\xi=[\alpha(\xi)]\omega(\xi)$.
+Entonces para cualquier $\xi\in M_\Sigma$, hay un único $\alpha(\xi)\in\Sigma$ tal que $[\alpha(\xi)]$ es un divisor por la izquierda de $\xi$ que es el máximo de entre todos los divisores por la izquierda de $\xi$ que se encuentra en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$. Además, hay un único $\omega(\xi)\in M_\Sigma$ tal que $\xi=[\alpha(\xi)]\omega(\xi)$.
 \end{teor}
 
 \textit{Demostración.} La prueba consiste de cinco pasos.
 
 \ 
 
-\textit{Paso 1.} Por la tercera hipótesis, para cualquier $a,b\in\Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento maximal $c\in\Sigma$. Entonces $b=cd$ para algún $d\in M$. Por la primera hipótesis, $d\in\Sigma$, y por la segunda, $d$ es único. Sea $\alpha_2(a,b)=ac\in\Sigma$ y $\omega_2(a,b)=d\in\Sigma$. Claramente se tiene
+\textit{Paso 1.} Por la tercera hipótesis, para cualquier $a,b\in\Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento máximo $c\in\Sigma$. Entonces $b=cd$ para algún $d\in M$. Por la primera hipótesis, $d\in\Sigma$, y por la segunda, $d$ es único. Sea $\alpha_2(a,b)=ac\in\Sigma$ y $\omega_2(a,b)=d\in\Sigma$. Claramente se tiene
 \begin{equation}
 \label{eq:div_max}
 \alpha_2(a,b)\omega_2(a,b)=ab.
@@ -771,10 +802,10 @@ Nuestro objetivo en este paso va a ser probar las siguientes igualdades. Dados $
 
 Podemos usar la siguiente observación. Si $a,b,c\in M$ satisfacen que $ac\in\Sigma$ y $ab\preceq ac$, entonces $b\preceq c$. De hecho, si $ac=abd$ con $d\in M$, entonces la presunción de que $ac\in\Sigma$ junto con la primera hipótesis implica que $a,c,bd\in\Sigma$. Por la segunda hipótesis tenemos que $c=bd$.
 
-Por definición, $\alpha_2(b,c)=bd$, donde $d$ es maximal tal que $d\preceq c$ y $bd\in \Sigma$. Entonces
+Por definición, $\alpha_2(b,c)=bd$, donde $d$ es máximo tal que $d\preceq c$ y $bd\in \Sigma$. Entonces
 $$\alpha_2(a,\alpha_2(b,c))=\alpha_2(a,bd)=ad',$$
 
-donde $d'$ es maximal tal que $d'\preceq bd$ y $ad'\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$ (por hipótesis), al ser $d'$ maximal se tiene que $b\preceq d'$. Escribiendo $d'=be$ con $e\in\Sigma$, obtenemos que $\alpha_2(a,bd)=abe$, con $be\preceq bd\in\Sigma$ y $abe\in\Sigma$. Por la observación hecha previamente vemos que $e\preceq d\preceq c$, así que $e\preceq c$. Ahora $\alpha_2(ab,c)=abf$, donde $f$ es maximal tal que $f\preceq c$ y $abf\in\Sigma$. Por tanto, $e\preceq f$. Por otra parte, $f\preceq c$ y $bf\in\Sigma$. Esto y la inclusión de $abf\in\Sigma$ implica que $bf\preceq d' = be$. Por tanto, $f\preceq e$. Por el Lema \ref{lema:rel2} $e=f$ y
+donde $d'$ es máximo tal que $d'\preceq bd$ y $ad'\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$ (por hipótesis), al ser $d'$ máximo se tiene que $b\preceq d'$. Escribiendo $d'=be$ con $e\in\Sigma$, obtenemos que $\alpha_2(a,bd)=abe$, con $be\preceq bd\in\Sigma$ y $abe\in\Sigma$. Por la observación hecha previamente vemos que $e\preceq d\preceq c$, así que $e\preceq c$. Ahora $\alpha_2(ab,c)=abf$, donde $f$ es máximo tal que $f\preceq c$ y $abf\in\Sigma$. Por tanto, $e\preceq f$. Por otra parte, $f\preceq c$ y $bf\in\Sigma$. Esto y la inclusión de $abf\in\Sigma$ implica que $bf\preceq d' = be$. Por tanto, $f\preceq e$. Por el Lema \ref{lema:rel2} $e=f$ y
 $$\alpha_2(ab,c)=abf=abe=ad'=\alpha_2(a,\alpha_2(b,c)).$$
 
 Esto prueba la igualdad (\ref{eq:alfa_com}). Para probar la igualdad (\ref{eq:omega_com}) observar (\ref{eq:div_max}) y (\ref{eq:alfa_com}),
@@ -782,7 +813,7 @@ Esto prueba la igualdad (\ref{eq:alfa_com}). Para probar la igualdad (\ref{eq:om
 $$\alpha_2(ab,c)\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=\alpha_2(a,\alpha_2(b,c))\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$$
 $$=a\alpha_2(b,c)\omega_2(b,c)=abc=\alpha_2(ab,c)\omega_2(ab,c).$$
 
-Por la segunda condición, para deducir (\ref{eq:omega_com}) es suficiente probar que el producto $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ pertenece a $\Sigma$. Por definición, existe $d\in\Sigma$ tal que $\alpha_2(b,c)=bd\in\Sigma$ y $c=d\omega_2(b,c)$. Sea $f$ el elemento maximal de $\Sigma$ tal que $f\preceq bd$ y $af\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$, existe $e\in\Sigma$ tal que $f=be$. Entonces
+Por la segunda condición, para deducir (\ref{eq:omega_com}) es suficiente probar que el producto $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ pertenece a $\Sigma$. Por definición, existe $d\in\Sigma$ tal que $\alpha_2(b,c)=bd\in\Sigma$ y $c=d\omega_2(b,c)$. Sea $f$ el elemento máximo de $\Sigma$ tal que $f\preceq bd$ y $af\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$, existe $e\in\Sigma$ tal que $f=be$. Entonces
 $$bd=f\omega_2(a,bd)=be\omega_2(a,bd).$$
 
 Por la segunda condición, $d=e\omega_2(a,bd)$ y
@@ -824,12 +855,12 @@ $$=\alpha_2(a'a'',\alpha(\eta))=\alpha_2(a,\alpha(\eta)).$$
 Por tanto $\alpha$ esta bien definido para los elementos de $M_\Sigma$ de peso menor o igual que $k +1$ y satisface las condiciones (i) y (ii). Esto completa la inducción y prueba nuestra afirmación.
 \newline
 \newline
-\textit{Paso 3}. Ahora comprobamos que para cualquier $\xi\in M_\Sigma$, el elemento $[\alpha(\xi)]\in M_\Sigma$ es un divisor por la izquierda de $\xi$ que es maximal entre todos los divisores por la izquierda de $\xi$ que se encuentrar en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$.
+\textit{Paso 3}. Ahora comprobamos que para cualquier $\xi\in M_\Sigma$, el elemento $[\alpha(\xi)]\in M_\Sigma$ es un divisor por la izquierda de $\xi$ que es máximo entre todos los divisores por la izquierda de $\xi$ que se encuentrar en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$.
 
 Utilizando la proyección $p:M_\Sigma\rightarrow M$, es fácil demostrar que todos los divisores de $1\in M_\Sigma$ son iguales a $1$. Por tanto si $H(\xi)=0$, entonces $[\alpha(\xi)]=\xi=1$ es el único divisor por la izquierda de $1\in\Sigma$. Si $H(\xi)\geq 1$, escribimos $\xi=[a]\eta$ para algún $a\in\Sigma \backslash \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Por tanto, $\alpha(\xi)=ab$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(eta)$. Por el supuesto de inducción, $[\alpha(\eta)]$ es un divisor por la izquierda de $\eta$. Por tanto,
 $$[\alpha(\xi)]=[ab]=[a][b]\preceq [a][\alpha(\eta)]\preceq [a]\eta=\xi.$$
 
-Esto demuestra que $[\alpha(\xi)]$ es divisor por la izquierda  de $\xi$ perteneciente a $\{[a]\}_{a\in\Sigma}$. Veamos que $[\alpha(\xi)]$ es maximal. Supongamos que $\xi=[a']\eta'$
+Esto demuestra que $[\alpha(\xi)]$ es divisor por la izquierda  de $\xi$ perteneciente a $\{[a]\}_{a\in\Sigma}$. Veamos que $[\alpha(\xi)]$ es máximo. Supongamos que $\xi=[a']\eta'$
 para algún $a'\in\Sigma$, $\eta'\in M_\Sigma$. Entonces $\alpha(\xi) =\alpha_2(a',\alpha(\eta'))=a'b'$ para algún $b'\in\Sigma$. Por tanto, $a'\preceq \alpha(\xi)$ y $[a']\preceq [\alpha(\xi)]$.
 \newline
 \newline
@@ -929,7 +960,6 @@ El \textit{problema del conjugado en un grupo} $G$ consiste en encontrar un proc
 \begin{lema}
 Sea $M,\Sigma\subset M$ satisfaciendo las hipótesis del Teorema \ref{teor:monoi_deriv}. Dados $a,b\in M_\Sigma$, existe $c\in M_\Sigma$ tal que $ac=cb$ si y solo si existe una una sucesión $a=a_0,a_1,\ldots,a_r=b$ de elementos de $M_\Sigma$ y una sucesión $c_1,\ldots,c_r$ de elementos de $\Sigma$ tal que
 $$a_{i-1}[c_i]=[c_i]a_i$$
-
 para todo $i=1,\ldots,r$.
 
 \label{lema:conjugado}
@@ -948,7 +978,6 @@ Existe $a_1\in M_\Sigma$ tal que
 $$[c_1]a_1=a[c_1],$$
 
 por lo que obtenemos que 
-
 $$[c_1]a_1[c_2]\cdots[c_r]=a[c_1][c_2]\cdots[c_r]=ac=cb=[c_1][c_2]\cdots[c_r]b.$$
 
 Por el Lema \ref{lema:cancel}, podemos dividir por la izquierda por $[c_1]$. Esto nos da que $a_1c'=c'b$, donde $c'=[c_2]\cdots[c_r]$ tiene una forma normal de longitud $r-1$ a la que se le puede aplicar la hipótesis de inducción. \qed
@@ -1060,7 +1089,7 @@ $$(a,p)(b,q)=ab,p+q$$
 para todo $a,b\in M$ y $p,q\in\mathbb{N}$. El elemento neutro de $H$ es $(1,0)$.
 
 Definimos la relación $\sim$ en $H$ por $(a,p)\sim(b,q)$ si $\Delta^{qN}a=\Delta^{pN}b$. Por ejemplo, $(\Delta^{qN}a,1)=(1,0)$. Vamos a demostrar que $\sim$ es una relación de equivalencia. La reflexividad y la simetría son obvias. Comprobamos la transitividad. Supongamos que $(a,p)\sim(b,q)\sim(c,r)$. Entonces $\Delta^{qN}a=\Delta^{pN}b$ y $\Delta^{rN}b=\Delta^{qN}c$. Por tanto,
-$$\Delta^{qN}\Delta^{rN}a=\Delta^{rN}\Delta^{rqN}a=\Delta^{rN}\Delta^{pN}b=$$
+$$\Delta^{qN}\Delta^{rN}a=\Delta^{rN}\Delta^{rqN}a=\Delta^{rN}\Delta^{pN}b$$
 $$=\Delta^{pN}\Delta^{rN}b=\Delta^{pN}\Delta^{qN}c=\Delta^{qN}\Delta^{pN}c.$$
 
 Ya que $M$ es cancelativo por la izquierda, podemos dividir en ambos lados por $\Delta^{qN}$ y obtenemos que $\Delta^{rN}a=\Delta^{pN}c$. Esto nos da $(a,p)\sim(c,r)$.
@@ -1142,12 +1171,12 @@ Sea $(M,\Delta)$ un monoide pre-Garside y sea $\Sigma$ el conjunto de divisores 
 El par $(M,\Delta)$ es un \textit{monoide de Garside} si $M$ es atómico y para cualesquiera dos átomos $s,t$ de $M$, el conjunto
 $$\{a\in\Sigma\ |\ s\preceq a,\ t\preceq a \}$$
 
-tiene un elemento minimal $\Delta_{s,t}$ (con respecto a $\preceq$).
+tiene un elemento mínimo $\Delta_{s,t}$ (con respecto a $\preceq$).
 
-Por el Lema \ref{lema:rel2}, el elemento minimal $\Delta_{s,t}$ es único. Se observa que $\Delta_{s,t}=\Delta_{t,s}\in\Sigma,\ s\preceq\Delta_{s,t},\ t\preceq\Delta_{s,t}$ y 
+Por el Lema \ref{lema:rel2}, el elemento mínimo $\Delta_{s,t}$ es único. Se observa que $\Delta_{s,t}=\Delta_{t,s}\in\Sigma,\ s\preceq\Delta_{s,t},\ t\preceq\Delta_{s,t}$ y 
 $$\{a\in\Sigma\ |\ s\preceq a,\ t\preceq a \}=\{a\in\Sigma\ |\ \Delta_{s,t}\preceq a\}.$$
 
-Cualquier átomo $s\in M$ es un elemento minimal del conjunto $\{a\in\Sigma\ |\ s\preceq a\}$, así que $\Delta_{s,s}=s$.
+Cualquier átomo $s\in M$ es un elemento mínimo del conjunto $\{a\in\Sigma\ |\ s\preceq a\}$, así que $\Delta_{s,s}=s$.
 \label{defi:garside}
 \end{defi}
 
@@ -1164,14 +1193,14 @@ Sea $E$ un subconjunto finito no vacío de $M$ satisfaciendo las siguientes dos 
 \item Si $a\in M$ y $b\in E$ con $a\in E$ con $a\preceq b$, entonces $a\in E$.
 \item Si $a\in E$, $s,t\in S$ son tales que $at\in E$, entonces $a\Delta_{s,t}\in E$.
 
-Entonces $E$ tiene un elemento maximal (con respecto a $\preceq$).
+Entonces $E$ tiene un elemento máximo (con respecto a $\preceq$).
 \end{enumerate}
 \label{lema:garside1}
 \end{lema}
 
-\textit{Demostración.} Sea $c$ un elemento de $E$ tal que $\norm{c}$ es maximal (decimos que $c$ es de altura maximal en $E$). Deseamos demostrar que $E=\{a\in M\ |\ c\}$. Por la condición (i), $\{a\in M\ |\ c\}\subset E$. Vamos a probar la inclusión contraria. Supongamos que no esta incluido. Entonces existe $b\in E$ tal que $b\npreceq c$. Expandimos $b$ como producto de átomos $b=s_1\cdots s_n$ para algún $n$ y $s_1,\ldots,s_n\in S$. Establecemos $a=s_1\cdots s_k$ donde $k < n$ es el entero maximal tal que $a\preceq c$ (posiblemente $k=0$, en cuyo caso $a=1$). Esta claro que $a\in E$ y que existe un átomo $s\in S$ (de hecho $s=s_{k+1}$) tal que $as\in E$ y $as\npreceq c$. Consideramos $a\in E$ de altura maximal. Ya que $c$ es de altura maximal en $E$, tenemos $\norm{a}<\norm{as}\leq \norm{c}$. Esto y la relación $a\preceq c$ implica que existe $t\in S$ tal que $at\preceq c$. Entonces, necesariamente, $t\neq s$. Ahora tenemos  $a,as, at\in E$. Por la condición (ii) $a\Delta_{s,t}\in E$. La relación $as\preceq a\Delta_{s,t}$ y $as\npreceq c$ implica que $a\Delta_{s,t}\npreceq c$. Podemos expandir
+\textit{Demostración.} Sea $c$ un elemento de $E$ tal que $\norm{c}$ es máximo (decimos que $c$ es de altura máximo en $E$). Deseamos demostrar que $E=\{a\in M\ |\ c\}$. Por la condición (i), $\{a\in M\ |\ c\}\subset E$. Vamos a probar la inclusión contraria. Supongamos que no esta incluido. Entonces existe $b\in E$ tal que $b\npreceq c$. Expandimos $b$ como producto de átomos $b=s_1\cdots s_n$ para algún $n$ y $s_1,\ldots,s_n\in S$. Establecemos $a=s_1\cdots s_k$ donde $k < n$ es el entero máximo tal que $a\preceq c$ (posiblemente $k=0$, en cuyo caso $a=1$). Esta claro que $a\in E$ y que existe un átomo $s\in S$ (de hecho $s=s_{k+1}$) tal que $as\in E$ y $as\npreceq c$. Consideramos $a\in E$ de altura máxima. Ya que $c$ es de altura máxima en $E$, tenemos $\norm{a}<\norm{as}\leq \norm{c}$. Esto y la relación $a\preceq c$ implica que existe $t\in S$ tal que $at\preceq c$. Entonces, necesariamente, $t\neq s$. Ahora tenemos  $a,as, at\in E$. Por la condición (ii) $a\Delta_{s,t}\in E$. La relación $as\preceq a\Delta_{s,t}$ y $as\npreceq c$ implica que $a\Delta_{s,t}\npreceq c$. Podemos expandir
 $$\Delta_{s,t}=ts_1s_2\cdots s_m,$$
-\newline
+
 donde $s_1,\ldots,s_m\in S$. Existe $i=1,\ldots,m$ tal que $ats_1s_2\cdots s_{i-1}\preceq c$ y $ats_1s_2\cdots s_{i}\npreceq c$. Sea $a'=ats_1s_2\cdots s_{i-1}$. La inclusión $a\Delta_{s,t}\in E$ implica que $a',a's_i\in E$. Por la elección de $i$ tenemos que $a's_i\npreceq c$. Por lo tanto, $a'$ satisface las mismas condiciones de $a$, pero $\norm{a'}\geq \norm{at}> \norm{a}$. Tenemos una contradicción con la elección de $a$.\qed
 
 \begin{lema}
@@ -1179,16 +1208,16 @@ Para cualquier $a,b\in\Sigma$, el conjunto
 
 $$E=\{x\in M\ |\ x\preceq a,\ x\preceq b\}\subset \Sigma$$
 
-tiene un elemento maximal (con respecto a $\preceq$).
+tiene un elemento máximo (con respecto a $\preceq$).
 \label{lema:garside2}
 \end{lema}
 
-\textit{Demostración.} Ya que $\Sigma$ es finito, también lo es $E$. Claramente, $1\in E$. El conjunto $E$ es no vacío ya que $1\in E$, y obviamente satisface la condición $(i)$ del Lema \ref{lema:garside1}. Vamos a comprobar la condición (ii). Tenemos que probar que si $xs$ y $xt$ son divisores por la izquierda de $a$ y $b$ para algún $s,t\in S$, entonces $x\in\Delta_{s,t}$. Sea $y\in\Sigma$ tal que $xy=a$. Por hipótesis, $xs\preceq a = xy$ y $xt\preceq a = xy$. Por el Lema \ref{lema:pre-garside} (i), esto implica que $s\preceq y$ y $t\preceq y$ . Por la Definición \ref{defi:garside}, $\Delta_{s,t}\preceq y$, y por tanto $x\Delta{s,t}\preceq xy=a$. De igual manera $x\Delta_{s,t} b$. Ahora el Lema \ref{lema:garside1} implica que $E$ tiene elemento maximal. \qed
+\textit{Demostración.} Ya que $\Sigma$ es finito, también lo es $E$. Claramente, $1\in E$. El conjunto $E$ es no vacío ya que $1\in E$, y obviamente satisface la condición $(i)$ del Lema \ref{lema:garside1}. Vamos a comprobar la condición (ii). Tenemos que probar que si $xs$ y $xt$ son divisores por la izquierda de $a$ y $b$ para algún $s,t\in S$, entonces $x\in\Delta_{s,t}$. Sea $y\in\Sigma$ tal que $xy=a$. Por hipótesis, $xs\preceq a = xy$ y $xt\preceq a = xy$. Por el Lema \ref{lema:pre-garside} (i), esto implica que $s\preceq y$ y $t\preceq y$ . Por la Definición \ref{defi:garside}, $\Delta_{s,t}\preceq y$, y por tanto $x\Delta{s,t}\preceq xy=a$. De igual manera $x\Delta_{s,t} b$. Ahora el Lema \ref{lema:garside1} implica que $E$ tiene elemento máximo. \qed
 
 \ 
 
 Ahora estamos en condiciones de verificar la condición (3.) del Teorema \ref{teor:monoi_deriv}. Tomamos cualesquiera $a,b\in\Sigma$. Ya que $a\preceq\Delta$, tenemos que $\Delta=aa'$ para algún $a'\in\Sigma$. Por el Lema \ref{lema:garside2}, el conjunto
-$$\{x\in M\ |\ x\preceq a',\ x\preceq b\}\subset\Sigma$$ tiene un elemento maximal con respecto a $\preceq$. Afirmamos que $c$ es maximal en 
+$$\{x\in M\ |\ x\preceq a',\ x\preceq b\}\subset\Sigma$$ tiene un elemento máximo con respecto a $\preceq$. Afirmamos que $c$ es máximo en 
 $$\{x\in\Sigma\ |\ x\preceq b,\ ax\in\Sigma\}.$$
 
 En efecto, por definición, $c\preceq a'$, por lo cual $ac\preceq aa'=\Delta$ y $ac\in\Sigma$. Sea $d\in\Sigma$ tal que $d\preceq b$ y $ad\in\Sigma$. Entonces $ad\preceq\Delta=aa'$ y en consecuencia, por el Lema \ref{lema:pre-garside} (i) (cancelación por la izquierda en $\Sigma$) implica que $d\preceq a'$. Por lo tanto, $d\preceq c$.\qed
@@ -1199,7 +1228,7 @@ Un monoide de Garside $(M,\Delta)$ es \textit{exhaustivo} si el conjunto $\Sigma
 
 \begin{enumerate}[label=(\arabic*)]
 \item Tenemos que $M\cong M_\Sigma$ (Lema \ref{lema:iso_mono}). En otras palabras, $M$ tiene una presentación con generadores $[a]$, donde $a$ se mueve en $\Sigma$, y relaciones $[1]=1$ y $[a][b]=[ab]$, donde $a,b\in\Sigma$ satisface $ab\in\Sigma$.
-\item Para cualquier $a\in M$, existe un único divisor por la izquierda $\alpha(a)\in\Sigma$ de $a$ que es maximal entre todos los divisores por la izquierda de $a$ pertenecientes a $\Sigma$ (Teorema \ref{teor:monoi_deriv}).
+\item Para cualquier $a\in M$, existe un único divisor por la izquierda $\alpha(a)\in\Sigma$ de $a$ que es máximo entre todos los divisores por la izquierda de $a$ pertenecientes a $\Sigma$ (Teorema \ref{teor:monoi_deriv}).
 \item Cualquier $a\in M$ se expande de forma única como un producto $a=a_1a_2\cdots a_r$ de ciertos $a_1,a_2,\ldots,a_r\in\Sigma - \{1\}$ con $r\geq 0$ tal que $a_i=\alpha(a_ia_{i+1}\cdots a_r)$ para todo $i=1,\ldots,r$ (Sección Forma normal de $M_\Sigma$).
 \item El homomorfismo de monoide natural de $M$ en su grupo de fracciones $G_M$ es inyectivo (Lema \ref{lema:cancel} y Colorario \ref{colo:pre-garside-embe}). En particular, $M$ es cancelativo por la izquierda y por la derecha.
 \item Si $M\neq \{1\}$, entonces cualquier elemento de $G_M\supset M$ puede ser escrito de la forma $\Delta^s b$ con unicidad (forma normal greedy), donde $s\in\mathbb{Z}$ y $b\in M$ no es múltiplo por la derecha de $\Delta$ (Teorema \ref{teor:refi}).
@@ -1220,7 +1249,7 @@ $$E=\{a\in M\ |\ a\preceq b,\ a\preceq c\}.$$
 
 Con el objetivo de probar que $b$ y $c$ tienen un mcd por la izquierda en $M$, es suficiente con comprobar que $E$ satisface las condiciones del Lema \ref{lema:garside1}. El conjunto $E$ claramente satisface la condición (i). El conjunto $E$ es finito porque $\norm{a}<\norm{b}$ para cualquier $a\in E$, así que $a$ es el producto de como mucho $\norm{b}$ átomos de $M$, y el conjunto de átomos de $M$, siendo un subconjunto de $\Sigma$, es finito.
 
-Vamos a comprobar la condición $(ii)$. Supongamos que tenemos $a\in E$ y los átomos $s,t\in M$ tal que $as,at\in E$. Escribimos $b=ab_1$ con $b_1\in M$. Ya que $M$ es cancelativo por la izquierda, $as\preceq b =ab_1$ implica $s\preceq b_1$ y $at\preceq b = ab_1$ implica $t\preceq b_1$. Consideramos el divisor por la izquierda maximal $\alpha(b_1)$ de $b_1$ en $\Sigma$. Tenemos que $s\preceq\alpha(b_1)$ y $t\preceq\alpha(b_1)$. Por tanto $\alpha_{s,t}\preceq \alpha(b_1)\preceq b_1$. Por eso $\Delta_{s,t}\preceq b_1$ y $a\Delta_{s,t}\preceq ab_1= b$. De igual forma $a\Delta_{s,t}\preceq c$. Esto prueba que $a\Delta_{s,t}\in E$.
+Vamos a comprobar la condición $(ii)$. Supongamos que tenemos $a\in E$ y los átomos $s,t\in M$ tal que $as,at\in E$. Escribimos $b=ab_1$ con $b_1\in M$. Ya que $M$ es cancelativo por la izquierda, $as\preceq b =ab_1$ implica $s\preceq b_1$ y $at\preceq b = ab_1$ implica $t\preceq b_1$. Consideramos el divisor por la izquierda máximo $\alpha(b_1)$ de $b_1$ en $\Sigma$. Tenemos que $s\preceq\alpha(b_1)$ y $t\preceq\alpha(b_1)$. Por tanto $\alpha_{s,t}\preceq \alpha(b_1)\preceq b_1$. Por eso $\Delta_{s,t}\preceq b_1$ y $a\Delta_{s,t}\preceq ab_1= b$. De igual forma $a\Delta_{s,t}\preceq c$. Esto prueba que $a\Delta_{s,t}\in E$.
 
 Que cualquier familia finita de elementos de $M$ tiene un mcm por la izquierda se sigue facilmente por inducción sobre la cardinalidad de la familia.
 
@@ -1248,12 +1277,12 @@ $$\Delta_n = (\sigma_1\cdots\sigma_{n-2}\sigma_{n-1})(\sigma_1\cdots\sigma_{n-2}
 
 \subsubsection{Trenzas reducidas}
 
-Consideramos el grupo simétrico $S_n$ que esta formado por todas las permutaciones del conjunto $\{1,\ldots,n\}$. Definimos la función teórica $\rho:S_n\rightarrow B_n^+$ como sigue. Consideramos las transposiciones simples $s_1,\ldots,s_{n-1}\in S_n$, donde $s_i$ permuta $i$ y $i+1$ y deja el resto de elementos fijos. Las transposiciones simples generan $S_n$, así que cada elemento $\omega\in S_n$ puede ser expresado como una palabra $\omega = s_{i_1}s_{i_2}\cdots s_{i_r}$ con $i_1,i_2,\ldots,i_r\in\{1,2,\ldots,n-1\}$. Si $r$ es minimal, entonces esta es una expresión reducida y establecemos que $\rho(\omega)=\sigma_{i_1}\sigma_{i_2}\cdots \sigma_{i_r}$. Sea
+Consideramos el grupo simétrico $S_n$ que esta formado por todas las permutaciones del conjunto $\{1,\ldots,n\}$. Definimos la función teórica $\rho:S_n\rightarrow B_n^+$ como sigue. Consideramos las transposiciones simples $s_1,\ldots,s_{n-1}\in S_n$, donde $s_i$ permuta $i$ y $i+1$ y deja el resto de elementos fijos. Las transposiciones simples generan $S_n$, así que cada elemento $\omega\in S_n$ puede ser expresado como una palabra $\omega = s_{i_1}s_{i_2}\cdots s_{i_r}$ con $i_1,i_2,\ldots,i_r\in\{1,2,\ldots,n-1\}$. Si $r$ es mínimo, entonces esta es una expresión reducida y establecemos que $\rho(\omega)=\sigma_{i_1}\sigma_{i_2}\cdots \sigma_{i_r}$. Sea
 $$\pi:B_n^+\rightarrow S_n$$
 
 el homomorfismo de monoide definido por $\pi(\sigma)=s_i$ para todo $i=1,\ldots,n-1$. Esta claro que $\pi\circ\rho = id$, lo que implica que $\rho$ es inyectiva.
 
-Establecemos $B_n^{red}=\rho(S_n)\subset B_n^+$. Este es un conjunto finito de cardinalidad $n!$ y el homomorfismo $\pi:B_n^+\rightarrow S_n$ es una biyección cuando se restringe a $B_n^{red}$. Decimos que un elemento de $B_n^+$ es reducido si se encuentra en $B_n^{red}$. Los átomos $\sigma_1,\ldots,\sigma_{n-1}$ de $B_n^+$ son reducidos, ya que $\sigma_i=\rho(s_i)$ para $i=1,\ldots,n-1$. Denotamos por $\lambda(\omega)$ para $\omega\in S_n$ como la longitud $r$ de cualquier expresión reducida $s_{i_1}s_{i_2}\cdots s_{i_r}$ para $\omega$. Decimos que $s_{i_1}s_{i_2}\cdots s_{i_r}$ es una \textit{expresión reducida} si $r$ es minimal  para todas las expansiones de $w$. A partir de esta definición esta claro que 
+Establecemos $B_n^{red}=\rho(S_n)\subset B_n^+$. Este es un conjunto finito de cardinalidad $n!$ y el homomorfismo $\pi:B_n^+\rightarrow S_n$ es una biyección cuando se restringe a $B_n^{red}$. Decimos que un elemento de $B_n^+$ es reducido si se encuentra en $B_n^{red}$. Los átomos $\sigma_1,\ldots,\sigma_{n-1}$ de $B_n^+$ son reducidos, ya que $\sigma_i=\rho(s_i)$ para $i=1,\ldots,n-1$. Recordamos la longitud $\lambda(w)$ para $w\in S_n$ vista en la Sección \ref{sec:grupos}. Por definición de $\lambda$ está claro que
 $$\lambda(\pi(a))=\ell(a)$$
 
 para todo $a\in B_n^+$. El siguiente lema es una útil caracterización algebraica de $B_n^{red}$.
@@ -1284,11 +1313,9 @@ Para $u,v\in S_n$, tenemos que $\rho(u)\rho(v)=\rho(uv)$ si y solo si $\lambda(u
 $$\lambda(uv)=\lambda(\pi(a))\leq\ell(a)=\ell(\rho(u))+\ell(\rho(v))=\lambda(u)+\lambda(v).$$
 
 Por tanto $a\in B_n^{red}$ si y solo si $\lambda(uv)=\lambda(u)+\lambda(v)$. Por otra parte, $a\in B_n^{red}$ si y solo si $a=\rho(\pi(a))=\rho(uv)$. \qed
-\ 
-\newline
 
 
-La permutación $\omega_0=(n,n-1,\ldots,2,1)$ es el único elemento de $\omega_0\in S_n$ de longitud máxima. Es fácil comprobar que
+Recordamos la permutación $\omega_0=(n,n-1,\ldots,2,1)$ de la Sección \ref{sec:grupos}. Es el único elemento de $\omega_0\in S_n$ de longitud máxima. Es fácil comprobar que
 $$\omega_0=(s_1\cdots s_{n-2}s_{n-1})s_1\cdots s_{n-2})\cdots(s_1s_2)s_1.$$
 
 Ya que la palabra en la parte derecha tiene longitud $\lambda(\omega_0)=n(n-1)/2$, es reducido. Por lo tanto
@@ -1303,9 +1330,8 @@ Un elemento de $B_n^+$ es reducido si y solo si es un divisor por la izquierda o
 
 \textit{Demostración.} Ya que $\Delta_n$ es reducido, todos sus divisores por la izquierda y por la derecha son reducidos por el Lema \ref{lema:reduced2}.
 
-Por el contrario, sea $a=\rho(\pi(a))\in B_n^{red}$. Establecemos $b=\rho(\pi(a)^{-1}\omega_0)\in B_n^{red},\ u=\pi(a)$ y $v=\pi(b)=\pi(a)^{-1}\omega_0$. Tenemos $uv=\omega_0$. Por tanto, por el Lema \ref{}
-
-$$\lambda(u)\lambda(v)=\lambda(\omega_0)$$
+Por el contrario, sea $a=\rho(\pi(a))\in B_n^{red}$. Establecemos $b=\rho(\pi(a)^{-1}\omega_0)\in B_n^{red},\ u=\pi(a)$ y $v=\pi(b)=\pi(a)^{-1}\omega_0$. Tenemos $uv=\omega_0$. Por tanto, por el Lema \ref{lema:long_per} 
+$$\lambda(u)\lambda(v)=\lambda(\omega_0).$$
 
 Esta igualdad por el Lema \ref{lema:longi} implica que $ab=\Delta_n$. Por tanto, $a$ es un divisor de $\Delta_n$. Un argumento simiar prueba que $a$ es un divisor por la derecha de $\Delta_n$. \qed
 
@@ -1326,18 +1352,17 @@ $$a=\rho(\pi(a))=\rho(\pi(b))=b.$$
 
 La implicación $a\Delta_n=b\Delta_n\Rightarrow a=b$ se prueba de igual forma.
 Para cualesquiera $i,j\in\{1,\ldots,n-1\}$, establecemos
-
 $$\sigma_{i,j}= \left\{ \begin{array}{lcc}
-             \sigma_i &   si  & i=j \\
-             \\ \sigma_i\sigma_j\sigma_i=\sigma_i\sigma_j\sigma_i &  si & |i-j|=1 \\
-             \\ \sigma_i\sigma_j=\sigma_j\sigma_i &  si  & |i-j|\geq 2
+             \sigma_i &   si  & i=j, \\
+             \\ \sigma_i\sigma_j\sigma_i=\sigma_i\sigma_j\sigma_i &  si & |i-j|=1, \\
+             \\ \sigma_i\sigma_j=\sigma_j\sigma_i &  si  & |i-j|\geq 2.
              \end{array}
    \right.$$
    
 Establecemos $s_{i,j}=\pi(\sigma_{i,j})\in S_n$. Es fácil comprobar que $s_{i,j}=s_is_j$ es una expresión reducida cuando $|i-j|\geq 2$, y $s_{i,j}=s_is_js_i\in S_n$ es una expresión reducida cuando $|i-j|=1$. Entonces $\sigma_{i,j}=\rho(s_{i,j})\in B_n^{red}$ para todo $i,j$. Por lo tanto el conjunto $B_n^{red}$ es exhaustivo.
 
 Para completar la prueba, hay que comprobar la condición de la Definición \ref{defi:garside}
-. Observamos que $\sigma_i\preceq \sigma_{i,j}$ y $\sigma_j\preceq\sigma_{i,j}$ para todo $i,j$. Afirmamos que $\sigma_{i,j}$ es el elemento minimal del conjunto
+. Observamos que $\sigma_i\preceq \sigma_{i,j}$ y $\sigma_j\preceq\sigma_{i,j}$ para todo $i,j$. Afirmamos que $\sigma_{i,j}$ es el elemento mínimo del conjunto
 $$\{a\in B_n^{red}\ |\ \sigma_i\preceq a,\ \sigma_j\preceq a\}.$$
 
 Debemos demostrar que para cualquier $a\in B_n^{red}$, tal que $\sigma_i\preceq a$ y $\sigma_j\preceq a$, se da que $\sigma_{i,j}\preceq a$. El caso $i=j$ es trivial, por lo que consideraremos el caso $i\neq j$. Ya que los elementos de $B_n^{red}$ están en biyección con los elementos de $S_n$ a través de la función $\pi: B_n^+\rightarrow S_n$, es suficiente establecer que si
@@ -1409,10 +1434,8 @@ Denotamos por $W(a)$ al conjunto de palabras de $\sigma_1,\ldots,\sigma_{n-1}$ r
 $$\Delta_4=\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2\sigma_1=\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1\sigma_2$$
 
 derivamos que $\sigma_1^{-1}=\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2$ y $\sigma_2^{-1}=\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1$. En consecuencia
-$$\beta=(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2)(\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)=$$
-
-$$=(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2)(\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_3\sigma_2\sigma_1\sigma_2\sigma_3)(\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)=$$
-
+$$\beta=(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2)(\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)$$
+$$=(\Delta_4^{-1}\sigma_1\sigma_2\sigma_3\sigma_1\sigma_2)(\sigma_2\sigma_1)(\Delta_4^{-1}\sigma_3\sigma_2\sigma_1\sigma_2\sigma_3)(\sigma_1\sigma_2\sigma_3\sigma_2\sigma_1)$$
 $$=\Delta_4^{-3}abc^2,$$
 
 donde
@@ -1629,17 +1652,17 @@ La llave pública consiste en dos conjuntos de trenzas $\{p_1,...,p_l\},\{q_1,..
 \begin{enumerate}
 \item Alice calcula la trenza $s = u(p_1,...,p_l)$ y lo usa para calcular los conjugados $q_1'=sq_1s^{-1},...,q_m'=sq_ms^{-1}$. Ella envía $q_1',...,q_m'.$
 \item Bob calcula la trenza $r = v(q_1,...,q_m)$ y lo usa para calcular los conjugados $p_1'=sp_1s^{-1},...,p_l'=sp_ls^{-1}$. Ella envía $p_1',...,p_l'.$
-\item Alice calcula $t_A = su(p_1',...,p_l')^{-1}$
-\item Bob calcula $t_B = v(q_1',...,q_m')r^{-1}$
+\item Alice calcula $t_A = su(p_1',...,p_l')^{-1}$.
+\item Bob calcula $t_B = v(q_1',...,q_m')r^{-1}$.
 \end{enumerate}
 
 La llave compartida es $t_A = t_B$. Sabiendo que 
-$$u(p_1',...,p_l')=r\ u(p_1,...,p_l)r^{-1}$$
-$$v(q_1',...,q_m')=s\ v(q_1,...,q_m)s^{-1}$$
-Es fácil ver que
+$$u(p_1',...,p_l')=r\ u(p_1,...,p_l)r^{-1},$$
+$$v(q_1',...,q_m')=s\ v(q_1,...,q_m)s^{-1},$$
+es fácil ver que
 
-$$t_A = s\ u(p_1',...,p_l')^{-1} = s\ r\ u(p_1,...,p_l)^{-1}r^{-1}=$$
-$$=s\ r\ s^{-1}r^{-1}= s\ v(q_1,...,q_m)\ s^{-1}r^{-1}=v(q_1',...,q_m')r^{-1} = t_B$$
+$$t_A = s\ u(p_1',...,p_l')^{-1} = s\ r\ u(p_1,...,p_l)^{-1}r^{-1}$$
+$$=s\ r\ s^{-1}r^{-1}= s\ v(q_1,...,q_m)\ s^{-1}r^{-1}=v(q_1',...,q_m')r^{-1} = t_B.$$
 \
 \newline
 La seguridad esta basada en la dificultad de resolver una variante del Problema de Búsqueda del Conjugado en $B_n$, que es llamado el Problema de Búsqueda del conjugado Múltiple, en el cual se intenta encontrar una trenza conjugadora no de un único par de trenzas conjugadas $(p,p')$ sino de una familia finita de pares de trenzas $(p_1,p_1'),...,(p_l,p_l')$. Nótese que el Problema de Búsqueda del Conjugado Múltiple es más fácil que el Problema de Búsqueda del Conjugado, puesto que se tiene más información de los conjugadores. Sin embargo, es lo suficientemente complejo como para que el intruso sea incapaz de encontrar la llave secreta $r$ conociendo los pares $(p_1,p_1'),...,(p_l,p_l')$. De igual manera, no será capaz de encontrar la llave secreta $s$ conociendo los pares $(q_1,q_1'),...,(q_m,q_m')$.
@@ -1650,19 +1673,19 @@ $$u(p_1,p_2,p_3)= p_3p_1p_2p_1p_2,$$
 $$v(q_1,q_2,q_3,q_4)= q_4q_1q_3q_2,$$
 
 de manera que la llave privada de Alice es $s=\sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3$ y la llave privada de Bob es $r = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1}$. Calculamos los conjugados a partir de las llaves públicas y privadas.
-$$q_1' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_4 \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5$$
-$$q_2' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_2^{-1} \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5$$
-$$q_3' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_3^{-1} \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5$$
-$$q_4' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_1 \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5$$
+$$q_1' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_4 \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5,$$
+$$q_2' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_2^{-1} \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5,$$
+$$q_3' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_3^{-1} \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5,$$
+$$q_4' = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3 \sigma_1 \sigma_3^{-1}\sigma_1^{-1}\sigma_3^{-1}\sigma_1^{-1}\sigma_5,$$
 \ 
 \newline
-$$p_1' = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_1 \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}$$
-$$p_2' = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3 \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}$$
-$$p_3' = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_5^{-1} \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}$$
+$$p_1' = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_1 \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1},$$
+$$p_2' = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3 \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1},$$
+$$p_3' = \sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_5^{-1} \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}.$$
 \ 
 \newline
 A la hora de enviar los conjugados es obvio que estos se tienen que normalizar antes, ya que si no se hace esto es fácilmente visible la llave secreta. Nosotros no lo haremos en este caso para facilitar los cálculos. Comprobamos que la llave común calculada por ambas partes coincide:
-$$t_A = s\ u(p_1',...,p_l')^{-1} = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3\cdot\sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3^{-1} \sigma_1^{-1}\sigma_3^{-1} \sigma_1^{-1}\sigma_5 \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}=$$
+$$t_A = s\ u(p_1',...,p_l')^{-1} = \sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3\cdot\sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3^{-1} \sigma_1^{-1}\sigma_3^{-1} \sigma_1^{-1}\sigma_5 \sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}$$
 $$=\sigma_5^{-1}\sigma_1\sigma_3\sigma_1\sigma_3\sigma_1\sigma_4\sigma_3^{-1}\sigma_2^{-1} \sigma_3^{-1} \sigma_1^{-1}\sigma_3^{-1} \sigma_1^{-1}\sigma_5 \cdot\sigma_2\sigma_3\sigma_4^{-1}\sigma_1^{-1}=v(q_1',...,q_m')r^{-1} = t_B.$$
 
 \end{ejem}
@@ -1701,9 +1724,9 @@ $$p'' = rpr^{-1} = \sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8 \s
 
 Observamos que debido a la conmutatividad ambos pueden calcular la llave común de forma que coincide:
 
-$$t_A = s\ p''s^{-1} =$$$$= \sigma_3^{-1}\sigma_1^{-1}\sigma_4\sigma_3\sigma_2\cdot \sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_8^{-1}\sigma_9\sigma_6\sigma_7^{-1}\sigma_8^{-1}\sigma_7^{-1}\cdot\sigma_2^{-1}\sigma_3^{-1}\sigma_4^{-1}\sigma_1\sigma_3=$$
+$$t_A = s\ p''s^{-1} $$$$= \sigma_3^{-1}\sigma_1^{-1}\sigma_4\sigma_3\sigma_2\cdot \sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_8^{-1}\sigma_9\sigma_6\sigma_7^{-1}\sigma_8^{-1}\sigma_7^{-1}\cdot\sigma_2^{-1}\sigma_3^{-1}\sigma_4^{-1}\sigma_1\sigma_3$$
 $$=\sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8\cdot \sigma_3^{-1}\sigma_1^{-1}\sigma_4\sigma_3\sigma_2 \sigma_7^{-1}\sigma_5\sigma_1^{-1}\sigma_9\sigma_4 \sigma_2^{-1}\sigma_3^{-1}\sigma_4^{-1}\sigma_1\sigma_3\cdot
-\sigma_8^{-1}\sigma_9\sigma_6\sigma_7^{-1}\sigma_8^{-1}\sigma_7^{-1} =$$
+\sigma_8^{-1}\sigma_9\sigma_6\sigma_7^{-1}\sigma_8^{-1}\sigma_7^{-1} $$
 $$= rp'r^{-1} = t_B.$$ \qed
 \end{ejem}
 
@@ -1843,7 +1866,7 @@ Vamos a ver una heurística que nos permitirá, de forma eficiente, resolver en 
 \newline
 
 %\lstset{  numbers=left, numbersep=-7pt}
-
+\newpage
 \begin{lstlisting}[frame=single,escapeinside={(*}{*)}]  % Inicia el bloque de código
 
   (*- Entrada: $v,w\in B_n$ con $w = x^{-1}vx$ para algún $x\in B_n^+$ con $\inf x = 0$*)
