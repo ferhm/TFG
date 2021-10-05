@@ -257,11 +257,34 @@ Sea X un conjunto no vacío. Un par $(F,\kappa:X\rightarrow F)$ donde $F$ es un 
 $$\tau_f\circ\kappa = f.$$
 Al grupo $F$ se le llama \textit{grupo libre} en $X$ y a $X$ se le denomina un conjunto de \textit{generadores libres} de $F$. La función $\kappa$ se llama función universal para el par $(F,\kappa)$. Usamos la notación $F_X$ para denotar el grupo libre de $X$.
 
+
+
+La noción de grupo libre puede ser definida constructivamente. Sea $X$ un conjunto no vacío y $X'$ un conjunto en biyección con $X$ pero disjunto. Bajo una biyección fija, escibimos el elemento de $X'$ correspondiente a un elemento $x\in X$ como $x^-1$. Definimos como una \textit{palabra no vacía} en $X$ a una expresión de la forma $x_1^{\epsilon_1}\cdots x_r^{\epsilon_r}$ donde $x_i\in X$, $\epsilon_i\in\{1,-1\}$ y $r>0$. Si $r = 0$ lo denominamos la palabra vacía en $X$ y lo denotamos por $1$. Llamamos a $r$ la \textit{longitud de la palabra}. Consideramos a dos expresiones la misma palabra si tienen los mismo elementos en la misma posición. Definimos el producto de dos palabras no vacías $x_1^{\epsilon_1}\cdots x_r^{\epsilon_r}$ y $y_1^{\epsilon_1}\cdots y_s^{\epsilon_s}$ como la yextaposición de ambas $x_1^{\epsilon_1}\cdots x_r^{\epsilon_r}y_1^{\epsilon_1}\cdots y_s^{\epsilon_s}$. Definimos el producto de cualquier palabra $w$ con $1$ por ambos lados ella misma. Llamamos a $x_r^{-\epsilon_r}\cdots x_1^{-\epsilon_1}$ el inverso de la palabra no vacía $x_1^{\epsilon_1}\cdots x_r^{\epsilon_r}$. Escribimos $(x_1^{\epsilon_1}\cdots x_r^{\epsilon_r})^{-1}=x_r^{-\epsilon_r}\cdots x_1^{-\epsilon_1}$ y $1^{-1}=1$. 
+
+Definimos la siguiente relación en el conjunto de palabras visto. Dadas $w_1$ y $w_2$, dos palabras en $X$, decimos que $w_1\sim w_2$ si $w_2$ es obtenido de $w_1$ a través de aplicar una sucesión finita de inserciones o sustracciones de expresiones del tipo $xx^{-1}$ o $x^{-1}x$ para $x\in X$. Esta es una relación de equivalencia y el conjunto $F$ de clases de equivalencia $[w]$ nos da una estructura de grupo de forma obvia. Definiendo el producto $[w_1][w_2]=[w_1w_2]$, es fácil ver que $F$ tiene una estructura de grupo bien definida. El grupo $F$ es libre en $X$, la demostración se puede ver en \cite{free}.
+
+
+
+\begin{defi}
+Una \textit{relación de grupo} entre elementos de un conjunto $X$ es un par ordenado $(u,v)$ de elementos de $F_X$. Estas relaciones normalmente se escriben como $u=v$.
 \end{defi}
 
-La noción de grupo libre puede ser definida constructivamente. Sea $X$ un conjunto no vacío y $X'$ un conjunto en biyección con $X$ pero disjunto. Bajo una biyección fija, escibimos el elemento de $X'$ correspondiente a un elemento $x\in X$ como $x^-1$. Definimos como una \textit{palabra no vacía} en $X$ a una expresión de la forma $x_1^{\epsilon_1}\cdots x_r^{\epsilon_r}$ donde $x_i\in X$, $\epsilon_i\in\{1,-1\}$ y $r>0$. Si $r = 0$ lo denominamos la palabra vacía en $X$ y lo denotamos por $1$. Consideramos a dos expresiones la misma palabra si tienen los mismo elementos en la misma posición. Definimos el producto de dos palabras no vacías $x_1^{\epsilon_1}\cdots x_r^{\epsilon_r}$ y $y_1^{\epsilon_1}\cdots y_s^{\epsilon_s}$ como la yextaposición de ambas $x_1^{\epsilon_1}\cdots x_r^{\epsilon_r}y_1^{\epsilon_1}\cdots y_s^{\epsilon_s}$. Definimos el producto de cualquier palabra $w$ con $1$ por ambos lados ella misma. Llamamos a $x_r^{-\epsilon_r}\cdots x_1^{-\epsilon_1}$ el inverso de la palabra no vacía $x_1^{\epsilon_1}\cdots x_r^{\epsilon_r}$. Escribimos $(x_1^{\epsilon_1}\cdots x_r^{\epsilon_r})^{-1}=x_r^{-\epsilon_r}\cdots x_1^{-\epsilon_1}$ y $1^{-1}=1$. 
+Una relación de grupo entre elementos de un conjunto $X$ se dice que se \textit{mantiene} en $G$ por una función $f$ de $X$ en $G$ cuando $\varphi(u)=\varphi(v)$, donde $\varphi:F_X\rightarrow G$ es el único homomorfismo que extiende $f$.
 
-Definimos la siguiente relación en el conjunto de palabras visto. Dadas $w_1$ y $w_2$, dos palabras en $X$, decimos que $w_1\sim w_2$ si $w_2$ es obtenido de $w_1$ a través de aplicar una sucesión finita de inserciones o sustracciones de expresiones del tipo $xx^{-1}$ o $x^{-1}x$ para $x\in X$. Esta es una relación de equivalencia y el conjunto $F$ de clases de equivalencia $[w]$ nos da una estructura de grupo de forma obvia. Definiendo el producto $[w_1][w_2]=[w_1w_2]$, es fácil ver que $F$ tiene una estructura de grupo bien definida.
+\begin{defi}
+Dado un conjunto $X$ y un conjunto $R$ de relaciones de grupo entre elementos de $X$, el grupo $\langle X\mid R \rangle$ es el cociente del grupo libre $F_x$ por el subgrupo normal más pequeño $N$ de $F_X$ que contiene todos los elementos $uv^{-1}$ con $(u,v)\in R$.
+\end{defi}
+
+El grupo $\langle X\mid R \rangle = F_X/N$ tiene una \textit{función canónica} $\iota:X\rightarrow \langle X\mid R \rangle$, la composición $\iota =\pi\circ\eta$ de la función inclusión $\eta:X\rightarrow F_X$ y la proyección canónica $\pi:F_X\rightarrow F_X/N$.
+\begin{prop}
+Sea $R$ un conjunto de relaciones de grupo entre elementos de un conjunto $X$. Cada relación $(u,v)\in R$ se mantiene en $\langle X\mid R \rangle$ por la función canónica $\iota:X\rightarrow\langle X\mid R \rangle$. Además, $\langle X\mid R \rangle$ es generado por $\iota(X)$.
+\end{prop}
+
+\end{defi}
+
+\begin{defi}
+Una \textit{presentación} de un grupo $G$ es un isomorfismo de un $\langle X\mid R \rangle$ en $G$.
+\end{defi}
 
 
 
@@ -1943,6 +1966,7 @@ En la Figura \ref{img:alg_a} vemos la implementación realizada del algoritmo. L
 \bibitem{Att}\textsc{Dennis Hofheinz},\textsc{Rainer Steinwandt}, \textit{A Practical Attack on Some Braid Group Based
 Cryptographic Primitives}.
 \bibitem{group}\textsc{Stevev Roman}, \textit{Fundamentals of group theory. An advance aproach}.
+\bibitem{free}\textsc{B. Suri}, \textit{Free groups - basics}. 2010.
 \bibitem{br_gr}\textsc{Christian Kassel}, \textsc{Vladimir Turaev}, \textit{Braid groups}.
 \bibitem{st_br}\textsc{Kunio Murasugi}, \textsc{Bohdan l. Kurpita}, \textit{A study of braids}.
 \bibitem{in_cr}\textsc{Hans Delfs}, \textsc{Helmut Knebl}, \textit{Introduction to cryptography. Principles and Applications.}
