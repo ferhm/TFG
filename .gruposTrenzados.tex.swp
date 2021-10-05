@@ -193,6 +193,12 @@ $$f(x,y)=f(x)f(y)$$
 para todo $x,y\in G$. Un homomorfismo biyectivo es un \textit{isomorfismo}. Cuando $f$ es un isomorfismo, decimos que $G$ y $G'$ son \textit{isomorfos} y lo denotamos por $G\cong G'$.
 \end{defi}
 
+\begin{defi}
+Sea $f:G\rightarrow G'$ un homomorfismo de grupos. Consideramos el conjunto
+$$\ker(f):=\{x\in G : f(x)=1\}.$$
+A este conjunto se le denomina el \textit{núcleo} de $f$.
+\end{defi}
+
 \begin{defi}[Equivalencia módulo un subgrupo]
 Sea $G$ un grupo y $H$ un subgrupo de $G$. Dados $x,y\in G$, decimos que $x$ es congruente con $y$ módulo $H$ si se cumple que $y^{-1}x\in H$. Denotaremos la relación por $x\sim_H y$.
 \end{defi}
@@ -217,7 +223,34 @@ A continuación vamos a ver cuando es posible establecer una estructura de grupo
 
 Sea $G$ un grupo, $H$ un subgrupo de $G$ y $G/H$ el conjunto cociente de $G$ por la partición definida por las clases laterales izquierdas de $H$. Lo que queremos es definir una operación en $G/H$ tal que
 $$xH\cdot xH=xyH$$
-para todo $x,y\in G$
+para todo $x,y\in G$. Es fácil de ver que la condición de que las clases laterales izquierdas y derechas coincidan, es decir, que
+$$xH=Hx$$
+para todo $x\in G$, es suficiente para que la operación en $G/H$ este bien definida. En efecto, se cumplirá que
+$$xHyH=x(Hy)H=x(yH)H=xyHH=xyH$$
+para todo $x,y\in G$. Como esta condición no se cumple en todos los subgrupos, se les nombra de forma especial.
+
+\begin{defi}[Subgrupo normal]
+Sea G un grupo. Diremos que un subgrupo $H$ de $G$ es \textit{normal} en $G$ si cumple una de las siguientes afirmaciones:
+\begin{enumerate}
+\item $xH=Hx$ para todo $x\in G$.
+\item $xHx^-1=H$ para todo $x\in G$.
+\item $xhx^{-1}\in H$ para todo $h\in H, x\in G$.
+\end{enumerate}
+\end{defi}
+
+\begin{prop}
+Sea $G$ un grupo y $H$ un subgrupo normal de $G$. Entonces, el conjunto de las clases laterales izquierdas (que coincide con el conjunto de las clases laterales derechas) tiene una estructura de grupo respecto a la operación definida por
+$$xH\cdot yH:= xyH.$$
+Denotaremos a este grupo por $G/H$ y lo llamaremos \textit{grupo cociente} de $G$ por $H$. La función $x\mapsto xH$ es un homomorfismo sobreyectivo al que denominaremos \textit{proyección canónica}.
+\end{prop}
+
+\begin{prop}
+Sea $f:G\rightarrow G'$ un homomorfismo de grupos. Entonces, el núcleo del $f$ es un subgrupo de $G$ y además es normal en $G$.
+\end{prop}
+
+\begin{teor}[Primer teorema de isomorfía]
+Sea $f:G\rightarrow G'$ un homomorfismo de grupos y sea $K$ el núcleo de $f$. Entonces, $f(G)\cong G/K$. El isomorfismo viene dado por la correspondencia $\bar{f}$ que a cada $xK$ de $G/K$ le asocia el elemento $f(x)$ de $f(G)$.
+\end{teor}
 
 \begin{defi}[Grupo libre]
 Sea X un conjunto no vacío. Un par $(F,\kappa:X\rightarrow F)$ donde $F$ es un grupo se dice \textit{universal} para $X$ si para cualquier función $f:X\rightarrow G$ de $X$ al grupo G hay un único homomorfismo de grupo $\tau_f:F\rightarrow G$ tal que
@@ -225,6 +258,12 @@ $$\tau_f\circ\kappa = f.$$
 Al grupo $F$ se le llama \textit{grupo libre} en $X$ y a $X$ se le denomina un conjunto de \textit{generadores libres} de $F$. La función $\kappa$ se llama función universal para el par $(F,\kappa)$. Usamos la notación $F_X$ para denotar el grupo libre de $X$.
 
 \end{defi}
+
+La noción de grupo libre puede ser definida constructivamente. Sea $X$ un conjunto no vacío y $X'$ un conjunto en biyección con $X$ pero disjunto. Bajo una biyección fija, escibimos el elemento de $X'$ correspondiente a un elemento $x\in X$ como $x^-1$. Definimos como una \textit{palabra no vacía} en $X$ a una expresión de la forma $x_1^{\epsilon_1}\cdots x_r^{\epsilon_r}$ donde $x_i\in X$, $\epsilon_i\in\{1,-1\}$ y $r>0$. Si $r = 0$ lo denominamos la palabra vacía en $X$ y lo denotamos por $1$. Consideramos a dos expresiones la misma palabra si tienen los mismo elementos en la misma posición. Definimos el producto de dos palabras no vacías $x_1^{\epsilon_1}\cdots x_r^{\epsilon_r}$ y $y_1^{\epsilon_1}\cdots y_s^{\epsilon_s}$ como la yextaposición de ambas $x_1^{\epsilon_1}\cdots x_r^{\epsilon_r}y_1^{\epsilon_1}\cdots y_s^{\epsilon_s}$. Definimos el producto de cualquier palabra $w$ con $1$ por ambos lados ella misma. Llamamos a $x_r^{-\epsilon_r}\cdots x_1^{-\epsilon_1}$ el inverso de la palabra no vacía $x_1^{\epsilon_1}\cdots x_r^{\epsilon_r}$. Escribimos $(x_1^{\epsilon_1}\cdots x_r^{\epsilon_r})^{-1}=x_r^{-\epsilon_r}\cdots x_1^{-\epsilon_1}$ y $1^{-1}=1$. 
+
+Definimos la siguiente relación en el conjunto de palabras visto. Dadas $w_1$ y $w_2$, dos palabras en $X$, decimos que $w_1\sim w_2$ si $w_2$ es obtenido de $w_1$ a través de aplicar una sucesión finita de inserciones o sustracciones de expresiones del tipo $xx^{-1}$ o $x^{-1}x$ para $x\in X$. Esta es una relación de equivalencia y el conjunto $F$ de clases de equivalencia $[w]$ nos da una estructura de grupo de forma obvia. Definiendo el producto $[w_1][w_2]=[w_1w_2]$, es fácil ver que $F$ tiene una estructura de grupo bien definida.
+
+
 
 \subsection{Construcción del grupo de trenzas}
 \label{sec:cons_grtr}
@@ -253,9 +292,7 @@ Si $s_1,...,s_{n-1}$ son elementos de un grupo $G$ que satisfacen las relaciones
 \label{uni_homo}
 \end{lema}
 
-\begin{proof} Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $\bar{f}:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i=1,...,n-1$. Este homomorfismo induce un homomorfismo de grupo $f:B_n\rightarrow G$ en el que sabemos que si $r$ y $r'$ son dos trenzas tal que $r = r'$ entonces $f(r) = f(r')$. De esta manera obtenemos que el homomorfismo conserva las relaciones de trenza teniendo en cuenta la hipótesis inicial
-$$\bar{f}(\sigma_i\sigma_{j})=\bar{f}(\sigma_i)\bar{f}(\sigma_{j})=s_is_j=s_js_i=\bar{f}(\sigma_j)\bar{f}(\sigma_{i})=\bar{f}(\sigma_j\sigma_{i}),$$
-$$\bar{f}(\sigma_i\sigma_{i+1}\sigma{i}) = s_is_{i+1}s_i=s_{i+1}s_is_{i+1} = \bar{f}(\sigma_{i+1}\sigma_i\sigma_{i+1}).$$
+\begin{proof} Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $g:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i=1,...,n-1$. Por la demostración del primer teorema de isomorfía obtenemos otro homomorfismo $\bar{g}:F_n/K\rightarrow G$ donde $K=\ker(g)$ (de hecho, es un monomorfismo). También tenemos un homomorfismo $h:F_n\rightarrow B_n$ con $h(\sigma_i)=\sigma_i$ del cual consideramos su nucleo $H_n=\ker(h)$. Podemos ver que $H_n$ esta formado por las palabras que representan a la trenza neutra $1\in B_n$. Una definición constructiva equivalente del nucleo es $H_n=\{w_1r'w_2:w_1rw_2=\varepsilon\ o\ w_1rw_2\in H_n, w_1,w_2\in X^*, (r,r')\in R\}$ donde $R$ es el conjunto de relatores de $B_n$. Llamamos $k:F_n/H_n\rightarrow B_n$ al isomorfismo en cuestión. El que los elementos de $s_i$ de $G$ satisfagan las relaciones de trenza implica que $R\subset R'$, donde $R'$ es el conjunto de relatores de G y que por tanto $H_n\subset K$. Por tanto el homomorfismo $\phi:F_n/H_n\rightarrow F_n/K$ con $\phi(xH_n)=\phi(xK)$ esta bien definido. De esta forma, componiendo $f=k^{-1}\circ \phi \circ \bar{g}$ obtenemos nuestro homomorfismo deseado.
 \end{proof}
 
 
