@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{book}
 %\setlength{\parindent}{0pt}
 \usepackage{enumerate}
 \usepackage[spanish]{babel}
@@ -45,8 +45,9 @@
 \newpage
 \tableofcontents
 \newpage
-\section{Grupo de trenzas}
-\subsection{Generalidades sobre grupos}
+\part{Grupo de trenzas}
+\chapter{Generalidades sobre grupos}
+\section{Grupos y subgrupos}
 \label{sec:grupos}
 En esta sección vamos a repasar algunos aspectos de la teoría de grupos que en su mayoría se han visto a lo largo de la carrera. Estos aparecen en \cite{group} y \cite{br_gr}, y serán necesarios para desarrollar tanto el grupo de trenzas, como la parte de criptografía y criptoanálisis. En primer lugar vamos a comenzar con algunos conceptos básicos sobre grupos.
 
@@ -103,12 +104,9 @@ Si $X=\{x_1,x_2,...,x_k\}\subseteq G$ es un subconjunto finito entonces escribim
 Si $\langle X\rangle = G$ diremos que $X$ es un conjunto de generadores de G. Diremos que $G$ es finitamente generado si existe $X=\{x_1,x_2,...,x_k\}\subseteq G$, con $G=\langle X\rangle$. 
 \newline
 
-\begin{defi}
-Sea $X$ un conjunto no vacío. Una sucesión finita $w = (x_1,\ldots,x_n)$ de elementos de $X$ se denomina como \textit{palabra} o \textit{cadena} de $X$ y normalmente se escribe de la forma
-$$w = x_1\cdots x_n.$$
 
-El número de elementos de $w$ es la \textit{longitud} de $w$. Solo hay una única palabra con longitud 0, la cual se llama \textit{palabra vacía} y se denota por $\varepsilon$. El conjunto de todas las palabras de $X$ se denota por $X^*$ y a $X$ se le dice el \textit{alfabeto} de $X^*$. Una \textit{subpalabra} o \textit{subcadena} de una palabra $w$ es una subsucesión de $w$ que consiste de elementos consecutivos de $w$. La palabra vacía se considera una subpalabra de todas las palabras.
-\end{defi}
+\section{Grupo simétrico}
+
 A continuación vamos a definir los grupos simétricos con los que más adelante estableceremos una relación con los grupos de trenzas. También vamos a ver algunas de sus propiedades que nos serán de utilidad.
 
 \begin{defi}[Grupo simétrico]
@@ -182,7 +180,6 @@ Para cuales quiera $\alpha,\beta\in S_n$, tales que $\alpha\beta = w_0$,
 $$\lambda(\alpha)+\lambda(\beta)=\lambda(w_0).$$
 \label{lema:long_per}
 \end{lema}
-
 Las justificaciones de estas afirmaciones sobre $w_0$ se encuentran en \cite{br_gr}.
 
 Por último vemos la definición de grupo libre que utilizaremos para la construcción del grupo de trenzas.
@@ -190,7 +187,7 @@ Por último vemos la definición de grupo libre que utilizaremos para la constru
 \begin{defi}[Homomorfismo de grupo]
 Sean $G$ y $G'$ grupos. Una función $f:G\rightarrow G'$ se denomina \textit{homomorfismo de grupos} (o simplemente \textit{homomorfismo}) si
 $$f(x,y)=f(x)f(y)$$
-para todo $x,y\in G$. Un homomorfismo biyectivo es un \textit{isomorfismo}. Cuando $f$ es un isomorfismo, decimos que $G$ y $G'$ son \textit{isomorfos} y lo denotamos por $G\cong G'$.
+para todo $x,y\in G$. Un homomorfismo inyectivo es un \textit{monomorfismo}, un homomorfismo sobreyectivo es un \textit{epimorfismo} y un homomorfismo biyectivo es un \textit{isomorfismo}. Cuando $f$ es un isomorfismo, decimos que $G$ y $G'$ son \textit{isomorfos} y lo denotamos por $G\cong G'$.
 \end{defi}
 
 \begin{defi}
@@ -198,6 +195,8 @@ Sea $f:G\rightarrow G'$ un homomorfismo de grupos. Consideramos el conjunto
 $$\ker(f):=\{x\in G : f(x)=1\}.$$
 A este conjunto se le denomina el \textit{núcleo} de $f$.
 \end{defi}
+
+\section{Grupo cociente}
 
 \begin{defi}[Equivalencia módulo un subgrupo]
 Sea $G$ un grupo y $H$ un subgrupo de $G$. Dados $x,y\in G$, decimos que $x$ es congruente con $y$ módulo $H$ si se cumple que $y^{-1}x\in H$. Denotaremos la relación por $x\sim_H y$.
@@ -230,7 +229,7 @@ $$xHyH=x(Hy)H=x(yH)H=xyHH=xyH$$
 para todo $x,y\in G$. Como esta condición no se cumple en todos los subgrupos, se les nombra de forma especial.
 
 \begin{defi}[Subgrupo normal]
-Sea G un grupo. Diremos que un subgrupo $H$ de $G$ es \textit{normal} en $G$ si cumple una de las siguientes afirmaciones:
+Sea G un grupo. Diremos que un subgrupo $H$ de $G$ es \textit{normal} en $G$ y lo dentaremos por $H\unlhd G$ si cumple una de las siguientes afirmaciones:
 \begin{enumerate}
 \item $xH=Hx$ para todo $x\in G$.
 \item $xHx^-1=H$ para todo $x\in G$.
@@ -248,10 +247,22 @@ Denotaremos a este grupo por $G/H$ y lo llamaremos \textit{grupo cociente} de $G
 Sea $f:G\rightarrow G'$ un homomorfismo de grupos. Entonces, el núcleo del $f$ es un subgrupo de $G$ y además es normal en $G$.
 \end{prop}
 
+\begin{teor}[Teorema de factorización]
+Sea  $f:G\rightarrow G'$ un homomorfismo de grupos y sea $N$ un subgrupo normal de $G$ con $N\leq \ker(f)$, entonces existe un unico homomorfismo $\bar{f}:G/N\rightarrow G'$ tal que $\bar{f}\circ p=f$. Además:
+\begin{enumerate}
+\item $\bar{f}$ es epimorfismo si y solo si $f$ es epimorfismo,
+\item$\bar{f}$ es monomorfismo si y solo si $N=\ker(f)$
+\end{enumerate}
+\end{teor}
+
 \begin{teor}[Primer teorema de isomorfía]
 Sea $f:G\rightarrow G'$ un homomorfismo de grupos y sea $K$ el núcleo de $f$. Entonces, $f(G)\cong G/K$. El isomorfismo viene dado por la correspondencia $\bar{f}$ que a cada $xK$ de $G/K$ le asocia el elemento $f(x)$ de $f(G)$.
 \end{teor}
+\begin{proof}
+Aplicamos el teorema de factorización al epimorfismo $f':G\rightarrow Img(f)$, que es la misma función que $f$, solo que en vez de ir de $G$ a $G'$, va de $G$ a $Img(f)$. Teniendo en cuenta que $N=\ker(f)=\ker(f')\unlhd G$ y se obtiene que la aplicación $\bar{f}:G/\ker{f}\rightarrow Img(f)$ tal que $\bar{f}(a\ker(f))=f(a)$ es un isomorfismo y es único.
+\end{proof}
 
+\section{Grupo libre}
 \begin{defi}[Grupo libre]
 Sea X un conjunto no vacío. Un par $(F,\kappa:X\rightarrow F)$ donde $F$ es un grupo se dice \textit{universal} para $X$ si para cualquier función $f:X\rightarrow G$ de $X$ al grupo G hay un único homomorfismo de grupo $\tau_f:F\rightarrow G$ tal que
 $$\tau_f\circ\kappa = f.$$
@@ -288,11 +299,554 @@ Una \textit{presentación} de un grupo $G$ es un isomorfismo de un $\langle X\mi
 
 
 
-\subsection{Construcción del grupo de trenzas}
+
+
+
+\chapter{Monoides de Garside}
+
+Vamos a definir una estructura algebraica denominada monoide de Garside, una herramienta muy potente que nos permitirá trabajar con las trenzas. Entre otras cosas nos será posible dar soluciones al problema del conjugado y el problema de palabra definidos más adelante, y dispondremos de una forma normal con la que poder trabajar directamente con las trenzas. Todo esto nos será indispensable para poder construir métodos criptógráficos basados en el grupo de trenzas. Lo referente a monoides que se habla en esta sección aparece en \cite{br_gr}. Comenzamos con la definición de monoide.
+
+\section{Monoides}
+
+Un monoide es un conjunto que cuenta con una operación binaria (multiplicación) $M\times M \rightarrow M$ la cual es asociativa y tiene un elemento neutro que denotaremos por 1. 
+
+Un monoide $M$ es \textit{cancelativo por la izquierda} (resp. \textit{por la derecha}) si para todo $a,b,c\in M$,
+$$ab=ac\text{ implica } b=c\ \ \ \ (\textrm{resp.}\ \  ba=ca \text{ implica } b=c).$$
+Un elemento $a$ de un monoide $M$ es \textit{invertible} si existe $b\in M$ tal que $ab=ba=1$. De esta forma, un grupo es un monoide en el que todo elemento es invertible.
+
+
+
+\subsection{Divisibilidad en monoides}
+
+Si $a=bc$, donde $a,b,c$ son elementos de un monoide $M$, entonces decimos que $b$ es un \textit{divisor por la izquierda} de $a$ y $c$ es un \textit{divisor por la derecha}. También decimos que $a$ es un \textit{múltiplo por la derecha} de $b$ y que $a$ es \textit{múltiplo por la izquierda} de $c$. Lo denotaremos por $b\preceq a$ y $a\succeq c$. Por ejemplo, $1\preceq a$ y $a\succeq 1$ para todo $a\in M$, ya que $a=1a=a1$.
+
+\begin{lema}
+Las relaciones $\preceq$ y $\succeq$ en un monoide son reflexivas y transitivas.
+\label{lema:rel1}
+\end{lema}
+
+\begin{proof} La reflexividad de $\preceq$ viene de la identidad $a=a1$. La transitividad viene dada por la asociatividad de la multiplicación. Se procede de igual manera para $\succeq$.
+\end{proof}
+
+\subsection{Monoide libre}
+El \textit{monoide libre} sobre un conjunto $X$ es el monoide $X^*$ conteniendo a $X$ como un subconjunto y tal que cualquier función de $X$ a $M$ se extiende de forma única a un homomorfismo de monoide $X^*\rightarrow M$. Esta propiedad se define bajo isomorfismo de monoide sobre $X^*$.
+
+
+Cualquier elemento $w$ de $X^*$ puede ser expresado como una palabra de $X$, es decir, como un producto de elementos de $X$. El número de elementos de $X$ de esta expresión de $w\in X^*$ se denomina \textit{longitud} de $w$ y se denota por $l(w)$. Se tiene que $l(1)=0,\ l(x)=1$ para $x\in X$ y que $l(ww')=l(w)+l(w')$ con $w,w'\in X^*$.
+\label{monoide_libre}
+\subsection{Monoides atómicos}
+
+Para cualquier elemento $a\neq 1$ de un monoide $M$, definimos
+$$\norm{a}=\sup\{r\geq 1\ | a=a_1\cdot\cdot\cdot a_r,a_1,...,a_r\in M\backslash \{1\}\}.$$
+Según esta definición $\norm{a}\in \mathbb{N}^*\cup\{\infty\}$. Establecemos que $\norm{1}=0$. Es fácil de ver que para todo $a,b\in M$
+$$\norm{ab}\geq\norm{a}+\norm{b}.$$
+Observar que $\norm{a}=0$ si y solo si $a=1$. A un elemento $a\in M$ se le llama átomo si $\norm{a}=1$. En otras palabras, $a\in M$ es un átomo si $a\neq 1$ y $a=a_1\cdot\cdot\cdot a_r$ implica que $a_i=1$ para todo $i$ excepto uno. Cualquier $a\in M$ con $\norm{a} < \infty$ tiene una expansión $a=a_1\cdot\cdot\cdot a_r$, donde $\norm{a}=r$ y $a_1,...,a_r$ son átomos. Esto justifica la siguiente definición. Un monoide $M$ es \textit{atómico} si $\norm{a} < \infty$ para todo $a\in M$.
+
+\begin{lema}
+Si dos elementos $a,b$ de un monoide atómico $M$ satisfacen $a\preceq b$ y $b\preceq a$, entonces $a=b$. De igual manera, si $a\succeq b$ y $b\succeq a$, entonces $a=b$.
+\label{lema:rel2}
+\end{lema}
+
+\begin{proof} Ya que $a\preceq b\preceq a$, significa que existen $u,v\in M$ tal que $b=au$ y $a=bv$. Entonces $a=auv$ y
+$$\norm{a}=\norm{auv}\geq \norm{a}+\norm{u}+\norm{v}\geq \norm{a}.$$
+Esto implica que $\norm{u}=\norm{v}=0$. Por tanto $u=v=1$ y $a=b$. La relación $\succeq$ es tratada de forma similar.
+\end{proof}
+Los Lemas \ref{lema:rel1} y \ref{lema:rel2} implican que las relaciones $\preceq$ y $\succeq$ en un monoide atómico son órdenes parciales. Dado un subconjunto $E$ de un monoide atómico $M$, decimos que un elemento $a\in E$ es \textit{máximo} (resp. \textit{mínimo}) con respecto a $\preceq$, si $b\preceq a$ (resp. $a\preceq b$) para todo $b\in E$. Un elemento máximo (resp. mínimo) de $E$ podría no existir, pero si existe, es único por el Lema \ref{lema:rel2}. Definiciones equivalentes se obtienen con la relación $\succeq$.
+
+La ecuación $ab=1$ en un monoide atómico $M$ tiene como única solución $a=1,b=1$. De hecho, si $ab=1$ para $a,b\in M$, entonces $1\preceq a \preceq 1$, por lo tanto $a=1$ y $b=1$. En particular, el elemento neutro es el único elemento invertible de $M$.
+
+\subsection{Presentaciones de un monoide}
+Consideramos un conjunto $X$ y un subconjunto $R$ de $X^*\times X^*$. Sea $\sim$ la relación de equivalencia más pequeña conteniendo los pares $(\omega_1r\omega_2, \omega_1r'\omega_2)$, donde $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. En otras palabras, $\sim$ es la relación de equivalencia más pequeña en $X^*$ tal que $\omega_1r\omega_2\sim\omega_1r'\omega_2$ para todo $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. Definimos $M$ como el conjunto de clases de equivalencia inducido por $\sim$. Esta claro que $M$ tiene la única estructura de monoide tal que la proyección $P:X^*\rightarrow M$ es un homomorfismo de monoide. Decimos que $\langle X\mid R\rangle$ es una \textit{presentación de monoide} de $M$ y llamamos a los elementos de $X$ \textit{generadores} y a los elementos de $R$ \textit{relaciones}.
+
+Esta claro que el conjunto $P(X)\subset M$ genera $M$ en el sentido de que cada elemento de $M$ es un producto de elementos de este conjunto. Para cada relación $(r,r')\in R$, el elemento $P(r)=P(r')$ de $M$ se le llama \textit{relator} asociado a la presentación $\langle X\mid R\rangle$. Como notación habitual se usa $r=r'$ para la relación $(r,r'\in R)$ y no se hace distinción entre un generador $x\in X$ y su proyección $P(x)$ en $M$. 
+
+
+
+
+Introducimos varios tipos de presentaciones de monoides que nos serán de utilidad. Una presentación de monoide $\langle X\mid R\rangle$ es finita si $X$ y $R$ son finitos. Una presentación $\langle X\mid R\rangle$ de un monoide $M$ se dice \textit{ponderada} si existe un homomorfismo de monoide $\ell:M\rightarrow \mathbb{N}$ tal que $\ell(x)\geq 1$ para todo $x\in X$. El homomorfismo $\ell$ se llama \textit{peso}. Consideramos que $\ell:M\rightarrow \mathbb{N}$ es un \textit{peso canónico} si cumple que $\ell(x)=1$ para todo $x\in X$.
+
+Una presentación $\langle X\mid R\rangle$ de un monoide $M$ se dice \textit{equilibrada en longitud} si $l(r)=l(r')$ para todo $(r,r')\in R$, donde $l$ es la función longitud en $X^*$ introducida en la Sección \ref{monoide_libre} y existe un peso canónico para esta. En particular, una presentación equilibrada en longitud es una presentación ponderada.
+
+\begin{lema}
+Si un monoide $M$ tiene una presentación ponderada $\langle X\mid R\rangle$, entonces $M$ es atómico y todos sus átomos están contenidos en el conjunto $X$ de generadores. Si $M$ tiene una presentación equilibrada en longitud $\langle X\mid R\rangle$, entonces el conjunto de átomos de $M$ coincide con $X$ y $\norm{a}=\ell(a)$ para todo $a\in M$, donde $\ell$ es el peso canónico en $M$.
+\label{lema:presen_mono}
+\end{lema}
+
+\begin{proof} Sea $\ell: M\rightarrow \mathbb{N}$ un homomorfismo de monoide tal que $\ell(x)\geq 1$ para todo generador $x\in X$, que sabemos que existe por tener M  una presentación ponderada $\langle X\mid R\rangle$. Entonces $\ell(a)\geq 1$ para todo $a\in M \backslash\{1\}$. Si $a\in M$ se expande como el producto $a_1\cdot\cdot\cdot a_r$ con $a = a_1,...,a_r\in M\backslash\{1\}$, entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r$. Por tanto $\ell(a)\geq \norm{a}$. Que todos los átomos de $M$ pertenecen a $X$ viene del hecho de que cualquier conjunto que genere un monoide debe contener a sus átomos, ya que estos no se pueden obtener como producto de otros elementos y forman parte del monoide. 
+
+Para la segunda afirmación, al tener una presentación equilibrada en longitud, en particular, tiene una presentación ponderada, por lo que sabemos que $M$ es atómico y el conjunto de átomos de $M$ esta incluido en $X$. Para comprobar la igualdad, tomamos un elemento $x\in X$ y lo expresamos como producto de elementos de $M\backslash\{1\}$, $x = a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M\backslash\{1\}$. Como $\ell$ es un peso canónico tenemos que $1=\ell(x)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r\geq 1$. Por tanto, $\norm{x}=1$ para todo $x\in X$, es decir, todo elemento de $X$ es un átomo. Por último, al ser $M$ atómico, podemos expresar $a\in M$ como producto de átomos $a =a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M\backslash\{1\},\ \norm{a_i}=1$  para $i=1,\ldots,r$. Entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r) = r = \norm{a}$ por ser $\ell$ peso canónico y $\norm{a_i}=1$ para $i=1,\ldots,r$.
+\end{proof}
+
+\subsection{El problema de palabra y el problema de divisibilidad}
+
+El \textit{problema de palabra} para una representación $\langle X|R\rangle$ de un monoide $M$ consiste en que dadas dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a=a'$. El \textit{problema de divisibilidad por la izquierda} (resp. \textit{derecha}) esta estrechamente relacionado y consiste en que dadas
+dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a\preceq a'$ (resp. $a'\succeq a$).
+
+Tanto el problema de palabra como el problema de divisibilidad pueden ser fácilmente resueltos con una representación finita $\langle X|R\rangle$ de $M$. Sea $\ell:M\rightarrow\mathbb{N}$ un peso, de manera que $\ell(x)\geq 1$ para todo $x\in X$. Observar que el valor de $\ell$ para cualquier $a\in M$ representado por cualquier palabra no vacía $\omega\in X^*$ es mayor o igual que la longitud de $\omega$. Sea $W(a)\subset X^*$ el conjunto de palabras representando a $a$. Todas esas palabras tienen longitud menor que $\ell(a)$. Ya que $X$ es finito, el número de palabras de menor longitud que $\ell(a)$ es finito y por tanto también lo es el conjunto $W(a)$. Para listar todos los posibles elementos de $W(a)$, uno comienza con la palabra que representa $a$ y consecutivamente aplica todas las posibles substituciones del tipo
+$$\omega_1 r\omega_2\leftrightarrow \omega_1 r'\omega_2\ \ \ (r,r')\in R$$
+a cualquier elemento de $W(a)$ ya encontrado. Ya que $R$ es finito, este procedimiento también es finito. Esto da una solución al problema de palabra. Dadas dos palabras $\omega,\omega'\in X^*$ representando a $a,a'\in M$ respectivamente, sabemos que $a=a'$ si $W(a)=W(a')$.
+
+También obtenemos una solución para el problema de divisibilidad por la izquierda y por la derecha. Se tiene que $a\preceq a'$ si y solo si algún prefijo (segmento inicial) de una palabra en $W(a')$ pertenece a $W(a)$. De igual manera, $a'\succeq a$ si y solo si algún sufijo (segmento final) de una palabra en $W(a')$ pertenece a $W(a)$.
+
+\section{Formas normales y el problema del conjugado}
+
+Ahora vamos a introducir y estudiar un cierto monoide $M_\Sigma$ derivado de un subconjunto $\Sigma$ de cierto monoide $M$. Bajo la presunción de hipótesis favorables, obtenemos una forma normal para los elementos de $M_\Sigma$ y resolvemos el problema del conjugado en $M_\Sigma$.
+
+\subsection{El monoide $M_\Sigma$} 
+
+Sea $M$ un monoide y $\Sigma$ un subconjunto de $M$ conteniendo el elemento neutro $1$. Sea $M_\Sigma$ un monoide generado por los simbolos $[a]$, donde $a\in \Sigma$, partiendo de la definición de las relaciones $[1]=1$ y $[a][b]=[ab]$, siempre que $a,b,ab\in\Sigma$. Existe un homomorfismo de monoide $p:M_\Sigma\rightarrow M$ definido por $p([a])=a$ para todo $a\in\Sigma$.
+
+Otra definición equivalente de $M_\Sigma$ puede hacerse identificando el producto $[a_1]\cdot\cdot\cdot[a_r]$ en $M_\Sigma$ (donde $a_,...,a_r\in \Sigma$) con la sucesión $(a_1,...,a_r)$. Entonces $M_\Sigma$ es el conjunto de clases de equivalencia de sucesiones finitas $(a_1,...,a_r)$ de elementos de $\Sigma$ bajo la equivalencia generada por
+$$(a_1,...,a_{i-1}, a_i'a_i'',a_{i+1},...,a_r)\sim (a_1,...,a_{i-1}, a_i',a_i'',a_{i+1},...,a_r),$$
+siempre que $a_i'a_i''\in\Sigma$. La sucesión vacía es equivalente a la sucesión de un elemento $(1)$, donde $1\in\Sigma$. El producto en $M_\Sigma$ esta inducido por la concatenación de sucesiones.
+
+
+\begin{teor}
+\label{teor:monoi_deriv}
+Sea $M$ un monoide atómico y $\Sigma$ un subconjunto de $M$ tal que $1\in \Sigma$ y cumple las siguientes condiciones:
+\begin{enumerate}
+\item Todos los divisores por la izquierda y por la derecha de elementos de $\Sigma$ pertenecen a $\Sigma$. (Cerrado para divisores a izquierda y a derecha.)
+\item Para cualesquiera $a,b,c\in \Sigma$, si $ab=ac$ o $ba=ca$, entonces b=c. (Cancelativo.)
+\item Para cualesquiera $a,b\in \Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento máximo (con respecto a $\preceq$).
+\end{enumerate}
+Entonces para cualquier $\xi\in M_\Sigma$, hay un único $\alpha(\xi)\in\Sigma$ tal que $[\alpha(\xi)]$ es un divisor por la izquierda de $\xi$ que es el máximo de entre todos los divisores por la izquierda de $\xi$ que se encuentra en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$. Además, hay un único $\omega(\xi)\in M_\Sigma$ tal que $\xi=[\alpha(\xi)]\omega(\xi)$.
+\end{teor}
+
+\begin{proof} La prueba consiste de cinco pasos.
+
+\ 
+
+\textit{Paso 1.} Por la tercera hipótesis, para cualquier $a,b\in\Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento máximo $c\in\Sigma$. Entonces $b=cd$ para algún $d\in M$. Por la primera hipótesis, $d\in\Sigma$, y por la segunda, $d$ es único. Sea $\alpha_2(a,b)=ac\in\Sigma$ y $\omega_2(a,b)=d\in\Sigma$. Claramente se tiene
+\begin{equation}
+\label{eq:div_max}
+\alpha_2(a,b)\omega_2(a,b)=ab.
+\end{equation}
+Nuestro objetivo en este paso va a ser probar las siguientes igualdades. Dados $a,b,c\in\Sigma$ tales que $a,b\in\Sigma$
+\begin{equation}
+\label{eq:alfa_com}
+\alpha_2(ab,c)=\alpha_2(a,\alpha_2(b,c)),
+\end{equation}
+\begin{equation}
+\label{eq:omega_com}
+\omega_2(ab,c)=\omega_2(a,\alpha_2(a,b))\omega_2(b,c).
+\end{equation}
+Podemos usar la siguiente observación. Si $a,b,c\in M$ satisfacen que $ac\in\Sigma$ y $ab\preceq ac$, entonces $b\preceq c$. De hecho, si $ac=abd$ con $d\in M$, entonces la presunción de que $ac\in\Sigma$ junto con la primera hipótesis implica que $a,c,bd\in\Sigma$. Por la segunda hipótesis tenemos que $c=bd$.
+
+Por definición, $\alpha_2(b,c)=bd$, donde $d$ es máximo tal que $d\preceq c$ y $bd\in \Sigma$. Entonces
+$$\alpha_2(a,\alpha_2(b,c))=\alpha_2(a,bd)=ad',$$
+donde $d'$ es máximo tal que $d'\preceq bd$ y $ad'\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$ (por hipótesis), al ser $d'$ máximo se tiene que $b\preceq d'$. Escribiendo $d'=be$ con $e\in\Sigma$, obtenemos que $\alpha_2(a,bd)=abe$, con $be\preceq bd\in\Sigma$ y $abe\in\Sigma$. Por la observación hecha previamente vemos que $e\preceq d\preceq c$, así que $e\preceq c$. Ahora $\alpha_2(ab,c)=abf$, donde $f$ es máximo tal que $f\preceq c$ y $abf\in\Sigma$. Por tanto, $e\preceq f$. Por otra parte, $f\preceq c$ y $bf\in\Sigma$. Esto y la inclusión de $abf\in\Sigma$ implica que $bf\preceq d' = be$. Por tanto, $f\preceq e$. Por el Lema \ref{lema:rel2} $e=f$ y
+$$\alpha_2(ab,c)=abf=abe=ad'=\alpha_2(a,\alpha_2(b,c)).$$
+Esto prueba la igualdad (\ref{eq:alfa_com}). Para probar la igualdad (\ref{eq:omega_com}) observar (\ref{eq:div_max}) y (\ref{eq:alfa_com}),
+$$\alpha_2(ab,c)\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=\alpha_2(a,\alpha_2(b,c))\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$$
+$$=a\alpha_2(b,c)\omega_2(b,c)=abc=\alpha_2(ab,c)\omega_2(ab,c).$$
+Por la segunda condición, para deducir (\ref{eq:omega_com}) es suficiente probar que el producto $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ pertenece a $\Sigma$. Por definición, existe $d\in\Sigma$ tal que $\alpha_2(b,c)=bd\in\Sigma$ y $c=d\omega_2(b,c)$. Sea $f$ el elemento máximo de $\Sigma$ tal que $f\preceq bd$ y $af\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$, existe $e\in\Sigma$ tal que $f=be$. Entonces
+$$bd=f\omega_2(a,bd)=be\omega_2(a,bd).$$
+Por la segunda condición, $d=e\omega_2(a,bd)$ y
+$$e\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=e\omega_2(a,bd)\omega_2(b,c)=d\omega_2(b,c)=c.$$
+Esto demuestra que $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ es divisor por la derecha de $c\in\Sigma$, por tanto es un elemento de $\Sigma$.
+
+\ 
+ 
+\textit{Paso 2}. En este paso probaremos la siguiente afirmación. Existe una única función $\alpha:M_\Sigma\rightarrow\Sigma$ tal que
+
+\begin{enumerate}[label=\roman*.]
+\item $\alpha(1)=1$,
+\item $\alpha([a]\eta)=\alpha_2(a,\alpha(\eta))$ para todo $a\in\Sigma$, $\eta\in M_\Sigma$.
+\end{enumerate}
+
+Recordamos el homomorfismo de monoide $p:M_\Sigma\rightarrow M$. Para cualquier $\xi\in M_\Sigma$ definimos $H(\xi)=\norm{p(\xi)}\geq 0$. Llamamos a $H(\xi)$ el peso de $\xi$. Esta claro que
+$$H(\xi\xi')\geq H(\xi)+H(\xi'),$$
+para cualesquiera $\xi\xi'\in M_\Sigma$. Observar que $H(\xi)=0$ si y solo si $\xi=1$, y $H(\xi)=1$ si y solo si $\xi=[a]$, donde $a$ es un átomo de $M$ perteneciente a $\Sigma$. Para ver esto, tomamos una expansión $\xi=[a_1]\cdot\cdot\cdot[a_r]$ con $a_1,...,a_r\in\Sigma$. Entonces
+$$H(\xi)=\norm{p(\xi)}\geq\norm{a_1}+\cdot\cdot\cdot\norm{a_r}.$$
+Si $H(\xi)=0$, entonces $a_1=\cdot\cdot\cdot=a_r=1$ y $\xi=1$. Si $H(\xi)=1$, entonces todos los elementos $a_1,...,a_r\in\Sigma$ son iguales a $1$ excepto un elemento, el cual es un átomo.
+
+Dado $\xi\in M_\Sigma$, definimos $\alpha(\xi)$ por inducción sobre el peso de $\xi$. Para $\xi=1$ establecemos $\alpha(\xi)=1\in\Sigma$. Si $H(\xi)=1$, entonces $\xi=[a]=[a]1$ para algún átomo $a\in\Sigma$, y para satisfacer (ii) establecemos que $\alpha(\xi)=\alpha_2(a,1)=a$.
+
+Tomamos un entero $k\geq 1$ y suponemos que $\alpha(\xi)$ esta definido para todo $\xi$ de peso menor o igual que $k$ de manera que las condiciones (i), (ii) se satisfacen siempre que $H([a]\eta)\leq k$. Sea $\xi$ un elemento de $M_\Sigma$ de peso $k+1$. Podemos expandir $\xi=[a]\eta$, donde $a\in\Sigma$, $a\neq 1$ y $\eta\in M_\Sigma$. Entonces $H([a])\geq 1$ y $H([\eta]) < H([a]\eta)$, así que $\alpha(\eta)$ esta ya definido. Para satisfacer (ii) establecemos $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Debemos comprobar que $\alpha_2(a,\alpha(\eta))$ no depende de la elección de la expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y por la hipótesis de inducción, es suficiente con comprobar que 
+$$\alpha_2(a,\alpha(\eta))=\alpha_2(a',\alpha([a'']\eta)),$$
+donde $a=a'a''$ con $a',a''\in \Sigma \backslash\{1\}$. Ya que
+$$H([a'']\eta)\leq H([a]\eta) - H([a'])<H([a]\eta),$$
+la hipótesis de inducción nos da que $\alpha([a''])=\alpha_2(a'',\alpha(\eta))$. Por la igualdad (\ref{eq:alfa_com}) 
+$$\alpha_2(a',\alpha([a'']\eta))=\alpha_2(a',\alpha_2(a'',\alpha(\eta)))$$
+$$=\alpha_2(a'a'',\alpha(\eta))=\alpha_2(a,\alpha(\eta)).$$
+Por tanto $\alpha$ esta bien definido para los elementos de $M_\Sigma$ de peso menor o igual que $k +1$ y satisface las condiciones (i) y (ii). Esto completa la inducción y prueba nuestra afirmación.
+\newline
+\newline
+\textit{Paso 3}. Ahora comprobamos que para cualquier $\xi\in M_\Sigma$, el elemento $[\alpha(\xi)]\in M_\Sigma$ es un divisor por la izquierda de $\xi$ que es máximo entre todos los divisores por la izquierda de $\xi$ que se encuentrar en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$.
+
+Utilizando la proyección $p:M_\Sigma\rightarrow M$, es fácil demostrar que todos los divisores de $1\in M_\Sigma$ son iguales a $1$. Por tanto si $H(\xi)=0$, entonces $[\alpha(\xi)]=\xi=1$ es el único divisor por la izquierda de $1\in\Sigma$. Si $H(\xi)\geq 1$, escribimos $\xi=[a]\eta$ para algún $a\in\Sigma \backslash \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Por tanto, $\alpha(\xi)=ab$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(eta)$. Por el supuesto de inducción, $[\alpha(\eta)]$ es un divisor por la izquierda de $\eta$. Por tanto,
+$$[\alpha(\xi)]=[ab]=[a][b]\preceq [a][\alpha(\eta)]\preceq [a]\eta=\xi.$$
+
+Esto demuestra que $[\alpha(\xi)]$ es divisor por la izquierda  de $\xi$ perteneciente a $\{[a]\}_{a\in\Sigma}$. Veamos que $[\alpha(\xi)]$ es máximo. Supongamos que $\xi=[a']\eta'$
+para algún $a'\in\Sigma$, $\eta'\in M_\Sigma$. Entonces $\alpha(\xi) =\alpha_2(a',\alpha(\eta'))=a'b'$ para algún $b'\in\Sigma$. Por tanto, $a'\preceq \alpha(\xi)$ y $[a']\preceq [\alpha(\xi)]$.
+\newline
+\newline
+\textit{Paso 4.} Existe una única función $\omega:M_\Sigma\rightarrow\Sigma$ tal que
+
+\begin{enumerate}[label=\roman*.]
+\item $\omega(1)=1$,
+\item $\omega([a]\eta)=[\omega_2(a,\alpha(\eta))]\omega(\eta)$ para todo $a\in\Sigma$, $\eta\in M_\Sigma$.
+\end{enumerate}
+
+El valor de $\omega$ para cualquier $\xi\in M_\Sigma$ esta definido por inducción sobre el peso de $\xi$. Establecemos que $\omega(1)=1$. Tomamos un entero $k\geq 1$ y suponemos que $\omega(\xi)$ esta definido para todo $\xi$ de peso menor o igual que $k$, de manera que las condiciones (i) y (ii) se satisfacen siempre que $H([a]\eta)\leq k$. Sea $\xi=[a]\eta$ un elemento de $M_\Sigma$ de peso $k+1$ con un $q\in\Sigma \backslash \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\omega(\eta)$ esta definido. Para satisfacer (ii), establecemos que 
+$$\omega(\xi)=[\omega_2(a,\alpha(\eta))]\omega(\eta).$$
+Debemos de comprobar que $\omega(\xi)$ es independiente de la elección de expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y la inducción de hipótesis, es suficiente con comprobar que
+$$\omega_2(a,\alpha(\eta))\omega(\eta)=\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta),$$
+donde $a=a'a''$ con $a',a''\in\Sigma\backslash\{1\}$. Sabemos que $\alpha([a'']\eta)=\alpha_2(a'',\alpha(\eta))$. Ya que $H([a'']\eta) < H([a]\eta)$, la hipótesis de inducción nos da la igualdad $\omega([a'']\eta)=[\omega_2(a'',\alpha(\eta))]\omega(\eta)$. Por la igualdad (\ref{eq:omega_com})
+$$\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta)=\omega_2(a',\alpha_2(a'',\alpha(\eta)))\omega([a'']\eta)$$
+$$= \omega_2(a',\alpha_2(a'',\alpha(\eta)))[\omega_2(a'',\alpha(\eta))]\omega(\eta)$$
+$$ =\omega_2(a'a'',\alpha(\eta))\omega(\eta)=  \omega_2(a,\alpha(\eta))\omega(\eta).$$
+Por tanto $\omega$ esta bien definido para los elementos de $M_\Sigma$ de peso menor o igual que $k+1$ y satisface las condiciones (i) y (ii). Esto completa la inducción y prueba nuestra afirmación.
+\newline
+\newline
+\textit{Paso 5.} Para completar la prueba, tenemos que demostrar que para cualquier $\xi\in M_\Sigma$, el elemento $\eta = \omega(xi)$ es el único elemento de $M_\Sigma$ tal que $\xi = [\alpha(\xi)]\eta$. Procedemos por inducción sobre $H(\xi)$. Si $H(\xi) = 0$, entonces $\xi = 1$, $\alpha(\xi) = 1,\ \omega(\xi) = 1$, y la afirmación es obvia. Supongamos que la afirmación se da para todo $\xi$ de altura menor o igual a $k$ para cualquier entero $k\geq 1$. Sea $\xi$ un elemento de $M_\Sigma$ de  altura $k+1$. Por el Paso 3, $\xi=[\alpha(\xi)]\eta$ con $\eta\in M_\Sigma$. Claramente, $\alpha(\xi)\neq 1$ y por tanto $H(\eta) < H(\xi)$.
+
+Establecemos $\theta=[\alpha(\xi)][\alpha(\eta)]$. Por definición de la función $\alpha$,
+$$\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))=\alpha(\xi)b$$
+para algún $b\in\Sigma$ tal que $[b]\preceq [\alpha(\eta)]\preceq\eta$. Por tanto $\alpha(\xi)\preceq\alpha(\theta)$ y 
+$$[\alpha(\theta)] = [\alpha(\xi)][b]\preceq[\alpha(\xi)]\eta=\xi.$$
+Ya que $\alpha(\xi)$ es el máximo divisor por la izquierda de $\xi$ en el conjunto $\{[a]\}_{a_\in\Sigma}$, tenemos $[\alpha(\xi)]=[\alpha(\theta)]$. Proyectando a $M$, concluimos que
+$$\alpha(\xi)=\alpha(\theta) = \alpha_2(\alpha(\xi),\alpha(\eta)).$$
+Por tanto, $\alpha(\xi)\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))\alpha(\eta)$. Por otro lado, por (\ref{eq:div_max}),
+$$\alpha(\xi)\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))\omega_2(\alpha(\xi),\alpha(\eta)).$$
+Combinando estas ecuaciones obtenemos
+$$\alpha_2(\alpha(\xi),\alpha(\eta))\alpha(\eta) = \alpha_2(\alpha(\xi),\alpha(\eta))\omega_2(\alpha(\xi),\alpha(\eta)).$$
+Por la segunda condición del teorema, podemos cancelar $\alpha_2(\alpha(\xi),\alpha(\eta))$. Así que $\alpha(\eta) = \omega_2(\alpha(\xi),\alpha(\eta))$ y 
+$$\omega(\xi) = \omega([\alpha(\xi)]\eta) = [\omega_2(\alpha(\xi),\alpha(\eta))]\omega(\eta)=[\alpha(\eta)]\omega(\eta) = \eta,$$
+donde la última igualdad viene de la hipótesis de inducción. Esto demuestra que $\xi = [\alpha(\xi)\omega(\xi)]$ y que cualquier $\eta\in M_\Sigma$ satisfaciendo $\xi = [\alpha(\xi)]\eta$ es igual a $\omega(\xi)$.
+\end{proof}
+
+
+
+
+
+
+
+
+\subsection{Forma nomal en $M_\Sigma$}
+\label{sec:fn_msigma}
+Bajo las hipótesis del Teorema \ref{teor:monoi_deriv} , cualquier $\xi$ puede ser expandido inductivamente
+$$\xi=[\alpha(\xi)]\omega(\xi)=[\alpha(\xi)][\alpha(\omega(\xi))]\omega^2(\xi)$$
+$$=[\alpha(\xi)][\alpha(\omega(\xi))][\alpha(\omega^2(\xi))]\omega^3(\xi)=\cdot\cdot\cdot\ .$$
+Este proceso de expansión puede ser parado en el $r$-ésimo paso, donde $r$ el el mínimo entero tal que $\omega^{r+1}(\xi)=1$. Tal $r$ existe ya que una expansión de $\xi$ como producto de  generadores de $[a]$ con $a\in\Sigma$ tiene como mucho un cierto $k$ (visto en la demostración del Teorema \ref{teor:monoi_deriv}) de generadores distintos de $1$.
+
+Esta observación nos lleva a una forma normal para cada elemento de $M_\Sigma$. Una \textit{forma normal} para $\xi\in M_\Sigma$ es una sucesión $(a_1,a_2,...,a_r)$ de elementos de $\Sigma$, todos diferentes de $1$, tal que $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ y 
+$$a_i=\alpha([a_i][a_{i+1}]\cdot\cdot\cdot[a_r])$$
+para todo $i=1,2,...,r$. La unicidad en la última afirmación del Teorema \ref{teor:monoi_deriv} implica la unicidad de la forma normal.
+
+
+\subsection{La cancelatividad de $M_\Sigma$}
+
+Usamos el Teorema \ref{teor:monoi_deriv} y la función $\alpha_2:\Sigma\times\Sigma\rightarrow\Sigma$ introducida en la prueba para establecer la cancelatividad por la izquierda de $M_\Sigma$.
+
+\begin{lema}
+Bajo las hipótesis del Teorema \ref{teor:monoi_deriv}, el monoide $M_\Sigma$ es cancelativo por la izquierda.
+\label{lema:cancel}
+\end{lema}
+
+\begin{proof} Necesitamos demostrar que $\xi\eta=\xi\theta$ implica $\eta=\theta$ para todo $\xi,\eta,\theta\in M_\Sigma$. Suponemos primero que $\xi=[a]$ para algún $a\in\Sigma$. Entonces $\alpha(\xi\eta))=\alpha_2(a,\alpha(\eta))=ab\in\Sigma$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(\eta)$. Así
+$$ab=\alpha(\xi\eta)=\alpha(\xi\theta)=\alpha([a]\theta)=\alpha_2(a,\alpha(\theta))=ac$$
+para algún $c\preceq\alpha(\theta)$ implica que $b=c\preceq\alpha(\theta)$. Entonces existen $\eta',\theta'\in M_\Sigma$ tales que $[b]\eta'=\eta$ y $[b]\theta'=\theta$. Como ya sabemos, $\omega(\xi\eta)$ es el único elemento $x\in M_\Sigma$ tal que $\xi\eta=[\alpha(\xi\eta)]x=[ab]x$. Ya que
+$$\xi\eta=[a][b]\eta'=[ab]\eta',$$
+tenemos que $\omega(\xi\eta) = \eta'$. De igual manera, $\omega(\xi\theta)=\theta'$. Por tanto,
+$$\eta'=\omega(\xi\eta)=\omega(\xi\theta)=\theta',$$
+$$\eta=[b]\eta'=[b]\theta'=\theta.$$
+
+En general, $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ con $a_1,a_2,...,a_r\in\Sigma$. Como ya sabemos, $[a_1][a_2]\cdot\cdot\cdot[a_r]\eta=[a_1][a_2]\cdot\cdot\cdot[a_r]\theta$ implica que $[a_2]\cdot\cdot\cdot[a_r]\eta=[a_2]\cdot\cdot\cdot[a_r]\theta$. Repitiendo este proceso, obtenemos que $\eta=\theta$.
+\end{proof}
+
+\subsection{El problema de palabra en $M_\Sigma$}
+
+Decimos que el conjunto $\Sigma\subset M$ esta ponderado si existe una función $\ell:\Sigma\rightarrow\mathbb{N}$ tal que $\ell(1)=0,\ \ell(a)\geq 1$ para $a\neq 1$, y $\ell(ab)=\ell(a)+\ell(b)$ siempre que $a,b,ab\in\Sigma$. La función $\ell$ se extiende al homomorfismo de monoide $M_\Sigma\rightarrow\mathbb{N}$ que convierte la presentación de $M_\Sigma$ en una presentación ponderada. Además, si $\Sigma$ es finito, ya hemos visto una solución al problema de palabra y al problema de divisibilidad en $M_\Sigma$.
+
+\subsection{El problema del conjugado en $M_\Sigma$}
+\label{sec:pc_msigma}
+El \textit{problema del conjugado en un grupo} $G$ consiste en encontrar un procedimiento que nos permita, dados $\alpha,\beta\in G$, decidir si existe $\gamma\in G$ tal que $\alpha=\gamma\beta\gamma^{-1}$ o, equivalentemente, $\alpha\gamma=\gamma\beta$. Por extensión, el \textit{problema del conjugado en un monoide} $M$ consiste en encontrar un procedimiento que nos permita, dados $a,b\in M$, decidir si existe $c\in M$ tal que $ac=cb$. El siguiente lema es la clave para el problema del conjugado en $M_\Sigma$.
+
+\begin{lema}
+Sea $M,\Sigma\subset M$ satisfaciendo las hipótesis del Teorema \ref{teor:monoi_deriv}. Dados $a,b\in M_\Sigma$, existe $c\in M_\Sigma$ tal que $ac=cb$ si y solo si existe una una sucesión $a=a_0,a_1,\ldots,a_r=b$ de elementos de $M_\Sigma$ y una sucesión $c_1,\ldots,c_r$ de elementos de $\Sigma$ tal que
+$$a_{i-1}[c_i]=[c_i]a_i$$
+para todo $i=1,\ldots,r$.
+
+\label{lema:conjugado}
+\end{lema}
+
+\begin{proof} Si nosotros tenemos tales sucesiones, entonces $ac=cb$ para $c=[c_1][c_2]\cdots[c_r]$. En la otra implicación tenemos que $c\in M_\Sigma$ tal que $ac=cb$. Demostramos la afirmación por inducción en la longitud $r$ de la forma normal $(c_1,\ldots,c_r)$ de $c$. Si $r=1$, entonces $c = [c_1]$ y queda probado. Supongamos que $r\geq 2$. Ya que
+$$[c_1]=[\alpha(c)]\preceq c \preceq cb = ac,$$
+tenemos que
+$$c_1\preceq\alpha(ac)=\alpha_2(a,\alpha(c))=\alpha_2(a,c_1).$$
+Por tanto,
+$$[c_1]\preceq [\alpha_2(a,c_1)]\preceq ac_1.$$
+Existe $a_1\in M_\Sigma$ tal que
+$$[c_1]a_1=a[c_1],$$
+por lo que obtenemos que 
+$$[c_1]a_1[c_2]\cdots[c_r]=a[c_1][c_2]\cdots[c_r]=ac=cb=[c_1][c_2]\cdots[c_r]b.$$
+Por el Lema \ref{lema:cancel}, podemos dividir por la izquierda por $[c_1]$. Esto nos da que $a_1c'=c'b$, donde $c'=[c_2]\cdots[c_r]$ tiene una forma normal de longitud $r-1$ a la que se le puede aplicar la hipótesis de inducción.
+\end{proof}
+
+El Lema \ref{lema:conjugado} nos da una solución al problema del conjugado en $M_\Sigma$. Suponemos que $M,\Sigma$ satisfacen las condiciones del Teorema \ref{teor:monoi_deriv} y que $\Sigma$ es finito. Suponemos también que $M_\Sigma$ admite una presentación ponderada finita de manera que el problema de palabra tiene solución. Para determinar si dos elementos $a,b\in M_\Sigma$ son conjugados, primero hay que observar que elementos conjugados de $M_\Sigma$ tienen el mismo peso. Ya que solo hay un número finito de elementos de $M_\Sigma$ para un peso específico, $a$ tiene un número finito de conjugados. El Lema \ref{lema:conjugado} nos dice que, con el objetivo de encontrarlos todos, es suficiente aplicar todas las posibles conjugaciones por elementos de $\Sigma$ para conocer todos los conjugados de $a$ hasta que no se encuentren nuevos elementos. Así obtenemos una lista finita $a_1,\ldots,a_s$ de conjugados de $a$ en $M_\Sigma$. Si $b=a_i$ para algún $i$, entonces $b$ es conjugado de $a$. Si no es así, entonces $b$ no es conjugado de $a$.
+
+\subsection{Conjuntos exhaustivos}
+
+Un conjunto $\Sigma\subset M$ es \textit{exhaustivo} si $1\in\Sigma$ y $M$ tiene una presentación cuyos generadores y relaciones pertenecen a $\Sigma$.
+
+\begin{lema}
+Si $\Sigma$ es un subconjunto exhaustivo de un monoide $M$ tal que todos los divisores por la izquierda de los elementos de $\Sigma$ pertenecen a $\Sigma$, entonces el homomorfismo de monoides $p:M_\Sigma\rightarrow M$ es un isomorfismo.
+\label{lema:iso_mono}
+\end{lema}
+
+\begin{proof} Ya que $\Sigma$ contiene un conjunto de generadores de $M$, el homomorfismo $p$ es sobreyectivo. Solo necesitamos probar que es inyectivo. Observamos primero que si $a_1,a_2,\ldots,a_n$ son elementos de $\Sigma$ con $n\geq 2$ tales que $a=a_1a_2\cdots a_n\in\Sigma$, entonces $[a]=[a_1][a_2]\cdots [a_n]$. De hecho, $a_1a_2$ es divisor por la izquierda de $a$ y por tanto $a_1a_2\in\Sigma$. Por definición de $M_\Sigma$, tenemos que $[a_1][a_2]=[a_1a_2]$. Continuando por inducción obtenemos que $[a_1][a_2]\cdots[a_n]=[a]$.
+
+Cosideramos ahora una presentación $\langle X\mid R\rangle$ de $M$ por generadores y relaciones y sea $P:X^*\rightarrow M$ la proyección natural. Asumimos que $P(x)\in\Sigma$ para todo $x\in X$ y $P(r)=P(r')\in\Sigma$ para todo $(r,r')\in R$. Definimos un homomorfismo de monoide $Q:X^*\rightarrow M_\Sigma$ por $Q(x)=[P(x)]$ para $x\in X$. La observación anterior implica que para cualquier $r\in X^*$ con $P(r)\in\Sigma$, tenemos que $Q(r)=[P(r)]$. Por tanto para cualquier relación $(r,r')\in R$ tenemos que
+$$Q(r)=[P(r)]=[P(r')]=Q(r').$$
+Esto implica que existe un homomorfismo de monoide $q:M\rightarrow M_\Sigma$ tal que $Q=qP$. Entonces
+$$qp([P(x)])=q(P(x))=Q(x)=[P(x)]$$
+para todo $x\in X$. Ya que el conjunto $P(X)$ genera $M$, tenemos $qp=id$. Por tanto $p$ es inyectiva.
+\end{proof}
+El Lema \ref{lema:iso_mono} nos muestra que bajo las hipótesis apropiadas sobre $\Sigma$ tenemos que $M_\Sigma\cong M$, así que todas las propiedades de $M_\Sigma$ se transladan a $M$.
+
+
+
+
+\section{Grupo de fracciones y monoides pre-Garside}
+\subsection{Grupo de fracciones}
+
+Un homomorfismo de monoide $i:M\rightarrow G$ se dice que es \textit{universal} si $G$ es un grupo y para cualquier homomorfismo de monoide $f$ de $M$ a un grupo arbitrario $G'$, existe un único homomorfismo de grupo $g:G\rightarrow G'$ tal que $f=gi$. Cada monoide $M$ admite un homomorfismo universal a un grupo. Para ver esto, tomamos una representación arbitraria $\langle X \mid R \rangle$ de $M$ por generadores y relaciones, y consideramos el grupo $G$ definido por $\langle X \mid R \rangle$ visto como una presentación de grupo. La función identidad $id_X:X\rightarrow X$ extiende a un homomorfismo de monoide $M\rightarrow G$, el cual es fácil ver que es universal. La definición de homomorfismo universal implica que $i:M\rightarrow G$ es único si la composición se realiza con un isomorfismo de grupo. En particular, el grupo $G$ extendido del monoide $M$ esta bien definido hasta para isomorfismo. Este grupo llamado \textit{grupo de fracciones} de $M$ es denotado por $G_M$. Una presentación de $G_M$ por generadores y relaciones se puede obtener tomando una representación del monoide $M$ arbitraria de generadores y relaciones y verla como una representación de grupo.
+
+Un monoide $M$ es \textit{embebible} si existe un homomorfismo de monoide inyectivo de $M$ a un grupo. Es claro que $M$ es embebible si y solo si el homomorfismo universal de $M\rightarrow G_M$ es inyectivo. Por ejemplo, la inclusión $\mathbb{N}\hookrightarrow\mathbb{Z}$ demuestra que $\mathbb{N}$ es embebible. Es fácil ver que la inclusión es un homomorfismo universal tal que $G_\mathbb{N}=\mathbb{Z}$.
+
+Claramente, los monoides embebibles son cancelativos por la izquierda y por la derecha. Por ejemplo, el monoide $\{1,x\}$, con $xx=x$ no es cancelativo por la izquierda. El grupo de fracciones de este monoide es el grupo trivial.
+
+\subsection{Monoides pre-Garside}
+
+\begin{defi}
+Un monoide pre-Garside es un par que consiste de un monoide $M$ y un elemento $\Delta$ de $M$ tal que el conjunto $\Sigma=\Sigma_\Delta$ de divisores por la izquierda de $\Delta$ satisface las siguientes condiciones:
+
+\begin{enumerate}
+\item $\Sigma$ es finito, genera $M$ y  coincide con el conjunto de divisores por la derecha de $\Delta$.
+\item Si $a,b\in\Sigma$ cumplen que $\Delta a=\Delta b$ o $a\Delta=b\Delta$, entonces $a=b$.
+\end{enumerate}
+\label{defi:pre-garside}
+\end{defi}
+
+El elemento $\Delta\in M$ se llama \textit{elemento de Garside} de $M$. Observar que el conjunto $\Sigma$ de los divisores de $\Delta$ es cerrado bajo la divisibilidad por la izquierda y por la derecha, es decir, todos los divisores por la izquierda y por la derecha de elementos de $\Sigma$ pertenecen a $\Sigma$. Claramente, $1\in\Sigma$ y $\Delta\in\Sigma$.
+
+\begin{lema}
+Sea $(M,\Delta)$ un monoide pre-Garside y sea $\Sigma$ el conjunto de divisores de $\Delta$.
+
+\begin{enumerate}[label=(\roman*).]
+\item Para todo $a,b,c\in\Sigma$, si $ac=bc$ o $ca=cb$, entonces $a=b$.
+\item Existe una biyección $\delta:\Sigma\rightarrow \Sigma$ tal que $\Delta a=\delta(a)\Delta$ para todo $a\in\Sigma$.
+\item Si $N$ es el orden de $\delta$ (es decir, el menor entero positivo tal que $\delta^{N}=id$), entonces $\Delta^N a=a\Delta^N$ para todo $a\in M$.
+\item Para cualquier $a\in M$, existe un entero $r\geq 1$ tal que $a\preceq\Delta^r$ y $\Delta^r\succeq a$.
+\end{enumerate}
+\label{lema:pre-garside}
+\end{lema}
+
+\begin{proof} (i) Ya que $c\in\Sigma$, existe un $d\in M$ tal que $cd=\Delta$. Entonces $ac=bc$ implica $a\Delta = acd=bcd=\Delta b$. Por tanto $a=b$ por la segunda condición de la Definición \ref{defi:pre-garside}. Para la implicación $ca=cb$ implica $ a=b$ se procede de igual forma.
+\newline
+\newline
+(ii) Ya que cualquier divisor por la izquierda de $\Delta$ es también un divisor por la derecha y viceversa, para cualquier $a\in\Sigma$, existe $a',\delta(a)\in\Sigma$ tal que $\Delta =a'a$ y $\Delta = \delta(a)a'$. Por la afirmación (i), a' y $\delta(a)$ están definidas unívocamente. Tenemos que
+\begin{equation}
+\Delta a=\delta(a)a'a=\delta(a)\Delta.
+\label{eq:deltas}
+\end{equation}
+Ya que $\Sigma$ es finito, con el objetivo de probar que la función $\delta:\Sigma\rightarrow\Sigma$ es biyectiva, es suficiente probar que es inyectiva. La igualdad $\delta(a)=\delta(b)$ nos da que
+$$\Delta a= \delta(a)\Delta = \delta(b)\Delta = \Delta b.$$
+Esto implica que $a=b$ por la segunda condición de la Definición \ref{defi:pre-garside}.
+\newline
+\newline
+(iii) Por inducción sobre $n$ obtenemos de (\ref{eq:deltas}) que $\Delta^na=\delta^n(a)\Delta^n$ para todo $a\in\Sigma$. Ya que $\delta^N=id$, tenemos que $\Delta^N a=\delta^N(a)\Delta^n=a\Delta^n$. En otras palabras, $\Delta^N$ conmuta con todos los elementos del conjunto $\Sigma$. Como este conjunto genera el monoide $M$, podemos concluir que $\Delta^N$ conmuta con todos los elementos de $M$.
+\newline
+\newline
+(iv) Escribimos $a$ como producto $a=a_1\cdots a_r$ de $r$ elementos de $\Sigma$. Para cada $a_i$ hay un $b_i\in\Sigma$ tal que $b_ia_i=\Delta$. Sea $b=\delta^{r-1}(b_r)\cdots\delta(b_2)b_1$. Afirmamos que $ba=\Delta^r$, lo cual prueba que $\Delta^r\succeq a$.
+$$ba=\delta^{r-1}(b_r)\cdots\delta(b_2)b_1a_1\cdots a_r$$
+$$=\delta^{r-1}(b_r)\cdots\delta(b_2)\Delta a_2\cdots a_r$$
+$$=\delta^{r-1}(b_r)\cdots\Delta b_2a_2\cdots a_r$$
+$$=\delta^{r-1}(b_r)\cdots\delta^2(b_3)\Delta^2 a_3\cdots a_r$$
+$$=\delta^{r-1}(b_r)\cdots\Delta^2 b_3a_3\cdots a_r$$
+$$=\cdots= \Delta^{r-1}b_ra_r=\Delta^r.$$
+
+De forma similar se prueba que si $a_ic_i=\Delta$ para $i=1,\ldots,r$ y
+$$c=c_r\delta^{-1}(c_{r-1})\cdots\delta^{-(r-1)}(c_1)$$
+entonces $ac=\Delta^r$ y por tanto $a\preceq\Delta^r$.
+\end{proof}
+
+\subsection{Embebilidad de los monoides pre-Garside}
+
+Sea $(M,\Delta)$ un monoide pre-Garside. Bajo la hipótesis de que $M$ es cancelativo por la izquierda, damos una construcción explicita del grupo de fracciones de $M$. La construcción implicará que $M$ es embebible.
+
+Sea $N\geq 1$ el orden de $\delta:\Sigma\rightarrow\Sigma$. Por el Lema \ref{lema:pre-garside}, $\Delta^N$ es central en $M$. Consideramos el producto $H=M\times\mathbb{N}$ de los monoides $M$ y $\mathbb{N}$ con la correspondiente multiplicación
+$$(a,p)(b,q)=(ab,p+q)$$
+para todo $a,b\in M$ y $p,q\in\mathbb{N}$. El elemento neutro de $H$ es $(1,0)$.
+
+Definimos la relación $\sim$ en $H$ por $(a,p)\sim(b,q)$ si $\Delta^{qN}a=\Delta^{pN}b$. Por ejemplo, $(\Delta^{N}a,1)=(1,0)$. Vamos a demostrar que $\sim$ es una relación de equivalencia. La reflexividad y la simetría son obvias. Comprobamos la transitividad. Supongamos que $(a,p)\sim(b,q)\sim(c,r)$. Entonces $\Delta^{qN}a=\Delta^{pN}b$ y $\Delta^{rN}b=\Delta^{qN}c$. Por tanto,
+$$\Delta^{qN}\Delta^{rN}a=\Delta^{rN}\Delta^{qN}a=\Delta^{rN}\Delta^{pN}b$$
+$$=\Delta^{pN}\Delta^{rN}b=\Delta^{pN}\Delta^{qN}c=\Delta^{qN}\Delta^{pN}c.$$
+Ya que $M$ es cancelativo por la izquierda, obtenemos que $\Delta^{rN}a=\Delta^{pN}c$. Esto nos da $(a,p)\sim(c,r)$.
+
+Sea $G=H/\sim$ el conjunto de clases de equivalencia y sea $\pi:H\rightarrow G$ la proyección. Ya que $\Delta^N$ es central en $M$, el conjunto $G$ tiene una única estructura de monoide tal que $\pi$ es un homomorfismo de monoide. Definimos un homomorfismo de monoides $i:M\rightarrow G$ por $i(a)=\pi(a,0)$ para $a\in M$.
+
+\begin{teor}
+Sea $(M,\Delta)$ un monoide pre-Garside tal que $M$ es cancelativo por la izquierda.
+\begin{enumerate}[label=(\roman*)]
+\item El monoide $G$ construido anteriormente es un grupo y el homomorfismo $i:M\rightarrow G$ es inyectivo.
+\item Cualquier elemento de $G$ puede ser escrito de la forma $i(\Delta)^si(a)$, donde $s\in\mathbb{Z}, a\in M$.
+\item El homomorfismo de monoide $i:M\rightarrow G$ es universal y por tanto $G$ es el grupo de fracciones $G_M$ de $M$.
+\end{enumerate}
+\label{teor:pre-garside}
+\end{teor}
+
+\begin{proof} (i) Si $i(a)=i(b)$ para $a,b\in M$, entonces $(a,0)=(b,0)$ en $H$. Esto implica que $a=\Delta^0a=\Delta^0b=b$ quedando demostrada la inyectividad de $i$.
+\newline
+\newline
+Cualquier elemento $g\in G$ tiene la forma $\pi(a,p)$ para unos ciertos $a\in M$ y $p\in\mathbb{N}$. Vamos a comprobar que $g=\pi(a,p)$ es invertible. Por el Lema \ref{lema:pre-garside}(iv) existe un $b\in M$ y un entero $r\geq 1$ tal que $ab=\Delta^r$. Multiplicando $b$ en la derecha por una potencia de $\Delta$, podemos asumir que $r=qN$ para un entero $q\geq p$. Entonces
+\begin{equation}
+(a,p)(b,q-p)=(ab,q).
+\label{eq:gr-frac}
+\end{equation}
+Ya que $\Delta^0ab=\Delta^r=\Delta^{qN}1$, tenemos que $(ab,q)\sim(1,0)$ y $\pi(ab,q)=\pi(1,0)=1$. Esto prueba que $g=\pi(a,p)$ tiene inverso por la derecha, que denotamos por $g'$. Aplicando el mismo razonamiento, $g'$ también tiene un inverso por la derecha  $g''$ y
+$$g=g(g'g'')=(gg')g''=g''.$$
+En otras palabras, $g'$ es también el inverso de $g$ por la izquierda. Esto demuestra que G es un grupo.
+\newline
+\newline
+(ii) Sea $\xi$ el elemento central $(1,1)\in H=M\times\mathbb{N}$. Si establecemos $a=1,b=\Delta^N$ y $p=q=1$ en (\ref{eq:gr-frac}), obtenemos $\pi(\xi)i(\Delta)^N=1$. Por tanto $\pi(\xi)=i(\Delta)^{-N}$. Cualquier elemento de $H$ es de la forma $(a,p)=\xi^p(a,0)$ para algún $a\in M$ y $p\in\mathbb{N}$. Por tanto cualquier elemento de $G$ puede ser escrito de la forma $\pi(\xi)^pi(a)=i(\Delta)^{-pN}i(a)$ donde $a\in M$ y $p\in\mathbb{N}$.
+\newline
+\newline
+(iii) Dado un homomorfismo de monoide $f$ de M a un grupo $G'$, consideramos la función $H=M\times \mathbb{N}\rightarrow G'$ que envía cualquier par $(a,p)\in M\times \mathbb{N}$ a $f(\Delta)^{-pN}f(a)$. Esta función es constante en las clases de equivalencia de $H$ por $\sim$ e induce un homomorfismo de grupo $H/\sim=G\rightarrow G'$. La composición de esta última función con $i:M\rightarrow G$ es igual a $f$. La unicidad del homomorfismo de grupo $G\rightarrow G'$ cuya composición con $i$ es igual a $f$ viene del hecho de que $i(M)$ genera $G$ como grupo.
+\end{proof}
+
+\begin{colo}
+Los monoides pre-Garside cancelativos por la izquierda son embebibles.
+\label{colo:pre-garside-embe}
+\end{colo}
+Este colorario muestra en particular que para monoides pre-Garside, la cancelatividad por la izquierda implica la cancelatividad por la derecha.
+
+A continuación identificaremos los elementos cancelativos por la izquierda de un monoide pre-Garside M con sus imágenes en $G_M$, de manera que $M$ se convierte en un subconjunto de $G_M$.
+
+\subsection{El problema del conjugado en el grupo de fracciones}
+\label{sec:pc_grfr}
+Sea $(M,\Delta)$ un monoide pre-Garside cancelativo por la izquierda. El problema del conjugado en su grupo de fracciones $G=G_M$ puede ser reducido al problema del conjugado en $M$ de la siguiente manera. Como ya sabemos, para cualquier $\alpha,\beta\in G$, existen $a,b\in M\subset G$ y $s,t\in\mathbb{Z}$ tal que $\alpha=\Delta^sa$ y $\beta=\Delta^t b$ (Teorema \ref{teor:pre-garside} (\textrm{ii})). Cogemos un entero $u$ tal que $u\leq \min(s,t)$ y $u$ es divisible por N (Lema \ref{lema:pre-garside}(iii)). Sea $a'=\Delta^{s-u}a\in M$ y $b'=\Delta^{t-u}b\in M$. Claramente, $\alpha=\Delta^ua'$ y $\beta=\Delta^ub'$. Afirmamos que $\alpha$ es conjugado de $\beta$ en $G$ si y solo si $a'$ es conjugado de $b'$ en M. Supongamos que $a'c=cb'$ para algún $c\in M$. Ya que $\Delta^u$ es una potencia de $\Delta^N$ y es por tanto central en $M$,
+$$\alpha c=\Delta^u a'c=\Delta^u c b' = c\Delta^u b'=c\beta.$$
+
+En el otro sentido, si $\alpha\gamma=\gamma\beta$ con $\gamma\in G$, entonces $\gamma=\Delta^v c$ para algún $c\in M$ y algún entero $v$ divisible por $N$. Reemplazando $\alpha\beta\gamma$ en la fórmula $\alpha\gamma=\gamma\beta$ por sus expansiones con $a',b',c'$ y usando la centralidad de $\Delta^u,\Delta^v$, obtenemos
+$$\Delta^{u+v}a'c=\Delta^{u+v}cb'.$$
+Dividimos entre $\Delta^{u+v}$ y concluimos que $a'c=cb'$.
+
+\subsection{El caso de $M$ atómico}
+
+Para $M$ atómico, la afirmación (ii) del Teorema \ref{teor:pre-garside} admite el siguiente refinamiento.
+
+\begin{teor}
+Sea $(M,\Delta)$ un monoide pre-Garside tal que $M$ es no trivial, cancelativo por la izquierda y atómico. Entonces cualquier elemento de $G=G_M\supset M$ puede ser escrito unicamente de la forma $\Delta^s b$, donde $s\in\mathbb{Z}$ y $b$ es un elemento de $M$ que no es múltiplo por la derecha de $\Delta$. Esta forma la denominaremos \textit{forma normal greedy}.
+\label{teor:refi}
+\end{teor}
+
+\begin{proof} Observamos primero que $\norm{\Delta}>0$. En efecto, si $\norm{\Delta}= 0$, entonces $\Delta=1$. Ya que $M$ es atómico. Eso implica que $\Sigma_\Delta=\{1\}$. Ya que $\Sigma_\Delta$ genera $M$, tenemos que $M=\{1\}$. Esto contradice la no trivialidad de $M$.
+
+Por el Teorema \ref{teor:pre-garside}, cualquier elemento de $G$ tiene la forma $\Delta^sa$ con $s\in\mathbb{Z}$ y $a\in M$. Sea $t$ el mayor entero no negativo tal que $\Delta^t\preceq a$ en $M$. Tal $t$ existe porque la relación $\Delta^t\preceq a$ implica que
+$$t\norm{\Delta}\leq \norm{\Delta^t}\leq \norm{a}<\infty.$$
+Entonces $a=\Delta^t b$ para algún $b\in M$ tal que $\Delta\npreceq b$ y $\Delta^s a=\Delta^{s+t} b$. Esto prueba la existencia de la forma declarada.
+
+Supongamos que $\Delta^s b=\Delta^{s'}b'$ para $s,s'\in\mathbb{Z}$ y $b,b'\in M$ tal que $\Delta\npreceq b$ y $\Delta\npreceq b'$. Podemos asumir que $s\geq s'$. Dividiendo por $\Delta^{s'}$, obtenemos que $\Delta^{s-s'}b=b'$. Ya que $b'$ no es múltiplo por la derecha de $\Delta$ en $M$, tenemos que $s-s'=0$. Por tanto, $s=s'$ y $b=b'$, lo que prueba la unicidad.
+\end{proof}
+
+\section{Monoides de Garside}
+\subsection{Definiciones y lemas}
+
+Sea $(M,\Delta)$ un monoide pre-Garside y sea $\Sigma$ el conjunto de divisores por la izquierda (y por la derecha) de $\Delta$. Observamos que al generar $\Sigma$ a $M$, todos los átomos de $M$ pertenecen a $\Sigma$. En otras palabras, todos los átomos de $M$ son necesariamente divisores por la izquierda de $\Delta$.
+
+\begin{defi}
+El par $(M,\Delta)$ es un \textit{monoide de Garside} si $M$ es atómico y para cualesquiera dos átomos $s,t$ de $M$, el conjunto
+$$\{a\in\Sigma\ |\ s\preceq a,\ t\preceq a \}$$
+tiene un elemento mínimo $\Delta_{s,t}$ (con respecto a $\preceq$).
+
+Por el Lema \ref{lema:rel2}, el elemento mínimo $\Delta_{s,t}$ es único. Se observa que $\Delta_{s,t}=\Delta_{t,s}\in\Sigma,\ s\preceq\Delta_{s,t},\ t\preceq\Delta_{s,t}$ y 
+$$\{a\in\Sigma\ |\ s\preceq a,\ t\preceq a \}=\{a\in\Sigma\ |\ \Delta_{s,t}\preceq a\}.$$
+
+Cualquier átomo $s\in M$ es un elemento mínimo del conjunto $\{a\in\Sigma\ |\ s\preceq a\}$, así que $\Delta_{s,s}=s$.
+\label{defi:garside}
+\end{defi}
+
+\begin{lema}
+Si $(M,\Delta)$ es un monoide de Garside, entonces el conjunto $\Sigma$ satisface todas las condiciones del Teorema \ref{teor:monoi_deriv}.
+\label{lema:garside}
+\end{lema}
+
+Este lema es clave para permitirnos aplicar los resultados vistos en la sección de ``Formas Normales y problema del conjugado'' a los monoides de Garside. El resto de esta subsección irá enfocado a la prueba del Lema \ref{lema:garside}. Necesitamos verificar que $\Sigma$ satisface las condiciones (1.) a (3.) del Teorema \ref{teor:monoi_deriv}. La condición (1.) la tenemos de forma directa por la definición de monoide pre-Garside. La condición (2.) fue verificada en el Lema \ref{lema:pre-garside}. La parte difícil es la verificación de (3.). Comenzamos con dos lemas. En ambos lemas, asumimos que $(M,\Delta)$ es un monoide de Garside, $\Sigma$ es el conjunto de divisores por la izquierda (y derecha) de $\Delta$, y $S\subset \Sigma$ es el conjunto de átomos de $M$.
+
+\begin{lema}
+Sea $E$ un subconjunto finito no vacío de $M$ satisfaciendo las siguientes dos condiciones:
+\begin{enumerate}[label=(\roman*).]
+\item Si $a\in M$ y $b\in E$ con $a\preceq b$, entonces $a\in E$.
+\item Si $a\in E$, $s,t\in S$ son tales que $as,at\in E$, entonces $a\Delta_{s,t}\in E$.
+\end{enumerate}
+Entonces $E$ tiene un elemento máximo (con respecto a $\preceq$).
+\label{lema:garside1}
+\end{lema}
+
+\begin{proof} Sea $c$ un elemento de $E$ tal que $\norm{c}$ es máximo (decimos que $c$ es de altura máxima en $E$). Deseamos demostrar que $E=\{a\in M\ |\ a\preceq c\}$. Por la condición (i), $\{a\in M\ |\ a\preceq c\}\subset E$. Vamos a probar la inclusión contraria. Supongamos que no esta incluido. Entonces existe $b\in E$ tal que $b\npreceq c$. Expandimos $b$ como producto de átomos $b=s_1\cdots s_n$ para algún $n$ y $s_1,\ldots,s_n\in S$. Establecemos $a=s_1\cdots s_k$ donde $k < n$ es el entero máximo tal que $a\preceq c$ (posiblemente $k=0$, en cuyo caso $a=1$). Esta claro que $a\in E$ y que existe un átomo $s\in S$ (de hecho $s=s_{k+1}$) tal que $as\in E$ y $as\npreceq c$. Consideramos entonces que $a\in E$ es de altura máxima verificando la condición previa. Ya que $c$ es de altura máxima en $E$, tenemos $\norm{a}<\norm{as}\leq \norm{c}$. Esto y la relación $a\preceq c$ implica que existe $t\in S$ tal que $at\preceq c$. Entonces, necesariamente, $t\neq s$. Ahora tenemos  $a,as, at\in E$. Por la condición (ii) $a\Delta_{s,t}\in E$. La relación $as\preceq a\Delta_{s,t}$ y $as\npreceq c$ implica que $a\Delta_{s,t}\npreceq c$. Podemos expandir
+$$\Delta_{s,t}=ts_1s_2\cdots s_m,$$
+donde $s_1,\ldots,s_m\in S$. Existe $i\in\{1,\ldots,m\}$ tal que $ats_1s_2\cdots s_{i-1}\preceq c$ y $ats_1s_2\cdots s_{i}\npreceq c$. Sea $a'=ats_1s_2\cdots s_{i-1}$. El hecho de que $a\Delta_{s,t}\in E$ implica que $a',a's_i\in E$. Por la elección de $i$ tenemos que $a's_i\npreceq c$. Por lo tanto, $a'$ satisface las mismas condiciones de $a$, pero $\norm{a'}\geq \norm{at}> \norm{a}$. Tenemos una contradicción con la elección de $a$.\end{proof}
+
+\begin{lema}
+Para cualquier $a,b\in\Sigma$, el conjunto
+$$E=\{x\in M\ |\ x\preceq a,\ x\preceq b\}\subset \Sigma$$
+tiene un elemento máximo (con respecto a $\preceq$).
+\label{lema:garside2}
+\end{lema}
+
+\begin{proof} Ya que $\Sigma$ es finito, también lo es $E$. Claramente, $1\in E$ y por tanton el conjunto $E$ es no vacío. Obviamente se satisface la condición $(i)$ del Lema \ref{lema:garside1}. Vamos a comprobar la condición (ii). Tenemos que probar que si $xs$ y $xt$ son divisores por la izquierda de $a$ y $b$ para algún $s,t\in S$, entonces $x\Delta_{s,t}$ lo es también. Sea $y\in\Sigma$ tal que $xy=a$. Por hipótesis, $xs\preceq a = xy$ y $xt\preceq a = xy$. Por el Lema \ref{lema:pre-garside} (i), esto implica que $s\preceq y$ y $t\preceq y$ . Por la Definición \ref{defi:garside}, $\Delta_{s,t}\preceq y$, y por tanto $x\Delta_{s,t}\preceq xy=a$. De igual manera $x\Delta_{s,t}\preceq b$. De esta forma tenemos que $x\Delta_{s,t}\in E$ dandose (ii). Ahora el Lema \ref{lema:garside1} implica que $E$ tiene elemento máximo.
+\end{proof}
+
+Ahora estamos en condiciones de verificar la condición (3.) del Teorema \ref{teor:monoi_deriv}. Tomamos cualesquiera $a,b\in\Sigma$. Ya que $a\preceq\Delta$, tenemos que $\Delta=aa'$ para algún $a'\in\Sigma$. Por el Lema \ref{lema:garside2}, el conjunto
+$$\{x\in M\ |\ x\preceq a',\ x\preceq b\}\subset\Sigma$$ tiene un elemento máximo $c$ con respecto a $\preceq$. Afirmamos que $c$ es máximo en 
+$$\{x\in\Sigma\ |\ x\preceq b,\ ax\in\Sigma\}.$$
+En efecto, por definición, $c\preceq a'$, por lo cual $ac\preceq aa'=\Delta$ y $ac\in\Sigma$. Sea $d\in\Sigma$ tal que $d\preceq b$ y $ad\in\Sigma$. Entonces $ad\preceq\Delta=aa'$ y en consecuencia, por el Lema \ref{lema:pre-garside} (i) (cancelación por la izquierda en $\Sigma$) implica que $d\preceq a'$. Por lo tanto, $d\preceq c$.
+
+\subsection{Monoides de Garside exhaustivos}
+
+Un monoide de Garside $(M,\Delta)$ es \textit{exhaustivo} si el conjunto $\Sigma\subset M$ de divisores de $\Delta$ es exhaustivo en el sentido en el que fue definido anteriormente, es decir, que $1\in\Sigma$ y que $M$ posee una presentación cuyos generadores y relaciones pertenecen a $\Sigma$. Los resultados previos nos dan como consecuencia las siguientes propiedades que cumple un monoide de Garside exhaustivo $(M,\Delta)$.
+
+\begin{enumerate}[label=(\arabic*)]
+\item Tenemos que $M\cong M_\Sigma$ (Lema \ref{lema:iso_mono}). En otras palabras, $M$ tiene una presentación con generadores $[a]$, donde $a$ se mueve en $\Sigma$, y relaciones $[1]=1$ y $[a][b]=[ab]$, donde $a,b\in\Sigma$ satisface $ab\in\Sigma$.
+\item Para cualquier $a\in M$, existe un único divisor por la izquierda $\alpha(a)\in\Sigma$ de $a$ que es máximo entre todos los divisores por la izquierda de $a$ pertenecientes a $\Sigma$ (Teorema \ref{teor:monoi_deriv}).
+\item Cualquier $a\in M$ se expande de forma única como un producto $a=a_1a_2\cdots a_r$ de ciertos $a_1,a_2,\ldots,a_r\in\Sigma \backslash\{1\}$ con $r\geq 0$ tal que $a_i=\alpha(a_ia_{i+1}\cdots a_r)$ para todo $i=1,\ldots,r$ (Sección \ref{sec:fn_msigma}).
+\item El homomorfismo de monoide natural de $M$ en su grupo de fracciones $G_M$ es inyectivo (Lema \ref{lema:cancel} y Colorario \ref{colo:pre-garside-embe}). En particular, $M$ es cancelativo por la izquierda y por la derecha.
+\item Si $M\neq \{1\}$, entonces cualquier elemento de $G_M$ puede ser escrito de la forma $\Delta^s b$ con unicidad (forma normal greedy), donde $s\in\mathbb{Z}$ y $b\in M$ no es múltiplo por la derecha de $\Delta$ (Teorema \ref{teor:refi}).
+\item El problema del conjugado $G_M$ es equivalente al problema del conjugado en $M$ (Sección \ref{sec:pc_grfr}). Este último es soluble si $M$ admite una presentación ponderada (Sección \ref{sec:pc_msigma}).
+\end{enumerate}
+
+\subsection{Divisores y múltiplos comunes en monoides de Garside}
+
+Dados $k\geq 2$ elementos $a_1,\ldots,a_k$ de un monoide $M$, decimos que $d\in M$ es un \textit{máximo común divisor por la izquierda} (mcd) de $a_1,\ldots,a_k$ si $d\preceq a_i$ para todo $i=1,\ldots,k$, y $d'\preceq d$ para cualquier $d'\in M$ tal que $d'\preceq a_i$ ara todo $i=1,\ldots,k$. Reemplazando $\preceq$ por $\succeq$, obtenemos análogamente la noción de mcd por la derecha.
+
+Decimos que $m\in M$ es un \textit{mínimo común múltiplo} (mcm) de $a_1,\ldots,a_k$ si $a_i\preceq m$ para todo $i=1,\ldots,k$, y $m\preceq m'$ para cualquier $m'\in M$ tal que $a_i\preceq m'$ ara todo $i=1,\ldots,k$. Existe la noción análoga de mcm por la izquierda. Si $M$ es atómico, entonces el mcd y el mcm son únicos siempre que existan. La propiedad (2) de la sección anterior puede ser reformulada diciendo que $\Delta$ y cualquier $a\in M$ tienen mcd por la izquierda. Esas propiedades de los monoides de Garside pueden ser generalizadas de la siguiente manera.
+
+\begin{teor}
+Sea $(M,\Delta)$ un monoide de Garside exhaustivo. Entonces cualquier familia finita de elementos de $M$ tiene un único mcd por la izquierda y un único mcm por la derecha.
+\end{teor}
+\begin{proof} Sean $b,c\in M$. Consideramos el conjunto
+$$E=\{a\in M\ |\ a\preceq b,\ a\preceq c\}.$$
+Con el objetivo de probar que $b$ y $c$ tienen un mcd por la izquierda en $M$, es suficiente con comprobar que $E$ satisface las condiciones del Lema \ref{lema:garside1}. El conjunto $E$ claramente satisface la condición (i). El conjunto $E$ es finito porque $\norm{a}<\norm{b}$ para cualquier $a\in E$, así que $a$ es el producto de como mucho $\norm{b}$ átomos de $M$, y el conjunto de átomos de $M$, siendo un subconjunto de $\Sigma$, es finito.
+
+Vamos a comprobar la condición $(ii)$. Supongamos que tenemos $a\in E$ y los átomos $s,t\in M$ tal que $as,at\in E$. Escribimos $b=ab_1$ con $b_1\in M$. Ya que $M$ es cancelativo por la izquierda, $as\preceq b =ab_1$ implica $s\preceq b_1$ y $at\preceq b = ab_1$ implica $t\preceq b_1$. Consideramos el divisor por la izquierda máximo $\alpha(b_1)$ de $b_1$ en $\Sigma$. Tenemos que $s\preceq\alpha(b_1)$ y $t\preceq\alpha(b_1)$. Por tanto $\alpha_{s,t}\preceq \alpha(b_1)\preceq b_1$. Por eso $\Delta_{s,t}\preceq b_1$ y $a\Delta_{s,t}\preceq ab_1= b$. De igual forma $a\Delta_{s,t}\preceq c$. Esto prueba que $a\Delta_{s,t}\in E$.
+
+Que cualquier familia finita de elementos de $M$ tiene un mcd por la izquierda se sigue fácilmente por inducción sobre la cardinalidad de la familia.
+
+Vamos a probar la existencia de mcm por la derecha. Sea $a_1,\ldots,a_k\in M$. En vista al Lema \ref{lema:pre-garside} (iv), existe $r\geq 1$ tal que $a_i\preceq\Delta^r$ para todo $i=1,\ldots,k$. Consideramos el conjunto
+$$X=\{x\in M\ |\ a_i\preceq c\preceq\Delta^r\ \ \forall i\in\{1,\ldots,k\}\}.$$
+Ya que el conjunto de átomos de $M$ es finito y todos los divisores por la izquierda de $\Delta^r$ se expanden como producto de a lo máximo $r\norm{\Delta}$ átomos, el conjunto de divisores por la izquierda de $\Delta^r$ es finito. Dado que contiene a $X$, este es finito también. Sea $m$ el máximo común divisor por la izquierda de los elementos de $X$. Afirmamos que $m$ es mínimo común múltiplo por la derecha de $a_1,\ldots,a_k$. En efecto, $a_1,\ldots,a_k$ son divisores por la izquierda de todos los elementos de $X$. Por lo tanto, son divisores por la izquierda de $m$. Esto demuestra que $m$ es múltiplo común por la derecha de $a_1,\ldots,a_k$.
+
+Sea $m'$ otro común múltiplo por la derecha de $a_1,\ldots,a_k$. Denotamos por $m''$ un máximo común divisor por la izquierda de $m'$ y $\Delta^r$. Comprobamos que $m''\in X$. Primero, $m''\preceq\Delta^r$. Ya que $a_i$ es un divisor por la izquierda de $m'$ y de $\Delta^r$, es un divisor por la izquierda de $m''$. Esto prueba que $m''\in X$. Por definición de $m$, tenemos que $m\preceq m''$. Dado que $m''\preceq m'$, obtenemos $m\preceq m'$. Esto prueba nuestra afirmación.
+\end{proof}
+
+
+\chapter{Construcción del grupo de trenzas}
 \label{sec:cons_grtr}
 Los términos \textit{trenza} y \textit{grupo de trenzas} fueron acuñados por primera vez por el matemático hamburgués Emil Artin en \cite{Art1}, publicación del año 1925. En esta, las trenzas aparecen como objetos topológicos. No fue hasta el año 1947 en el que Artin dió una presentación explícita de este grupo en la revista \textit{Annals of mathematics} \cite{Art2}. A continuación vamos a definir los grupos de trenza tanto desde un punto de vista algebraico, como topológico, las cuales se verán que son equivalentes. También estudiaremos algunas de sus propiedades como grupo. La construcción de este grupo ha sido tomada de  \cite{br_gr} y \cite{st_br}.
 
-\subsubsection{El grupo de trenzas de Artin}
+\section{El grupo de trenzas de Artin}
 
 
 
@@ -315,14 +869,12 @@ Si $s_1,...,s_{n-1}$ son elementos de un grupo $G$ que satisfacen las relaciones
 \label{uni_homo}
 \end{lema}
 
-\begin{proof} Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $g:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i=1,...,n-1$. Por la demostración del primer teorema de isomorfía obtenemos otro homomorfismo $\bar{g}:F_n/K\rightarrow G$ donde $K=\ker(g)$ (de hecho, es un monomorfismo). También tenemos un homomorfismo $h:F_n\rightarrow B_n$ con $h(\sigma_i)=\sigma_i$ del cual consideramos su nucleo $H_n=\ker(h)$. Podemos ver que $H_n$ esta formado por las palabras que representan a la trenza neutra $1\in B_n$. Una definición constructiva equivalente del nucleo es $H_n=\{w_1r'w_2:w_1rw_2=\varepsilon\ o\ w_1rw_2\in H_n, w_1,w_2\in X^*, (r,r')\in R\}$ donde $R$ es el conjunto de relatores de $B_n$. Llamamos $k:F_n/H_n\rightarrow B_n$ al isomorfismo en cuestión. El que los elementos de $s_i$ de $G$ satisfagan las relaciones de trenza implica que $R\subset R'$, donde $R'$ es el conjunto de relatores de G y que por tanto $H_n\subset K$. Por tanto el homomorfismo $\phi:F_n/H_n\rightarrow F_n/K$ con $\phi(xH_n)=\phi(xK)$ esta bien definido. De esta forma, componiendo $f=k^{-1}\circ \phi \circ \bar{g}$ obtenemos nuestro homomorfismo deseado.
+\begin{proof} Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $g:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i=1,...,n-1$. Por la demostración del primer teorema de isomorfía obtenemos otro homomorfismo $\bar{g}:F_n/K\rightarrow G$ donde $K=\ker(g)$ (de hecho, es un monomorfismo). También tenemos un homomorfismo $h:F_n\rightarrow B_n$ con $h(\sigma_i)=\sigma_i$ del cual consideramos su núcleo, $H_n=\ker(h)$. Llamamos $k:F_n/H_n\rightarrow B_n$ al isomorfismo en cuestión. El que los elementos de $s_i$ de $G$ satisfagan las relaciones de trenza implica que $R\subset R'$, donde $R$ es el conjunto de relaciones de $B_n$ y $R'$ es el conjunto de relaciones de G y que por tanto $H_n\subset K$. Por tanto el homomorfismo $\phi:F_n/H_n\rightarrow F_n/K$ con $\phi(xH_n)=\phi(xK)$ esta bien definido. De esta forma, componiendo $f=k^{-1}\circ \phi \circ \bar{g}$ obtenemos nuestro homomorfismo deseado.
 \end{proof}
 
 
 
-
-
-\subsubsection{Trenzas y sus diagramas}
+\section{Trenzas y sus diagramas}
 
 \begin{comment}
 \begin{defi}[$n$-trenza]\label{n_trenza}
@@ -476,7 +1028,7 @@ Dos diagramas de trenzas representan trenzas geométricas isotópicas si y solo 
 
 
 
-\subsubsection{Estructura de grupo}
+\section{Estructura de grupo}
 
 Una vez que hemos definido las trenzas y sabiendo como podemos representarlas vamos a ver que estas cumplen las propiedades para considerar al conjunto de trenzas como un grupo. Para ello comenzamos definiendo la operación producto.
 
@@ -767,548 +1319,10 @@ Los elementos de $P_n$ se llaman trenzas puras de $n$ hebras. Una trenza geomét
 
 
 
-\section{Monoides de Garside y monoides de trenzas}
 
-Vamos a definir una estructura algebraica denominada monoide de Garside, una herramienta muy potente que nos permitirá trabajar con las trenzas. Entre otras cosas nos será posible dar soluciones al problema del conjugado y el problema de palabra definidos más adelante, y dispondremos de una forma normal con la que poder trabajar directamente con las trenzas. Todo esto nos será indispensable para poder construir métodos criptógráficos basados en el grupo de trenzas. Lo referente a monoides que se habla en esta sección aparece en \cite{br_gr}. Comenzamos con la definición de monoide.
+\chapter{Monoide de trenza}
 
-\subsection{Monoides}
-
-Un monoide es un conjunto que cuenta con una operación binaria (multiplicación) $M\times M \rightarrow M$ la cual es asociativa y tiene un elemento neutro que denotaremos por 1. 
-
-Un monoide $M$ es \textit{cancelativo por la izquierda} (resp. \textit{por la derecha}) si para todo $a,b,c\in M$,
-$$ab=ac\text{ implica } b=c\ \ \ \ (\textrm{resp.}\ \  ba=ca \text{ implica } b=c).$$
-Un elemento $a$ de un monoide $M$ es \textit{invertible} si existe $b\in M$ tal que $ab=ba=1$. De esta forma, un grupo es un monoide en el que todo elemento es invertible.
-
-
-
-\subsubsection{Divisibilidad en monoides}
-
-Si $a=bc$, donde $a,b,c$ son elementos de un monoide $M$, entonces decimos que $b$ es un \textit{divisor por la izquierda} de $a$ y $c$ es un \textit{divisor por la derecha}. También decimos que $a$ es un \textit{múltiplo por la derecha} de $b$ y que $a$ es \textit{múltiplo por la izquierda} de $c$. Lo denotaremos por $b\preceq a$ y $a\succeq c$. Por ejemplo, $1\preceq a$ y $a\succeq 1$ para todo $a\in M$, ya que $a=1a=a1$.
-
-\begin{lema}
-Las relaciones $\preceq$ y $\succeq$ en un monoide son reflexivas y transitivas.
-\label{lema:rel1}
-\end{lema}
-
-\begin{proof} La reflexividad de $\preceq$ viene de la identidad $a=a1$. La transitividad viene dada por la asociatividad de la multiplicación. Se procede de igual manera para $\succeq$.
-\end{proof}
-
-\subsubsection{Monoide libre}
-El \textit{monoide libre} sobre un conjunto $X$ es el monoide $X^*$ conteniendo a $X$ como un subconjunto y tal que cualquier función de $X$ a $M$ se extiende de forma única a un homomorfismo de monoide $X^*\rightarrow M$. Esta propiedad se define bajo isomorfismo de monoide sobre $X^*$.
-
-
-Cualquier elemento $w$ de $X^*$ puede ser expresado como una palabra de $X$, es decir, como un producto de elementos de $X$. El número de elementos de $X$ de esta expresión de $w\in X^*$ se denomina \textit{longitud} de $w$ y se denota por $l(w)$. Se tiene que $l(1)=0,\ l(x)=1$ para $x\in X$ y que $l(ww')=l(w)+l(w')$ con $w,w'\in X^*$.
-\label{monoide_libre}
-\subsubsection{Monoides atómicos}
-
-Para cualquier elemento $a\neq 1$ de un monoide $M$, definimos
-$$\norm{a}=\sup\{r\geq 1\ | a=a_1\cdot\cdot\cdot a_r,a_1,...,a_r\in M\backslash \{1\}\}.$$
-Según esta definición $\norm{a}\in \mathbb{N}^*\cup\{\infty\}$. Establecemos que $\norm{1}=0$. Es fácil de ver que para todo $a,b\in M$
-$$\norm{ab}\geq\norm{a}+\norm{b}.$$
-Observar que $\norm{a}=0$ si y solo si $a=1$. A un elemento $a\in M$ se le llama átomo si $\norm{a}=1$. En otras palabras, $a\in M$ es un átomo si $a\neq 1$ y $a=a_1\cdot\cdot\cdot a_r$ implica que $a_i=1$ para todo $i$ excepto uno. Cualquier $a\in M$ con $\norm{a} < \infty$ tiene una expansión $a=a_1\cdot\cdot\cdot a_r$, donde $\norm{a}=r$ y $a_1,...,a_r$ son átomos. Esto justifica la siguiente definición. Un monoide $M$ es \textit{atómico} si $\norm{a} < \infty$ para todo $a\in M$.
-
-\begin{lema}
-Si dos elementos $a,b$ de un monoide atómico $M$ satisfacen $a\preceq b$ y $b\preceq a$, entonces $a=b$. De igual manera, si $a\succeq b$ y $b\succeq a$, entonces $a=b$.
-\label{lema:rel2}
-\end{lema}
-
-\begin{proof} Ya que $a\preceq b\preceq a$, significa que existen $u,v\in M$ tal que $b=au$ y $a=bv$. Entonces $a=auv$ y
-$$\norm{a}=\norm{auv}\geq \norm{a}+\norm{u}+\norm{v}\geq \norm{a}.$$
-Esto implica que $\norm{u}=\norm{v}=0$. Por tanto $u=v=1$ y $a=b$. La relación $\succeq$ es tratada de forma similar.
-\end{proof}
-Los Lemas \ref{lema:rel1} y \ref{lema:rel2} implican que las relaciones $\preceq$ y $\succeq$ en un monoide atómico son órdenes parciales. Dado un subconjunto $E$ de un monoide atómico $M$, decimos que un elemento $a\in E$ es \textit{máximo} (resp. \textit{mínimo}) con respecto a $\preceq$, si $b\preceq a$ (resp. $a\preceq b$) para todo $b\in E$. Un elemento máximo (resp. mínimo) de $E$ podría no existir, pero si existe, es único por el Lema \ref{lema:rel2}. Definiciones equivalentes se obtienen con la relación $\succeq$.
-
-La ecuación $ab=1$ en un monoide atómico $M$ tiene como única solución $a=1,b=1$. De hecho, si $ab=1$ para $a,b\in M$, entonces $1\preceq a \preceq 1$, por lo tanto $a=1$ y $b=1$. En particular, el elemento neutro es el único elemento invertible de $M$.
-
-\subsubsection{Presentaciones de un monoide}
-Consideramos un conjunto $X$ y un subconjunto $R$ de $X^*\times X^*$. Sea $\sim$ la relación de equivalencia más pequeña conteniendo los pares $(\omega_1r\omega_2, \omega_1r'\omega_2)$, donde $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. En otras palabras, $\sim$ es la relación de equivalencia más pequeña en $X^*$ tal que $\omega_1r\omega_2\sim\omega_1r'\omega_2$ para todo $(r,r')\in R$ y $\omega_1,\omega_2\in X^*$. Definimos $M$ como el conjunto de clases de equivalencia inducido por $\sim$. Esta claro que $M$ tiene la única estructura de monoide tal que la proyección $P:X^*\rightarrow M$ es un homomorfismo de monoide. Decimos que $\langle X\mid R\rangle$ es una \textit{presentación de monoide} de $M$ y llamamos a los elementos de $X$ \textit{generadores} y a los elementos de $R$ \textit{relaciones}.
-
-Esta claro que el conjunto $P(X)\subset M$ genera $M$ en el sentido de que cada elemento de $M$ es un producto de elementos de este conjunto. Para cada relación $(r,r')\in R$, el elemento $P(r)=P(r')$ de $M$ se le llama \textit{relator} asociado a la presentación $\langle X\mid R\rangle$. Como notación habitual se usa $r=r'$ para la relación $(r,r'\in R)$ y no se hace distinción entre un generador $x\in X$ y su proyección $P(x)$ en $M$. 
-
-
-
-
-Introducimos varios tipos de presentaciones de monoides que nos serán de utilidad. Una presentación de monoide $\langle X\mid R\rangle$ es finita si $X$ y $R$ son finitos. Una presentación $\langle X\mid R\rangle$ de un monoide $M$ se dice \textit{ponderada} si existe un homomorfismo de monoide $\ell:M\rightarrow \mathbb{N}$ tal que $\ell(x)\geq 1$ para todo $x\in X$. El homomorfismo $\ell$ se llama \textit{peso}. Consideramos que $\ell:M\rightarrow \mathbb{N}$ es un \textit{peso canónico} si cumple que $\ell(x)=1$ para todo $x\in X$.
-
-Una presentación $\langle X\mid R\rangle$ de un monoide $M$ se dice \textit{equilibrada en longitud} si $l(r)=l(r')$ para todo $(r,r')\in R$, donde $l$ es la función longitud en $X^*$ introducida en la Sección \ref{monoide_libre} y existe un peso canónico para esta. En particular, una presentación equilibrada en longitud es una presentación ponderada.
-
-\begin{lema}
-Si un monoide $M$ tiene una presentación ponderada $\langle X\mid R\rangle$, entonces $M$ es atómico y todos sus átomos están contenidos en el conjunto $X$ de generadores. Si $M$ tiene una presentación equilibrada en longitud $\langle X\mid R\rangle$, entonces el conjunto de átomos de $M$ coincide con $X$ y $\norm{a}=\ell(a)$ para todo $a\in M$, donde $\ell$ es el peso canónico en $M$.
-\label{lema:presen_mono}
-\end{lema}
-
-\begin{proof} Sea $\ell: M\rightarrow \mathbb{N}$ un homomorfismo de monoide tal que $\ell(x)\geq 1$ para todo generador $x\in X$, que sabemos que existe por tener M  una presentación ponderada $\langle X\mid R\rangle$. Entonces $\ell(a)\geq 1$ para todo $a\in M \backslash\{1\}$. Si $a\in M$ se expande como el producto $a_1\cdot\cdot\cdot a_r$ con $a = a_1,...,a_r\in M\backslash\{1\}$, entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r$. Por tanto $\ell(a)\geq \norm{a}$. Que todos los átomos de $M$ pertenecen a $X$ viene del hecho de que cualquier conjunto que genere un monoide debe contener a sus átomos, ya que estos no se pueden obtener como producto de otros elementos y forman parte del monoide. 
-
-Para la segunda afirmación, al tener una presentación equilibrada en longitud, en particular, tiene una presentación ponderada, por lo que sabemos que $M$ es atómico y el conjunto de átomos de $M$ esta incluido en $X$. Para comprobar la igualdad, tomamos un elemento $x\in X$ y lo expresamos como producto de elementos de $M\backslash\{1\}$, $x = a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M\backslash\{1\}$. Como $\ell$ es un peso canónico tenemos que $1=\ell(x)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r\geq 1$. Por tanto, $\norm{x}=1$ para todo $x\in X$, es decir, todo elemento de $X$ es un átomo. Por último, al ser $M$ atómico, podemos expresar $a\in M$ como producto de átomos $a =a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M\backslash\{1\},\ \norm{a_i}=1$  para $i=1,\ldots,r$. Entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r) = r = \norm{a}$ por ser $\ell$ peso canónico y $\norm{a_i}=1$ para $i=1,\ldots,r$.
-\end{proof}
-
-\subsubsection{El problema de palabra y el problema de divisibilidad}
-
-El \textit{problema de palabra} para una representación $\langle X|R\rangle$ de un monoide $M$ consiste en que dadas dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a=a'$. El \textit{problema de divisibilidad por la izquierda} (resp. \textit{derecha}) esta estrechamente relacionado y consiste en que dadas
-dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a\preceq a'$ (resp. $a'\succeq a$).
-
-Tanto el problema de palabra como el problema de divisibilidad pueden ser fácilmente resueltos con una representación finita $\langle X|R\rangle$ de $M$. Sea $\ell:M\rightarrow\mathbb{N}$ un peso, de manera que $\ell(x)\geq 1$ para todo $x\in X$. Observar que el valor de $\ell$ para cualquier $a\in M$ representado por cualquier palabra no vacía $\omega\in X^*$ es mayor o igual que la longitud de $\omega$. Sea $W(a)\subset X^*$ el conjunto de palabras representando a $a$. Todas esas palabras tienen longitud menor que $\ell(a)$. Ya que $X$ es finito, el número de palabras de menor longitud que $\ell(a)$ es finito y por tanto también lo es el conjunto $W(a)$. Para listar todos los posibles elementos de $W(a)$, uno comienza con la palabra que representa $a$ y consecutivamente aplica todas las posibles substituciones del tipo
-$$\omega_1 r\omega_2\leftrightarrow \omega_1 r'\omega_2\ \ \ (r,r')\in R$$
-a cualquier elemento de $W(a)$ ya encontrado. Ya que $R$ es finito, este procedimiento también es finito. Esto da una solución al problema de palabra. Dadas dos palabras $\omega,\omega'\in X^*$ representando a $a,a'\in M$ respectivamente, sabemos que $a=a'$ si $W(a)=W(a')$.
-
-También obtenemos una solución para el problema de divisibilidad por la izquierda y por la derecha. Se tiene que $a\preceq a'$ si y solo si algún prefijo (segmento inicial) de una palabra en $W(a')$ pertenece a $W(a)$. De igual manera, $a'\succeq a$ si y solo si algún sufijo (segmento final) de una palabra en $W(a')$ pertenece a $W(a)$.
-
-\subsection{Formas normales y el problema del conjugado}
-
-Ahora vamos a introducir y estudiar un cierto monoide $M_\Sigma$ derivado de un subconjunto $\Sigma$ de cierto monoide $M$. Bajo la presunción de hipótesis favorables, obtenemos una forma normal para los elementos de $M_\Sigma$ y resolvemos el problema del conjugado en $M_\Sigma$.
-
-\subsubsection{El monoide $M_\Sigma$} 
-
-Sea $M$ un monoide y $\Sigma$ un subconjunto de $M$ conteniendo el elemento neutro $1$. Sea $M_\Sigma$ un monoide generado por los simbolos $[a]$, donde $a\in \Sigma$, partiendo de la definición de las relaciones $[1]=1$ y $[a][b]=[ab]$, siempre que $a,b,ab\in\Sigma$. Existe un homomorfismo de monoide $p:M_\Sigma\rightarrow M$ definido por $p([a])=a$ para todo $a\in\Sigma$.
-
-Otra definición equivalente de $M_\Sigma$ puede hacerse identificando el producto $[a_1]\cdot\cdot\cdot[a_r]$ en $M_\Sigma$ (donde $a_,...,a_r\in \Sigma$) con la sucesión $(a_1,...,a_r)$. Entonces $M_\Sigma$ es el conjunto de clases de equivalencia de sucesiones finitas $(a_1,...,a_r)$ de elementos de $\Sigma$ bajo la equivalencia generada por
-$$(a_1,...,a_{i-1}, a_i'a_i'',a_{i+1},...,a_r)\sim (a_1,...,a_{i-1}, a_i',a_i'',a_{i+1},...,a_r),$$
-siempre que $a_i'a_i''\in\Sigma$. La sucesión vacía es equivalente a la sucesión de un elemento $(1)$, donde $1\in\Sigma$. El producto en $M_\Sigma$ esta inducido por la concatenación de sucesiones.
-
-
-\begin{teor}
-\label{teor:monoi_deriv}
-Sea $M$ un monoide atómico y $\Sigma$ un subconjunto de $M$ tal que $1\in \Sigma$ y cumple las siguientes condiciones:
-\begin{enumerate}
-\item Todos los divisores por la izquierda y por la derecha de elementos de $\Sigma$ pertenecen a $\Sigma$. (Cerrado para divisores a izquierda y a derecha.)
-\item Para cualesquiera $a,b,c\in \Sigma$, si $ab=ac$ o $ba=ca$, entonces b=c. (Cancelativo.)
-\item Para cualesquiera $a,b\in \Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento máximo (con respecto a $\preceq$).
-\end{enumerate}
-Entonces para cualquier $\xi\in M_\Sigma$, hay un único $\alpha(\xi)\in\Sigma$ tal que $[\alpha(\xi)]$ es un divisor por la izquierda de $\xi$ que es el máximo de entre todos los divisores por la izquierda de $\xi$ que se encuentra en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$. Además, hay un único $\omega(\xi)\in M_\Sigma$ tal que $\xi=[\alpha(\xi)]\omega(\xi)$.
-\end{teor}
-
-\begin{proof} La prueba consiste de cinco pasos.
-
-\ 
-
-\textit{Paso 1.} Por la tercera hipótesis, para cualquier $a,b\in\Sigma$, el conjunto $\{x\in\Sigma:x\preceq b,\ ax\in\Sigma\}$ tiene un elemento máximo $c\in\Sigma$. Entonces $b=cd$ para algún $d\in M$. Por la primera hipótesis, $d\in\Sigma$, y por la segunda, $d$ es único. Sea $\alpha_2(a,b)=ac\in\Sigma$ y $\omega_2(a,b)=d\in\Sigma$. Claramente se tiene
-\begin{equation}
-\label{eq:div_max}
-\alpha_2(a,b)\omega_2(a,b)=ab.
-\end{equation}
-Nuestro objetivo en este paso va a ser probar las siguientes igualdades. Dados $a,b,c\in\Sigma$ tales que $a,b\in\Sigma$
-\begin{equation}
-\label{eq:alfa_com}
-\alpha_2(ab,c)=\alpha_2(a,\alpha_2(b,c)),
-\end{equation}
-\begin{equation}
-\label{eq:omega_com}
-\omega_2(ab,c)=\omega_2(a,\alpha_2(a,b))\omega_2(b,c).
-\end{equation}
-Podemos usar la siguiente observación. Si $a,b,c\in M$ satisfacen que $ac\in\Sigma$ y $ab\preceq ac$, entonces $b\preceq c$. De hecho, si $ac=abd$ con $d\in M$, entonces la presunción de que $ac\in\Sigma$ junto con la primera hipótesis implica que $a,c,bd\in\Sigma$. Por la segunda hipótesis tenemos que $c=bd$.
-
-Por definición, $\alpha_2(b,c)=bd$, donde $d$ es máximo tal que $d\preceq c$ y $bd\in \Sigma$. Entonces
-$$\alpha_2(a,\alpha_2(b,c))=\alpha_2(a,bd)=ad',$$
-donde $d'$ es máximo tal que $d'\preceq bd$ y $ad'\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$ (por hipótesis), al ser $d'$ máximo se tiene que $b\preceq d'$. Escribiendo $d'=be$ con $e\in\Sigma$, obtenemos que $\alpha_2(a,bd)=abe$, con $be\preceq bd\in\Sigma$ y $abe\in\Sigma$. Por la observación hecha previamente vemos que $e\preceq d\preceq c$, así que $e\preceq c$. Ahora $\alpha_2(ab,c)=abf$, donde $f$ es máximo tal que $f\preceq c$ y $abf\in\Sigma$. Por tanto, $e\preceq f$. Por otra parte, $f\preceq c$ y $bf\in\Sigma$. Esto y la inclusión de $abf\in\Sigma$ implica que $bf\preceq d' = be$. Por tanto, $f\preceq e$. Por el Lema \ref{lema:rel2} $e=f$ y
-$$\alpha_2(ab,c)=abf=abe=ad'=\alpha_2(a,\alpha_2(b,c)).$$
-Esto prueba la igualdad (\ref{eq:alfa_com}). Para probar la igualdad (\ref{eq:omega_com}) observar (\ref{eq:div_max}) y (\ref{eq:alfa_com}),
-$$\alpha_2(ab,c)\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=\alpha_2(a,\alpha_2(b,c))\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$$
-$$=a\alpha_2(b,c)\omega_2(b,c)=abc=\alpha_2(ab,c)\omega_2(ab,c).$$
-Por la segunda condición, para deducir (\ref{eq:omega_com}) es suficiente probar que el producto $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ pertenece a $\Sigma$. Por definición, existe $d\in\Sigma$ tal que $\alpha_2(b,c)=bd\in\Sigma$ y $c=d\omega_2(b,c)$. Sea $f$ el elemento máximo de $\Sigma$ tal que $f\preceq bd$ y $af\in\Sigma$. Ya que $b\preceq bd$ y $ab\in\Sigma$, existe $e\in\Sigma$ tal que $f=be$. Entonces
-$$bd=f\omega_2(a,bd)=be\omega_2(a,bd).$$
-Por la segunda condición, $d=e\omega_2(a,bd)$ y
-$$e\omega_2(a,\alpha_2(b,c))\omega_2(b,c)=e\omega_2(a,bd)\omega_2(b,c)=d\omega_2(b,c)=c.$$
-Esto demuestra que $\omega_2(a,\alpha_2(b,c))\omega_2(b,c)$ es divisor por la derecha de $c\in\Sigma$, por tanto es un elemento de $\Sigma$.
-
-\ 
- 
-\textit{Paso 2}. En este paso probaremos la siguiente afirmación. Existe una única función $\alpha:M_\Sigma\rightarrow\Sigma$ tal que
-
-\begin{enumerate}[label=\roman*.]
-\item $\alpha(1)=1$,
-\item $\alpha([a]\eta)=\alpha_2(a,\alpha(\eta))$ para todo $a\in\Sigma$, $\eta\in M_\Sigma$.
-\end{enumerate}
-
-Recordamos el homomorfismo de monoide $p:M_\Sigma\rightarrow M$. Para cualquier $\xi\in M_\Sigma$ definimos $H(\xi)=\norm{p(\xi)}\geq 0$. Llamamos a $H(\xi)$ el peso de $\xi$. Esta claro que
-$$H(\xi\xi')\geq H(\xi)+H(\xi'),$$
-para cualesquiera $\xi\xi'\in M_\Sigma$. Observar que $H(\xi)=0$ si y solo si $\xi=1$, y $H(\xi)=1$ si y solo si $\xi=[a]$, donde $a$ es un átomo de $M$ perteneciente a $\Sigma$. Para ver esto, tomamos una expansión $\xi=[a_1]\cdot\cdot\cdot[a_r]$ con $a_1,...,a_r\in\Sigma$. Entonces
-$$H(\xi)=\norm{p(\xi)}\geq\norm{a_1}+\cdot\cdot\cdot\norm{a_r}.$$
-Si $H(\xi)=0$, entonces $a_1=\cdot\cdot\cdot=a_r=1$ y $\xi=1$. Si $H(\xi)=1$, entonces todos los elementos $a_1,...,a_r\in\Sigma$ son iguales a $1$ excepto un elemento, el cual es un átomo.
-
-Dado $\xi\in M_\Sigma$, definimos $\alpha(\xi)$ por inducción sobre el peso de $\xi$. Para $\xi=1$ establecemos $\alpha(\xi)=1\in\Sigma$. Si $H(\xi)=1$, entonces $\xi=[a]=[a]1$ para algún átomo $a\in\Sigma$, y para satisfacer (ii) establecemos que $\alpha(\xi)=\alpha_2(a,1)=a$.
-
-Tomamos un entero $k\geq 1$ y suponemos que $\alpha(\xi)$ esta definido para todo $\xi$ de peso menor o igual que $k$ de manera que las condiciones (i), (ii) se satisfacen siempre que $H([a]\eta)\leq k$. Sea $\xi$ un elemento de $M_\Sigma$ de peso $k+1$. Podemos expandir $\xi=[a]\eta$, donde $a\in\Sigma$, $a\neq 1$ y $\eta\in M_\Sigma$. Entonces $H([a])\geq 1$ y $H([\eta]) < H([a]\eta)$, así que $\alpha(\eta)$ esta ya definido. Para satisfacer (ii) establecemos $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Debemos comprobar que $\alpha_2(a,\alpha(\eta))$ no depende de la elección de la expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y por la hipótesis de inducción, es suficiente con comprobar que 
-$$\alpha_2(a,\alpha(\eta))=\alpha_2(a',\alpha([a'']\eta)),$$
-donde $a=a'a''$ con $a',a''\in \Sigma \backslash\{1\}$. Ya que
-$$H([a'']\eta)\leq H([a]\eta) - H([a'])<H([a]\eta),$$
-la hipótesis de inducción nos da que $\alpha([a''])=\alpha_2(a'',\alpha(\eta))$. Por la igualdad (\ref{eq:alfa_com}) 
-$$\alpha_2(a',\alpha([a'']\eta))=\alpha_2(a',\alpha_2(a'',\alpha(\eta)))$$
-$$=\alpha_2(a'a'',\alpha(\eta))=\alpha_2(a,\alpha(\eta)).$$
-Por tanto $\alpha$ esta bien definido para los elementos de $M_\Sigma$ de peso menor o igual que $k +1$ y satisface las condiciones (i) y (ii). Esto completa la inducción y prueba nuestra afirmación.
-\newline
-\newline
-\textit{Paso 3}. Ahora comprobamos que para cualquier $\xi\in M_\Sigma$, el elemento $[\alpha(\xi)]\in M_\Sigma$ es un divisor por la izquierda de $\xi$ que es máximo entre todos los divisores por la izquierda de $\xi$ que se encuentrar en el conjunto $\{[a]\}_{a\in\Sigma}\subset M_\Sigma$.
-
-Utilizando la proyección $p:M_\Sigma\rightarrow M$, es fácil demostrar que todos los divisores de $1\in M_\Sigma$ son iguales a $1$. Por tanto si $H(\xi)=0$, entonces $[\alpha(\xi)]=\xi=1$ es el único divisor por la izquierda de $1\in\Sigma$. Si $H(\xi)\geq 1$, escribimos $\xi=[a]\eta$ para algún $a\in\Sigma \backslash \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\alpha(\xi)=\alpha_2(a,\alpha(\eta))$. Por tanto, $\alpha(\xi)=ab$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(eta)$. Por el supuesto de inducción, $[\alpha(\eta)]$ es un divisor por la izquierda de $\eta$. Por tanto,
-$$[\alpha(\xi)]=[ab]=[a][b]\preceq [a][\alpha(\eta)]\preceq [a]\eta=\xi.$$
-
-Esto demuestra que $[\alpha(\xi)]$ es divisor por la izquierda  de $\xi$ perteneciente a $\{[a]\}_{a\in\Sigma}$. Veamos que $[\alpha(\xi)]$ es máximo. Supongamos que $\xi=[a']\eta'$
-para algún $a'\in\Sigma$, $\eta'\in M_\Sigma$. Entonces $\alpha(\xi) =\alpha_2(a',\alpha(\eta'))=a'b'$ para algún $b'\in\Sigma$. Por tanto, $a'\preceq \alpha(\xi)$ y $[a']\preceq [\alpha(\xi)]$.
-\newline
-\newline
-\textit{Paso 4.} Existe una única función $\omega:M_\Sigma\rightarrow\Sigma$ tal que
-
-\begin{enumerate}[label=\roman*.]
-\item $\omega(1)=1$,
-\item $\omega([a]\eta)=[\omega_2(a,\alpha(\eta))]\omega(\eta)$ para todo $a\in\Sigma$, $\eta\in M_\Sigma$.
-\end{enumerate}
-
-El valor de $\omega$ para cualquier $\xi\in M_\Sigma$ esta definido por inducción sobre el peso de $\xi$. Establecemos que $\omega(1)=1$. Tomamos un entero $k\geq 1$ y suponemos que $\omega(\xi)$ esta definido para todo $\xi$ de peso menor o igual que $k$, de manera que las condiciones (i) y (ii) se satisfacen siempre que $H([a]\eta)\leq k$. Sea $\xi=[a]\eta$ un elemento de $M_\Sigma$ de peso $k+1$ con un $q\in\Sigma \backslash \{1\}$ y $\eta\in M_\Sigma$. Entonces $H(\eta)< H(\xi)$ y $\omega(\eta)$ esta definido. Para satisfacer (ii), establecemos que 
-$$\omega(\xi)=[\omega_2(a,\alpha(\eta))]\omega(\eta).$$
-Debemos de comprobar que $\omega(\xi)$ es independiente de la elección de expansión $\xi=[a]\eta$. Por definición de $M_\Sigma$ y la inducción de hipótesis, es suficiente con comprobar que
-$$\omega_2(a,\alpha(\eta))\omega(\eta)=\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta),$$
-donde $a=a'a''$ con $a',a''\in\Sigma\backslash\{1\}$. Sabemos que $\alpha([a'']\eta)=\alpha_2(a'',\alpha(\eta))$. Ya que $H([a'']\eta) < H([a]\eta)$, la hipótesis de inducción nos da la igualdad $\omega([a'']\eta)=[\omega_2(a'',\alpha(\eta))]\omega(\eta)$. Por la igualdad (\ref{eq:omega_com})
-$$\omega_2(a',\alpha([a'']\eta))\omega([a'']\eta)=\omega_2(a',\alpha_2(a'',\alpha(\eta)))\omega([a'']\eta)$$
-$$= \omega_2(a',\alpha_2(a'',\alpha(\eta)))[\omega_2(a'',\alpha(\eta))]\omega(\eta)$$
-$$ =\omega_2(a'a'',\alpha(\eta))\omega(\eta)=  \omega_2(a,\alpha(\eta))\omega(\eta).$$
-Por tanto $\omega$ esta bien definido para los elementos de $M_\Sigma$ de peso menor o igual que $k+1$ y satisface las condiciones (i) y (ii). Esto completa la inducción y prueba nuestra afirmación.
-\newline
-\newline
-\textit{Paso 5.} Para completar la prueba, tenemos que demostrar que para cualquier $\xi\in M_\Sigma$, el elemento $\eta = \omega(xi)$ es el único elemento de $M_\Sigma$ tal que $\xi = [\alpha(\xi)]\eta$. Procedemos por inducción sobre $H(\xi)$. Si $H(\xi) = 0$, entonces $\xi = 1$, $\alpha(\xi) = 1,\ \omega(\xi) = 1$, y la afirmación es obvia. Supongamos que la afirmación se da para todo $\xi$ de altura menor o igual a $k$ para cualquier entero $k\geq 1$. Sea $\xi$ un elemento de $M_\Sigma$ de  altura $k+1$. Por el Paso 3, $\xi=[\alpha(\xi)]\eta$ con $\eta\in M_\Sigma$. Claramente, $\alpha(\xi)\neq 1$ y por tanto $H(\eta) < H(\xi)$.
-
-Establecemos $\theta=[\alpha(\xi)][\alpha(\eta)]$. Por definición de la función $\alpha$,
-$$\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))=\alpha(\xi)b$$
-para algún $b\in\Sigma$ tal que $[b]\preceq [\alpha(\eta)]\preceq\eta$. Por tanto $\alpha(\xi)\preceq\alpha(\theta)$ y 
-$$[\alpha(\theta)] = [\alpha(\xi)][b]\preceq[\alpha(\xi)]\eta=\xi.$$
-Ya que $\alpha(\xi)$ es el máximo divisor por la izquierda de $\xi$ en el conjunto $\{[a]\}_{a_\in\Sigma}$, tenemos $[\alpha(\xi)]=[\alpha(\theta)]$. Proyectando a $M$, concluimos que
-$$\alpha(\xi)=\alpha(\theta) = \alpha_2(\alpha(\xi),\alpha(\eta)).$$
-Por tanto, $\alpha(\xi)\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))\alpha(\eta)$. Por otro lado, por (\ref{eq:div_max}),
-$$\alpha(\xi)\alpha(\theta)=\alpha_2(\alpha(\xi),\alpha(\eta))\omega_2(\alpha(\xi),\alpha(\eta)).$$
-Combinando estas ecuaciones obtenemos
-$$\alpha_2(\alpha(\xi),\alpha(\eta))\alpha(\eta) = \alpha_2(\alpha(\xi),\alpha(\eta))\omega_2(\alpha(\xi),\alpha(\eta)).$$
-Por la segunda condición del teorema, podemos cancelar $\alpha_2(\alpha(\xi),\alpha(\eta))$. Así que $\alpha(\eta) = \omega_2(\alpha(\xi),\alpha(\eta))$ y 
-$$\omega(\xi) = \omega([\alpha(\xi)]\eta) = [\omega_2(\alpha(\xi),\alpha(\eta))]\omega(\eta)=[\alpha(\eta)]\omega(\eta) = \eta,$$
-donde la última igualdad viene de la hipótesis de inducción. Esto demuestra que $\xi = [\alpha(\xi)\omega(\xi)]$ y que cualquier $\eta\in M_\Sigma$ satisfaciendo $\xi = [\alpha(\xi)]\eta$ es igual a $\omega(\xi)$.
-\end{proof}
-
-
-
-
-
-
-
-
-\subsubsection{Forma nomal en $M_\Sigma$}
-\label{sec:fn_msigma}
-Bajo las hipótesis del Teorema \ref{teor:monoi_deriv} , cualquier $\xi$ puede ser expandido inductivamente
-$$\xi=[\alpha(\xi)]\omega(\xi)=[\alpha(\xi)][\alpha(\omega(\xi))]\omega^2(\xi)$$
-$$=[\alpha(\xi)][\alpha(\omega(\xi))][\alpha(\omega^2(\xi))]\omega^3(\xi)=\cdot\cdot\cdot\ .$$
-Este proceso de expansión puede ser parado en el $r$-ésimo paso, donde $r$ el el mínimo entero tal que $\omega^{r+1}(\xi)=1$. Tal $r$ existe ya que una expansión de $\xi$ como producto de  generadores de $[a]$ con $a\in\Sigma$ tiene como mucho un cierto $k$ (visto en la demostración del Teorema \ref{teor:monoi_deriv}) de generadores distintos de $1$.
-
-Esta observación nos lleva a una forma normal para cada elemento de $M_\Sigma$. Una \textit{forma normal} para $\xi\in M_\Sigma$ es una sucesión $(a_1,a_2,...,a_r)$ de elementos de $\Sigma$, todos diferentes de $1$, tal que $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ y 
-$$a_i=\alpha([a_i][a_{i+1}]\cdot\cdot\cdot[a_r])$$
-para todo $i=1,2,...,r$. La unicidad en la última afirmación del Teorema \ref{teor:monoi_deriv} implica la unicidad de la forma normal.
-
-
-\subsubsection{La cancelatividad de $M_\Sigma$}
-
-Usamos el Teorema \ref{teor:monoi_deriv} y la función $\alpha_2:\Sigma\times\Sigma\rightarrow\Sigma$ introducida en la prueba para establecer la cancelatividad por la izquierda de $M_\Sigma$.
-
-\begin{lema}
-Bajo las hipótesis del Teorema \ref{teor:monoi_deriv}, el monoide $M_\Sigma$ es cancelativo por la izquierda.
-\label{lema:cancel}
-\end{lema}
-
-\begin{proof} Necesitamos demostrar que $\xi\eta=\xi\theta$ implica $\eta=\theta$ para todo $\xi,\eta,\theta\in M_\Sigma$. Suponemos primero que $\xi=[a]$ para algún $a\in\Sigma$. Entonces $\alpha(\xi\eta))=\alpha_2(a,\alpha(\eta))=ab\in\Sigma$ para algún $b\in\Sigma$ tal que $b\preceq \alpha(\eta)$. Así
-$$ab=\alpha(\xi\eta)=\alpha(\xi\theta)=\alpha([a]\theta)=\alpha_2(a,\alpha(\theta))=ac$$
-para algún $c\preceq\alpha(\theta)$ implica que $b=c\preceq\alpha(\theta)$. Entonces existen $\eta',\theta'\in M_\Sigma$ tales que $[b]\eta'=\eta$ y $[b]\theta'=\theta$. Como ya sabemos, $\omega(\xi\eta)$ es el único elemento $x\in M_\Sigma$ tal que $\xi\eta=[\alpha(\xi\eta)]x=[ab]x$. Ya que
-$$\xi\eta=[a][b]\eta'=[ab]\eta',$$
-tenemos que $\omega(\xi\eta) = \eta'$. De igual manera, $\omega(\xi\theta)=\theta'$. Por tanto,
-$$\eta'=\omega(\xi\eta)=\omega(\xi\theta)=\theta',$$
-$$\eta=[b]\eta'=[b]\theta'=\theta.$$
-
-En general, $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ con $a_1,a_2,...,a_r\in\Sigma$. Como ya sabemos, $[a_1][a_2]\cdot\cdot\cdot[a_r]\eta=[a_1][a_2]\cdot\cdot\cdot[a_r]\theta$ implica que $[a_2]\cdot\cdot\cdot[a_r]\eta=[a_2]\cdot\cdot\cdot[a_r]\theta$. Repitiendo este proceso, obtenemos que $\eta=\theta$.
-\end{proof}
-
-\subsubsection{El problema de palabra en $M_\Sigma$}
-
-Decimos que el conjunto $\Sigma\subset M$ esta ponderado si existe una función $\ell:\Sigma\rightarrow\mathbb{N}$ tal que $\ell(1)=0,\ \ell(a)\geq 1$ para $a\neq 1$, y $\ell(ab)=\ell(a)+\ell(b)$ siempre que $a,b,ab\in\Sigma$. La función $\ell$ se extiende al homomorfismo de monoide $M_\Sigma\rightarrow\mathbb{N}$ que convierte la presentación de $M_\Sigma$ en una presentación ponderada. Además, si $\Sigma$ es finito, ya hemos visto una solución al problema de palabra y al problema de divisibilidad en $M_\Sigma$.
-
-\subsubsection{El problema del conjugado en $M_\Sigma$}
-\label{sec:pc_msigma}
-El \textit{problema del conjugado en un grupo} $G$ consiste en encontrar un procedimiento que nos permita, dados $\alpha,\beta\in G$, decidir si existe $\gamma\in G$ tal que $\alpha=\gamma\beta\gamma^{-1}$ o, equivalentemente, $\alpha\gamma=\gamma\beta$. Por extensión, el \textit{problema del conjugado en un monoide} $M$ consiste en encontrar un procedimiento que nos permita, dados $a,b\in M$, decidir si existe $c\in M$ tal que $ac=cb$. El siguiente lema es la clave para el problema del conjugado en $M_\Sigma$.
-
-\begin{lema}
-Sea $M,\Sigma\subset M$ satisfaciendo las hipótesis del Teorema \ref{teor:monoi_deriv}. Dados $a,b\in M_\Sigma$, existe $c\in M_\Sigma$ tal que $ac=cb$ si y solo si existe una una sucesión $a=a_0,a_1,\ldots,a_r=b$ de elementos de $M_\Sigma$ y una sucesión $c_1,\ldots,c_r$ de elementos de $\Sigma$ tal que
-$$a_{i-1}[c_i]=[c_i]a_i$$
-para todo $i=1,\ldots,r$.
-
-\label{lema:conjugado}
-\end{lema}
-
-\begin{proof} Si nosotros tenemos tales sucesiones, entonces $ac=cb$ para $c=[c_1][c_2]\cdots[c_r]$. En la otra implicación tenemos que $c\in M_\Sigma$ tal que $ac=cb$. Demostramos la afirmación por inducción en la longitud $r$ de la forma normal $(c_1,\ldots,c_r)$ de $c$. Si $r=1$, entonces $c = [c_1]$ y queda probado. Supongamos que $r\geq 2$. Ya que
-$$[c_1]=[\alpha(c)]\preceq c \preceq cb = ac,$$
-tenemos que
-$$c_1\preceq\alpha(ac)=\alpha_2(a,\alpha(c))=\alpha_2(a,c_1).$$
-Por tanto,
-$$[c_1]\preceq [\alpha_2(a,c_1)]\preceq ac_1.$$
-Existe $a_1\in M_\Sigma$ tal que
-$$[c_1]a_1=a[c_1],$$
-por lo que obtenemos que 
-$$[c_1]a_1[c_2]\cdots[c_r]=a[c_1][c_2]\cdots[c_r]=ac=cb=[c_1][c_2]\cdots[c_r]b.$$
-Por el Lema \ref{lema:cancel}, podemos dividir por la izquierda por $[c_1]$. Esto nos da que $a_1c'=c'b$, donde $c'=[c_2]\cdots[c_r]$ tiene una forma normal de longitud $r-1$ a la que se le puede aplicar la hipótesis de inducción.
-\end{proof}
-
-El Lema \ref{lema:conjugado} nos da una solución al problema del conjugado en $M_\Sigma$. Suponemos que $M,\Sigma$ satisfacen las condiciones del Teorema \ref{teor:monoi_deriv} y que $\Sigma$ es finito. Suponemos también que $M_\Sigma$ admite una presentación ponderada finita de manera que el problema de palabra tiene solución. Para determinar si dos elementos $a,b\in M_\Sigma$ son conjugados, primero hay que observar que elementos conjugados de $M_\Sigma$ tienen el mismo peso. Ya que solo hay un número finito de elementos de $M_\Sigma$ para un peso específico, $a$ tiene un número finito de conjugados. El Lema \ref{lema:conjugado} nos dice que, con el objetivo de encontrarlos todos, es suficiente aplicar todas las posibles conjugaciones por elementos de $\Sigma$ para conocer todos los conjugados de $a$ hasta que no se encuentren nuevos elementos. Así obtenemos una lista finita $a_1,\ldots,a_s$ de conjugados de $a$ en $M_\Sigma$. Si $b=a_i$ para algún $i$, entonces $b$ es conjugado de $a$. Si no es así, entonces $b$ no es conjugado de $a$.
-
-\subsubsection{Conjuntos exhaustivos}
-
-Un conjunto $\Sigma\subset M$ es \textit{exhaustivo} si $1\in\Sigma$ y $M$ tiene una presentación cuyos generadores y relaciones pertenecen a $\Sigma$.
-
-\begin{lema}
-Si $\Sigma$ es un subconjunto exhaustivo de un monoide $M$ tal que todos los divisores por la izquierda de los elementos de $\Sigma$ pertenecen a $\Sigma$, entonces el homomorfismo de monoides $p:M_\Sigma\rightarrow M$ es un isomorfismo.
-\label{lema:iso_mono}
-\end{lema}
-
-\begin{proof} Ya que $\Sigma$ contiene un conjunto de generadores de $M$, el homomorfismo $p$ es sobreyectivo. Solo necesitamos probar que es inyectivo. Observamos primero que si $a_1,a_2,\ldots,a_n$ son elementos de $\Sigma$ con $n\geq 2$ tales que $a=a_1a_2\cdots a_n\in\Sigma$, entonces $[a]=[a_1][a_2]\cdots [a_n]$. De hecho, $a_1a_2$ es divisor por la izquierda de $a$ y por tanto $a_1a_2\in\Sigma$. Por definición de $M_\Sigma$, tenemos que $[a_1][a_2]=[a_1a_2]$. Continuando por inducción obtenemos que $[a_1][a_2]\cdots[a_n]=[a]$.
-
-Cosideramos ahora una presentación $\langle X\mid R\rangle$ de $M$ por generadores y relaciones y sea $P:X^*\rightarrow M$ la proyección natural. Asumimos que $P(x)\in\Sigma$ para todo $x\in X$ y $P(r)=P(r')\in\Sigma$ para todo $(r,r')\in R$. Definimos un homomorfismo de monoide $Q:X^*\rightarrow M_\Sigma$ por $Q(x)=[P(x)]$ para $x\in X$. La observación anterior implica que para cualquier $r\in X^*$ con $P(r)\in\Sigma$, tenemos que $Q(r)=[P(r)]$. Por tanto para cualquier relación $(r,r')\in R$ tenemos que
-$$Q(r)=[P(r)]=[P(r')]=Q(r').$$
-Esto implica que existe un homomorfismo de monoide $q:M\rightarrow M_\Sigma$ tal que $Q=qP$. Entonces
-$$qp([P(x)])=q(P(x))=Q(x)=[P(x)]$$
-para todo $x\in X$. Ya que el conjunto $P(X)$ genera $M$, tenemos $qp=id$. Por tanto $p$ es inyectiva.
-\end{proof}
-El Lema \ref{lema:iso_mono} nos muestra que bajo las hipótesis apropiadas sobre $\Sigma$ tenemos que $M_\Sigma\cong M$, así que todas las propiedades de $M_\Sigma$ se transladan a $M$.
-
-
-
-
-\subsection{Grupo de fracciones y monoides pre-Garside}
-\subsubsection{Grupo de fracciones}
-
-Un homomorfismo de monoide $i:M\rightarrow G$ se dice que es \textit{universal} si $G$ es un grupo y para cualquier homomorfismo de monoide $f$ de $M$ a un grupo arbitrario $G'$, existe un único homomorfismo de grupo $g:G\rightarrow G'$ tal que $f=gi$. Cada monoide $M$ admite un homomorfismo universal a un grupo. Para ver esto, tomamos una representación arbitraria $\langle X \mid R \rangle$ de $M$ por generadores y relaciones, y consideramos el grupo $G$ definido por $\langle X \mid R \rangle$ visto como una presentación de grupo. La función identidad $id_X:X\rightarrow X$ extiende a un homomorfismo de monoide $M\rightarrow G$, el cual es fácil ver que es universal. La definición de homomorfismo universal implica que $i:M\rightarrow G$ es único si la composición se realiza con un isomorfismo de grupo. En particular, el grupo $G$ extendido del monoide $M$ esta bien definido hasta para isomorfismo. Este grupo llamado \textit{grupo de fracciones} de $M$ es denotado por $G_M$. Una presentación de $G_M$ por generadores y relaciones se puede obtener tomando una representación del monoide $M$ arbitraria de generadores y relaciones y verla como una representación de grupo.
-
-Un monoide $M$ es \textit{embebible} si existe un homomorfismo de monoide inyectivo de $M$ a un grupo. Es claro que $M$ es embebible si y solo si el homomorfismo universal de $M\rightarrow G_M$ es inyectivo. Por ejemplo, la inclusión $\mathbb{N}\hookrightarrow\mathbb{Z}$ demuestra que $\mathbb{N}$ es embebible. Es fácil ver que la inclusión es un homomorfismo universal tal que $G_\mathbb{N}=\mathbb{Z}$.
-
-Claramente, los monoides embebibles son cancelativos por la izquierda y por la derecha. Por ejemplo, el monoide $\{1,x\}$, con $xx=x$ no es cancelativo por la izquierda. El grupo de fracciones de este monoide es el grupo trivial.
-
-\subsubsection{Monoides pre-Garside}
-
-\begin{defi}
-Un monoide pre-Garside es un par que consiste de un monoide $M$ y un elemento $\Delta$ de $M$ tal que el conjunto $\Sigma=\Sigma_\Delta$ de divisores por la izquierda de $\Delta$ satisface las siguientes condiciones:
-
-\begin{enumerate}
-\item $\Sigma$ es finito, genera $M$ y  coincide con el conjunto de divisores por la derecha de $\Delta$.
-\item Si $a,b\in\Sigma$ cumplen que $\Delta a=\Delta b$ o $a\Delta=b\Delta$, entonces $a=b$.
-\end{enumerate}
-\label{defi:pre-garside}
-\end{defi}
-
-El elemento $\Delta\in M$ se llama \textit{elemento de Garside} de $M$. Observar que el conjunto $\Sigma$ de los divisores de $\Delta$ es cerrado bajo la divisibilidad por la izquierda y por la derecha, es decir, todos los divisores por la izquierda y por la derecha de elementos de $\Sigma$ pertenecen a $\Sigma$. Claramente, $1\in\Sigma$ y $\Delta\in\Sigma$.
-
-\begin{lema}
-Sea $(M,\Delta)$ un monoide pre-Garside y sea $\Sigma$ el conjunto de divisores de $\Delta$.
-
-\begin{enumerate}[label=(\roman*).]
-\item Para todo $a,b,c\in\Sigma$, si $ac=bc$ o $ca=cb$, entonces $a=b$.
-\item Existe una biyección $\delta:\Sigma\rightarrow \Sigma$ tal que $\Delta a=\delta(a)\Delta$ para todo $a\in\Sigma$.
-\item Si $N$ es el orden de $\delta$ (es decir, el menor entero positivo tal que $\delta^{N}=id$), entonces $\Delta^N a=a\Delta^N$ para todo $a\in M$.
-\item Para cualquier $a\in M$, existe un entero $r\geq 1$ tal que $a\preceq\Delta^r$ y $\Delta^r\succeq a$.
-\end{enumerate}
-\label{lema:pre-garside}
-\end{lema}
-
-\begin{proof} (i) Ya que $c\in\Sigma$, existe un $d\in M$ tal que $cd=\Delta$. Entonces $ac=bc$ implica $a\Delta = acd=bcd=\Delta b$. Por tanto $a=b$ por la segunda condición de la Definición \ref{defi:pre-garside}. Para la implicación $ca=cb$ implica $ a=b$ se procede de igual forma.
-\newline
-\newline
-(ii) Ya que cualquier divisor por la izquierda de $\Delta$ es también un divisor por la derecha y viceversa, para cualquier $a\in\Sigma$, existe $a',\delta(a)\in\Sigma$ tal que $\Delta =a'a$ y $\Delta = \delta(a)a'$. Por la afirmación (i), a' y $\delta(a)$ están definidas unívocamente. Tenemos que
-\begin{equation}
-\Delta a=\delta(a)a'a=\delta(a)\Delta.
-\label{eq:deltas}
-\end{equation}
-Ya que $\Sigma$ es finito, con el objetivo de probar que la función $\delta:\Sigma\rightarrow\Sigma$ es biyectiva, es suficiente probar que es inyectiva. La igualdad $\delta(a)=\delta(b)$ nos da que
-$$\Delta a= \delta(a)\Delta = \delta(b)\Delta = \Delta b.$$
-Esto implica que $a=b$ por la segunda condición de la Definición \ref{defi:pre-garside}.
-\newline
-\newline
-(iii) Por inducción sobre $n$ obtenemos de (\ref{eq:deltas}) que $\Delta^na=\delta^n(a)\Delta^n$ para todo $a\in\Sigma$. Ya que $\delta^N=id$, tenemos que $\Delta^N a=\delta^N(a)\Delta^n=a\Delta^n$. En otras palabras, $\Delta^N$ conmuta con todos los elementos del conjunto $\Sigma$. Como este conjunto genera el monoide $M$, podemos concluir que $\Delta^N$ conmuta con todos los elementos de $M$.
-\newline
-\newline
-(iv) Escribimos $a$ como producto $a=a_1\cdots a_r$ de $r$ elementos de $\Sigma$. Para cada $a_i$ hay un $b_i\in\Sigma$ tal que $b_ia_i=\Delta$. Sea $b=\delta^{r-1}(b_r)\cdots\delta(b_2)b_1$. Afirmamos que $ba=\Delta^r$, lo cual prueba que $\Delta^r\succeq a$.
-$$ba=\delta^{r-1}(b_r)\cdots\delta(b_2)b_1a_1\cdots a_r$$
-$$=\delta^{r-1}(b_r)\cdots\delta(b_2)\Delta a_2\cdots a_r$$
-$$=\delta^{r-1}(b_r)\cdots\Delta b_2a_2\cdots a_r$$
-$$=\delta^{r-1}(b_r)\cdots\delta^2(b_3)\Delta^2 a_3\cdots a_r$$
-$$=\delta^{r-1}(b_r)\cdots\Delta^2 b_3a_3\cdots a_r$$
-$$=\cdots= \Delta^{r-1}b_ra_r=\Delta^r.$$
-
-De forma similar se prueba que si $a_ic_i=\Delta$ para $i=1,\ldots,r$ y
-$$c=c_r\delta^{-1}(c_{r-1})\cdots\delta^{-(r-1)}(c_1)$$
-entonces $ac=\Delta^r$ y por tanto $a\preceq\Delta^r$.
-\end{proof}
-
-\subsubsection{Embebilidad de los monoides pre-Garside}
-
-Sea $(M,\Delta)$ un monoide pre-Garside. Bajo la hipótesis de que $M$ es cancelativo por la izquierda, damos una construcción explicita del grupo de fracciones de $M$. La construcción implicará que $M$ es embebible.
-
-Sea $N\geq 1$ el orden de $\delta:\Sigma\rightarrow\Sigma$. Por el Lema \ref{lema:pre-garside}, $\Delta^N$ es central en $M$. Consideramos el producto $H=M\times\mathbb{N}$ de los monoides $M$ y $\mathbb{N}$ con la correspondiente multiplicación
-$$(a,p)(b,q)=(ab,p+q)$$
-para todo $a,b\in M$ y $p,q\in\mathbb{N}$. El elemento neutro de $H$ es $(1,0)$.
-
-Definimos la relación $\sim$ en $H$ por $(a,p)\sim(b,q)$ si $\Delta^{qN}a=\Delta^{pN}b$. Por ejemplo, $(\Delta^{N}a,1)=(1,0)$. Vamos a demostrar que $\sim$ es una relación de equivalencia. La reflexividad y la simetría son obvias. Comprobamos la transitividad. Supongamos que $(a,p)\sim(b,q)\sim(c,r)$. Entonces $\Delta^{qN}a=\Delta^{pN}b$ y $\Delta^{rN}b=\Delta^{qN}c$. Por tanto,
-$$\Delta^{qN}\Delta^{rN}a=\Delta^{rN}\Delta^{qN}a=\Delta^{rN}\Delta^{pN}b$$
-$$=\Delta^{pN}\Delta^{rN}b=\Delta^{pN}\Delta^{qN}c=\Delta^{qN}\Delta^{pN}c.$$
-Ya que $M$ es cancelativo por la izquierda, obtenemos que $\Delta^{rN}a=\Delta^{pN}c$. Esto nos da $(a,p)\sim(c,r)$.
-
-Sea $G=H/\sim$ el conjunto de clases de equivalencia y sea $\pi:H\rightarrow G$ la proyección. Ya que $\Delta^N$ es central en $M$, el conjunto $G$ tiene una única estructura de monoide tal que $\pi$ es un homomorfismo de monoide. Definimos un homomorfismo de monoides $i:M\rightarrow G$ por $i(a)=\pi(a,0)$ para $a\in M$.
-
-\begin{teor}
-Sea $(M,\Delta)$ un monoide pre-Garside tal que $M$ es cancelativo por la izquierda.
-\begin{enumerate}[label=(\roman*)]
-\item El monoide $G$ construido anteriormente es un grupo y el homomorfismo $i:M\rightarrow G$ es inyectivo.
-\item Cualquier elemento de $G$ puede ser escrito de la forma $i(\Delta)^si(a)$, donde $s\in\mathbb{Z}, a\in M$.
-\item El homomorfismo de monoide $i:M\rightarrow G$ es universal y por tanto $G$ es el grupo de fracciones $G_M$ de $M$.
-\end{enumerate}
-\label{teor:pre-garside}
-\end{teor}
-
-\begin{proof} (i) Si $i(a)=i(b)$ para $a,b\in M$, entonces $(a,0)=(b,0)$ en $H$. Esto implica que $a=\Delta^0a=\Delta^0b=b$ quedando demostrada la inyectividad de $i$.
-\newline
-\newline
-Cualquier elemento $g\in G$ tiene la forma $\pi(a,p)$ para unos ciertos $a\in M$ y $p\in\mathbb{N}$. Vamos a comprobar que $g=\pi(a,p)$ es invertible. Por el Lema \ref{lema:pre-garside}(iv) existe un $b\in M$ y un entero $r\geq 1$ tal que $ab=\Delta^r$. Multiplicando $b$ en la derecha por una potencia de $\Delta$, podemos asumir que $r=qN$ para un entero $q\geq p$. Entonces
-\begin{equation}
-(a,p)(b,q-p)=(ab,q).
-\label{eq:gr-frac}
-\end{equation}
-Ya que $\Delta^0ab=\Delta^r=\Delta^{qN}1$, tenemos que $(ab,q)\sim(1,0)$ y $\pi(ab,q)=\pi(1,0)=1$. Esto prueba que $g=\pi(a,p)$ tiene inverso por la derecha, que denotamos por $g'$. Aplicando el mismo razonamiento, $g'$ también tiene un inverso por la derecha  $g''$ y
-$$g=g(g'g'')=(gg')g''=g''.$$
-En otras palabras, $g'$ es también el inverso de $g$ por la izquierda. Esto demuestra que G es un grupo.
-\newline
-\newline
-(ii) Sea $\xi$ el elemento central $(1,1)\in H=M\times\mathbb{N}$. Si establecemos $a=1,b=\Delta^N$ y $p=q=1$ en (\ref{eq:gr-frac}), obtenemos $\pi(\xi)i(\Delta)^N=1$. Por tanto $\pi(\xi)=i(\Delta)^{-N}$. Cualquier elemento de $H$ es de la forma $(a,p)=\xi^p(a,0)$ para algún $a\in M$ y $p\in\mathbb{N}$. Por tanto cualquier elemento de $G$ puede ser escrito de la forma $\pi(\xi)^pi(a)=i(\Delta)^{-pN}i(a)$ donde $a\in M$ y $p\in\mathbb{N}$.
-\newline
-\newline
-(iii) Dado un homomorfismo de monoide $f$ de M a un grupo $G'$, consideramos la función $H=M\times \mathbb{N}\rightarrow G'$ que envía cualquier par $(a,p)\in M\times \mathbb{N}$ a $f(\Delta)^{-pN}f(a)$. Esta función es constante en las clases de equivalencia de $H$ por $\sim$ e induce un homomorfismo de grupo $H/\sim=G\rightarrow G'$. La composición de esta última función con $i:M\rightarrow G$ es igual a $f$. La unicidad del homomorfismo de grupo $G\rightarrow G'$ cuya composición con $i$ es igual a $f$ viene del hecho de que $i(M)$ genera $G$ como grupo.
-\end{proof}
-
-\begin{colo}
-Los monoides pre-Garside cancelativos por la izquierda son embebibles.
-\label{colo:pre-garside-embe}
-\end{colo}
-Este colorario muestra en particular que para monoides pre-Garside, la cancelatividad por la izquierda implica la cancelatividad por la derecha.
-
-A continuación identificaremos los elementos cancelativos por la izquierda de un monoide pre-Garside M con sus imágenes en $G_M$, de manera que $M$ se convierte en un subconjunto de $G_M$.
-
-\subsubsection{El problema del conjugado en el grupo de fracciones}
-\label{sec:pc_grfr}
-Sea $(M,\Delta)$ un monoide pre-Garside cancelativo por la izquierda. El problema del conjugado en su grupo de fracciones $G=G_M$ puede ser reducido al problema del conjugado en $M$ de la siguiente manera. Como ya sabemos, para cualquier $\alpha,\beta\in G$, existen $a,b\in M\subset G$ y $s,t\in\mathbb{Z}$ tal que $\alpha=\Delta^sa$ y $\beta=\Delta^t b$ (Teorema \ref{teor:pre-garside} (\textrm{ii})). Cogemos un entero $u$ tal que $u\leq \min(s,t)$ y $u$ es divisible por N (Lema \ref{lema:pre-garside}(iii)). Sea $a'=\Delta^{s-u}a\in M$ y $b'=\Delta^{t-u}b\in M$. Claramente, $\alpha=\Delta^ua'$ y $\beta=\Delta^ub'$. Afirmamos que $\alpha$ es conjugado de $\beta$ en $G$ si y solo si $a'$ es conjugado de $b'$ en M. Supongamos que $a'c=cb'$ para algún $c\in M$. Ya que $\Delta^u$ es una potencia de $\Delta^N$ y es por tanto central en $M$,
-$$\alpha c=\Delta^u a'c=\Delta^u c b' = c\Delta^u b'=c\beta.$$
-
-En el otro sentido, si $\alpha\gamma=\gamma\beta$ con $\gamma\in G$, entonces $\gamma=\Delta^v c$ para algún $c\in M$ y algún entero $v$ divisible por $N$. Reemplazando $\alpha\beta\gamma$ en la fórmula $\alpha\gamma=\gamma\beta$ por sus expansiones con $a',b',c'$ y usando la centralidad de $\Delta^u,\Delta^v$, obtenemos
-$$\Delta^{u+v}a'c=\Delta^{u+v}cb'.$$
-Dividimos entre $\Delta^{u+v}$ y concluimos que $a'c=cb'$.
-
-\subsubsection{El caso de $M$ atómico}
-
-Para $M$ atómico, la afirmación (ii) del Teorema \ref{teor:pre-garside} admite el siguiente refinamiento.
-
-\begin{teor}
-Sea $(M,\Delta)$ un monoide pre-Garside tal que $M$ es no trivial, cancelativo por la izquierda y atómico. Entonces cualquier elemento de $G=G_M\supset M$ puede ser escrito unicamente de la forma $\Delta^s b$, donde $s\in\mathbb{Z}$ y $b$ es un elemento de $M$ que no es múltiplo por la derecha de $\Delta$. Esta forma la denominaremos \textit{forma normal greedy}.
-\label{teor:refi}
-\end{teor}
-
-\begin{proof} Observamos primero que $\norm{\Delta}>0$. En efecto, si $\norm{\Delta}= 0$, entonces $\Delta=1$. Ya que $M$ es atómico. Eso implica que $\Sigma_\Delta=\{1\}$. Ya que $\Sigma_\Delta$ genera $M$, tenemos que $M=\{1\}$. Esto contradice la no trivialidad de $M$.
-
-Por el Teorema \ref{teor:pre-garside}, cualquier elemento de $G$ tiene la forma $\Delta^sa$ con $s\in\mathbb{Z}$ y $a\in M$. Sea $t$ el mayor entero no negativo tal que $\Delta^t\preceq a$ en $M$. Tal $t$ existe porque la relación $\Delta^t\preceq a$ implica que
-$$t\norm{\Delta}\leq \norm{\Delta^t}\leq \norm{a}<\infty.$$
-Entonces $a=\Delta^t b$ para algún $b\in M$ tal que $\Delta\npreceq b$ y $\Delta^s a=\Delta^{s+t} b$. Esto prueba la existencia de la forma declarada.
-
-Supongamos que $\Delta^s b=\Delta^{s'}b'$ para $s,s'\in\mathbb{Z}$ y $b,b'\in M$ tal que $\Delta\npreceq b$ y $\Delta\npreceq b'$. Podemos asumir que $s\geq s'$. Dividiendo por $\Delta^{s'}$, obtenemos que $\Delta^{s-s'}b=b'$. Ya que $b'$ no es múltiplo por la derecha de $\Delta$ en $M$, tenemos que $s-s'=0$. Por tanto, $s=s'$ y $b=b'$, lo que prueba la unicidad.
-\end{proof}
-
-\subsection{Monoides de Garside}
-\subsubsection{Definiciones y lemas}
-
-Sea $(M,\Delta)$ un monoide pre-Garside y sea $\Sigma$ el conjunto de divisores por la izquierda (y por la derecha) de $\Delta$. Observamos que al generar $\Sigma$ a $M$, todos los átomos de $M$ pertenecen a $\Sigma$. En otras palabras, todos los átomos de $M$ son necesariamente divisores por la izquierda de $\Delta$.
-
-\begin{defi}
-El par $(M,\Delta)$ es un \textit{monoide de Garside} si $M$ es atómico y para cualesquiera dos átomos $s,t$ de $M$, el conjunto
-$$\{a\in\Sigma\ |\ s\preceq a,\ t\preceq a \}$$
-tiene un elemento mínimo $\Delta_{s,t}$ (con respecto a $\preceq$).
-
-Por el Lema \ref{lema:rel2}, el elemento mínimo $\Delta_{s,t}$ es único. Se observa que $\Delta_{s,t}=\Delta_{t,s}\in\Sigma,\ s\preceq\Delta_{s,t},\ t\preceq\Delta_{s,t}$ y 
-$$\{a\in\Sigma\ |\ s\preceq a,\ t\preceq a \}=\{a\in\Sigma\ |\ \Delta_{s,t}\preceq a\}.$$
-
-Cualquier átomo $s\in M$ es un elemento mínimo del conjunto $\{a\in\Sigma\ |\ s\preceq a\}$, así que $\Delta_{s,s}=s$.
-\label{defi:garside}
-\end{defi}
-
-\begin{lema}
-Si $(M,\Delta)$ es un monoide de Garside, entonces el conjunto $\Sigma$ satisface todas las condiciones del Teorema \ref{teor:monoi_deriv}.
-\label{lema:garside}
-\end{lema}
-
-Este lema es clave para permitirnos aplicar los resultados vistos en la sección de ``Formas Normales y problema del conjugado'' a los monoides de Garside. El resto de esta subsección irá enfocado a la prueba del Lema \ref{lema:garside}. Necesitamos verificar que $\Sigma$ satisface las condiciones (1.) a (3.) del Teorema \ref{teor:monoi_deriv}. La condición (1.) la tenemos de forma directa por la definición de monoide pre-Garside. La condición (2.) fue verificada en el Lema \ref{lema:pre-garside}. La parte difícil es la verificación de (3.). Comenzamos con dos lemas. En ambos lemas, asumimos que $(M,\Delta)$ es un monoide de Garside, $\Sigma$ es el conjunto de divisores por la izquierda (y derecha) de $\Delta$, y $S\subset \Sigma$ es el conjunto de átomos de $M$.
-
-\begin{lema}
-Sea $E$ un subconjunto finito no vacío de $M$ satisfaciendo las siguientes dos condiciones:
-\begin{enumerate}[label=(\roman*).]
-\item Si $a\in M$ y $b\in E$ con $a\preceq b$, entonces $a\in E$.
-\item Si $a\in E$, $s,t\in S$ son tales que $as,at\in E$, entonces $a\Delta_{s,t}\in E$.
-\end{enumerate}
-Entonces $E$ tiene un elemento máximo (con respecto a $\preceq$).
-\label{lema:garside1}
-\end{lema}
-
-\begin{proof} Sea $c$ un elemento de $E$ tal que $\norm{c}$ es máximo (decimos que $c$ es de altura máxima en $E$). Deseamos demostrar que $E=\{a\in M\ |\ a\preceq c\}$. Por la condición (i), $\{a\in M\ |\ a\preceq c\}\subset E$. Vamos a probar la inclusión contraria. Supongamos que no esta incluido. Entonces existe $b\in E$ tal que $b\npreceq c$. Expandimos $b$ como producto de átomos $b=s_1\cdots s_n$ para algún $n$ y $s_1,\ldots,s_n\in S$. Establecemos $a=s_1\cdots s_k$ donde $k < n$ es el entero máximo tal que $a\preceq c$ (posiblemente $k=0$, en cuyo caso $a=1$). Esta claro que $a\in E$ y que existe un átomo $s\in S$ (de hecho $s=s_{k+1}$) tal que $as\in E$ y $as\npreceq c$. Consideramos entonces que $a\in E$ es de altura máxima verificando la condición previa. Ya que $c$ es de altura máxima en $E$, tenemos $\norm{a}<\norm{as}\leq \norm{c}$. Esto y la relación $a\preceq c$ implica que existe $t\in S$ tal que $at\preceq c$. Entonces, necesariamente, $t\neq s$. Ahora tenemos  $a,as, at\in E$. Por la condición (ii) $a\Delta_{s,t}\in E$. La relación $as\preceq a\Delta_{s,t}$ y $as\npreceq c$ implica que $a\Delta_{s,t}\npreceq c$. Podemos expandir
-$$\Delta_{s,t}=ts_1s_2\cdots s_m,$$
-donde $s_1,\ldots,s_m\in S$. Existe $i\in\{1,\ldots,m\}$ tal que $ats_1s_2\cdots s_{i-1}\preceq c$ y $ats_1s_2\cdots s_{i}\npreceq c$. Sea $a'=ats_1s_2\cdots s_{i-1}$. El hecho de que $a\Delta_{s,t}\in E$ implica que $a',a's_i\in E$. Por la elección de $i$ tenemos que $a's_i\npreceq c$. Por lo tanto, $a'$ satisface las mismas condiciones de $a$, pero $\norm{a'}\geq \norm{at}> \norm{a}$. Tenemos una contradicción con la elección de $a$.\end{proof}
-
-\begin{lema}
-Para cualquier $a,b\in\Sigma$, el conjunto
-$$E=\{x\in M\ |\ x\preceq a,\ x\preceq b\}\subset \Sigma$$
-tiene un elemento máximo (con respecto a $\preceq$).
-\label{lema:garside2}
-\end{lema}
-
-\begin{proof} Ya que $\Sigma$ es finito, también lo es $E$. Claramente, $1\in E$ y por tanton el conjunto $E$ es no vacío. Obviamente se satisface la condición $(i)$ del Lema \ref{lema:garside1}. Vamos a comprobar la condición (ii). Tenemos que probar que si $xs$ y $xt$ son divisores por la izquierda de $a$ y $b$ para algún $s,t\in S$, entonces $x\Delta_{s,t}$ lo es también. Sea $y\in\Sigma$ tal que $xy=a$. Por hipótesis, $xs\preceq a = xy$ y $xt\preceq a = xy$. Por el Lema \ref{lema:pre-garside} (i), esto implica que $s\preceq y$ y $t\preceq y$ . Por la Definición \ref{defi:garside}, $\Delta_{s,t}\preceq y$, y por tanto $x\Delta_{s,t}\preceq xy=a$. De igual manera $x\Delta_{s,t}\preceq b$. De esta forma tenemos que $x\Delta_{s,t}\in E$ dandose (ii). Ahora el Lema \ref{lema:garside1} implica que $E$ tiene elemento máximo.
-\end{proof}
-
-Ahora estamos en condiciones de verificar la condición (3.) del Teorema \ref{teor:monoi_deriv}. Tomamos cualesquiera $a,b\in\Sigma$. Ya que $a\preceq\Delta$, tenemos que $\Delta=aa'$ para algún $a'\in\Sigma$. Por el Lema \ref{lema:garside2}, el conjunto
-$$\{x\in M\ |\ x\preceq a',\ x\preceq b\}\subset\Sigma$$ tiene un elemento máximo $c$ con respecto a $\preceq$. Afirmamos que $c$ es máximo en 
-$$\{x\in\Sigma\ |\ x\preceq b,\ ax\in\Sigma\}.$$
-En efecto, por definición, $c\preceq a'$, por lo cual $ac\preceq aa'=\Delta$ y $ac\in\Sigma$. Sea $d\in\Sigma$ tal que $d\preceq b$ y $ad\in\Sigma$. Entonces $ad\preceq\Delta=aa'$ y en consecuencia, por el Lema \ref{lema:pre-garside} (i) (cancelación por la izquierda en $\Sigma$) implica que $d\preceq a'$. Por lo tanto, $d\preceq c$.
-
-\subsubsection{Monoides de Garside exhaustivos}
-
-Un monoide de Garside $(M,\Delta)$ es \textit{exhaustivo} si el conjunto $\Sigma\subset M$ de divisores de $\Delta$ es exhaustivo en el sentido en el que fue definido anteriormente, es decir, que $1\in\Sigma$ y que $M$ posee una presentación cuyos generadores y relaciones pertenecen a $\Sigma$. Los resultados previos nos dan como consecuencia las siguientes propiedades que cumple un monoide de Garside exhaustivo $(M,\Delta)$.
-
-\begin{enumerate}[label=(\arabic*)]
-\item Tenemos que $M\cong M_\Sigma$ (Lema \ref{lema:iso_mono}). En otras palabras, $M$ tiene una presentación con generadores $[a]$, donde $a$ se mueve en $\Sigma$, y relaciones $[1]=1$ y $[a][b]=[ab]$, donde $a,b\in\Sigma$ satisface $ab\in\Sigma$.
-\item Para cualquier $a\in M$, existe un único divisor por la izquierda $\alpha(a)\in\Sigma$ de $a$ que es máximo entre todos los divisores por la izquierda de $a$ pertenecientes a $\Sigma$ (Teorema \ref{teor:monoi_deriv}).
-\item Cualquier $a\in M$ se expande de forma única como un producto $a=a_1a_2\cdots a_r$ de ciertos $a_1,a_2,\ldots,a_r\in\Sigma \backslash\{1\}$ con $r\geq 0$ tal que $a_i=\alpha(a_ia_{i+1}\cdots a_r)$ para todo $i=1,\ldots,r$ (Sección \ref{sec:fn_msigma}).
-\item El homomorfismo de monoide natural de $M$ en su grupo de fracciones $G_M$ es inyectivo (Lema \ref{lema:cancel} y Colorario \ref{colo:pre-garside-embe}). En particular, $M$ es cancelativo por la izquierda y por la derecha.
-\item Si $M\neq \{1\}$, entonces cualquier elemento de $G_M$ puede ser escrito de la forma $\Delta^s b$ con unicidad (forma normal greedy), donde $s\in\mathbb{Z}$ y $b\in M$ no es múltiplo por la derecha de $\Delta$ (Teorema \ref{teor:refi}).
-\item El problema del conjugado $G_M$ es equivalente al problema del conjugado en $M$ (Sección \ref{sec:pc_grfr}). Este último es soluble si $M$ admite una presentación ponderada (Sección \ref{sec:pc_msigma}).
-\end{enumerate}
-
-\subsubsection{Divisores y múltiplos comunes en monoides de Garside}
-
-Dados $k\geq 2$ elementos $a_1,\ldots,a_k$ de un monoide $M$, decimos que $d\in M$ es un \textit{máximo común divisor por la izquierda} (mcd) de $a_1,\ldots,a_k$ si $d\preceq a_i$ para todo $i=1,\ldots,k$, y $d'\preceq d$ para cualquier $d'\in M$ tal que $d'\preceq a_i$ ara todo $i=1,\ldots,k$. Reemplazando $\preceq$ por $\succeq$, obtenemos análogamente la noción de mcd por la derecha.
-
-Decimos que $m\in M$ es un \textit{mínimo común múltiplo} (mcm) de $a_1,\ldots,a_k$ si $a_i\preceq m$ para todo $i=1,\ldots,k$, y $m\preceq m'$ para cualquier $m'\in M$ tal que $a_i\preceq m'$ ara todo $i=1,\ldots,k$. Existe la noción análoga de mcm por la izquierda. Si $M$ es atómico, entonces el mcd y el mcm son únicos siempre que existan. La propiedad (2) de la sección anterior puede ser reformulada diciendo que $\Delta$ y cualquier $a\in M$ tienen mcd por la izquierda. Esas propiedades de los monoides de Garside pueden ser generalizadas de la siguiente manera.
-
-\begin{teor}
-Sea $(M,\Delta)$ un monoide de Garside exhaustivo. Entonces cualquier familia finita de elementos de $M$ tiene un único mcd por la izquierda y un único mcm por la derecha.
-\end{teor}
-\begin{proof} Sean $b,c\in M$. Consideramos el conjunto
-$$E=\{a\in M\ |\ a\preceq b,\ a\preceq c\}.$$
-Con el objetivo de probar que $b$ y $c$ tienen un mcd por la izquierda en $M$, es suficiente con comprobar que $E$ satisface las condiciones del Lema \ref{lema:garside1}. El conjunto $E$ claramente satisface la condición (i). El conjunto $E$ es finito porque $\norm{a}<\norm{b}$ para cualquier $a\in E$, así que $a$ es el producto de como mucho $\norm{b}$ átomos de $M$, y el conjunto de átomos de $M$, siendo un subconjunto de $\Sigma$, es finito.
-
-Vamos a comprobar la condición $(ii)$. Supongamos que tenemos $a\in E$ y los átomos $s,t\in M$ tal que $as,at\in E$. Escribimos $b=ab_1$ con $b_1\in M$. Ya que $M$ es cancelativo por la izquierda, $as\preceq b =ab_1$ implica $s\preceq b_1$ y $at\preceq b = ab_1$ implica $t\preceq b_1$. Consideramos el divisor por la izquierda máximo $\alpha(b_1)$ de $b_1$ en $\Sigma$. Tenemos que $s\preceq\alpha(b_1)$ y $t\preceq\alpha(b_1)$. Por tanto $\alpha_{s,t}\preceq \alpha(b_1)\preceq b_1$. Por eso $\Delta_{s,t}\preceq b_1$ y $a\Delta_{s,t}\preceq ab_1= b$. De igual forma $a\Delta_{s,t}\preceq c$. Esto prueba que $a\Delta_{s,t}\in E$.
-
-Que cualquier familia finita de elementos de $M$ tiene un mcd por la izquierda se sigue fácilmente por inducción sobre la cardinalidad de la familia.
-
-Vamos a probar la existencia de mcm por la derecha. Sea $a_1,\ldots,a_k\in M$. En vista al Lema \ref{lema:pre-garside} (iv), existe $r\geq 1$ tal que $a_i\preceq\Delta^r$ para todo $i=1,\ldots,k$. Consideramos el conjunto
-$$X=\{x\in M\ |\ a_i\preceq c\preceq\Delta^r\ \ \forall i\in\{1,\ldots,k\}\}.$$
-Ya que el conjunto de átomos de $M$ es finito y todos los divisores por la izquierda de $\Delta^r$ se expanden como producto de a lo máximo $r\norm{\Delta}$ átomos, el conjunto de divisores por la izquierda de $\Delta^r$ es finito. Dado que contiene a $X$, este es finito también. Sea $m$ el máximo común divisor por la izquierda de los elementos de $X$. Afirmamos que $m$ es mínimo común múltiplo por la derecha de $a_1,\ldots,a_k$. En efecto, $a_1,\ldots,a_k$ son divisores por la izquierda de todos los elementos de $X$. Por lo tanto, son divisores por la izquierda de $m$. Esto demuestra que $m$ es múltiplo común por la derecha de $a_1,\ldots,a_k$.
-
-Sea $m'$ otro común múltiplo por la derecha de $a_1,\ldots,a_k$. Denotamos por $m''$ un máximo común divisor por la izquierda de $m'$ y $\Delta^r$. Comprobamos que $m''\in X$. Primero, $m''\preceq\Delta^r$. Ya que $a_i$ es un divisor por la izquierda de $m'$ y de $\Delta^r$, es un divisor por la izquierda de $m''$. Esto prueba que $m''\in X$. Por definición de $m$, tenemos que $m\preceq m''$. Dado que $m''\preceq m'$, obtenemos $m\preceq m'$. Esto prueba nuestra afirmación.
-\end{proof}
-
-\subsection{El monoide de trenza}
-
-\subsubsection{Una presentación por generadores y relaciones}
+\section{Una presentación por generadores y relaciones}
 
 Para cualquier $n\geq 1$, denotamos por $B_n^+$ el monoide generado por $n-1$ generadores $\sigma_1,\sigma_2,\ldots,\sigma_{n-1}$ y las relaciones
 $$\sigma_i\sigma_j=\sigma_j\sigma_i\ \ \ si\ |i-j|\geq 2,$$
@@ -1320,7 +1334,7 @@ La presentación de $B_n^+$ dada previamente es finita y equilibrada en longitud
 Establecemos
 $$\Delta_n = (\sigma_1\cdots\sigma_{n-2}\sigma_{n-1})(\sigma_1\cdots\sigma_{n-2})\cdots(\sigma_1\sigma_2)\sigma_1\in B_n^+.$$
 
-\subsubsection{Trenzas reducidas}
+\section{Trenzas reducidas}
 
 Consideramos el grupo simétrico $S_n$ que esta formado por todas las permutaciones del conjunto $\{1,\ldots,n\}$. Definimos la función $\rho:S_n\rightarrow B_n^+$ como sigue. Consideramos las transposiciones simples $s_1,\ldots,s_{n-1}\in S_n$, donde $s_i$ permuta $i$ y $i+1$ y deja el resto de elementos fijos. Las transposiciones simples generan $S_n$, así que cada elemento $\omega\in S_n$ puede ser expresado como una palabra $\omega = s_{i_1}s_{i_2}\cdots s_{i_r}$ con $i_1,i_2,\ldots,i_r\in\{1,2,\ldots,n-1\}$. Si $r$ es mínimo, entonces esta es una expresión reducida y establecemos que $\rho(\omega)=\sigma_{i_1}\sigma_{i_2}\cdots \sigma_{i_r}$. Como ya vimos en la Sección \ref{sec:grupos}, $w$ puede tener varias expresiones reducidas diferentes. Pero en \cite{br_gr} queda demostrado que $\rho$ está bien definido, de manera que la imagen por $\rho$ de distintas expresiones reducidas de $w$ dan como imagen la misma trenza. Sea
 $$\pi:B_n^+\rightarrow S_n$$
@@ -1455,7 +1469,7 @@ $$rev(s_{i_1}s_{i_2}\cdots s_{i_{r-1}}s_{i_r})=s_{i_r}s_{i_{r-1}}\cdots s_{i_{2}
 Esta función esta bien definida, ya que las relaciones de la definición de $B_n^+$, siendo leidas de derecha a izquierda, dan las mismas relaciones. La función $rev$ es un antiautomorfismo involutivo de $B_n^+$ en el sentido en que $rev^2=id$, $rev(1)=1$ y $rev(ab)=rev(a)rev(b)$ para todo $a,b\in B_n^+$. Esta claro que $a\preceq b$ si y solo si $rev(a)\succeq rev(b)$ para $a,b\in B_n^+$. Usando estos hechos, es fácil deducir la existencia de mcd por la derecha y mcm por la izquierda a partir de la existencia de mcd por la izquierda y mcm por la derecha. La unicidad se obtiene del Lema \ref{lema:rel2}.
 \end{proof}
 
-\subsubsection{Cálculos}
+\section{Cálculos}
 
 La expansión $\beta=\Delta^sb$ de una trenza $\beta\in B_n$ que nos da la propiedad (5) de la sección previa puede ser explícitamente calculada. Primero vamos a representar $\beta$ por una palabra de generadores $\sigma_1,\ldots,\sigma_{n-1}$ y sus inversos. Definimos $\nu_i\in B_n^+$ por $\nu_i\sigma_i=\Delta_n$. Entonces $\sigma_i^{-1}=\Delta_n^{-1}\nu_i$. En la palabra representando $\beta$ reemplazamos todas las ocurrencias de $\sigma_i^{-1}$ por $\Delta_n^{-1}\nu_i$ y expandimos todo $\nu_i$ en términos de $\sigma_1,\ldots,\sigma_{n-1}$. En la palabra resultante tenemos solo los generadores $\sigma_i$ (no sus inversos) y potencias negativas de $\Delta_n$. Usando la identidad
 \begin{equation}
@@ -1496,7 +1510,7 @@ demuestra que $a'=1$. Por tanto, $\alpha(abc^2)=a\neq\Delta_4$. Por lo tanto, $a
 $$\beta=\Delta_4^{-3}abc^2$$
 es la expansión requerida de $\beta$. La forma normal de $abc^2$ es $(a,d,e,b)$ donde $e=\sigma_1\sigma_2\sigma_1\sigma_3\sigma_2$.
 
-\subsection{Problema del conjugado en $B_n$}
+\section{Problema del conjugado en $B_n$}
 
 Ya hemos visto una solución para el problema del conjugado en el monoide $M_\Sigma$ y en el grupo de fracciones. Sin embargo estas soluciones a priori no son computables ya que el cardinal del conjunto de conjugados de un elemento puede ser infinito. Por tanto vamos a ver algunas definiciones y resultados extraídos de \cite{Att} que nos serán útiles en el apartado de criptoanálisis para resolver el problema del conjugado algorítmicamente.
 
@@ -1559,15 +1573,16 @@ La prueba de este lema se puede ver en \cite{Alg}.
 \ 
 \newline
 \newline
-\section{Criptografía y criptoanálisis}
+\part{Criptografía y criptoanálisis}
 
 En esta parte del trabajo nos vamos a centrar en la criptografía. Vamos a introducir en qué consiste la criptografía dando la definición de conceptos básicos necesarios, tomados de \cite{in_cr}. Esto nos dará pie a ver cómo podemos aplicar el grupo de trenzas a la criptografía de manera que podamos obtener distintas herramientas criptográficas extraídas de \cite{Deh}. Por último veremos algunas de las debilidades que se pueden encontrar en el cifrado con el uso del grupo de trenzas, e implementaremos un posible ataque (\cite{Att} y \cite{in_cr}).
 
-\subsection{Introducción a la criptografía}
+\chapter{Criptografía}
+
 
 La \textit{criptografía} es la ciencia de guardar secretos a salvo. Se asume que un emisor, al que nos referiremos aquí como \textit{Alicia}, quiere enviar un mensaje $m$ a un receptor, al que llamaremos \textit{Bruno}. Ella usa un canal de comunicación inseguro, como puede ser una red de ordenadores o una linea de teléfono. El problema esta cuando la información que se transmite es confidencial. El mensaje puede ser interceptado y leído o incluso modificado por un agente externo al que nos referiremos como \textit{Eva}. El objetivo de la criptografía es proveer de métodos para evitar este tipo de ataques.
 
-\subsubsection{Cifrado}
+\section{Cifrado}
 
 La tarea clásica y fundamental de la criptografía es la de proveer de \textit{confidencialidad} a través de los métodos de cifrado. El mensaje a transmitir se le llama \textit{texto plano}. Alice \textit{cifra} el texto plano $m$ y obtiene un \textit{texto cifrado} $c$. El texto cifrado $c$ es transmitido a Bob. Bob \textit{descifrando} obtiene el texto plano a partir del texto cifrado. Para \textit{descifrar}, Bob necesita una información secreta, la llave de descifrado. La adversaria Eve todavía podría interceptar el mensaje cifrado. Sin embargo, el cifrado del texto plano debería garantizar la confidencialidad y prevenir que pueda extraer alguna información del texto plano a partir del texto cifrado.
 
@@ -1581,7 +1596,7 @@ Cualquiera puede cifrar fácilmente el texto plano usando la llave pública $pk$
 
 Los métodos de cifrado de llave pública requieren cálculos más complejos y son menos eficientes que los métodos de clásicos de cifrado simétrico. Por eso los métodos simétricos son usados para el cifrado de grandes cantidades de datos. Antes de aplicar el cifrado simétrico, el emisor y el receptor acuerdan una llave. Para mantener la llave en secreto necesitan un canal de comunicación seguro. Lo habitual es utilizar el cifrado de llave pública para este propósito.
 
-\subsubsection{Objetivos de la criptografía}
+\section{Objetivos de la criptografía}
 
 Proveer de \textbf{confidencialidad} no es el único objetivo de la criptografía. A su vez esta intenta dar solución a otros problemas. Estos son:
 
@@ -1605,7 +1620,7 @@ con la llave pública de Alice $pk$.
 No es común firmar el mensaje en si mismo, sino usar primero una \textit{función hash criptográfica} y después firmar el valor hash. Las firmas digitales dependen del mensaje. Mensajes distintos producen firmas distintas. Así que, como los códigos de autenticación de mensaje, las firmas digitales pueden ser utilizadas para garantizar la integridad de los datos.
 
 
-\subsubsection{Protocolos criptográficos}
+\section{Protocolos criptográficos}
 
 Los algoritmos de cifrado y descifrado, funciones hash criptográficas y los generadores peusoaleatorios son básicamente los bloques de construcción (también llamados primitivas criptográficas) utilizados para resolver problemas que involucran confidencialidad, autenticación o integridad de los datos.
 
@@ -1613,7 +1628,7 @@ En muchos casos un único bloque de construcción no puede resolver un problema,
 
 Como contraejemplo echamos un vistazo al esquema de firma digital. Un esquema típico para generar una firma digital es primero aplicar una función hash criptográfica $h$ al mensaje $m$ y después, en un segundo paso, calcular la firma utilizando el algoritmo de descifrado de llave pública sobre el valor hash $h(m)$. Ambos pasos están hechos por una única persona, por lo que no se considera un protocolo.
 
-\subsubsection{Intercambio de llaves}
+\section{Intercambio de llaves}
 Los criptosistemas de llave pública y secreta asumen que los participantes tienen acceso a las llaves. En la práctica, uno puede utilizar estos sistemas si el problema de la distribución de llaves esta resuelto.
 
 El concepto de seguridad para llaves tiene dos niveles. El primer nivel emplea llaves secretas de larga duración, denominadas \textit{llaves maestras}. Las llaves del segundo nivel están asociadas con la sesión, por lo que son llamadas \textit{llaves de sesión}. Una llave de sesión es solo válida durante el breve tiempo de duración de una sesión. Las llaves maestras son normalmente las llaves empleadas en un criptosistema de llave pública.
@@ -1642,7 +1657,7 @@ La llave maestra se utiliza para generar las llaves de sesión. Por tanto es esp
 
 
 
-\subsubsection{Plataformas criptográficas y grupos de plataforma}
+\section{Plataformas criptográficas y grupos de plataforma}
 
 Si un protocolo criptográfico esta basado en un objeto algebraico como puede ser un grupo, un anillo u otros, entonces es llamado \textit{plataforma criptográfica} o \textit{plataforma}. En criptografía basada en un grupo a este se le llama \textit{grupo de plataforma} para el protocolo criptográfico. La seguridad de un protocolo criptográfico depende entonces de la dificultad, computacional o teórica, de resolver un problema de teoría de grupos en el grupo de plataforma.
 
@@ -1665,11 +1680,11 @@ Entre los primeros intentos de usar grupos no abelianos como plataformas para cr
 
 
 
-\subsection{Esquemas criptográficos basados en trenzas}
+\section{Esquemas criptográficos basados en trenzas}
 
 En esta parte vamos a ver diferentes algoritmos que llevan a cabo varios esquemas criptográficos utilizando los grupos de trenzas, pero solo veremos en profundidad el intercambio de llaves que es el que se utiliza en la práctica. Estos algoritmos se pueden ver en \cite{Deh}.
 
-\subsubsection{Intercambio de llaves}
+\subsection{Intercambio de llaves}
 Alice y Bob desean compartir una llave secreta, de tal manera que un intruso que esté observando la comunicación no pueda deducir ninguna información útil sobre un secreto en común.
 
 \subsubsection*{Esquema Anshel-Anshel-Goldfeld}
@@ -1765,7 +1780,7 @@ La implementación realizada se puede ver en la Figura \ref{img:imp_ko}.
 \label{img:imp_ko}
 \end{figure}
 
-\subsubsection{Cifrado}
+\subsection{Cifrado}
 Aquí el problema es que Bob desea enviar un mensaje $m$ a Alice, y el puede usar la llave pública de Alice para cifrar su mensaje. Alice debe ser capaz de recuperar el mensaje original de Bob usando su llave privada, de manera que un intruso que observe la comunicación no pueda.
 
 \subsubsection*{Esquema Ko \& al.}
@@ -1787,7 +1802,7 @@ $$m_A = m_B\oplus h(rp'r^{-1})\oplus h(sp''s^{-1})=m_B.$$
 
 Aquí la seguridad esta basada en la dificultad del Problema del Conjugado inspirado en Diffie-Hellman para $B_n$. Bajo las hipótesis sobre $h$, ser capaz de romper el sistema implica tener que recuperar los valores comunes $rp'r^{-1}$ y $sp''s^{-1}$ a partir de los pares $(p,p')$ y $(p,p'')$.
 
-\subsubsection{Autenticación de identidad}
+\subsection{Autenticación de identidad}
 Ahora el problema es que Alice desea probar su identidad a Bob, es decir, ella desea probar que conoce la llave privada sin permitir que un intruso que observe la comunicación deduzca nada sobre su llave privada.
 
 \subsubsection*{Esquema inspirado en Diffie-Hellman}
@@ -1816,7 +1831,7 @@ Si Alice conoce $s$ y responde correctamente, ella es aceptada por Bob. Para $c=
 
 La seguridad de este esquema radica en la dificultad del Problema de Búsqueda del Conjugado original en $B_n$. Tener más de un 0.5 de probabilidad de ser aceptado significa ser capaz de responder para $c=0$ y $c=1$, es decir, conocer $y,y'$ que cumplan $x=h(ypy^{-1})$ y $x=h(y'p'y'^{-1})$. Como se supone que $h$ es libre de colisión, es decir, es virtualmente inyectiva, se tendría que $ypy^{-1}=y'p'y'^{-1}$, que es equivalente a $(y'^{-1}y)p(y'^{-1}y)^{-1}=p'$. Esto implicaría que para que suceda esto se debe solucionar el Problema de Búsqueda del Conjugado para $(p,p')$.
 
-\subsubsection{Firma}
+\subsection{Firma}
 El problema consiste en que Alice quiere enviar a Bob un mensaje (texto plano o cifrado) junto con una firma que pruebe el origen del mensaje. Observar que con la firma se puede implementar la autenticación. Esto se haría enviando Bob a Alice un mensaje y que esta se lo devolviera firmado.
 
 Vamos a ver dos esquemas de firma basados en trenzas propuestos por Ko \& al \cite{Ko_sig}. El primer esquema es más simple y legible mientras que el segundo es el esquema recomendado. Estos esquemas usan la supuesta diferencia de complejidad entre el Problema del Conjugado y el Problema de Búsqueda del Conjugado. Para valores medios de $n$ (típicamente $n=20$), al usar una representación lineal de las trenzas hace posible decidir si dos trenzas de $B_n$ son conjugadas sin ser capaz de determinar la trenza conjugada cuando existe.
@@ -1843,13 +1858,13 @@ Una posible debilidad del esquema previo está en que un uso repetido de este re
 
 El análisis de seguridad es similar al del esquema previo.
 
-\subsection{Criptoanálisis}
+\chapter{Criptoanálisis}
 
 Cuando se introdujeron los criptosistemas basados en grupos de trenzas hubo una gran expectación. La dificultad de los principales problemas de teoría de grupos, el problema del conjugado y el problema de la búsqueda del conjugado, parecían lo suficientemente complejos en $B_n$ como para ser seguro. Sin embargo las investigaciones que se han realizado sobre el grupo de trenzas han hecho evidente que, sin consideraciones especiales, los criptosistemas basados en estos son inseguros. A continuación vamos a ver algunos de los posibles ataques que se han visto.
 
 Estos ataques se pueden clasificar según diferentes categorías. Ataques basados directamente en la solución del problema del conjugado vía los llamados conjuntos de cumbre, ataques basados en longitud los cuales utilizan la longitud de las trenzas, ataques teóricos de representación, y finalmente ataques en la difusión de multiplicación de elementos de grupo por variación de formas normales.
 
-\subsubsection{Ataques al Problema de Búsqueda del Conjugado}
+\section{Ataques al Problema de Búsqueda del Conjugado}
 
 Ya que la seguridad de los criptosistemas de grupos de trenzas iniciales estaba basada en la dificultad en resolver el problema del conjugado, el problema de búsqueda del conjugado y el problema de búsqueda del conjugador, la mayoría de los ataques han ido enfocados a estos problemas. El problema del conjugado para $B_n$ fue resuelto originalmente por Garside como ya hemos visto y se asume que es complejo. Por lo tanto pareció que usar el problema del conjugado o el problema de búsqueda del conjugador era suficientemente seguro para propósitos criptográficos. Recientemente ha habido investigaciones sobre la complejidad de la solución para varios problemas de búsqueda del conjugado y se han expuesto debilidades en los criptosistemas basados en estos.
 
@@ -1863,7 +1878,7 @@ Por lo tanto para resolver el problema del conjugado, y en esencia romper los pr
 
 El problema es que la complejidad de los algoritmos para calcular estos conjuntos no esta clara ya que no se conoce su cardinalidad, pero el de este último tiene complejidad polinomial en media.
 
-\subsubsection{Ataques basados en longitud}
+\subsection{Ataques basados en longitud}
 El protocolo Anshel-Anshel-Goldfeld depende del problema de búsqueda del conjugador. Sin embargo, para atacar el protocolo no es necesario encontrar el conjugador exacto. Si $b,b'$ son conjugados entonces conociendo cualquier conjugador, es decir, un elemento $w$ tal que $wbw^{-1}=b'$ es suficiente.
 
 Los ataques basados en longitud han sido usados efectivamente en ataques al problema de búsqueda del conjugador. Recordamos que usando la forma normal de Garside cada trenza tiene una longitud bien definida. Esto nos da una función de longitud bien definida en el grupo de trenzas $B_n$.
@@ -1872,7 +1887,7 @@ En los protocolos del tipo Anshel-Anshel-Goldfeld que dependen del problema del 
 
 Ha habido un considerable éxito con esta técnica. Parte del éxito sin embargo es debido al hecho de que los grupos de trenzas tienen la propiedad de grupo libre genérica. Hacer reducción en longitud es realmente hacer reducción de grupo libre. De hecho, muchos criptosistemas basados en grupos de trenzas han sido rotos porque los grupos de trenzas tenían la propiedad de grupo libre genérica.
 
-\subsubsection{Ataques teóricos de representación}
+\subsection{Ataques teóricos de representación}
 Muchos ataques con éxito en los protocolos criptográficos de grupo de trenzas han usado varias representaciones lineales. Burau, Burau coloreado y Lawrence-Krammer. En muchos ataques encontrar la llave secreta es reducido, usando estas representaciones, a álgebra lineal sobre campos finitos. Recordamos como procedía el protocolo Ko-Lee:
 
 Bob y Alice eligen un subgrupo dentro de $B_n$ con elementos conmutativos. $A$ es el subgrupo de Alice y $B$ el subgrupo de Bob. Alice elige aleatoriamente un $a\in A$. Este elemento $a$ será su llave secreta. Su llave pública será $(g,g^a)$ donde $g^a=aga^{-1}$ es el conjugado de $g$ por su llave secreta $a$. Toda información pública y comunicación está en términos de las formas normales de estos elementos.
@@ -1888,7 +1903,7 @@ $$MY_bM^{-1}=\rho(b)Y_a\rho(b)^{-1}=\rho(abxb^{-1}a^{-1}),$$
 
 el cual puede ser elevado a la trenza necesaria. Este ataque es efectivo porque las matrices provenientes de $\rho$ cumplen unos limites muy restrictivos. La efectividad de este método demuestra que la representación de lawrence-Krammer permite una solución al problema de Diffie-Hellman en grupos de trenzas en tiempo polinomial.
 
-\subsubsection{Aproximación heurística al problema del conjugado}
+\subsection{Aproximación heurística al problema del conjugado}
 Vamos a ver una heurística que nos permitirá, de forma eficiente, resolver en ocasiones el problema del conjugado devolviendonos un conjugador. De esta manera también resolvemos el problema de búsqueda del conjugado. El algoritmo ha sido extraído de \cite{Att}. Aquí mostramos el pseudocódigo del algoritmo.
 \newline
 
