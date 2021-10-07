@@ -49,7 +49,7 @@
 \chapter{Generalidades sobre grupos}
 \section{Grupos y subgrupos}
 \label{sec:grupos}
-En esta sección vamos a repasar algunos aspectos de la teoría de grupos que en su mayoría se han visto a lo largo de la carrera. Estos aparecen en \cite{group} y \cite{br_gr}, y serán necesarios para desarrollar tanto el grupo de trenzas, como la parte de criptografía y criptoanálisis. En primer lugar vamos a comenzar con algunos conceptos básicos sobre grupos.
+En este capítulo vamos a repasar algunos aspectos de la teoría de grupos que en su mayoría se han visto a lo largo de la carrera. Estos aparecen en \cite{group} y \cite{br_gr}, y serán necesarios para desarrollar tanto el grupo de trenzas, como la parte de criptografía y criptoanálisis. En primer lugar vamos a comenzar con algunos conceptos básicos sobre grupos.
 
 \begin{defi}[Grupo]
 Un grupo es una estructura algebraica formada por un conjunto $G\neq\emptyset$ y una operación interna $G\times G\rightarrow G$ a la que llamaremos \textit{producto}. Esta operación asigna a cada pareja $(x,y)$ el elemento $xy$ y verifica las siguientes propiedades:
@@ -57,7 +57,12 @@ Un grupo es una estructura algebraica formada por un conjunto $G\neq\emptyset$ y
 \begin{enumerate}
 \item Propiedad asociativa: $x(yz) = (xy)z$ para todo $x,y,z\in G$.
 \item Existencia de elemento neutro: Existe $1\in G$ tal que $x1= x = 1x$ para todo $ x\in G$.
-\item Existencia de elemento simétrico: Para cada $x \in G$ existe $y\in G$ tal que $xy=yx = 1$. El elemento $y$ es único y se denota por $x^{-1}$.
+\item Existencia de inverso: Para cada $x \in G$ existe $y\in G$ tal que $xy=yx = 1$. El elemento $y$ es único y se le dice que es el \textit{inverso} de $x$. Lo denotaremos por $x^{-1}$.
+\end{enumerate}
+Si además cumple la siguiente propiedad se dice que $G$ es un \textit{grupo abeliano}.
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item Propiedad conmutativa: $xy=yx$ para todo $x,y\in G$.
 \end{enumerate}
 \end{defi}
 
@@ -105,7 +110,7 @@ Si $\langle X\rangle = G$ diremos que $X$ es un conjunto de generadores de G. Di
 \newline
 
 
-\section{Grupo simétrico}
+\section{Grupo simétrico $S_n$}
 
 A continuación vamos a definir los grupos simétricos con los que más adelante estableceremos una relación con los grupos de trenzas. También vamos a ver algunas de sus propiedades que nos serán de utilidad.
 
@@ -121,11 +126,12 @@ $$\sigma =
 a_1 & a_2 & \cdots & a_n\\
 a_{i_1} & a_{i_2} & \cdots & a_{i_n}
 \end{pmatrix}
-.$$
+,$$
+donde $\sigma(a_j)=a_{i_j}$ para todo $j\in\{1,\ldots,n\}$.
 
-Si $a_1,\ldots,a_k$ son elementos distintos de $X$, la expresión
+Si $a_1,\ldots,a_k$, con $k\geq 2,$ son elementos distintos de $X$, la expresión
 $$(a_1\cdots a_k)$$
-denota la permutación que envía $a_i$ a $a_{i+1}$ para $i=1,\ldots,k-1$ y el último elemento $a_k$ al primer elemento $a_1$. Los demás elementos de $X$ se mantienen fijos. A esta permutación se le llama \textit{ciclo de longitud} $k$ en $S_X$. Llamamos a un ciclo de longitud $2$ $(a\ b)$ transposición, ya que simplemente transpone $a$ y $b$, dejando al resto de elementos de $X$ fijos.
+denota la permutación que envía $a_i$ a $a_{i+1}$ para $i\in\{1,\ldots,k-1\}$ y el último elemento $a_k$ al primer elemento $a_1$. Los demás elementos de $X$ se mantienen fijos. A esta permutación se le llama \textit{ciclo de longitud} $k$ en $S_X$. Llamamos a un ciclo de longitud $2$ $(a\ b)$ transposición, ya que simplemente transpone $a$ y $b$, dejando al resto de elementos de $X$ fijos.
 
 \begin{teor}
 Sea $S_X$ un grupo simétrico, se cumple lo siguiente:
@@ -164,9 +170,9 @@ es una descomposición cíclica de $\tau^\sigma$.
 \end{enumerate}
 \end{teor}
 
-Denotamos por $s_i$ con $i=1,\ldots,n-1$ a la transposición $(i\ \ i+1)\in S_n$. Ya que $s_i^{-1}= s_i$ para $i=1,\ldots,n-1$ y $s_1,\ldots,s_n$ son generadores de $S_n$, consecuencia inmediata del Teorema \ref{teor:trans} y la Proposición \ref{prop:trans}, cualquier permutación de $S_n$ se puede expresar como un producto $\sigma = s_{i_1}s_{i_2}\cdots s_{i_r}$ con $s_{i_1}s_{i_2}\ldots s_{i_r}\in\{1,2,\ldots,n-1\}$. Si $r$ es mínimo para todas las expresiones de $\sigma$, entonces decimos que $s_{i_1}s_{i_2}\cdots s_{i_r}$ es una \textit{expresión reducida} de $\sigma$ y que $s_{i_1}s_{i_2}\cdots s_{i_r}$ es una \textit{palabra reducida}. Una permutación puede tener diferentes palabras reducidas. Definimos como \textit{longitud} $\lambda(w)$ de una permutación $\sigma$ como la longitud $r$ de una expresión reducida $s_{i_1}s_{i_2}\cdots s_{i_r}$ para $\sigma$.
+Denotamos por $s_i$ con $i\in\{1,\ldots,n-1\}$ a la transposición $(i\ \ i+1)\in S_n$. Ya que $s_i^{-1}= s_i$ para $i\in\{1,\ldots,n-1\}$ y $s_1,\ldots,s_n$ son generadores de $S_n$, consecuencia inmediata del Teorema \ref{teor:trans} y la Proposición \ref{prop:trans}, cualquier permutación de $S_n$ se puede expresar como un producto $\sigma = s_{i_1}s_{i_2}\cdots s_{i_r}$ con $s_{i_1}s_{i_2}\ldots s_{i_r}\in\{1,2,\ldots,n-1\}$. Si $r$ es mínimo para todas las expresiones de $\sigma$, entonces decimos que $s_{i_1}s_{i_2}\cdots s_{i_r}$ es una \textit{expresión reducida} de $\sigma$ y que $s_{i_1}s_{i_2}\cdots s_{i_r}$ es una \textit{palabra reducida}. Una permutación puede tener diferentes palabras reducidas. Definimos como \textit{longitud} $\lambda(w)$ de una permutación $\sigma$ como la longitud $r$ de una expresión reducida $s_{i_1}s_{i_2}\cdots s_{i_r}$ para $\sigma$.
 
-Sea $w_0\in S_n$ la permutación $i\mapsto n-1+i$ para todo $i = 1,\ldots,n-1$:
+Sea $w_0\in S_n$ la permutación $i\mapsto n-1+i$ para todo $i \in\{ 1,\ldots,n-1\}$:
 $$w_0 = 
 \begin{pmatrix} 
 1 & 2 & \cdots & n-1 & n \\
@@ -374,11 +380,11 @@ Si un monoide $M$ tiene una presentación ponderada $\langle X\mid R\rangle$, en
 
 \begin{proof} Sea $\ell: M\rightarrow \mathbb{N}$ un homomorfismo de monoide tal que $\ell(x)\geq 1$ para todo generador $x\in X$, que sabemos que existe por tener M  una presentación ponderada $\langle X\mid R\rangle$. Entonces $\ell(a)\geq 1$ para todo $a\in M \backslash\{1\}$. Si $a\in M$ se expande como el producto $a_1\cdot\cdot\cdot a_r$ con $a = a_1,...,a_r\in M\backslash\{1\}$, entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r$. Por tanto $\ell(a)\geq \norm{a}$. Que todos los átomos de $M$ pertenecen a $X$ viene del hecho de que cualquier conjunto que genere un monoide debe contener a sus átomos, ya que estos no se pueden obtener como producto de otros elementos y forman parte del monoide. 
 
-Para la segunda afirmación, al tener una presentación equilibrada en longitud, en particular, tiene una presentación ponderada, por lo que sabemos que $M$ es atómico y el conjunto de átomos de $M$ esta incluido en $X$. Para comprobar la igualdad, tomamos un elemento $x\in X$ y lo expresamos como producto de elementos de $M\backslash\{1\}$, $x = a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M\backslash\{1\}$. Como $\ell$ es un peso canónico tenemos que $1=\ell(x)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r\geq 1$. Por tanto, $\norm{x}=1$ para todo $x\in X$, es decir, todo elemento de $X$ es un átomo. Por último, al ser $M$ atómico, podemos expresar $a\in M$ como producto de átomos $a =a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M\backslash\{1\},\ \norm{a_i}=1$  para $i=1,\ldots,r$. Entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r) = r = \norm{a}$ por ser $\ell$ peso canónico y $\norm{a_i}=1$ para $i=1,\ldots,r$.
+Para la segunda afirmación, al tener una presentación equilibrada en longitud, en particular, tiene una presentación ponderada, por lo que sabemos que $M$ es atómico y el conjunto de átomos de $M$ esta incluido en $X$. Para comprobar la igualdad, tomamos un elemento $x\in X$ y lo expresamos como producto de elementos de $M\backslash\{1\}$, $x = a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M\backslash\{1\}$. Como $\ell$ es un peso canónico tenemos que $1=\ell(x)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r)\geq r\geq 1$. Por tanto, $\norm{x}=1$ para todo $x\in X$, es decir, todo elemento de $X$ es un átomo. Por último, al ser $M$ atómico, podemos expresar $a\in M$ como producto de átomos $a =a_1\cdot\cdot\cdot a_r$ con $a_1,...,a_r\in M\backslash\{1\},\ \norm{a_i}=1$  para $i\in\{1,\ldots,r\}$. Entonces $\ell(a)=\ell(a_1)+\cdot\cdot\cdot+\ell(a_r) = r = \norm{a}$ por ser $\ell$ peso canónico y $\norm{a_i}=1$ para $i\in\{1,\ldots,r\}$.
 \end{proof}
 
 \subsection{El problema de palabra y el problema de divisibilidad}
-
+\label{sec:pro_palabra}
 El \textit{problema de palabra} para una representación $\langle X|R\rangle$ de un monoide $M$ consiste en que dadas dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a=a'$. El \textit{problema de divisibilidad por la izquierda} (resp. \textit{derecha}) esta estrechamente relacionado y consiste en que dadas
 dos palabras $\omega,\omega'\in X^*$ representando a los elementos $a,a'\in M$, determinar si $a\preceq a'$ (resp. $a'\succeq a$).
 
@@ -388,9 +394,11 @@ a cualquier elemento de $W(a)$ ya encontrado. Ya que $R$ es finito, este procedi
 
 También obtenemos una solución para el problema de divisibilidad por la izquierda y por la derecha. Se tiene que $a\preceq a'$ si y solo si algún prefijo (segmento inicial) de una palabra en $W(a')$ pertenece a $W(a)$. De igual manera, $a'\succeq a$ si y solo si algún sufijo (segmento final) de una palabra en $W(a')$ pertenece a $W(a)$.
 
+Hemos introducido la definición de monoide y varios tipos de monoides que cumplen características específicas cada uno. Estos monoides nos han servido para poder trabajar con diferentes presentaciones de monoide, con las cuales, bajo las hipótesis de trabajar con un monoide que posea una presentación ponderada nos han aportado una solución al problema de palabra y al problema de divisibilidad. Además los conceptos vistos en esta sección nos serán de utilidad en nuestro camino a construir los monoides de Garside.
+
 \section{Formas normales y el problema del conjugado}
 
-Ahora vamos a introducir y estudiar un cierto monoide $M_\Sigma$ derivado de un subconjunto $\Sigma$ de cierto monoide $M$. Bajo la presunción de hipótesis favorables, obtenemos una forma normal para los elementos de $M_\Sigma$ y resolvemos el problema del conjugado en $M_\Sigma$.
+Ahora vamos a estudiar el monoide $M_\Sigma$ derivado de un subconjunto $\Sigma$ de cierto monoide $M$. Bajo la presunción de hipótesis favorables vamos a obtener una forma normal para los elementos de $M_\Sigma$ y resolvemos el problema del conjugado en $M_\Sigma$.
 
 \subsection{El monoide $M_\Sigma$} 
 
@@ -532,7 +540,7 @@ Este proceso de expansión puede ser parado en el $r$-ésimo paso, donde $r$ el 
 
 Esta observación nos lleva a una forma normal para cada elemento de $M_\Sigma$. Una \textit{forma normal} para $\xi\in M_\Sigma$ es una sucesión $(a_1,a_2,...,a_r)$ de elementos de $\Sigma$, todos diferentes de $1$, tal que $\xi=[a_1][a_2]\cdot\cdot\cdot[a_r]$ y 
 $$a_i=\alpha([a_i][a_{i+1}]\cdot\cdot\cdot[a_r])$$
-para todo $i=1,2,...,r$. La unicidad en la última afirmación del Teorema \ref{teor:monoi_deriv} implica la unicidad de la forma normal.
+para todo $i\in\{1,2,...,r\}$. La unicidad en la última afirmación del Teorema \ref{teor:monoi_deriv} implica la unicidad de la forma normal.
 
 
 \subsection{La cancelatividad de $M_\Sigma$}
@@ -566,7 +574,7 @@ El \textit{problema del conjugado en un grupo} $G$ consiste en encontrar un proc
 \begin{lema}
 Sea $M,\Sigma\subset M$ satisfaciendo las hipótesis del Teorema \ref{teor:monoi_deriv}. Dados $a,b\in M_\Sigma$, existe $c\in M_\Sigma$ tal que $ac=cb$ si y solo si existe una una sucesión $a=a_0,a_1,\ldots,a_r=b$ de elementos de $M_\Sigma$ y una sucesión $c_1,\ldots,c_r$ de elementos de $\Sigma$ tal que
 $$a_{i-1}[c_i]=[c_i]a_i$$
-para todo $i=1,\ldots,r$.
+para todo $i\in\{1,\ldots,r\}$.
 
 \label{lema:conjugado}
 \end{lema}
@@ -605,10 +613,11 @@ para todo $x\in X$. Ya que el conjunto $P(X)$ genera $M$, tenemos $qp=id$. Por t
 \end{proof}
 El Lema \ref{lema:iso_mono} nos muestra que bajo las hipótesis apropiadas sobre $\Sigma$ tenemos que $M_\Sigma\cong M$, así que todas las propiedades de $M_\Sigma$ se transladan a $M$.
 
-
+Los conceptos de monoide atómico y del monoide $M_\Sigma$ nos han permitido enunciar el Teorema \ref{teor:monoi_deriv}. Este teorema posee gran relevancia, ya que bajo las hipótesis que presupone hemos obtenido en $M_\Sigma$ una forma normal, la propiedad de cancelatividad, una solución al problema de palabra (heredada de la solución de la Sección \ref{sec:pro_palabra}) y una solución al problema del conjugado. Además, la definición de conjunto exhaustivo nos proporciona una forma de saber cuando podemos identificar el monoide $M_\Sigma$ con el monoide $M$ del que deriva.
 
 
 \section{Grupo de fracciones y monoides pre-Garside}
+Hasta ahora los resultados obtenidos han sido para monoides. En última instancia nosotros vamos a trabajar con el grupo de trenzas y nos interesa ver como podemos obtener resultados sobre grupos a partir de los ya obtenidos sobre monoides. Para ello a continuación vamos a introducir los grupos de fracciones y los monoides pre-Garside.
 \subsection{Grupo de fracciones}
 
 Un homomorfismo de monoide $i:M\rightarrow G$ se dice que es \textit{universal} si $G$ es un grupo y para cualquier homomorfismo de monoide $f$ de $M$ a un grupo arbitrario $G'$, existe un único homomorfismo de grupo $g:G\rightarrow G'$ tal que $f=gi$. Cada monoide $M$ admite un homomorfismo universal a un grupo. Para ver esto, tomamos una representación arbitraria $\langle X \mid R \rangle$ de $M$ por generadores y relaciones, y consideramos el grupo $G$ definido por $\langle X \mid R \rangle$ visto como una presentación de grupo. La función identidad $id_X:X\rightarrow X$ extiende a un homomorfismo de monoide $M\rightarrow G$, el cual es fácil ver que es universal. La definición de homomorfismo universal implica que $i:M\rightarrow G$ es único si la composición se realiza con un isomorfismo de grupo. En particular, el grupo $G$ extendido del monoide $M$ esta bien definido hasta para isomorfismo. Este grupo llamado \textit{grupo de fracciones} de $M$ es denotado por $G_M$. Una presentación de $G_M$ por generadores y relaciones se puede obtener tomando una representación del monoide $M$ arbitraria de generadores y relaciones y verla como una representación de grupo.
@@ -667,7 +676,7 @@ $$=\delta^{r-1}(b_r)\cdots\delta^2(b_3)\Delta^2 a_3\cdots a_r$$
 $$=\delta^{r-1}(b_r)\cdots\Delta^2 b_3a_3\cdots a_r$$
 $$=\cdots= \Delta^{r-1}b_ra_r=\Delta^r.$$
 
-De forma similar se prueba que si $a_ic_i=\Delta$ para $i=1,\ldots,r$ y
+De forma similar se prueba que si $a_ic_i=\Delta$ para $i\in\{1,\ldots,r\}$ y
 $$c=c_r\delta^{-1}(c_{r-1})\cdots\delta^{-(r-1)}(c_1)$$
 entonces $ac=\Delta^r$ y por tanto $a\preceq\Delta^r$.
 \end{proof}
@@ -751,6 +760,8 @@ Entonces $a=\Delta^t b$ para algún $b\in M$ tal que $\Delta\npreceq b$ y $\Delt
 Supongamos que $\Delta^s b=\Delta^{s'}b'$ para $s,s'\in\mathbb{Z}$ y $b,b'\in M$ tal que $\Delta\npreceq b$ y $\Delta\npreceq b'$. Podemos asumir que $s\geq s'$. Dividiendo por $\Delta^{s'}$, obtenemos que $\Delta^{s-s'}b=b'$. Ya que $b'$ no es múltiplo por la derecha de $\Delta$ en $M$, tenemos que $s-s'=0$. Por tanto, $s=s'$ y $b=b'$, lo que prueba la unicidad.
 \end{proof}
 
+Hemos podido establecer un monomorfismo entre un monoide pre-Garside y su grupo de fracciones. De esta forma podemos identificar el monoide pre-Garside como un subconjunto del grupo de fracciones. Por el Teorema \ref{teor:refi} hemos obtenido una forma normal para el grupo de fracciones como producto de una potencia del elemento de Garside y elementos del monoide. Esta forma normal greedy será la que finalmente utilizaremos para trabajar con el grupo de trenzas. Además, hemos obtenido una solución al problema del conjugado en el grupo de fracciones reduciéndolo a un problema del conjugado equivalente en el monoide.
+
 \section{Monoides de Garside}
 \subsection{Definiciones y lemas}
 
@@ -811,7 +822,7 @@ Un monoide de Garside $(M,\Delta)$ es \textit{exhaustivo} si el conjunto $\Sigma
 \begin{enumerate}[label=(\arabic*)]
 \item Tenemos que $M\cong M_\Sigma$ (Lema \ref{lema:iso_mono}). En otras palabras, $M$ tiene una presentación con generadores $[a]$, donde $a$ se mueve en $\Sigma$, y relaciones $[1]=1$ y $[a][b]=[ab]$, donde $a,b\in\Sigma$ satisface $ab\in\Sigma$.
 \item Para cualquier $a\in M$, existe un único divisor por la izquierda $\alpha(a)\in\Sigma$ de $a$ que es máximo entre todos los divisores por la izquierda de $a$ pertenecientes a $\Sigma$ (Teorema \ref{teor:monoi_deriv}).
-\item Cualquier $a\in M$ se expande de forma única como un producto $a=a_1a_2\cdots a_r$ de ciertos $a_1,a_2,\ldots,a_r\in\Sigma \backslash\{1\}$ con $r\geq 0$ tal que $a_i=\alpha(a_ia_{i+1}\cdots a_r)$ para todo $i=1,\ldots,r$ (Sección \ref{sec:fn_msigma}).
+\item Cualquier $a\in M$ se expande de forma única como un producto $a=a_1a_2\cdots a_r$ de ciertos $a_1,a_2,\ldots,a_r\in\Sigma \backslash\{1\}$ con $r\geq 0$ tal que $a_i=\alpha(a_ia_{i+1}\cdots a_r)$ para todo $i\in\{1,\ldots,r\}$ (Sección \ref{sec:fn_msigma}).
 \item El homomorfismo de monoide natural de $M$ en su grupo de fracciones $G_M$ es inyectivo (Lema \ref{lema:cancel} y Colorario \ref{colo:pre-garside-embe}). En particular, $M$ es cancelativo por la izquierda y por la derecha.
 \item Si $M\neq \{1\}$, entonces cualquier elemento de $G_M$ puede ser escrito de la forma $\Delta^s b$ con unicidad (forma normal greedy), donde $s\in\mathbb{Z}$ y $b\in M$ no es múltiplo por la derecha de $\Delta$ (Teorema \ref{teor:refi}).
 \item El problema del conjugado $G_M$ es equivalente al problema del conjugado en $M$ (Sección \ref{sec:pc_grfr}). Este último es soluble si $M$ admite una presentación ponderada (Sección \ref{sec:pc_msigma}).
@@ -819,9 +830,9 @@ Un monoide de Garside $(M,\Delta)$ es \textit{exhaustivo} si el conjunto $\Sigma
 
 \subsection{Divisores y múltiplos comunes en monoides de Garside}
 
-Dados $k\geq 2$ elementos $a_1,\ldots,a_k$ de un monoide $M$, decimos que $d\in M$ es un \textit{máximo común divisor por la izquierda} (mcd) de $a_1,\ldots,a_k$ si $d\preceq a_i$ para todo $i=1,\ldots,k$, y $d'\preceq d$ para cualquier $d'\in M$ tal que $d'\preceq a_i$ ara todo $i=1,\ldots,k$. Reemplazando $\preceq$ por $\succeq$, obtenemos análogamente la noción de mcd por la derecha.
+Dados $k\geq 2$ elementos $a_1,\ldots,a_k$ de un monoide $M$, decimos que $d\in M$ es un \textit{máximo común divisor por la izquierda} (mcd) de $a_1,\ldots,a_k$ si $d\preceq a_i$ para todo $i\in\{1,\ldots,k\}$, y $d'\preceq d$ para cualquier $d'\in M$ tal que $d'\preceq a_i$ ara todo $i\in\{1,\ldots,k\}$. Reemplazando $\preceq$ por $\succeq$, obtenemos análogamente la noción de mcd por la derecha.
 
-Decimos que $m\in M$ es un \textit{mínimo común múltiplo} (mcm) de $a_1,\ldots,a_k$ si $a_i\preceq m$ para todo $i=1,\ldots,k$, y $m\preceq m'$ para cualquier $m'\in M$ tal que $a_i\preceq m'$ ara todo $i=1,\ldots,k$. Existe la noción análoga de mcm por la izquierda. Si $M$ es atómico, entonces el mcd y el mcm son únicos siempre que existan. La propiedad (2) de la sección anterior puede ser reformulada diciendo que $\Delta$ y cualquier $a\in M$ tienen mcd por la izquierda. Esas propiedades de los monoides de Garside pueden ser generalizadas de la siguiente manera.
+Decimos que $m\in M$ es un \textit{mínimo común múltiplo} (mcm) de $a_1,\ldots,a_k$ si $a_i\preceq m$ para todo $i\in\{1,\ldots,k\}$, y $m\preceq m'$ para cualquier $m'\in M$ tal que $a_i\preceq m'$ ara todo $i\in\{1,\ldots,k\}$. Existe la noción análoga de mcm por la izquierda. Si $M$ es atómico, entonces el mcd y el mcm son únicos siempre que existan. La propiedad (2) de la sección anterior puede ser reformulada diciendo que $\Delta$ y cualquier $a\in M$ tienen mcd por la izquierda. Esas propiedades de los monoides de Garside pueden ser generalizadas de la siguiente manera.
 
 \begin{teor}
 Sea $(M,\Delta)$ un monoide de Garside exhaustivo. Entonces cualquier familia finita de elementos de $M$ tiene un único mcd por la izquierda y un único mcm por la derecha.
@@ -834,7 +845,7 @@ Vamos a comprobar la condición $(ii)$. Supongamos que tenemos $a\in E$ y los á
 
 Que cualquier familia finita de elementos de $M$ tiene un mcd por la izquierda se sigue fácilmente por inducción sobre la cardinalidad de la familia.
 
-Vamos a probar la existencia de mcm por la derecha. Sea $a_1,\ldots,a_k\in M$. En vista al Lema \ref{lema:pre-garside} (iv), existe $r\geq 1$ tal que $a_i\preceq\Delta^r$ para todo $i=1,\ldots,k$. Consideramos el conjunto
+Vamos a probar la existencia de mcm por la derecha. Sea $a_1,\ldots,a_k\in M$. En vista al Lema \ref{lema:pre-garside} (iv), existe $r\geq 1$ tal que $a_i\preceq\Delta^r$ para todo $i\in\{1,\ldots,k\}$. Consideramos el conjunto
 $$X=\{x\in M\ |\ a_i\preceq c\preceq\Delta^r\ \ \forall i\in\{1,\ldots,k\}\}.$$
 Ya que el conjunto de átomos de $M$ es finito y todos los divisores por la izquierda de $\Delta^r$ se expanden como producto de a lo máximo $r\norm{\Delta}$ átomos, el conjunto de divisores por la izquierda de $\Delta^r$ es finito. Dado que contiene a $X$, este es finito también. Sea $m$ el máximo común divisor por la izquierda de los elementos de $X$. Afirmamos que $m$ es mínimo común múltiplo por la derecha de $a_1,\ldots,a_k$. En efecto, $a_1,\ldots,a_k$ son divisores por la izquierda de todos los elementos de $X$. Por lo tanto, son divisores por la izquierda de $m$. Esto demuestra que $m$ es múltiplo común por la derecha de $a_1,\ldots,a_k$.
 
@@ -855,21 +866,21 @@ Ahora vamos a dar la definición algebraica del grupo de trenzas $B_n$ para cual
 \begin{defi}
 El grupo de trenzas de Artin $B_n$ es el grupo generado por $n-1$ elementos $\sigma_1, \sigma_2,...,\sigma_{n-1}$ y las relaciones de trenza
 $$\sigma_i\sigma_j = \sigma_j\sigma_i,$$
-para todo $i,j=1,2,...,n-1$ con $|i-j|\geq 2$ y
+para todo $i,j\in\{1,2,...,n-1\}$ con $|i-j|\geq 2$ y
 
 $$\sigma_i\sigma_{i+1}\sigma_i =\sigma_{i+1}\sigma_i\sigma_{i+1},$$
-para todo $i=1,2,...,n-2$.
+para todo $i\in\{1,2,...,n-2\}$.
 \label{defi:artin}
 \end{defi}
 
 El siguiente lema nos relaciona el grupo de trenzas con otros grupos en los que se cumplan las condiciones de la definición previa para ciertos elementos.
 
 \begin{lema}
-Si $s_1,...,s_{n-1}$ son elementos de un grupo $G$ que satisfacen las relaciones de trenza, entonces existe un único homomorfismo de grupo $f:B_n\rightarrow G$ tal que $s_i = f(\sigma_i)$ para todo $i=1,2,...,n-1$.
+Si $s_1,...,s_{n-1}$ son elementos de un grupo $G$ que satisfacen las relaciones de trenza, entonces existe un único homomorfismo de grupo $f:B_n\rightarrow G$ tal que $s_i = f(\sigma_i)$ para todo $i\in\{1,2,...,n-1\}$.
 \label{uni_homo}
 \end{lema}
 
-\begin{proof} Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $g:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i=1,...,n-1$. Por la demostración del primer teorema de isomorfía obtenemos otro homomorfismo $\bar{g}:F_n/K\rightarrow G$ donde $K=\ker(g)$ (de hecho, es un monomorfismo). También tenemos un homomorfismo $h:F_n\rightarrow B_n$ con $h(\sigma_i)=\sigma_i$ del cual consideramos su núcleo, $H_n=\ker(h)$. Llamamos $k:F_n/H_n\rightarrow B_n$ al isomorfismo en cuestión. El que los elementos de $s_i$ de $G$ satisfagan las relaciones de trenza implica que $R\subset R'$, donde $R$ es el conjunto de relaciones de $B_n$ y $R'$ es el conjunto de relaciones de G y que por tanto $H_n\subset K$. Por tanto el homomorfismo $\phi:F_n/H_n\rightarrow F_n/K$ con $\phi(xH_n)=\phi(xK)$ esta bien definido. De esta forma, componiendo $f=k^{-1}\circ \phi \circ \bar{g}$ obtenemos nuestro homomorfismo deseado.
+\begin{proof} Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $g:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i\in\{1,...,n-1\}$. Por la demostración del primer teorema de isomorfía obtenemos otro homomorfismo $\bar{g}:F_n/K\rightarrow G$ donde $K=\ker(g)$ (de hecho, es un monomorfismo). También tenemos un homomorfismo $h:F_n\rightarrow B_n$ con $h(\sigma_i)=\sigma_i$ del cual consideramos su núcleo, $H_n=\ker(h)$. Llamamos $k:F_n/H_n\rightarrow B_n$ al isomorfismo en cuestión. El que los elementos de $s_i$ de $G$ satisfagan las relaciones de trenza implica que $R\subset R'$, donde $R$ es el conjunto de relaciones de $B_n$ y $R'$ es el conjunto de relaciones de G y que por tanto $H_n\subset K$. Por tanto el homomorfismo $\phi:F_n/H_n\rightarrow F_n/K$ con $\phi(xH_n)=\phi(xK)$ esta bien definido. De esta forma, componiendo $f=k^{-1}\circ \phi \circ \bar{g}$ obtenemos nuestro homomorfismo deseado.
 \end{proof}
 
 
@@ -918,7 +929,7 @@ Procedemos a realizar la construcción topológica del grupo de trenzas. Para el
 Una trenza geométrica de $n$ hebras, con $n \geq 1$, es un subconjunto $\mathcal{B}\subset\mathbb{R}^2\times I$ formado por $n$ intervalos topológicos (subconjuntos de $\mathbb{R}^2\times I$ homeomorfos a los intervalos de $\mathbb{R}$) disjuntos llamados hebras de tal manera que la proyección $\mathbb{R}^2\times I\rightarrow I$ establezca un homeomorfismo de cada hebra en $I$ y
 $$\mathcal{B}\cap(\mathbb{R}^2\times \{0\})=\{(1,0,0),(2,0,0),...,(n,0,0)\},$$
 $$\mathcal{B}\cap(\mathbb{R}^2\times \{1\})=\{(1,0,1),(2,0,1),...,(n,0,1)\}.$$
-Cada hebra de $\mathcal{B}$ interseca con el plano $\mathbb{R}^2\times \{t\}$ con $t\in I$ en un único punto y conecta un punto $(i,0,0)$ con un punto $(s(i),0,0)$ donde $i,s(i)\in\{1,2,...,n\}$. La sucesión $(s(1),s(2),...,s(n))$ es una permutación del conjunto $\{1,2,...,n\}$ llamada permutación subyacente de $\mathcal{B}$.
+Cada hebra de $\mathcal{B}$ interseca con el plano $\mathbb{R}^2\times \{t\}$ con $t\in I$ en un único punto y conecta un punto $(i,0,0)$ con un punto $(s(i),0,1)$ donde $i,s(i)\in\{1,2,...,n\}$. La sucesión $(s(1),s(2),...,s(n))$ es una permutación del conjunto $\{1,2,...,n\}$ llamada permutación subyacente de $\mathcal{B}$.
 \end{defi}
 
 
@@ -1166,7 +1177,7 @@ Trivialmente también se tiene la asociatividad del producto de trenzas como se 
 Por último probamos el siguiente lema el cual implica que $\mathcal{B}_n$ es un grupo.
 
 \begin{defi}[Trenzas elementales]
-Una trenza elemental es una trenza de $\mathcal{B}_n$ en la que solo hay un cruce de hebras. Denotaremos por $\sigma_i^+$ la trenza que cruza la hebra $i+1$-ésima sobre la $i$-ésima trenza y por $\sigma_i^-$ a la trenza que cruza la $i$-ésima trenza sobre la $i+1$-ésima con $i = 1,\ldots,n-1$.
+Una trenza elemental es una trenza de $\mathcal{B}_n$ en la que solo hay un cruce de hebras. Denotaremos por $\sigma_i^+$ la trenza que cruza la hebra $i+1$-ésima sobre la $i$-ésima trenza y por $\sigma_i^-$ a la trenza que cruza la $i$-ésima trenza sobre la $i+1$-ésima con $i \in\{ 1,\ldots,n-1\}$.
 \end{defi}
 
 Los diagramas de las trenzas elementales quedan ilustrados en la Figura \ref{fig:elem_braids}.
@@ -1240,7 +1251,7 @@ El conjunto de trenzas elementales genera $\mathcal{B}_n$ como monoide.
 \begin{proof}
 Tenemos que probar que las trenzas $\sigma_1^+,...,\sigma_{n-1}^+, \sigma_1^-,...,\sigma_{n-1}^-\in\mathcal{B}_n$ generan $\mathcal{B}_n$ como un monoide. Para ver esto, consideramos una trenza $\beta$ de $n$ hebras representada por un diagrama de trenza $\mathcal{D}$. A través de una ligera deformación de $\mathcal{D}\subset\mathbb{R}\times I$ en un vecindario de sus puntos de cruce, podemos hacer que los cruces de $\mathcal{D}$ tengan distinta su segunda coordenada. Por tanto podemos establecer una partición
 $$0=t_0,t_1,...,t_{k_-1},t_k = 1$$
-tal que la intersección de $\mathcal{D}$ con cada banda $\mathbb{R}\times[t_j, t_{j-1}]$ tiene exactamente un cruce dentro. Esta intersección es en realidad un diagrama de $\sigma_i^+$ o $\sigma_i^-$ para algún $i = 1,2,...,n-1$. El resultado de la división de $\mathcal{D}$ como el producto de $k$ diagrama de hebras muestra que
+tal que la intersección de $\mathcal{D}$ con cada banda $\mathbb{R}\times[t_j, t_{j-1}]$ tiene exactamente un cruce dentro. Esta intersección es en realidad un diagrama de $\sigma_i^+$ o $\sigma_i^-$ para algún $i \in\{ 1,2,...,n-1\}$. El resultado de la división de $\mathcal{D}$ como el producto de $k$ diagrama de hebras muestra que
 $$\beta = \beta(\mathcal{D}) = \sigma_{i_1}^{\varepsilon_1}\sigma_{i_2}^{\varepsilon_2}\cdot\cdot\cdot\sigma_{i_k}^{\varepsilon_k},$$
 donde cada $\varepsilon_j$ es o $+$ o $-$ y $i_1,...,i_k\in{1,2,...,n-1}$.
 
@@ -1251,7 +1262,7 @@ donde cada $\varepsilon_j$ es o $+$ o $-$ y $i_1,...,i_k\in{1,2,...,n-1}$.
 Sea $\beta\in\mathcal{B}_n$, existe un elemento $\beta^{-1}\in\mathcal{B}_n$ que es el inverso por ambos lados de $\beta$.
 \end{colo}
 \begin{proof}
-Claramente, $\sigma_i^+\sigma_i^- = \sigma_i^-\sigma_i^+=1$ para todo $i=1,\ldots,n-1$. Por tanto, escribiendo $\beta$ como producto de trenzas elementales $\beta = \sigma_{i_1}^{\varepsilon_1}\sigma_{i_2}^{\varepsilon_2}\cdot\cdot\cdot\sigma_{i_k}^{\varepsilon_k}$, se tiene que el inverso de $\beta$ es $\beta^{-1} = \sigma_{i_k}^{-\varepsilon_k}\cdot\cdot\cdot\sigma_{i_2}^{-\varepsilon_2}\sigma_{i_k}^{-\varepsilon_k}$ (utilizamos el convenio ``$--=+$, $+-=-$, $-+=-$").
+Claramente, $\sigma_i^+\sigma_i^- = \sigma_i^-\sigma_i^+=1$ para todo $i\in\{1,\ldots,n-1\}$. Por tanto, escribiendo $\beta$ como producto de trenzas elementales $\beta = \sigma_{i_1}^{\varepsilon_1}\sigma_{i_2}^{\varepsilon_2}\cdot\cdot\cdot\sigma_{i_k}^{\varepsilon_k}$, se tiene que el inverso de $\beta$ es $\beta^{-1} = \sigma_{i_k}^{-\varepsilon_k}\cdot\cdot\cdot\sigma_{i_2}^{-\varepsilon_2}\sigma_{i_k}^{-\varepsilon_k}$ (utilizamos el convenio ``$--=+$, $+-=-$, $-+=-$").
  \end{proof}
 
 
@@ -1259,7 +1270,7 @@ Claramente, $\sigma_i^+\sigma_i^- = \sigma_i^-\sigma_i^+=1$ para todo $i=1,\ldot
 
 
 \begin{lema}
-Los elementos $\sigma_1^+,...,\sigma_{n-1}^+\in\mathcal{B}_n$ satisfacen las relaciones de trenza, las cuales son, $\sigma_i\sigma_j = \sigma_j\sigma_i$ para todo $i,j=1,2,...,n-1$ con $|i-j|\geq 2$, y $\sigma_i\sigma_{i+1}\sigma_i =\sigma_{i+1}\sigma_i\sigma_{i+1}$ para todo $i=1,2,...,n-2$.
+Los elementos $\sigma_1^+,...,\sigma_{n-1}^+\in\mathcal{B}_n$ satisfacen las relaciones de trenza, las cuales son, $\sigma_i\sigma_j = \sigma_j\sigma_i$ para todo $i,j\in\{1,2,...,n-1\}$ con $|i-j|\geq 2$, y $\sigma_i\sigma_{i+1}\sigma_i =\sigma_{i+1}\sigma_i\sigma_{i+1}$ para todo $i\in\{1,2,...,n-2\}$.
 \label{lema:rel_geom}
 \end{lema}
 
@@ -1267,7 +1278,7 @@ Los elementos $\sigma_1^+,...,\sigma_{n-1}^+\in\mathcal{B}_n$ satisfacen las rel
 \end{proof}
 
 \begin{teor}
-Para $\varepsilon = \pm$, existe un único homomorfismo $\varphi_\varepsilon : B_n\rightarrow\mathcal{B}_n$ tal que $\varphi_\varepsilon(\sigma_i) = \sigma_i^\varepsilon$ para cada $i=1,2,...,n-1$. El homomorfismo $\varphi_\varepsilon$ es un isomorfismo.
+Para $\varepsilon \in\{+,-\}$, existe un único homomorfismo $\varphi_\varepsilon : B_n\rightarrow\mathcal{B}_n$ tal que $\varphi_\varepsilon(\sigma_i) = \sigma_i^\varepsilon$ para cada $i\in\{1,2,...,n-1\}$. El homomorfismo $\varphi_\varepsilon$ es un isomorfismo.
 \end{teor}
 
 \begin{proof} Lo probamos para $\varepsilon = +$, el caso $\varepsilon = -$ es similar. La existencia y unicidad de $\varphi_+$ vienen proporcionadas por los Lemas \ref{uni_homo} y \ref{lema:rel_geom}. En la prueba del Lema \ref{lema:inverso} se demuestra que $\sigma_1^+,\sigma_2^+,...,\sigma_n^+$ son generadores de $\mathcal{B}_n$. Estos generadores pertenecen a la imagen de $\varphi_+$. Por tanto $\sigma_+$ es sobreyectiva.
@@ -1287,7 +1298,7 @@ Esto demuestra que $\psi$ es una función bien definida de $\mathcal{B}_n\righta
 \end{proof}
 Llegados a este punto ya hemos probado que las trenzas geométricas forman un grupo y que este coincide con el grupo de trenzas de Artin como habíamos dicho al principio. A continuación vamos a ver como podemos relacionar el grupo de trenzas con el grupo de permutaciones, para poder así definir un tipo de trenzas denominado trenzas puras.
 
-Sea $\beta\in B_n$ una trenza de $n$ hebras, consideramos una trenza geométrica que la represente. Denotamos por $d_i$ a la hebra que une el punto $(i,0,0)$ con el punto $(j(i),0,1)$ con $i = 1,\ldots,n$, siendo $j$ una permutación que nos lleva la primera coordenada del extremo superior de una trenza a la primera coordenada del extremo inferior de la misma. Definimos la función $\pi:B_n\rightarrow S_n$ del grupo de trenzas al grupo simétrico como
+Sea $\beta\in B_n$ una trenza de $n$ hebras, consideramos una trenza geométrica que la represente. Denotamos por $d_i$ a la hebra que une el punto $(i,0,0)$ con el punto $(j(i),0,1)$ con $i \in\{ 1,\ldots,n\}$, siendo $j$ una permutación que nos lleva la primera coordenada del extremo superior de una trenza a la primera coordenada del extremo inferior de la misma. Definimos la función $\pi:B_n\rightarrow S_n$ del grupo de trenzas al grupo simétrico como
 $$\pi(\beta) = \begin{pmatrix}
 1 & 2 & \cdot\cdot\cdot & n\\
 j(1) & j(2) & \cdot\cdot\cdot & j(n)\\
@@ -1298,7 +1309,7 @@ Da igual la trenza geométrica tomada como representante o que descomposición c
 \begin{defi}[Trenzas puras]
 El núcleo del homomorfismo $\pi:B_n\rightarrow S_n$ es llamado \textit{grupo de trenzas puro} y es denotado por $P_n$
 $$P_n = Ker(\pi).$$
-Los elementos de $P_n$ se llaman trenzas puras de $n$ hebras. Una trenza geométrica representa a un elemento de $P_n$ si y solo si la hebra que parte de $(i,0,0)$ termina en $(i,0,1)$, con $i = 1,\ldots,n$.
+Los elementos de $P_n$ se llaman trenzas puras de $n$ hebras. Una trenza geométrica representa a un elemento de $P_n$ si y solo si la hebra que parte de $(i,0,0)$ termina en $(i,0,1)$, con $i \in\{ 1,\ldots,n\}$.
 
 \end{defi}
 
@@ -1327,9 +1338,9 @@ Los elementos de $P_n$ se llaman trenzas puras de $n$ hebras. Una trenza geomét
 Para cualquier $n\geq 1$, denotamos por $B_n^+$ el monoide generado por $n-1$ generadores $\sigma_1,\sigma_2,\ldots,\sigma_{n-1}$ y las relaciones
 $$\sigma_i\sigma_j=\sigma_j\sigma_i\ \ \ si\ |i-j|\geq 2,$$
 $$\sigma_i\sigma_j\sigma_i=\sigma_j\sigma_i\sigma_i\ \ \ si\ |i-j|= 1,$$
-donde $i,j=1,2,\ldots,n-1$. El monoide $B_n^+$ se llama \textit{monoide de trenza} de $n$ hebras. A los elementos de $B_n^+$ se les llama \textit{trenzas positivas} de $n$ hebras. Por definición, $B_1^+$ es el monoide trivial. El monoide $B_2^+$ esta generado por un único generador y un conjunto vacío de relaciones. Es isomorfo al monoide $\mathbb{N}$ de enteros no negativos.
+donde $i,j\in\{1,2,\ldots,n-1\}$. El monoide $B_n^+$ se llama \textit{monoide de trenza} de $n$ hebras. A los elementos de $B_n^+$ se les llama \textit{trenzas positivas} de $n$ hebras. Por definición, $B_1^+$ es el monoide trivial. El monoide $B_2^+$ esta generado por un único generador y un conjunto vacío de relaciones. Es isomorfo al monoide $\mathbb{N}$ de enteros no negativos.
 
-La presentación de $B_n^+$ dada previamente es finita y equilibrada en longitud en el sentido ya visto, lo que nos provee de una solución para el problema de palabra para $B_n^+$. Además, el Lema \ref{lema:presen_mono} implica que el monoide $B_n^+$ es atómico cuyos átomos son $\sigma_1,\sigma_2,\ldots,\sigma_{n-1}$ y $\norm{a}=\ell(a)$ para todo $a\in B_n^+$, donde $\ell : B_n^+\rightarrow \mathbb{N}$ es el homomorfismo de monoide definido por $\ell(\sigma_i)=1$ para $i=1,\ldots,n-1$.
+La presentación de $B_n^+$ dada previamente es finita y equilibrada en longitud en el sentido ya visto, lo que nos provee de una solución para el problema de palabra para $B_n^+$. Además, el Lema \ref{lema:presen_mono} implica que el monoide $B_n^+$ es atómico cuyos átomos son $\sigma_1,\sigma_2,\ldots,\sigma_{n-1}$ y $\norm{a}=\ell(a)$ para todo $a\in B_n^+$, donde $\ell : B_n^+\rightarrow \mathbb{N}$ es el homomorfismo de monoide definido por $\ell(\sigma_i)=1$ para $i\in\{1,\ldots,n-1\}$.
 
 Establecemos
 $$\Delta_n = (\sigma_1\cdots\sigma_{n-2}\sigma_{n-1})(\sigma_1\cdots\sigma_{n-2})\cdots(\sigma_1\sigma_2)\sigma_1\in B_n^+.$$
@@ -1338,9 +1349,9 @@ $$\Delta_n = (\sigma_1\cdots\sigma_{n-2}\sigma_{n-1})(\sigma_1\cdots\sigma_{n-2}
 
 Consideramos el grupo simétrico $S_n$ que esta formado por todas las permutaciones del conjunto $\{1,\ldots,n\}$. Definimos la función $\rho:S_n\rightarrow B_n^+$ como sigue. Consideramos las transposiciones simples $s_1,\ldots,s_{n-1}\in S_n$, donde $s_i$ permuta $i$ y $i+1$ y deja el resto de elementos fijos. Las transposiciones simples generan $S_n$, así que cada elemento $\omega\in S_n$ puede ser expresado como una palabra $\omega = s_{i_1}s_{i_2}\cdots s_{i_r}$ con $i_1,i_2,\ldots,i_r\in\{1,2,\ldots,n-1\}$. Si $r$ es mínimo, entonces esta es una expresión reducida y establecemos que $\rho(\omega)=\sigma_{i_1}\sigma_{i_2}\cdots \sigma_{i_r}$. Como ya vimos en la Sección \ref{sec:grupos}, $w$ puede tener varias expresiones reducidas diferentes. Pero en \cite{br_gr} queda demostrado que $\rho$ está bien definido, de manera que la imagen por $\rho$ de distintas expresiones reducidas de $w$ dan como imagen la misma trenza. Sea
 $$\pi:B_n^+\rightarrow S_n$$
-el homomorfismo de monoide definido por $\pi(\sigma_i)=s_i$ para todo $i=1,\ldots,n-1$ es la restricción a $B_n^+$ del homomorfismo de monoides $\pi$ definido al final de la Sección \ref{sec:cons_grtr}. Esta claro que $\pi\circ\rho = id$, lo que implica que $\rho$ es inyectiva.
+el homomorfismo de monoide definido por $\pi(\sigma_i)=s_i$ para todo $i\in\{1,\ldots,n-1\}$ es la restricción a $B_n^+$ del homomorfismo de monoides $\pi$ definido al final de la Sección \ref{sec:cons_grtr}. Esta claro que $\pi\circ\rho = id$, lo que implica que $\rho$ es inyectiva.
 
-Establecemos $B_n^{red}=\rho(S_n)\subset B_n^+$. Este es un conjunto finito de cardinalidad $n!$ y el homomorfismo $\pi:B_n^+\rightarrow S_n$ es una biyección cuando se restringe a $B_n^{red}$. Decimos que un elemento de $B_n^+$ es reducido si se encuentra en $B_n^{red}$. Los átomos $\sigma_1,\ldots,\sigma_{n-1}$ de $B_n^+$ son reducidos, ya que $\sigma_i=\rho(s_i)$ para $i=1,\ldots,n-1$. Recordamos la longitud $\lambda(w)$ para $w\in S_n$ vista en la Sección \ref{sec:grupos}. Por definición de $\lambda$ está claro que
+Establecemos $B_n^{red}=\rho(S_n)\subset B_n^+$. Este es un conjunto finito de cardinalidad $n!$ y el homomorfismo $\pi:B_n^+\rightarrow S_n$ es una biyección cuando se restringe a $B_n^{red}$. Decimos que un elemento de $B_n^+$ es reducido si se encuentra en $B_n^{red}$. Los átomos $\sigma_1,\ldots,\sigma_{n-1}$ de $B_n^+$ son reducidos, ya que $\sigma_i=\rho(s_i)$ para $i\in\{1,\ldots,n-1\}$. Recordamos la longitud $\lambda(w)$ para $w\in S_n$ vista en la Sección \ref{sec:grupos}. Por definición de $\lambda$ está claro que
 $$\lambda(\pi(a))=\ell(a)$$
 para todo $a\in B_n^+$. El siguiente lema es una útil caracterización algebraica de $B_n^{red}$.
 
@@ -1452,8 +1463,8 @@ Por el Teorema \ref{teor:trenzas-garside}, el par $(B_n^+,\Delta_n)$, comparte t
 \begin{enumerate}[label=(\arabic*)]
 \item El monoide $B_n^+$ tiene una presentación con generadores $[a]$, donde $a$ se encuentra en $B_n^{red}$, y relaciones $[1]=1$ y $[a][b]=[ab]$ siempre que $a,b\in B_n^{red}$ cumplan $ab\in B_n^{red}$. Usando la biyección $\rho: S_n\rightarrow B_n^{red}$ y el Lema \ref{lema:longi}, concluimos que $B_n^+$ tiene una presentación con generadores $[u]$, donde $u$ se encuentra en $S_n$, y relaciones $[1]=1$ y $[u][v]=[uv]$ siempre que $u,v\in S_n$ cumplan $\lambda(u)+\lambda(v)=\lambda(uv)$.
 \item Cualquier familia finita de elementos de $B_n^+$ tiene un único mcd por la izquierda y un único mcm por la derecha.
-\item Cualquier $a\in B_n^+$ tiene una \textit{forma normal} $(a_1,a_2,\ldots, a_r)$ con $r\geq 0$, donde $a_1,a_2,\ldots, a_r$ son elementos únicos de $B_n^{red}\backslash\{1\}$ tal que $a=a_1a_2\cdots a_r$ y $a_i$ es el mcd por la izquierda de $a_ia_{i+1}\cdots a_r$ y $\Delta_n$ para todo $i=1,2,\ldots,r$.
-\item El monoide $B_n^+$ se embebe en el grupo de fracciones. Por definición el grupo de fracciones de $B_n^+$ tiene la misma presentación que $B_n^+$ y no es más que el grupo de trenzas $B_n$. Esto hace que el homomorfismo de monoide $B_n^+\rightarrow B_n$ que envía $\sigma_i\in B_n^+$ a $\sigma_i\in B_n$ para $i=1,\ldots, n-1$ es inyectivo. En la práctica identificaremos el monoide $B_n^+$ con su imagen en $B_n$.
+\item Cualquier $a\in B_n^+$ tiene una \textit{forma normal} $(a_1,a_2,\ldots, a_r)$ con $r\geq 0$, donde $a_1,a_2,\ldots, a_r$ son elementos únicos de $B_n^{red}\backslash\{1\}$ tal que $a=a_1a_2\cdots a_r$ y $a_i$ es el mcd por la izquierda de $a_ia_{i+1}\cdots a_r$ y $\Delta_n$ para todo $i\in\{1,2,\ldots,r\}$.
+\item El monoide $B_n^+$ se embebe en el grupo de fracciones. Por definición el grupo de fracciones de $B_n^+$ tiene la misma presentación que $B_n^+$ y no es más que el grupo de trenzas $B_n$. Esto hace que el homomorfismo de monoide $B_n^+\rightarrow B_n$ que envía $\sigma_i\in B_n^+$ a $\sigma_i\in B_n$ para $i\in\{1,\ldots, n-1\}$ es inyectivo. En la práctica identificaremos el monoide $B_n^+$ con su imagen en $B_n$.
 \item Para $n\geq 2$, cualquier $\beta\in B_n$ puede ser escrito únicamente en la forma $\beta=\Delta_n^sb$, donde $s\in\mathbb{Z}$ y $b\in B_n^+\subset B_n$ no es un múltiplo por la derecha de $\Delta_n$ (forma normal greedy).
 \item El problema del conjugado en $B_n$ es equivalente al problema del conjugado en $B_n^+$ y puede ser resuelto como ya se ha visto.
 \end{enumerate}
@@ -1475,7 +1486,7 @@ La expansión $\beta=\Delta^sb$ de una trenza $\beta\in B_n$ que nos da la propi
 \begin{equation}
 \sigma_i\Delta_n=\Delta_n\sigma_{n-i},
 \end{equation}
-donde $i=1,\ldots,n-1$, podemos mover todas las potencias de $\Delta_n$ a la izquierda. De esta forma obtenemos una expansión $\beta=\Delta_n^sb$ con $s\in\mathbb{Z}$ y $b\in B_n^+$. Si $b$ no es un múltiplo por la derecha de $\Delta_n$, entonces tenemos la deseada expansión de $\beta$. Si $\Delta_n\preceq b$, entonces $b=\Delta_n b'$ con $b'\in B_n^+$ y $\beta=\Delta_n^{s+1}b'$. Observar que comprobar si $\Delta_n\preceq b$, es suficiente calcular $\alpha(b)\in B_n^{red}$ y ver si $\alpha(b)=\Delta_n$. Después comprobamos si $b'$ es múltiplo por la derecha de $\Delta_n$ y así sucesivamente. El proceso se para antes de $2\ell(b)/(n(n-1))$ pasos.
+donde $i\in\{1,\ldots,n-1\}$, podemos mover todas las potencias de $\Delta_n$ a la izquierda. De esta forma obtenemos una expansión $\beta=\Delta_n^sb$ con $s\in\mathbb{Z}$ y $b\in B_n^+$. Si $b$ no es un múltiplo por la derecha de $\Delta_n$, entonces tenemos la deseada expansión de $\beta$. Si $\Delta_n\preceq b$, entonces $b=\Delta_n b'$ con $b'\in B_n^+$ y $\beta=\Delta_n^{s+1}b'$. Observar que comprobar si $\Delta_n\preceq b$, es suficiente calcular $\alpha(b)\in B_n^{red}$ y ver si $\alpha(b)=\Delta_n$. Después comprobamos si $b'$ es múltiplo por la derecha de $\Delta_n$ y así sucesivamente. El proceso se para antes de $2\ell(b)/(n(n-1))$ pasos.
 
 Damos un ejemplo aplicando este procedimiento a
 $$\beta=\sigma_1^{-1}\sigma_2\sigma_1\sigma_2^{-2}\in B_4.$$
@@ -1617,7 +1628,7 @@ Las \textit{firmas digitales} requieren métodos de llave pública. Como las cl�
 $$Verify(pk,s,m)=ok$$
 con la llave pública de Alice $pk$.
 
-No es común firmar el mensaje en si mismo, sino usar primero una \textit{función hash criptográfica} y después firmar el valor hash. Las firmas digitales dependen del mensaje. Mensajes distintos producen firmas distintas. Así que, como los códigos de autenticación de mensaje, las firmas digitales pueden ser utilizadas para garantizar la integridad de los datos.
+No es común firmar el mensaje en sí mismo, sino usar primero una \textit{función hash criptográfica} y después firmar el valor hash. Las firmas digitales dependen del mensaje. Mensajes distintos producen firmas distintas. Así que, como los códigos de autenticación de mensaje, las firmas digitales pueden ser utilizadas para garantizar la integridad de los datos.
 
 
 \section{Protocolos criptográficos}
