@@ -49,7 +49,7 @@
 \chapter{Generalidades sobre grupos}
 \section{Grupos y subgrupos}
 \label{sec:grupos}
-En este capítulo vamos a repasar algunos aspectos de la teoría de grupos que en su mayoría se han visto a lo largo de la carrera. Estos aparecen en \cite{group} y \cite{br_gr}, y serán necesarios para desarrollar tanto el grupo de trenzas, como la parte de criptografía y criptoanálisis. En primer lugar vamos a comenzar con algunos conceptos básicos sobre grupos.
+En este capítulo vamos a repasar algunos aspectos de la teoría de grupos que en su mayoría se han visto a lo largo de la carrera. Estos aparecen en \cite{group, br_gr, wiki, alg_abs}, y serán necesarios para desarrollar tanto el grupo de trenzas, como la parte de criptografía y criptoanálisis. En primer lugar vamos a comenzar con algunos conceptos básicos sobre grupos.
 
 \begin{defi}[Grupo]
 Un grupo es una estructura algebraica formada por un conjunto $G\neq\emptyset$ y una operación interna $G\times G\rightarrow G$ a la que llamaremos \textit{producto}. Esta operación asigna a cada pareja $(x,y)$ el elemento $xy$ y verifica las siguientes propiedades:
@@ -321,6 +321,10 @@ Un monoide $M$ es \textit{cancelativo por la izquierda} (resp. \textit{por la de
 $$ab=ac\text{ implica } b=c\ \ \ \ (\textrm{resp.}\ \  ba=ca \text{ implica } b=c).$$
 Un elemento $a$ de un monoide $M$ es \textit{invertible} si existe $b\in M$ tal que $ab=ba=1$. De esta forma, un grupo es un monoide en el que todo elemento es invertible.
 
+\begin{defi}
+Dados $M$ y $M'$ dos monoides, se dice que una función $f:M\rightarrow M'$ es un homomorfismo de monoides si $f(xy)=f(x)f(y)$ para todo $x,y\in M$ y $f(1)=1$. Un homomorfismo inyectivo es un \textit{monomorfismo}, un homomorfismo sobreyectivo es un \textit{epimorfismo} y un homomorfismo biyectivo es un \textit{isomorfismo}. Cuando $f$ es un isomorfismo, decimos que $M$ y $M'$ son \textit{isomorfos} y lo denotamos por $M\cong M'$.
+\end{defi}
+
 
 
 \subsection{Divisibilidad en monoides}
@@ -366,7 +370,7 @@ La ecuación $ab=1$ en un monoide atómico $M$ tiene como única solución $a=1,
 
 \subsection{Presentaciones de un monoide}
 
-Para poder definir con propiedad que es la presentación de un monoide, primero vamos a tener que ver algunos aspectos sobre relaciones y congruencias.
+Para poder definir con propiedad que es la presentación de un monoide, primero vamos a tener que ver algunos aspectos sobre relaciones y congruencias. Las definiciones y demostraciones de las afirmaciones referentes a estos se pueden encontrar en \cite{monoides}.
 
 Una \textit{relación (binaria)} en un conjunto $X$ es básicamente un subconjunto $\rho$ del producto cartesiano $X\times X$. Diremos que dos elementos $x,y\in X$ estan \textit{relacionados} si $(x,y)\in\rho$. Para cada $x\in$ X
  definimos el conjunto $x\rho=\{y\in X:(x,y)\in\rho)\}$.
@@ -406,8 +410,29 @@ para $x,y\in M$. Esta operación esta bien definida precisamente porque $\rho$ e
 
 \begin{teor}
 Sea $M$ un monoide y $\rho$ una congruencia en $M$. Entonces $M/\rho$ es un monoide con la operación que acabamos de definir y la función $\pi:M\rightarrow M/\rho$ con $\pi(x)=x\rho$ para $x\in M$ es un homomorfismo.
-Sea $M'$ un monoide y $\phi:M\rightarrow M'$ un homomorfismo de monoides.
+Sea $M'$ un monoide y $\phi:M\rightarrow M'$ un homomorfismo de monoides. Entonces la relación
+$$\ker(\phi)=\{(x,y)\in M\times M: \phi(x)=\phi(y)\}$$
+es una congruencia en $M$, y hay un único monomorfismo $\alpha:M/\ker(\phi)\rightarrow M'$ tal que $\phi=\alpha\circ\pi$.
 \end{teor}
+
+La intersección de una familia no vacía de congruencias de congruencias en un monoide $M$ es una congruencia en $M$. Procediendo como lo hemos hecho antes con las relaciones de equivalencia, deducimos que para cada relación $R$ en $M$ existe la congruencia más pequeña $R^\#$ en $M$ conteniendo a $R$, la cual es única y se obtiene de la intersección de la familia de todas las congruencias en $M$ que contienen a $R$.
+
+Para un monoide $M$ y una relación $R$ cualquiera, definimos el conjunto
+$$R^c=\{(xay,xby):x,y\in M,\ (a,c\in(R))\},$$
+que es el conjunto más pequeño de relaciones compatibles conteniendo a $R$.
+
+\begin{prop}
+Para cualquier relación $R$ en un monoide $M$, $R^\#=(R^c)^e$.
+\end{prop}
+
+\begin{defi}
+Dado un conjunto $X$, consideramos el monoide libre $X^*$. Sea $R$ una relación en $X^*$, el monoide $\langle X\mid R\rangle$ es el cociente $X^*/R^\#$.
+\end{defi}
+
+\begin{defi}
+Una presentación de un monoide $M$ es un isomorfismo de $M$ en un $\langle X\mid R\rangle$. Se dice que $X$ es el conjunto de generadores, $R$ es el conjunto de relaciones y un elemento $(x,y)\in R$ es una relación que se suele denotar por $x=y$.
+\end{defi}
+
 
 
 
@@ -669,7 +694,7 @@ Los conceptos de monoide atómico y del monoide $M_\Sigma$ nos han permitido enu
 Hasta ahora los resultados obtenidos han sido para monoides. En última instancia nosotros vamos a trabajar con el grupo de trenzas y nos interesa ver como podemos obtener resultados sobre grupos a partir de los ya obtenidos sobre monoides. Para ello a continuación vamos a introducir los grupos de fracciones y los monoides pre-Garside.
 \subsection{Grupo de fracciones}
 
-Un homomorfismo de monoide $i:M\rightarrow G$ se dice que es \textit{universal} si $G$ es un grupo y para cualquier homomorfismo de monoide $f$ de $M$ a un grupo arbitrario $G'$, existe un único homomorfismo de grupo $g:G\rightarrow G'$ tal que $f=gi$. Cada monoide $M$ admite un homomorfismo universal a un grupo. Para ver esto, tomamos una representación arbitraria $\langle X \mid R \rangle$ de $M$ por generadores y relaciones, y consideramos el grupo $G$ definido por $\langle X \mid R \rangle$ visto como una presentación de grupo. La función identidad $id_X:X\rightarrow X$ extiende a un homomorfismo de monoide $M\rightarrow G$, el cual es fácil ver que es universal. La definición de homomorfismo universal implica que $i:M\rightarrow G$ es único si la composición se realiza con un isomorfismo de grupo. En particular, el grupo $G$ extendido del monoide $M$ esta bien definido hasta para isomorfismo. Este grupo llamado \textit{grupo de fracciones} de $M$ es denotado por $G_M$. Una presentación de $G_M$ por generadores y relaciones se puede obtener tomando una representación del monoide $M$ arbitraria de generadores y relaciones y verla como una representación de grupo.
+Un homomorfismo de monoide $i:M\rightarrow G$ se dice que es \textit{universal} si $G$ es un grupo y para cualquier homomorfismo de monoide $f$ de $M$ a un grupo arbitrario $G'$, existe un único homomorfismo de grupo $g:G\rightarrow G'$ tal que $f=gi$. Cada monoide $M$ admite un homomorfismo universal a un grupo. Para ver esto, tomamos una representación arbitraria $\langle X \mid R \rangle$ de $M$ por generadores y relaciones, y consideramos el grupo $G$ definido por $\langle X \mid R \rangle$ visto como una presentación de grupo. La función identidad $id_X:X\rightarrow X$ extiende a un homomorfismo de monoide $M\rightarrow G$, el cual es fácil ver que es universal. La definición de un homomorfismo universal $M\rightarrow G$ implica que es único bajo composición con un isomorfismo de grupos. En particular, el grupo $G$ extendido del monoide $M$ esta bien definido bajo isomorfismo. Este grupo llamado \textit{grupo de fracciones} de $M$ es denotado por $G_M$. Una presentación de $G_M$ por generadores y relaciones se puede obtener tomando una representación del monoide $M$ arbitraria de generadores y relaciones y verla como una representación de grupo.
 
 Un monoide $M$ es \textit{embebible} si existe un homomorfismo de monoide inyectivo de $M$ a un grupo. Es claro que $M$ es embebible si y solo si el homomorfismo universal de $M\rightarrow G_M$ es inyectivo. Por ejemplo, la inclusión $\mathbb{N}\hookrightarrow\mathbb{Z}$ demuestra que $\mathbb{N}$ es embebible. Es fácil ver que la inclusión es un homomorfismo universal tal que $G_\mathbb{N}=\mathbb{Z}$.
 
@@ -1743,6 +1768,27 @@ Otras necesidades para el grupo plataforma dependen del protocolo en particular.
 Entre los primeros intentos de usar grupos no abelianos como plataformas para criptosistemas de llave pública estuvieron los esquemas de Anshel-Anshel-Goldfeld y Ko, Lee et al que veremos a continuación.
 
 
+\section{Funciones hash criptográficas}
+Vamos a hablar sobre algunos aspectos de las funciones hash, que serán utilizadas en ciertos esquemas que vamos a ver más adelante.
+
+Una \textit{función hash} es una función que toma como entrada una cadena de bits de longitud arbitraria y da como salida una cadena de bits de una longitud fija $n$. Matemáticamente, una función hash es una función
+$$h:\{0,1\}^*\rightarrow\{0,1\}^n,\ m\longmapsto h(m).$$
+
+Una \textit{función hash criptográfica} es una función hash que cumple dos propiedades. Es una \textit{función unidireccional}, es decir, que dado un valor $y\in\{0,1\}^n$, es computacionalmente inviable encontrar un $m\in\{0,1\}^*$ tal que $h(m)=y$. Además, una funcion hash criptográfica debe ser \textit{resistente a colisiones}. Ser resistente a colisiones significa que es computacionalmente inviable encontrar $m,m'\in\{0,1\}^*$ tal que $h(m)=h(m')$.
+El dominio y el codominio de una función hash criptográfica puede cambiar fácilmente, ya que una cadena de bits puede codificar a elementos de otros conjuntos. A menudo, las funciones hash criptográficas son obtenidas utilizando la construcción de Merkle-Damg\r{a}rd explicada a continuación.
+\subsection{Construcción de Merkle-Damg\r{a}rd}
+Esta construcción es un método que reduce el problema de diseñar una función hash resistente a colisiones $h:\{0,1\}^*\rightarrow\{0,1\}^n$ al problema de construir una función resistente a colisiones
+$$f:\{0,1\}^{n+r}\rightarrow\{0,1\}^n\ \ \ \ (r\in\mathbb{N},r>0)$$
+con dominio finito $\{0,1\}^{n+r}$. A esta función se le denomina \textit{función de compresión}. Una función de compresión lleva un mensaje $m$ de longitud $n+r$ a un mensaje $f(m)$ de longitud $n$. Llamamos a $r$ el \textit{ratio de compresión}. Procedemos a explicar en que consiste la construcción de Merkle-Damg\r{a}rd.
+
+Sea $f:\{0,1\}^{n+r}\rightarrow\{0,1\}^n$ una función de compresión con ratio de compresión $r$. Usando $f$ vamos a definir una función hash
+$$h:\{0,1\}^*\rightarrow\{0,1\}^n.$$
+Sea $m\in\{0,1\}^*$ un mensaje de longitud arbitraria. La función hash $h$ funciona iterativamente. Para calcular el valor hash $h(m)$, comenzamos inicializando el valor hash $v=v_0$ (el mismo para todos los mensajes). El mensaje $m$ es subdividido en bloques de longitud $r$. Un bloque tras otro se cogen de $m$, concatenados con el valor de $v$ y comprimidos por $f$ dan lugar a un nuevo $v$. El $v$ final es el valor hash $h(m)$. 
+
+\begin{prop}
+Sea $f$ una función de compresión resistente a colisones. La función hash construida con el método de Merkle-Damg\r{a}rd es también resistente a colisiones.
+\end{prop}
+La demostración se puede ver en \cite{in_cr}.
 
 
 
@@ -1838,8 +1884,8 @@ $$=\sigma_7\sigma_8\sigma_7\sigma_6^{-1}\sigma_9^{-1}\sigma_8\cdot \sigma_3^{-1}
 $$= rp'r^{-1} = t_B.$$ \qed
 \end{ejem}
 
-La implementación realizada se puede ver en la Figura \ref{img:imp_ko}.
 
+Se ha realizado una implementación en SageMath de este esquema, la cual puede verse en la Figura \ref{img:imp_ko}. Para esta se ha utilizado la clase \texttt{BraidGroup}, que viene incorporada con SageMath y nos permite trabajar de forma directa con las trenzas.
 \begin{figure}
 \includegraphics[scale=0.5]{imgs/KoLee.png}
 \caption{Implementación del Esquema Diffie-Hellman}
@@ -1850,7 +1896,7 @@ La implementación realizada se puede ver en la Figura \ref{img:imp_ko}.
 Aquí el problema es que Bob desea enviar un mensaje $m$ a Alice, y el puede usar la llave pública de Alice para cifrar su mensaje. Alice debe ser capaz de recuperar el mensaje original de Bob usando su llave privada, de manera que un intruso que observe la comunicación no pueda.
 
 \subsubsection*{Esquema Ko \& al.}
-Este esquema fue propuesto por Ko \& al. en \cite{Ko}. La notación será la empleada en el esquema de intercambio de llaves previo. Además, asumimos que $h$ es una \textit{función hash unidireccional libre de colisión} de $B_n$ a $\{0,1\}^N$, es decir, una función calculable tal que la probabilidad de que $h(b_1)=h(b_2)$ para $b_1\neq b_2$ es despreciable (libre de colisión) y recuperar $b$ a partir de $h(b)$ es inviable.
+Este esquema fue propuesto por Ko \& al. en \cite{Ko}. La notación será la empleada en el esquema de intercambio de llaves previo. Además, asumimos que $h$ es una función hash criptográfica de $B_n$ a $\{0,1\}^N$.
 
 Comenzamos con $p\in B_n$ y $s\in LB_n$. La llave pública de Alice es el par $(p,p')$, con $p'=sps^{-1}$. La llave privada de Alice es $s$. Con el fin de enviar el mensaje $m_B$, el cual asumimos que se encuentra en $\{0,1\}^N$, usando $\oplus$ para la operación booleana ``or-exclusivo"(es decir, la suma en $\mathbb{Z}/2\mathbb{Z}$):
 
@@ -1873,7 +1919,7 @@ Ahora el problema es que Alice desea probar su identidad a Bob, es decir, ella d
 
 \subsubsection*{Esquema inspirado en Diffie-Hellman}
 
-El siguiente esquema desafío-respuesta \cite{Sibert} esta inspirado en el esquema previo de Ko \& al. La llave pública es un par de trenzas conjugadas $(p,p')$ en $B_n$ con $p'=sps^{-1}$, mientras que la llave privada de Alice es la trenza $s$ utilizada para conjugar $p$ y $p'$. Asumimos que $s\in LB_n$. También usaremos $h$ como función hash unidireccional libre de colisión en $B_n$. Entonces para realizar la autenticación se hace el siguiente intercambio:
+El siguiente esquema desafío-respuesta \cite{Sibert} esta inspirado en el esquema previo de Ko \& al. La llave pública es un par de trenzas conjugadas $(p,p')$ en $B_n$ con $p'=sps^{-1}$, mientras que la llave privada de Alice es la trenza $s$ utilizada para conjugar $p$ y $p'$. Asumimos que $s\in LB_n$. También usaremos $h$ como función hash criptográfica en $B_n$. Entonces para realizar la autenticación se hace el siguiente intercambio:
 
 \begin{enumerate}
 \item Bob elige una trenza aleatoria $r\in UB_n$, y le envía el desafío $p''=rpr^{-1}$ a Alice.
@@ -1903,7 +1949,7 @@ El problema consiste en que Alice quiere enviar a Bob un mensaje (texto plano o 
 Vamos a ver dos esquemas de firma basados en trenzas propuestos por Ko \& al \cite{Ko_sig}. El primer esquema es más simple y legible mientras que el segundo es el esquema recomendado. Estos esquemas usan la supuesta diferencia de complejidad entre el Problema del Conjugado y el Problema de Búsqueda del Conjugado. Para valores medios de $n$ (típicamente $n=20$), al usar una representación lineal de las trenzas hace posible decidir si dos trenzas de $B_n$ son conjugadas sin ser capaz de determinar la trenza conjugada cuando existe.
 
 \subsubsection*{Esquema simple}
-Las llaves públicas son un par de trenzas conjugadas $(p,p')$ con $p'=sps^{-1}$, mientras que $s$, que es la trenza conjugadora, es la llave privada de Alice. Las trenzas $p$ y $s$ pertenecen a $B_n$. Usamos $H$ como función hash unidireccional libre de colisión de $\{0,1\}^*$ a $B_n$. Usamos $\sim$ para la conjugación en $B_n$. El esquema es como sigue:
+Las llaves públicas son un par de trenzas conjugadas $(p,p')$ con $p'=sps^{-1}$, mientras que $s$, que es la trenza conjugadora, es la llave privada de Alice. Las trenzas $p$ y $s$ pertenecen a $B_n$. Usamos $H$ como función hash criptográfica de $\{0,1\}^*$ a $B_n$. Usamos $\sim$ para la conjugación en $B_n$. El esquema es como sigue:
 
 
 \begin{enumerate}
@@ -1914,7 +1960,7 @@ Las llaves públicas son un par de trenzas conjugadas $(p,p')$ con $p'=sps^{-1}$
 Si Alice usa la llave secreta $s$, tenemos que $q'=sqs^{-1}$ y que $p'q'=spqs^{-1}$, así que la firma es aceptada. La seguridad de este esquema se encuentra en el Problema de Búsqueda del Conjugado Coincidente. Este consiste en que teniendo $p'\sim p$ y $q$ en $B_n$, hay que encontrar $q'$ que satisfaga que $q'\sim q$ y $p'q'\sim pq$. Esta demostrado que este problema tiene al menos la misma complejidad que el Problema de Búsqueda del Conjugado para el par $(p,p')$.
 
 \subsubsection*{Esquema recomendando}
-Una posible debilidad del esquema previo está en que un uso repetido de este revela muchos pares $(q_i,q_i')$ asociados a un conjugador $s$ en común. Para abordar esto se modifica el esquema incorporando una trenza aleatoria. Aquí de nuevo usaremos $h$ como función hash unidireccional libre de colisión de $B_n$ a $\{0,1\}^*$:
+Una posible debilidad del esquema previo está en que un uso repetido de este revela muchos pares $(q_i,q_i')$ asociados a un conjugador $s$ en común. Para abordar esto se modifica el esquema incorporando una trenza aleatoria. Aquí de nuevo usaremos $h$ como función hash criptográfica de $B_n$ a $\{0,1\}^*$:
 
 \begin{enumerate}
 \item Alice elige una trenza aleatoria $r\in B_n$.
@@ -2002,7 +2048,7 @@ Como se puede ver, el algoritmo restringe la entrada para trenzas conjugadas pos
 
 Pasamos a explicar el algoritmo. En los pasos 1 y 2 inicializamos $\alpha$ como una palabra vacía para calcular el conjugador $x$ y preparamos $v,w\in B_n$ normalizándolos. En los pasos 3 y 4 utilizamos el Lema \ref{lema:criptoanalisis}, de forma que al completar estos pasos tenemos un nuevo problema del conjugado donde  la longitud canónica de $w$ es menor que la de $v$. Durante estos pasos se va construyendo $\alpha$, de manera que en virtud del Lema \ref{lema:criptoanalisis}, al principio del paso 5 tenemos que $w = x'^{-1}vx'$ con $x = x'\alpha$ y $x\in B_n^+$. Asumimos en esta situación que si todavía no se ha descubierto la parte $x'$ de la palabra conjugadora $x$, está esencialmente determinada por la permutación $\pi(x')$. Consecuentemente, en este paso, adivinamos la permutación $\pi(x')$, es decir, la función GuessPermutation(v,w) nos devuelve un factor canónico $\mu$ tal que $\pi(\mu)=\pi(x')$. Encontrar dicha palabra de trenza $\mu$ en el caso general consistirá en resolver el problema del conjugado $\pi(w)=\pi(x')^{-1}\pi(v)\pi(x')$ en el grupo simétrico $S_n$. En el caso de trenzas puras esto no funcionaría y habría que utilizar otro método mencionado en \cite{Att}. Finalmente si $w$ y $v$ coinciden, esto significa que las trenzas originales de la entrada son conjugadas y que el conjugador es el $\alpha$ devuelto. Si devuelve 'failed' no se obtiene ninguna conclusión.
 
-En la Figura \ref{img:alg_a} vemos la implementación realizada del algoritmo. La Figura \ref{img:guess_per} muestra la función GuessPermutation, la cual nos devuelve una trenza reducida cuya permutación asociada nos da la solución al problema del conjugado en el grupo simétrico que se obtiene a partir de nuestras trenzas. Por último, En la Figura \ref{img:pi_inverse} aparece una función en la que, dada una permutación, nos devuelve la trenza reducida asociada. Para la implementación de estas dos funciones ha sido necesaria la utilización de las propiedades vistas sobre las permutaciones.
+En la Figura \ref{img:alg_a} vemos la implementación realizada del algoritmo. La Figura \ref{img:guess_per} muestra la función GuessPermutation, la cual nos devuelve una trenza reducida cuya permutación asociada nos da la solución al problema del conjugado en el grupo simétrico que se obtiene a partir de nuestras trenzas. Por último, En la Figura \ref{img:pi_inverse} aparece una función en la que, dada una permutación, nos devuelve la trenza reducida asociada. Para la implementación de estas dos funciones ha sido necesaria la utilización de las propiedades vistas sobre las permutaciones. Han sido realizadas en SageMath y se han utilizado las clases BraidGroup y Permutation.
 
 \ 
 \newline
@@ -2047,6 +2093,8 @@ En la Figura \ref{img:alg_a} vemos la implementación realizada del algoritmo. L
 \bibitem{Att}\textsc{Dennis Hofheinz},\textsc{Rainer Steinwandt}, \textit{A Practical Attack on Some Braid Group Based
 Cryptographic Primitives}.
 \bibitem{group}\textsc{Stevev Roman}, \textit{Fundamentals of group theory. An advance aproach}.
+\bibitem{wiki}\textit{Algebra abstracta}\newline https://es.wikibooks.org/wiki/Matemáticas\_Universitarias/Álgebra\_Abstracta
+\bibitem{alg_abs}\textsc{Pierre Antoine Brillet}, \textit{Abstract algebra}. 2007.
 \bibitem{free}\textsc{B. Suri}, \textit{Free groups - basics}. 2010.
 \bibitem{monoides}\textsc{John M. Howie}, \textit{Fundamentals of semigroup theory}.
 \bibitem{br_gr}\textsc{Christian Kassel}, \textsc{Vladimir Turaev}, \textit{Braid groups}.
