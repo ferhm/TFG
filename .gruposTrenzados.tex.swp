@@ -1,5 +1,6 @@
 \documentclass[12pt]{book}
 %\setlength{\parindent}{0pt}
+\usepackage[OT1]{fontenc}
 \usepackage{enumerate}
 \usepackage[spanish]{babel}
 \usepackage{enumerate}
@@ -35,6 +36,7 @@
 
 
 
+
 \renewcommand\thesubfigure{(\alph{subfigure})}
 \providecommand{\norm}[1]{\lVert#1\rVert}
 
@@ -50,24 +52,26 @@
 \newcommand{\myDegree}{Doble Grado en Ingeniería Informática y Matemáticas}
 \newcommand{\myFaculty}{ETSIIT -- Facultad de Ciencias}
 \newcommand{\myUni}{Universidad de Granada}
-\newcommand{\myYear}{Curso 2020-2021}
+\newcommand{\myYear}{Curso 2021-2022} 
 \newcommand{\myProf}{Pedro A. García Sanchez\\\textit{Departamento de Álgebra}\\Facultad de Ciencias}
 \newcommand{\myOtherProf}{Jesús García Miranda\\\textit{Departamento de Álgebra}\\ETSIIT}
+
 
 
 \begin{document} 
 
 \include{Titlepage}
-%\include{Titleback}
+\include{Titleback}
+\include{declaracion}
 \newpage
 \tableofcontents
 \newpage
 \chapter*{Resumen}
 \addcontentsline{toc}{chapter}{Resumen} 
 El trabajo tiene como objetivo, por un lado, comprender el grupo de trenzas y como poder trabajar con él, y por otro, ver como se aplica en métodos criptográficos y evaluar su seguridad. 
-En un primer lugar trataremos de realizar un estudio detallado del grupo de trenzas. Veremos una serie de conceptos y resultados sobre grupos y monoides. Luego estos nos servirán para realizar la construcción del grupo de trenzas, la cual haremos desde un punto de vista tanto algebraico como topológico, y deduciremos que ambos son equivalentes. Por último aplicaremos las herramientas vistas sobre grupos y monoides a las trenzas para obtener propiedades que nos facilitará el trabajar con estas. Además esta parte será la fundamentación matemática de la aplicación del grupo de trenzas al área de la criptografía que se verá en la segunda parte.
+En un primer lugar trataremos de realizar un estudio detallado del grupo de trenzas. Veremos una serie de conceptos y resultados sobre grupos y monoides. Luego estos nos servirán para realizar la construcción del grupo de trenzas, la cual haremos desde un punto de vista tanto algebraico como topológico, y deduciremos que ambos son equivalentes. Por último aplicaremos las herramientas vistas sobre grupos y monoides a las trenzas para obtener propiedades que nos facilitará el trabajar con estas. Además esta parte será la fundamentación matemática de la aplicación del grupo de trenzas al área de la criptografía.
 
-En segundo lugar nos centraremos en la criptografía. Introduciremos en qué consiste la criptografía dando la definición de conceptos básicos necesarios. Esto nos dará pie a ver cómo podemos aplicar el grupo de trenzas a la criptografía de manera que podamos obtener distintas herramientas criptográficas. Por último veremos algunas de las debilidades que se pueden encontrar en el cifrado con el uso del grupo de trenzas, e implementaremos un posible ataque haciendo uso de una heurística.
+En segundo lugar nos centraremos en la criptografía. Introduciremos en qué consiste la criptografía dando la definición de conceptos básicos. Esto nos dará pie a ver cómo podemos aplicar el grupo de trenzas a la criptografía de manera que podamos obtener distintas herramientas criptográficas. Por último veremos algunas de las debilidades que se pueden encontrar en el cifrado con el uso del grupo de trenzas, e implementaremos un posible ataque haciendo uso de una heurística.
 \newline
 \newline
 \textbf{Palabras clave:} Grupo de trenzas, Monoide de Garside, problema del conjugado, criptografía, esquema Anshel-Anshel-Goldfeld, esquema Diffie-Hellman, criptoanálisis.
@@ -120,19 +124,19 @@ Finally, a section is dedicated to cryptanalysis of this type of methods. In ess
 \newline
 \textbf{Key words:} Group, subgroup, symmetric group, quotient group, free group, group presentation, monoid, divisibility, equivalence, congruence, free monoid, atomic monoid, monoid presentation,  weighted presentation, word problem, divisibility problem, normal form, conjugacy problem, cancelativity, comprehensive set, group of fractions, pre-Garside monoid, embeddability, Garside monoid, Artin’s braid group, geometric braid, brand, isotopy, braid diagram, pure braid, cryptography, symmetric encryptation, asymmetric encryption, key exchange, digital signature, authentication, hash function, cryptographic hash function, Merkle-Damgard construction, Anshel-Anshel-Goldfeld scheme, Diffie-Hellman scheme, cryptanalysis, super summit sets, length-based attacks, theoretical representation attacks, heuristic.
 \chapter{Introducción}
-Este trabajo se desarrolla mayoritariamente en las áreas de la teoría de grupos, teoría de monoides y criptografía.  Los objetivos que deseamos abarcar son, por una parte, conocer en profundidad el grupo de trenzas y como trabajar con él, y por otra parte, conocer ejemplos de su aplicación en criptografía y evaluar su seguridad.
+Este trabajo se desarrolla mayoritariamente en las áreas de la teoría de grupos, teoría de monoides y criptografía.  Los objetivos que deseamos abarcar son, por una parte, conocer en profundidad el grupo de trenzas y como trabajar con él, y por otra parte, dar ejemplos de su aplicación en criptografía y evaluar su seguridad.
 
 Con estos propósitos comenzaremos repasando conceptos y resultados básicos sobre grupos necesarios para la construcción del grupo de trenzas, como pueden ser los grupos cocientes y las presentaciones de grupos.
 
-Luego procederemos a la construcción del grupo de trenzas tanto desde el punto de vista algebraico como topológico y demostraremos su equivalencia haciendo uso de los conceptos básicos vistos previamente.
+Luego procederemos a la construcción del grupo de trenzas, tanto desde el punto de vista algebraico como topológico y demostraremos su equivalencia haciendo uso de los conceptos básicos vistos previamente.
 
 También realizaremos un profundo estudio de los monoides de Garside a partir de los cuales obtendremos un conjunto de propiedades necesarias para trabajar tanto con el monoide como con el grupo de fracciones asociado. Entre estas propiedades se encuentran la cancelatividad, soluciones al problema de palabra y al problema del conjugado, y una forma normal.
 
 A partir de la definición del monoide de trenzas demostraremos que es un monoide de Garside. Veremos que su grupo de fracciones es el grupo de trenzas inicialmente definido, obteniendo las propiedades necesarias para trabajar con él.
 
-Repasaremos los principales métodos criptográficos, viendo algoritmos que los llevan a cabo haciendo uso de las trenzas y del problema del conjugado o variantes suyos como base de su seguridad. También se ha realizará una implementación de los algoritmos para el intercambio de llaves en los que se medirán los tiempos de ejecución para diferentes valores de los parámetros del algoritmo.
+Repasaremos los principales métodos criptográficos, viendo algoritmos que los llevan a cabo haciendo uso de las trenzas y del problema del conjugado o variantes suyos como base de su seguridad. También se realizará una implementación de los algoritmos para el intercambio de llaves en los que se medirán los tiempos de ejecución para diferentes valores de los parámetros del algoritmo.
 
-Por último veremos algunas técnicas de criptoanálisis que se basan en resolver el problema del conjugado en el grupo de trenzas para romper la seguridad los métodos criptográficos vistos. Se llevará a cabo la implementación de una heurística que resuelve el problema del conjugado y se mostrarán sus resultados.
+Por último veremos algunas técnicas de criptoanálisis que se basan en resolver el problema del conjugado en el grupo de trenzas para romper la seguridad los métodos criptográficos vistos. Se llevará a cabo la implementación de una heurística cuya intención es resolver el problema del conjugado y se mostrarán sus resultados.
 \chapter{Generalidades sobre grupos}
 \section{Grupos y subgrupos}
 \label{sec:grupos}
@@ -202,7 +206,7 @@ Si $\langle X\rangle = G$, diremos que $X$ es un conjunto de generadores de G. D
 A continuación vamos a definir los grupos simétricos con los que más adelante estableceremos una relación con los grupos de trenzas. También vamos a ver algunas de sus propiedades que nos serán de utilidad.
 
 \begin{defi}[Grupo simétrico]
-Sea $X \neq \emptyset$. Denominamos a una función biyectiva de $X$ en si misma una \textit{permutación} de $X$. El conjunto $S_X$ de todas las permutaciones de $X$ es un grupo bajo la composición como operación, y se llama \textit{grupo simétrico} o \textit{grupo de permutaciones}.
+Sea $X \neq \emptyset$. Denominamos a una función biyectiva de $X$ en sí misma una \textit{permutación} de $X$. El conjunto $S_X$ de todas las permutaciones de $X$ es un grupo bajo la composición como operación, y se llama \textit{grupo simétrico} o \textit{grupo de permutaciones}.
 \end{defi}
 
 El orden de $S_X$ es $|X|!$ cuando $X$ es finito. El grupo $S_X$ es no abeliano para $|X|\geq 3$. El grupo simétrico del conjunto $I_n=\{1,\ldots,n\}$ se denota por $S_n$ y tiene orden $n!$.
@@ -340,8 +344,8 @@ Denotaremos a este grupo por $G/H$ y lo llamaremos \textit{grupo cociente} de $G
 Sea $f:G\rightarrow G'$ un homomorfismo de grupos. Entonces, el núcleo del $f$ es un subgrupo de $G$ y además es normal en $G$.
 \end{prop}
 
-\begin{teor}[Teorema de factorización]
-Sea  $f:G\rightarrow G'$ un homomorfismo de grupos y sea $N$ un subgrupo normal de $G$ con $N\leq \ker(f)$, entonces existe un unico homomorfismo $\bar{f}:G/N\rightarrow G'$ tal que $\bar{f}\circ p=f$. 
+\begin{teor}[Teorema de Factorización]
+Sea  $f:G\rightarrow G'$ un homomorfismo de grupos y sea $N$ un subgrupo normal de $G$ con $N\leq \ker(f)$, entonces existe un único homomorfismo $\bar{f}:G/N\rightarrow G'$ tal que $\bar{f}\circ p=f$. 
 $$
 \xymatrix{
 G \ar[d]_p\ar[r]^f & G' \\
@@ -355,7 +359,7 @@ Además:
 \end{enumerate}
 \end{teor}
 
-\begin{teor}[Primer teorema de isomorfía]
+\begin{teor}[Primer Teorema de Isomorfía]
 Sea $f:G\rightarrow G'$ un homomorfismo de grupos y sea $K$ el núcleo de $f$. Entonces, $f(G)\cong G/K$. El isomorfismo viene dado por la correspondencia $\bar{f}$ que a cada $xK$ de $G/K$ le asocia el elemento $f(x)$ de $f(G)$.
 \end{teor}
 \begin{proof}
@@ -389,6 +393,7 @@ Una \textit{relación de grupo} entre elementos de un conjunto $X$ es un par ord
 Una relación de grupo entre elementos de un conjunto $X$ se dice que se \textit{mantiene} en $G$ por una función $f$ de $X$ en $G$ cuando $\varphi(u)=\varphi(v)$, donde $\varphi:F_X\rightarrow G$ es el único homomorfismo que extiende $f$.
 
 \begin{defi}
+\label{defi:presen}
 Dado un conjunto $X$ y un conjunto $R$ de relaciones de grupo entre elementos de $X$, el grupo $\langle X\mid R \rangle$ es el cociente del grupo libre $F_X$ por el subgrupo normal más pequeño $N$ de $F_X$ que contiene todos los elementos $uv^{-1}$ con $(u,v)\in R$.
 \end{defi}
 
@@ -483,7 +488,7 @@ Una \textit{relación (binaria)} en un conjunto $X$ es básicamente un subconjun
 Una \textit{relación de equivalencia} en $X$, $\rho$, es una relación que cumple las siguientes propiedades:
 \begin{enumerate}
 \item Reflexividad. $(x,x)\in\rho$ para todo $x\in X$.
-\item Simetría. Si $(x,y)\in\rho$ entonces $(y,x)\in\rho$
+\item Simetría. Si $(x,y)\in\rho$ entonces $(y,x)\in\rho$.
 \item Transitividad. Si $(x,y),(y,z)\in\rho$ entonces $(x,z)\in\rho$.
 \end{enumerate}
 
@@ -1073,7 +1078,7 @@ Si $s_1,...,s_{n-1}$ son elementos de un grupo $G$ que satisfacen las relaciones
 \label{uni_homo}
 \end{lema}
 
-\begin{proof} Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $g:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i\in\{1,...,n-1\}$. Por la demostración del primer teorema de isomorfía obtenemos otro homomorfismo $\bar{g}:F_n/K\rightarrow G$ donde $K=\ker(g)$ (de hecho, es un monomorfismo). También tenemos un homomorfismo $h:F_n\rightarrow B_n$ con $h(\sigma_i)=\sigma_i$ del cual consideramos su núcleo, $H_n=\ker(h)$. Llamamos $k:F_n/H_n\rightarrow B_n$ al isomorfismo en cuestión. El que los elementos de $s_i$ de $G$ satisfagan las relaciones de trenza implica que $R\subset R'$, donde $R$ es el conjunto de relaciones de $B_n$ y $R'$ es el conjunto de relaciones de G y que por tanto $H_n\subset K$. Por tanto el homomorfismo $\phi:F_n/H_n\rightarrow F_n/K$ con $\phi(xH_n)=\phi(xK)$ esta bien definido. De esta forma, componiendo $f=k^{-1}\circ \phi \circ \bar{g}$ obtenemos nuestro homomorfismo deseado.
+\begin{proof} Sea $F_n$ el grupo libre generado por el conjunto $\{\sigma_1,...,\sigma_{n-1}\}$. Hay un único homomorfismo $g:F_n\rightarrow G$ tal que $f(\sigma_i)= s_i$ para todo $i\in\{1,...,n-1\}$. Por la demostración del Primer Teorema de Isomorfía obtenemos otro homomorfismo $\bar{g}:F_n/K\rightarrow G$ donde $K=\ker(g)$ (de hecho, es un monomorfismo). También tenemos un homomorfismo $h:F_n\rightarrow B_n$ con $h(\sigma_i)=\sigma_i$ del cual consideramos su núcleo, $H_n=\ker(h)$. Llamamos $k:F_n/H_n\rightarrow B_n$ al isomorfismo en cuestión. Si tomamos el subgrupo normal $N$ de $B_n$ al que nos referimos en la Definición \ref{defi:presen}, es fácil ver haciendo uso del Teorema de Factorización que $H_n = N$. El que los elementos de $s_i$ de $G$ satisfagan las relaciones de trenza implica que $R\subset R'$, donde $R$ es el conjunto de relaciones de $B_n$ y $R'$ es el conjunto de relaciones de G y que por tanto $H_n\subset K$. Por tanto el homomorfismo $\phi:F_n/H_n\rightarrow F_n/K$ con $\phi(xH_n)=\phi(xK)$ esta bien definido. De esta forma, componiendo $f=k^{-1}\circ \phi \circ \bar{g}$ obtenemos nuestro homomorfismo deseado.
 \end{proof}
 
 
@@ -1782,7 +1787,7 @@ La prueba de este lema se puede ver en \cite{Alg}.
 \newline
 
 \chapter{Criptografía}
-
+Procedemos a explicar que es la criptografía y sus conceptos básicos para entender bien en que consiste y como podemos aplicar el grupo de trenzas a este campo \cite{in_cr}.
 
 La \textit{criptografía} es la ciencia de guardar secretos a salvo. Se asume que un emisor, al que nos referiremos aquí como \textit{Alicia}, quiere enviar un mensaje $m$ a un receptor, al que llamaremos \textit{Bruno}. Ella usa un canal de comunicación inseguro, como puede ser una red de ordenadores o una linea de teléfono. El problema esta cuando la información que se transmite es confidencial. El mensaje puede ser interceptado y leído o incluso modificado por un agente externo al que nos referiremos como \textit{Eva}. El objetivo de la criptografía es proveer de métodos para evitar este tipo de ataques.
 
@@ -1863,7 +1868,7 @@ La llave maestra se utiliza para generar las llaves de sesión. Por tanto es esp
 
 \section{Plataformas criptográficas y grupos de plataforma}
 
-Si un protocolo criptográfico esta basado en un objeto algebraico como puede ser un grupo, un anillo u otros, entonces es llamado \textit{plataforma criptográfica} o \textit{plataforma}. En criptografía basada en un grupo, a este se le llama \textit{grupo de plataforma} para el protocolo criptográfico. La seguridad de un protocolo criptográfico depende entonces de la dificultad, computacional o teórica, de resolver un problema de teoría de grupos en el grupo de plataforma.
+Si un protocolo criptográfico esta basado en un objeto algebraico como puede ser un grupo, un anillo u otros, entonces es llamado \textit{plataforma criptográfica} o \textit{plataforma}. En criptografía basada en un grupo, a este se le llama \textit{grupo de plataforma} para el protocolo criptográfico. La seguridad de un protocolo criptográfico depende entonces de la dificultad, computacional o teórica, de resolver un problema de teoría de grupos en el grupo de plataforma \cite{co_ma}.
 
 Para que un grupo de plataforma $G$ sea adecuado para un protocolo criptográfico basado en grupos, $G$ debe poseer ciertas propiedades que hagan el protocolo tanto eficiente de implementar como seguro. Se asume que el grupo posee una representación finita,
 $$G = \langle X\mid R\rangle=\langle x_1,...,x_n\mid R_1=\cdot\cdot\cdot=R_m=1\rangle,$$
@@ -1882,7 +1887,7 @@ Entre los primeros intentos de usar grupos no abelianos como plataformas para cr
 
 
 \section{Funciones hash criptográficas}
-Vamos a hablar sobre algunos aspectos de las funciones hash, que serán utilizadas en ciertos esquemas que vamos a ver más adelante.
+Vamos a hablar sobre algunos aspectos de las funciones hash, que serán utilizadas en ciertos esquemas que vamos a ver más adelante \cite{in_cr}.
 
 Una \textit{función hash} es una función que toma como entrada una cadena de bits de longitud arbitraria y da como salida una cadena de bits de una longitud fija $n$. Matemáticamente, una función hash es una función
 $$h:\{0,1\}^*\rightarrow\{0,1\}^n,\ m\longmapsto h(m).$$
@@ -2109,7 +2114,7 @@ Se han ejecutado las implementaciones realizadas de los protocolos de intercambi
 
 \chapter{Criptoanálisis}
 
-Cuando se introdujeron los criptosistemas basados en grupos de trenzas hubo una gran expectación. La dificultad de los principales problemas de teoría de grupos, el problema del conjugado y el problema de la búsqueda del conjugado, parecían lo suficientemente complejos en $B_n$ como para ser seguro. Sin embargo las investigaciones que se han realizado sobre el grupo de trenzas han hecho evidente que, sin consideraciones especiales, los criptosistemas basados en estos son inseguros. A continuación vamos a ver algunos de los posibles ataques que se han visto.
+Cuando se introdujeron los criptosistemas basados en grupos de trenzas hubo una gran expectación. La dificultad de los principales problemas de teoría de grupos, el problema del conjugado y el problema de la búsqueda del conjugado, parecían lo suficientemente complejos en $B_n$ como para ser seguro. Sin embargo las investigaciones que se han realizado sobre el grupo de trenzas han hecho evidente que, sin consideraciones especiales, los criptosistemas basados en estos son inseguros. A continuación vamos a ver algunos de los posibles ataques que se han visto \cite{co_ma}.
 
 Estos ataques se pueden clasificar según diferentes categorías. Ataques basados directamente en la solución del problema del conjugado vía los llamados conjuntos de cumbre, ataques basados en longitud los cuales utilizan la longitud de las trenzas, ataques teóricos de representación, y finalmente ataques en la difusión de multiplicación de elementos de grupo por variación de formas normales.
 
@@ -2223,15 +2228,15 @@ Se ha probado la heurística con el objetivo de ver la efectividad de la misma. 
 \begin{tabular}{|c|c|c|c|}
 \hline
 n  & l  & Muestras & Tasa de éxito \\ \hline
-5 & 5  & 10     & 78.0\%        \\ \hline
-5 & 10  & 10     & 79.0\%        \\ \hline
-10 & 5  & 10     & 79.0\%        \\ \hline
-10 & 10 & 10     & 80.0\%        \\ \hline
-15 & 5  & 10     & 78.0\%        \\ \hline
-15 & 10  & 10     & 79.0\%        \\ \hline
-20 & 5  & 10     & 79.0\%        \\ \hline
-20 & 10 & 10     & 80.0\%        \\ \hline
-25 & 5  & 10     & 78.0\%        \\ \hline
+5 & 5  & 10     & 50.0\%        \\ \hline
+5 & 10  & 10     & 10.0\%        \\ \hline
+10 & 5  & 10     & 90.0\%        \\ \hline
+10 & 10 & 10     & 0.0\%        \\ \hline
+15 & 5  & 10     & 70.0\%        \\ \hline
+15 & 10  & 10     & 30.0\%        \\ \hline
+20 & 5  & 10     & 80.0\%        \\ \hline
+20 & 10 & 10     & 50.0\%        \\ \hline
+25 & 5  & 10     & 70.0\%        \\ \hline
 \end{tabular}
 \caption{Tasa de éxito de la implementación realizada.}
 \label{tab:ex-pr}
@@ -2270,11 +2275,11 @@ Por último hemos vistos algunas técnicas de criptoanálisis que se basan en re
 
 Los ataques que hemos visto muestran un riesgo real para los métodos criptográficos basados en el problema del conjugado del grupo de trenzas y sus variantes. Si se aumentase la complejidad, incrementando el tamaño de los parámetros de los algoritmos criptográficos para volverlos más seguros, los tiempos de ejecución de estos se volverían muy largos.
 
-Algunas de las futuras lineas de trabajo para mejorar la seguridad de estos métodos consisten en cambiar el problema en el que se basan reemplazando al problema del conjugado. Una posible vía son los problemas de raiz. El grupo de trenzas es un grupo libre de torsión, es decir, si $b$ es una trenza no trivial, entonces $b^e$ para $e\geq 2$, es no trivial. De esta propiedad surgen de manera natural dos problemas. El primero es el problema de existencia de raiz para un exponente $e$ que consiste en que dada una trenza $b$ de $B_n$ hay que determinar si existe un $c\in B_n$ satisfaciendo $c^e=b$. El segundo  es el problema de extracción de la raiz para un exponente $e$ y que, dadas las condiciones del anterior problema, hay que encontrar  el $c$ que satisface $c^e=b$.
+Algunas de las futuras lineas de trabajo para mejorar la seguridad de estos métodos consisten en cambiar el problema en el que se basan reemplazando al problema del conjugado \cite{Deh}. Una posible vía son los problemas de raíz. El grupo de trenzas es un grupo libre de torsión, es decir, si $b$ es una trenza no trivial, entonces $b^e$ para $e\geq 2$, es no trivial. De esta propiedad surgen de manera natural dos problemas. El primero es el problema de existencia de raíz para un exponente $e$ que consiste en que dada una trenza $b$ de $B_n$ hay que determinar si existe un $c\in B_n$ satisfaciendo $c^e=b$. El segundo  es el problema de extracción de la raíz para un exponente $e$ y que, dadas las condiciones del anterior problema, hay que encontrar  el $c$ que satisface $c^e=b$.
 
 Otro camino a explorar es el problema de longitud mínima en el que hay que encontrar la palabra de longitud mínima representando una trenza. No es estrictamente un problema dentro del grupo $B_n$, sino más bien un problema para $B_n$ junto con la elección de una familia de generadores concreta.
 
-Una tercera posibilidad es la de escoger operaciones más exóticas. No es necesario elegir únicamente operaciones de grupo de $B_n$. La utilización de otros operaciones con propiedades deseables nos puede permitir modificar el problema del conjugado para que este sea más seguro.
+También podemos escoger operaciones más exóticas. No es necesario elegir únicamente operaciones de grupo de $B_n$. La utilización de otros operaciones con propiedades deseables nos puede permitir modificar el problema del conjugado para que este sea más seguro.
 
 
 
@@ -2295,6 +2300,8 @@ Cryptographic Primitives}.
 \bibitem{br_gr}\textsc{Christian Kassel}, \textsc{Vladimir Turaev}, \textit{Braid groups}.
 \bibitem{st_br}\textsc{Kunio Murasugi}, \textsc{Bohdan l. Kurpita}, \textit{A study of braids}.
 \bibitem{in_cr}\textsc{Hans Delfs}, \textsc{Helmut Knebl}, \textit{Introduction to cryptography. Principles and Applications.}
+
+\bibitem{co_ma}\textsc{Gilbert Baumslag}, \textsc{Benjamin Fine},  \textsc{Martin Kreuzer}, \textsc{Gerhard Rosenberger},\textit{A course in mathematical cryptography.}
 
 \bibitem{AAG}\textsc{I. Anshel}, \textsc{M. Anshel}, \textsc{D. Goldfeld}, \textit{New key agreement protocols in braid group cryptography}. 2001.
 
