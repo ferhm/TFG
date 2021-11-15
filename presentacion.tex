@@ -24,14 +24,14 @@
 \begin{document}
 \title{Grupo de trenzas y su aplicación en criptografía}   
 \author{Fernando de la Hoz Moreno} 
-\date{\today} 
+\date{} 
 
 \frame{\titlepage} 
 
-\frame{\frametitle{Table of contents}\tableofcontents} 
 
 
-\section{Grupo de trenzas}
+
+
 
 
 \begin{frame}
@@ -51,7 +51,7 @@
 \begin{minipage}{.5\textwidth}
 \begin{figure}
 \includegraphics[height=0.9\textwidth]{imgs/EmilArtin}
-\caption{Fotografía de Emil Artin \cite{}.}
+\caption{Fotografía de Emil Artin.}
 \end{figure}
 \end{minipage}
 
@@ -81,7 +81,7 @@ Cada hebra de $\mathcal{B}$ interseca con el plano $\mathbb{R}^2\times \{t\}$ co
 
 \begin{figure}
 \includegraphics[height=0.5\textwidth]{imgs/trenza_geo}
-\caption{Trenza Geométrica \cite{}.}
+\caption{Trenza Geométrica.}
 \end{figure}
 
 \end{frame}
@@ -91,7 +91,8 @@ Cada hebra de $\mathcal{B}$ interseca con el plano $\mathbb{R}^2\times \{t\}$ co
 \frametitle{Isotopía}
 
 
-Dos trenzas geométricas $\mathcal{B}$ y $\mathcal{B}'$ son \textbf{isotópicas} si podemos deformar de manera continua $\mathcal{B}$ en $\mathcal{B}'$. Más formalmente, $\mathcal{B}$ y $\mathcal{B}'$ son isotópicas si existe una función continua $F : \mathcal{B} \times I \rightarrow \mathbb{R}^2\times I$ de tal manera qué para cada $s\in I$, la función $F_s : \mathcal{B}\rightarrow \mathbb{R}^2\times I$ con $F_s(x)= F(x,s)$ es un embebimiento cuya imagen es una trenza geométrica de $n$ hebras, cumpliendo que $F_0 = id_{\mathcal{B}}: \mathcal{B}\rightarrow \mathcal{B}$ y $F_1(\mathcal{B}) = \mathcal{B}'$.
+Dos trenzas geométricas $\mathcal{B}$ y $\mathcal{B}'$ son \textbf{isotópicas} si podemos deformar de manera continua $\mathcal{B}$ en $\mathcal{B}'$.
+\newline
 
 La relación de isotopía establece una relación de equivalencia y al conjunto de clases de equivalencia se les denomina \textbf{trenzas de n hebras}, denotándolo por $\mathcal{B}_n$.
 
@@ -205,7 +206,7 @@ para todo $i\in\{1,2,...,n-2\}$.
 \frametitle{Grupo de trenzas de Artin}
 
 \begin{block}{Teorema}
-Para $\varepsilon \in\{+,-\}$, existe un único homomorfismo $\varphi_\varepsilon : B_n\rightarrow\mathcal{B}_n$ tal que $\varphi_\varepsilon(\sigma_i) = \sigma_i^\varepsilon$ para cada $i\in\{1,2,...,n-1\}$. El homomorfismo $\varphi_\varepsilon$ es un isomorfismo.
+Para $\varepsilon \in\{+,-\}$, existe un único homomorfismo $\varphi_\varepsilon : B_n\rightarrow\mathcal{B}_n$ tal que $\varphi_\varepsilon(\sigma_i) = \sigma_i^\varepsilon$ para cada $i\in\{1,2,...,n-1\}$. El homomorfismo $\varphi_\varepsilon$ es un \textbf{isomorfismo}.
 \end{block}
 \end{frame}
 
@@ -230,7 +231,7 @@ Entre las propiedades que necesita un grupo de plataforma se encuentran:
 \begin{frame}
 \frametitle{Problema del conjugado}
 \begin{block}{Definición}
-El \textit{problema del conjugado en un grupo} $G$ consiste en encontrar un procedimiento que nos permita, dados $\alpha,\beta\in G$, decidir si existe $\gamma\in G$ tal que $\alpha=\gamma\beta\gamma^{-1}$.
+El \textbf{problema del conjugado} en el grupo $B_n$ consiste en encontrar un procedimiento que nos permita, dados $\alpha,\beta\in B_n$, decidir si existe $\gamma\in B_n$ tal que $\alpha=\gamma\beta\gamma^{-1}$.
 \end{block}
 \end{frame}
 
@@ -240,8 +241,8 @@ El \textit{problema del conjugado en un grupo} $G$ consiste en encontrar un proc
 \frametitle{Monoide de Garside}
 Un \textbf{monoide de Garside exhaustivo} es un par $(M,\Delta)$, donde $M$ es un monoide y $\Delta$ un elemento de $M$ (\textbf{elemento de Garside}) que cumplen ciertas características. Consideramos $G_M$ como el grupo de fracciones de $M$. Algunas de las propiedades que nos proporciona un monoide de Garside exhaustivo son:
 \begin{itemize}
-\item Obtenemos una forma normal en $G_M$.
-\item Da una solución al problema del conjugado en $G_M$.
+\item Obtenemos una \textbf{forma normal} en $G_M$.
+\item Da una \textbf{solución} al problema del conjugado en $G_M$.
 \end{itemize}
 
 \end{frame}
@@ -260,6 +261,7 @@ Entonces $(B_n^+,\Delta_n)$ es un monoide de Garside exhaustivo y $G_{B_n^+}=B_n
 
 Es un método de intercambio de llave público propuesto por Anshel \& al en 1999. 
 La llave pública consiste en dos conjuntos de trenzas $\{p_1,...,p_l\},\{q_1,...,q_m\}\subset B_n$. La llave secreta es una palabra formada a partir de estos conjuntos.
+\newline
 
 La seguridad está basada en la dificultad de resolver una variante del Problema de Búsqueda del Conjugado en $B_n$, que es llamado el Problema de Búsqueda del conjugado Múltiple, en el cual se intenta encontrar una trenza conjugadora  de una familia finita de pares de trenzas $(p_1,p_1'),...,(p_l,p_l')$.
 
@@ -320,109 +322,99 @@ Ataques al problema de la búsqueda del conjugado:
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Bibliografía}
+
+\begin{thebibliography}{X}
+\bibitem{Art1}\textsc{Emil Artin}, \textit{Theorie der z\"opfe}, 1925.
+\bibitem{Art2}\textsc{Emil Artin}, \textit{Theory of braids}, Vol. 48, No. 1, January, 1947.
+\bibitem{Deh}\textsc{Patrick Dehornoy}, \textit{Braid-based cryptography}.
+\bibitem{Alg}\textsc{Elsayed A. Elrifai},\textsc{Hugh R. Morton}, \textit{Algorithms for positive braids}.
+\bibitem{Att}\textsc{Dennis Hofheinz},\textsc{Rainer Steinwandt}, \textit{A Practical Attack on Some Braid Group Based
+Cryptographic Primitives}.
+\bibitem{group}\textsc{Stevev Roman}, \textit{Fundamentals of group theory. An advance aproach}.
+\bibitem{wiki}\textit{Algebra abstracta}\newline https://es.wikibooks.org/wiki/Matemáticas\_Universitarias/Álgebra\_Abstracta
+\bibitem{alg_abs}\textsc{Pierre Antoine Brillet}, \textit{Abstract algebra}. 2007.
+\bibitem{free}\textsc{B. Suri}, \textit{Free groups - basics}. 2010.
+\bibitem{monoides}\textsc{John M. Howie}, \textit{Fundamentals of semigroup theory}.
+\bibitem{br_gr}\textsc{Christian Kassel}, \textsc{Vladimir Turaev}, \textit{Braid groups}.
+\bibitem{st_br}\textsc{Kunio Murasugi}, \textsc{Bohdan l. Kurpita}, \textit{A study of braids}.
+\bibitem{in_cr}\textsc{Hans Delfs}, \textsc{Helmut Knebl}, \textit{Introduction to cryptography. Principles and Applications.}
+
+\bibitem{co_ma}\textsc{Gilbert Baumslag}, \textsc{Benjamin Fine},  \textsc{Martin Kreuzer}, \textsc{Gerhard Rosenberger},\textit{A course in mathematical cryptography.}
+
+\bibitem{AAG}\textsc{I. Anshel}, \textsc{M. Anshel}, \textsc{D. Goldfeld}, \textit{New key agreement protocols in braid group cryptography}. 2001.
+
+
+\bibitem{Ko}\textsc{K.H. Ko}, \textsc{S.J. Lee}, \textsc{J.H. Cheon}, \textsc{J.W. Hang}, \textsc{J.S. Kang}, \textsc{C. Park}, \textit{New public-key cryptosystem using braid groups}. 2000.
+
+\bibitem{Ko_sig}\textsc{K.H. Ko}, \textsc{P. Dehornoy}, \textsc{M. Girault}, \textsc{J.W. Lee}, \textit{New signature scheme using conjugacy problem, Preprint}. 2002.
+
+\bibitem{Sibert}\textsc{H. Sibert}, \textsc{D.H. Choi}, \textsc{M.S. Cho}, \textsc{J.W. Lee}, \textit{Entity authentication schemes using braid word reduction}. 2003.
+
+\bibitem{Emil}\textit{Imagen de Emil Artin}. De Konrad Jacobs, Erlangen - Mathematisches Forschungsinstitut Oberwolfach, https://opc.mfo.de/detail?photoID=116, CC BY-SA 2.0 de, https://commons.wikimedia.org/w/index.php?curid=3898471
+
+
+\bibitem{sa_br}\textit{Manual Sage. Grupo de trenzas.}\newline https://doc.sagemath.org/html/en/reference/groups/sage/groups/braid.html
+\bibitem{sa_pe} \textit{Manual Sage. Grupo de permutaciones.}\newline https://doc.sagemath.org/html/en/reference/groups/sage/groups/perm\_gps/\newline permgroup\_element.html
+\end{thebibliography}
 
 
 
 
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Bibliografía}
+
+\begin{thebibliography}{X}
+
+\bibitem{alg_abs}\textsc{Pierre Antoine Brillet}, \textit{Abstract algebra}. 2007.
+\bibitem{free}\textsc{B. Suri}, \textit{Free groups - basics}. 2010.
+\bibitem{monoides}\textsc{John M. Howie}, \textit{Fundamentals of semigroup theory}.
+\bibitem{br_gr}\textsc{Christian Kassel}, \textsc{Vladimir Turaev}, \textit{Braid groups}.
+\bibitem{st_br}\textsc{Kunio Murasugi}, \textsc{Bohdan l. Kurpita}, \textit{A study of braids}.
+\bibitem{in_cr}\textsc{Hans Delfs}, \textsc{Helmut Knebl}, \textit{Introduction to cryptography. Principles and Applications.}
+
+\bibitem{co_ma}\textsc{Gilbert Baumslag}, \textsc{Benjamin Fine},  \textsc{Martin Kreuzer}, \textsc{Gerhard Rosenberger}, \textit{A course in mathematical cryptography.}
+
+
+\end{thebibliography}
 
 
 
 
+\end{frame}
 
 
 
 
+\begin{frame}
+\frametitle{Bibliografía}
+
+\begin{thebibliography}{X}
+
+
+\bibitem{AAG}\textsc{I. Anshel}, \textsc{M. Anshel}, \textsc{D. Goldfeld}, \textit{New key agreement protocols in braid group cryptography}. 2001.
+
+
+\bibitem{Ko}\textsc{K.H. Ko}, \textsc{S.J. Lee}, \textsc{J.H. Cheon}, \textsc{J.W. Hang}, \textsc{J.S. Kang}, \textsc{C. Park}, \textit{New public-key cryptosystem using braid groups}. 2000.
+
+\bibitem{Ko_sig}\textsc{K.H. Ko}, \textsc{P. Dehornoy}, \textsc{M. Girault}, \textsc{J.W. Lee}, \textit{New signature scheme using conjugacy problem, Preprint}. 2002.
+
+\bibitem{Sibert}\textsc{H. Sibert}, \textsc{D.H. Choi}, \textsc{M.S. Cho}, \textsc{J.W. Lee}, \textit{Entity authentication schemes using braid word reduction}. 2003.
+
+\bibitem{Emil}\textit{Imagen de Emil Artin}. De Konrad Jacobs, Erlangen - Mathematisches Forschungsinstitut Oberwolfach, https://commons.wikimedia.org/w/index.php?curid=3898471
+
+
+\end{thebibliography}
 
 
 
 
-\section{Section} 
-\frame{\frametitle{Title} 
-Each frame should have a title.
-}
-\subsection{Subsection no.1.1  }
-\frame{ 
-Without title somethink is missing. 
-}
+\end{frame}
 
 
-\section{Section no. 2} 
-\subsection{Lists I}
-\frame{\frametitle{unnumbered lists}
-\begin{itemize}
-\item Introduction to  \LaTeX  
-\item Course 2 
-\item Termpapers and presentations with \LaTeX 
-\item Beamer class
-\end{itemize} 
-}
-
-\frame{\frametitle{lists with pause}
-\begin{itemize}
-\item Introduction to  \LaTeX \pause 
-\item Course 2 \pause 
-\item Termpapers and presentations with \LaTeX \pause 
-\item Beamer class
-\end{itemize} 
-}
-
-\subsection{Lists II}
-\frame{\frametitle{numbered lists}
-\begin{enumerate}
-\item Introduction to  \LaTeX  
-\item Course 2 
-\item Termpapers and presentations with \LaTeX 
-\item Beamer class
-\end{enumerate}
-}
-\frame{\frametitle{numbered lists with pause}
-\begin{enumerate}
-\item Introduction to  \LaTeX \pause 
-\item Course 2 \pause 
-\item Termpapers and presentations with \LaTeX \pause 
-\item Beamer class
-\end{enumerate}
-}
-
-\section{Section no.3} 
-\subsection{Tables}
-\frame{\frametitle{Tables}
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{Date} & \textbf{Instructor} & \textbf{Title} \\
-\hline
-WS 04/05 & Sascha Frank & First steps with  \LaTeX  \\
-\hline
-SS 05 & Sascha Frank & \LaTeX \ Course serial \\
-\hline
-\end{tabular}}
-
-
-\frame{\frametitle{Tables with pause}
-\begin{tabular}{c c c}
-A & B & C \\ 
-\pause 
-1 & 2 & 3 \\  
-\pause 
-A & B & C \\ 
-\end{tabular} }
-
-
-\section{Section no. 4}
-\subsection{blocs}
-\frame{\frametitle{blocs}
-
-\begin{block}{title of the bloc}
-bloc text
-\end{block}
-
-\begin{exampleblock}{title of the bloc}
-bloc text
-\end{exampleblock}
-
-
-\begin{alertblock}{title of the bloc}
-bloc text
-\end{alertblock}
-}
 \end{document}
