@@ -2143,7 +2143,7 @@ Se han ejecutado las implementaciones realizadas de los protocolos de intercambi
 \begin{table}
 \centering
 \csvreader[tabular=|c|c|c|c|c|c|c|,
-    table head=\hline Muestras & $n$ & $l$ & Tiempo & Desviación Estándar & Mínimo & Máximo\\\hline,
+    table head=\hline Muestras & $n$ & $l$ & Tiempo (s) & Desviación Estándar (s) & Mínimo (s) & Máximo (s)\\\hline,
     late after line=\\\hline]%
 {csv/anshel.csv}{sizesample=\sizesample,n=\n,l=\l,time=\time,std=\std,min=\min,max=\max}%
 {\sizesample & \n & \l & \time & \std & \min & \max}%
@@ -2154,7 +2154,7 @@ Se han ejecutado las implementaciones realizadas de los protocolos de intercambi
 \begin{table}
 \centering
 \csvreader[tabular=|c|c|c|c|c|c|c|,
-    table head=\hline Muestras & $n$ & $l$ & Tiempo & Desviación Estándar & Mínimo & Máximo\\\hline,
+    table head=\hline Muestras & $n$ & $l$ & Tiempo (s) & Desviación Estándar (s) & Mínimo (s) & Máximo (s)\\\hline,
     late after line=\\\hline]%
 {csv/ko.csv}{sizesample=\sizesample,n=\n,l=\l,time=\time,std=\std,min=\min,max=\max}%
 {\sizesample & \n & \l & \time & \std & \min & \max}%
@@ -2208,11 +2208,11 @@ $$MY_bM^{-1}=\rho(b)Y_a\rho(b)^{-1}=\rho(abxb^{-1}a^{-1}),$$
 el cual puede ser elevado a la trenza necesaria. Este ataque es efectivo porque las matrices provenientes de $\rho$ cumplen unos limites muy restrictivos. La efectividad de este método demuestra que la representación de lawrence-Krammer permite una solución al problema de Diffie-Hellman en grupos de trenzas en tiempo polinomial.
 
 \section{Aproximación heurística al problema del conjugado}
-Vamos a ver una heurística que nos permitirá, de forma eficiente, resolver en ocasiones el problema del conjugado devolviendonos un conjugador. De esta manera también resolvemos el problema de búsqueda del conjugado. El algoritmo ha sido extraído de \cite{Att}. Aquí mostramos el pseudocódigo del algoritmo.
+Vamos a ver una heurística que nos permitirá, de forma eficiente, resolver en ocasiones el problema del conjugado devolviendonos un conjugador. De esta manera también resolvemos el problema de búsqueda del conjugado. Esta heurística entraría dentro del conjunto de ataques basados en longitud. El algoritmo ha sido extraído de \cite{Att}. Aquí mostramos el pseudocódigo del algoritmo.
 \newline
 
 %\lstset{  numbers=left, numbersep=-7pt}
-\newpage
+
 \begin{lstlisting}[frame=single,escapeinside={(*}{*)}]  % Inicia el bloque de código
 
   (*- Entrada: $v,w\in B_n$ con $w = x^{-1}vx$ para algún $x\in B_n^+$ con $\inf x = 0$*)
@@ -2242,28 +2242,23 @@ Pasamos a explicar el algoritmo. En los pasos 1 y 2 inicializamos $\alpha$ como 
 
 En la Figura \ref{img:alg_a} vemos la implementación realizada del algoritmo. La Figura \ref{img:guess_per} muestra la función GuessPermutation, la cual nos devuelve una trenza reducida cuya permutación asociada nos da la solución al problema del conjugado en el grupo simétrico que se obtiene a partir de nuestras trenzas. Por último, En la Figura \ref{img:pi_inverse} aparece una función en la que, dada una permutación, nos devuelve la trenza reducida asociada. Para la implementación de estas dos funciones ha sido necesaria la utilización de las propiedades vistas sobre las permutaciones. Han sido realizadas en SageMath y se han utilizado las clases \texttt{BraidGroup} y \texttt{Permutation}.
 
-\ 
-\newline
-\newline
-\begin{figure}[h!]
+
+\begin{figure}[]
 \centering
 \includegraphics[scale=0.5]{imgs/pi_inverse.png} 
 \caption{Implementación de la función $\pi^{-1}$}
 \label{img:pi_inverse}
 \end{figure}
-\ 
-\newline
-\newline
-\begin{figure}[h!]
+
+
+\begin{figure}[]
 \centering
 \includegraphics[scale=0.5]{imgs/breakConjugate.png} 
 \caption{Heurística del problema del conjugado}
 \label{img:alg_a}
 \end{figure}
-\ 
-\newline
-\newline
-\begin{figure}[h!]
+
+\begin{figure}[]
 \centering
 \includegraphics[scale=0.5]{imgs/GuessPermutation.png} 
 \caption{Función GuessPermutation}
@@ -2326,6 +2321,8 @@ Por último hemos vistos algunas técnicas de criptoanálisis que se basan en re
 Los ataques que hemos visto muestran un riesgo real para los métodos criptográficos basados en el problema del conjugado del grupo de trenzas y sus variantes. Si se aumentase la complejidad, incrementando el tamaño de los parámetros de los algoritmos criptográficos para volverlos más seguros, los tiempos de ejecución de estos se volverían muy largos.
 
 Algunas de las futuras lineas de trabajo para mejorar la seguridad de estos métodos consisten en cambiar el problema en el que se basan reemplazando al problema del conjugado \cite{Deh}. Una posible vía son los problemas de raíz. El grupo de trenzas es un grupo libre de torsión, es decir, si $b$ es una trenza no trivial, entonces $b^e$ para $e\geq 2$, es no trivial. De esta propiedad surgen de manera natural dos problemas. El primero es el problema de existencia de raíz para un exponente $e$ que consiste en que dada una trenza $b$ de $B_n$ hay que determinar si existe un $c\in B_n$ satisfaciendo $c^e=b$. El segundo  es el problema de extracción de la raíz para un exponente $e$ y que, dadas las condiciones del anterior problema, hay que encontrar  el $c$ que satisface $c^e=b$.
+
+La mayoría de ataques que se implementan son basados en longitud. Estos ataques aprovechan la mala difusión de la forma normal para trenzas generadas aleatoriamente. Una posible solución para solventar este problema es investigar la generación de llaves que tengan una buena difusión.
 
 Otro camino a explorar es el problema de longitud mínima en el que hay que encontrar la palabra de longitud mínima representando una trenza. No es estrictamente un problema dentro del grupo $B_n$, sino más bien un problema para $B_n$ junto con la elección de una familia de generadores concreta.
 
